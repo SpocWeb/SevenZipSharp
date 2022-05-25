@@ -869,7 +869,7 @@ namespace SevenZip
             return Path.Combine(TempFolderPath, Path.GetFileName(archiveName) + ".~");
         }
 
-        private FileStream GetArchiveFileStream(string archiveName)
+        public FileStream GetArchiveFileStream(string archiveName)
         {
             if ((CompressionMode != CompressionMode.Create || _updateData.FileNamesToModify != null) && !File.Exists(archiveName))
             {
