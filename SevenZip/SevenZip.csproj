@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);**\*.vrn;**\*.vrn.zip</DefaultItemExcludes>
     <AssemblyName>SevenZipSharp</AssemblyName>
     <TargetFrameworks>net48;net6</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
