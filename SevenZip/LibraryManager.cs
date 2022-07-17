@@ -189,12 +189,9 @@ namespace SevenZip
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetResourceString(archiveFileName));
             
-            try
-            {
-                using (var extractor = new SevenZipExtractor(stream))
-                {
-                    extractor.ExtractFile(0, outStream);
-                }
+            try {
+	            using var extractor = new SevenZipExtractor(stream);
+	            extractor.ExtractFile(0, outStream);
             }
             catch (Exception)
             {

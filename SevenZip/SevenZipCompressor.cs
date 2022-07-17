@@ -1831,26 +1831,21 @@ namespace SevenZip
         /// </summary>
         /// <param name="data">Byte array to compress</param>
         /// <returns>Compressed byte array</returns>
-        public static byte[] CompressBytes(byte[] data)
-        {
-            using (var inStream = new MemoryStream(data))
-            {
-                using (var outStream = new MemoryStream())
-                {
-                    var encoder = new Encoder();
-                    WriteLzmaProperties(encoder);
-                    encoder.WriteCoderProperties(outStream);
-                    var streamSize = inStream.Length;
+        public static byte[] CompressBytes(byte[] data) {
+	        using var inStream = new MemoryStream(data);
+	        using var outStream = new MemoryStream();
+	        var encoder = new Encoder();
+	        WriteLzmaProperties(encoder);
+	        encoder.WriteCoderProperties(outStream);
+	        var streamSize = inStream.Length;
 
-                    for (var i = 0; i < 8; i++)
-                    {
-                        outStream.WriteByte((byte) (streamSize >> (8 * i)));
-                    }
+	        for (var i = 0; i < 8; i++)
+	        {
+		        outStream.WriteByte((byte) (streamSize >> (8 * i)));
+	        }
 
-                    encoder.Code(inStream, outStream, -1, -1, null);
-                    return outStream.ToArray();
-                }
-            }
+	        encoder.Code(inStream, outStream, -1, -1, null);
+	        return outStream.ToArray();
         }
 
         /// <summary>

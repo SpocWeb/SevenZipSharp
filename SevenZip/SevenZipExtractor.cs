@@ -969,18 +969,16 @@ namespace SevenZip
                     return false;
                 }
 
-                using (var aec = GetArchiveExtractCallback("", (int)_filesCount, null))
+                using var aec = GetArchiveExtractCallback("", (int)_filesCount, null);
+                try
                 {
-                    try
-                    {
-                        CheckedExecute(
-                            _archive.Extract(null, uint.MaxValue, 1, aec),
-                            SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
-                    }
-                    finally
-                    {
-                        FreeArchiveExtractCallback(aec);
-                    }
+	                CheckedExecute(
+		                _archive.Extract(null, uint.MaxValue, 1, aec),
+		                SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
+                }
+                finally
+                {
+	                FreeArchiveExtractCallback(aec);
                 }
             }
             catch (Exception)
@@ -1091,19 +1089,17 @@ namespace SevenZip
                 {
                     indexes = SolidIndexes(indexes);
                 }
-                
-                using (var aec = GetArchiveExtractCallback(stream, (uint) index, indexes.Length))
+
+                using var aec = GetArchiveExtractCallback(stream, (uint) index, indexes.Length);
+                try
                 {
-                    try
-                    {
-                        CheckedExecute(
-                            _archive.Extract(indexes, (uint) indexes.Length, 0, aec),
-                            SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
-                    }
-                    finally
-                    {
-                        FreeArchiveExtractCallback(aec);
-                    }
+	                CheckedExecute(
+		                _archive.Extract(indexes, (uint) indexes.Length, 0, aec),
+		                SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
+                }
+                finally
+                {
+	                FreeArchiveExtractCallback(aec);
                 }
             }
             catch (Exception)
@@ -1183,21 +1179,18 @@ namespace SevenZip
                         return;
                     }
 
-                    try
-                    {
-                        using (var aec = GetArchiveExtractCallback(directory, (int) _filesCount, origIndexes))
-                        {
-                            try
-                            {
-                                CheckedExecute(
-                                    _archive.Extract(uindexes, (uint) uindexes.Length, 0, aec),
-                                    SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
-                            }
-                            finally
-                            {
-                                FreeArchiveExtractCallback(aec);
-                            }
-                        }
+                    try {
+	                    using var aec = GetArchiveExtractCallback(directory, (int) _filesCount, origIndexes);
+	                    try
+	                    {
+		                    CheckedExecute(
+			                    _archive.Extract(uindexes, (uint) uindexes.Length, 0, aec),
+			                    SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
+	                    }
+	                    finally
+	                    {
+		                    FreeArchiveExtractCallback(aec);
+	                    }
                     }
                     catch (Exception)
                     {
@@ -1297,12 +1290,9 @@ namespace SevenZip
                         {
                             ExtractFile(archiveFileInfo.Index, extractFileCallbackArgs.ExtractToStream);
                         }
-                        else
-                        {
-                            using (var file = new FileStream(extractFileCallbackArgs.ExtractToFile, FileMode.CreateNew, FileAccess.Write, FileShare.None, 8192))
-                            {
-                                ExtractFile(archiveFileInfo.Index, file);
-                            }
+                        else {
+	                        using var file = new FileStream(extractFileCallbackArgs.ExtractToFile, FileMode.CreateNew, FileAccess.Write, FileShare.None, 8192);
+	                        ExtractFile(archiveFileInfo.Index, file);
                         }
 
                         callDone = true;
@@ -1353,22 +1343,19 @@ namespace SevenZip
                         return;
                     }
 
-                    try
-                    {
-                        using (var aec = GetArchiveExtractCallback(directory, (int) _filesCount, null))
-                        {
-                            try
-                            {
-                                CheckedExecute(
-                                    _archive.Extract(null, uint.MaxValue, 0, aec),
-                                    SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
-                                OnEvent(ExtractionFinished, EventArgs.Empty, false);
-                            }
-                            finally
-                            {
-                                FreeArchiveExtractCallback(aec);
-                            }
-                        }
+                    try {
+	                    using var aec = GetArchiveExtractCallback(directory, (int) _filesCount, null);
+	                    try
+	                    {
+		                    CheckedExecute(
+			                    _archive.Extract(null, uint.MaxValue, 0, aec),
+			                    SevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
+		                    OnEvent(ExtractionFinished, EventArgs.Empty, false);
+	                    }
+	                    finally
+	                    {
+		                    FreeArchiveExtractCallback(aec);
+	                    }
                     }
                     catch (Exception)
                     {
@@ -1446,20 +1433,15 @@ namespace SevenZip
         /// </summary>
         /// <param name="data">Byte array to decompress</param>
         /// <returns>Decompressed byte array</returns>
-        public static byte[] ExtractBytes(byte[] data)
-        {
-            using (var inStream = new MemoryStream(data))
-            {
-                var decoder = new Decoder();
-                inStream.Seek(0, 0);
+        public static byte[] ExtractBytes(byte[] data) {
+	        using var inStream = new MemoryStream(data);
+	        var decoder = new Decoder();
+	        inStream.Seek(0, 0);
 
-                using (var outStream = new MemoryStream())
-                {
-                    decoder.SetDecoderProperties(GetLzmaProperties(inStream, out var outSize));
-                    decoder.Code(inStream, outStream, inStream.Length - inStream.Position, outSize, null);
-                    return outStream.ToArray();
-                }
-            }
+	        using var outStream = new MemoryStream();
+	        decoder.SetDecoderProperties(GetLzmaProperties(inStream, out var outSize));
+	        decoder.Code(inStream, outStream, inStream.Length - inStream.Position, outSize, null);
+	        return outStream.ToArray();
         }
 
         #endregion

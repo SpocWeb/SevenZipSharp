@@ -233,21 +233,18 @@
         /// <param name="isExecutable">True if the original format of the file is PE; otherwise, false.</param>
         /// <returns>Corresponding InArchiveFormat.</returns>
         /// <exception cref="System.ArgumentException"/>
-        public static InArchiveFormat CheckSignature(string fileName, out int offset, out bool isExecutable)
-        {
-            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                try
-                {
-                    return CheckSignature(fs, out offset, out isExecutable);
-                }
-                catch (ArgumentException)
-                {
-                    offset = 0;
-                    isExecutable = false;
-                    return Formats.FormatByFileName(fileName, true);
-                }
-            }
+        public static InArchiveFormat CheckSignature(string fileName, out int offset, out bool isExecutable) {
+	        using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+	        try
+	        {
+		        return CheckSignature(fs, out offset, out isExecutable);
+	        }
+	        catch (ArgumentException)
+	        {
+		        offset = 0;
+		        isExecutable = false;
+		        return Formats.FormatByFileName(fileName, true);
+	        }
         }
     }
 #endif

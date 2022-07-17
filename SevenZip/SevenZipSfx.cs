@@ -176,79 +176,72 @@
         /// Loads the commands for each supported sfx module configuration
         /// </summary>
         /// <param name="xmlDefinitions">The resource name for xml definitions</param>
-        private void LoadCommandsFromResource(string xmlDefinitions)
-        {
-            using (var cfg = Assembly.GetExecutingAssembly().GetManifestResourceStream(
-                GetResourceString(xmlDefinitions + ".xml")))
-            {
-                if (cfg == null)
-                {
-                    throw new SevenZipSfxValidationException("The configuration \"" + xmlDefinitions +
-                                                             "\" does not exist.");
-                }
-                using (var schm = Assembly.GetExecutingAssembly().GetManifestResourceStream(
-                    GetResourceString(xmlDefinitions + ".xsd")))
-                {
-                    if (schm == null)
-                    {
-                        throw new SevenZipSfxValidationException("The configuration schema \"" + xmlDefinitions +
-                                                                 "\" does not exist.");
-                    }
-                    var sc = new XmlSchemaSet();
-                    using (var scr = XmlReader.Create(schm))
-                    {
-                        sc.Add(null, scr);
-                        var settings = new XmlReaderSettings {ValidationType = ValidationType.Schema, Schemas = sc};
-                        var validationErrors = "";
-                        settings.ValidationEventHandler +=
-                            ((s, t) =>
-                            {
-                                validationErrors += String.Format(CultureInfo.InvariantCulture, "[{0}]: {1}\n",
-                                                                  t.Severity.ToString(), t.Message);
-                            });
-                        using (var rdr = XmlReader.Create(cfg, settings))
-                        {
-                            _sfxCommands = new Dictionary<SfxModule, List<string>>();
-                            rdr.Read();
-                            rdr.Read();
-                            rdr.Read();
-                            rdr.Read();
-                            rdr.Read();
-                            rdr.ReadStartElement("sfxConfigs");
-                            rdr.Read();
-                            do
-                            {
-                                var mod = GetModuleByName(rdr["modules"]);
-                                rdr.ReadStartElement("config");
-                                rdr.Read();
-                                if (rdr.Name == "id")
-                                {
-                                    var cmds = new List<string>();
-                                    _sfxCommands.Add(mod, cmds);
-                                    do
-                                    {
-                                        cmds.Add(rdr["command"]);
-                                        rdr.Read();
-                                        rdr.Read();
-                                    } while (rdr.Name == "id");
-                                    rdr.ReadEndElement();
-                                    rdr.Read();
-                                }
-                                else
-                                {
-                                    _sfxCommands.Add(mod, null);
-                                }
-                            } while (rdr.Name == "config");
-                        }
-                        if (!string.IsNullOrEmpty(validationErrors))
-                        {
-                            throw new SevenZipSfxValidationException(
-                                "\n" + validationErrors.Substring(0, validationErrors.Length - 1));
-                        }
-                        _sfxCommands.Add(SfxModule.Default, _sfxCommands[SfxModule.Extended]);
-                    }
-                }
-            }
+        private void LoadCommandsFromResource(string xmlDefinitions) {
+	        using var cfg = Assembly.GetExecutingAssembly().GetManifestResourceStream(
+		        GetResourceString(xmlDefinitions + ".xml"));
+	        if (cfg == null)
+	        {
+		        throw new SevenZipSfxValidationException("The configuration \"" + xmlDefinitions +
+		                                                 "\" does not exist.");
+	        }
+	        using var schm = Assembly.GetExecutingAssembly().GetManifestResourceStream(
+		        GetResourceString(xmlDefinitions + ".xsd"));
+	        if (schm == null)
+	        {
+		        throw new SevenZipSfxValidationException("The configuration schema \"" + xmlDefinitions +
+		                                                 "\" does not exist.");
+	        }
+	        var sc = new XmlSchemaSet();
+	        using var scr = XmlReader.Create(schm);
+	        sc.Add(null, scr);
+	        var settings = new XmlReaderSettings {ValidationType = ValidationType.Schema, Schemas = sc};
+	        var validationErrors = "";
+	        settings.ValidationEventHandler +=
+		        ((s, t) =>
+		        {
+			        validationErrors += String.Format(CultureInfo.InvariantCulture, "[{0}]: {1}\n",
+				        t.Severity.ToString(), t.Message);
+		        });
+	        using (var rdr = XmlReader.Create(cfg, settings))
+	        {
+		        _sfxCommands = new Dictionary<SfxModule, List<string>>();
+		        rdr.Read();
+		        rdr.Read();
+		        rdr.Read();
+		        rdr.Read();
+		        rdr.Read();
+		        rdr.ReadStartElement("sfxConfigs");
+		        rdr.Read();
+		        do
+		        {
+			        var mod = GetModuleByName(rdr["modules"]);
+			        rdr.ReadStartElement("config");
+			        rdr.Read();
+			        if (rdr.Name == "id")
+			        {
+				        var cmds = new List<string>();
+				        _sfxCommands.Add(mod, cmds);
+				        do
+				        {
+					        cmds.Add(rdr["command"]);
+					        rdr.Read();
+					        rdr.Read();
+				        } while (rdr.Name == "id");
+				        rdr.ReadEndElement();
+				        rdr.Read();
+			        }
+			        else
+			        {
+				        _sfxCommands.Add(mod, null);
+			        }
+		        } while (rdr.Name == "config");
+	        }
+	        if (!string.IsNullOrEmpty(validationErrors))
+	        {
+		        throw new SevenZipSfxValidationException(
+			        "\n" + validationErrors.Substring(0, validationErrors.Length - 1));
+	        }
+	        _sfxCommands.Add(SfxModule.Default, _sfxCommands[SfxModule.Extended]);
         }
 
         /// <summary>
@@ -372,12 +365,9 @@
         /// </summary>
         /// <param name="archive">The archive stream.</param>
         /// <param name="sfxFileName">The name of the self-extracting executable.</param>
-        public void MakeSfx(Stream archive, string sfxFileName)
-        {
-            using (Stream sfxStream = File.Create(sfxFileName))
-            {
-                MakeSfx(archive, GetDefaultSettings(), sfxStream);
-            }
+        public void MakeSfx(Stream archive, string sfxFileName) {
+	        using Stream sfxStream = File.Create(sfxFileName);
+	        MakeSfx(archive, GetDefaultSettings(), sfxStream);
         }
 
         /// <summary>
@@ -396,12 +386,9 @@
         /// <param name="archive">The archive stream.</param>
         /// <param name="settings">The sfx settings.</param>
         /// <param name="sfxFileName">The name of the self-extracting executable.</param>
-        public void MakeSfx(Stream archive, SfxSettings settings, string sfxFileName)
-        {
-            using (Stream sfxStream = File.Create(sfxFileName))
-            {
-                MakeSfx(archive, settings, sfxStream);
-            }
+        public void MakeSfx(Stream archive, SfxSettings settings, string sfxFileName) {
+	        using Stream sfxStream = File.Create(sfxFileName);
+	        MakeSfx(archive, settings, sfxStream);
         }
 
         /// <summary>
@@ -424,12 +411,9 @@
                 WriteStream(sfx, sfxStream);
             }
 
-            if (SfxModule == SfxModule.Custom || _sfxCommands[SfxModule] != null)
-            {
-                using (var set = GetSettingsStream(settings))
-                {
-                    WriteStream(set, sfxStream);
-                }
+            if (SfxModule == SfxModule.Custom || _sfxCommands[SfxModule] != null) {
+	            using var set = GetSettingsStream(settings);
+	            WriteStream(set, sfxStream);
             }
 
             WriteStream(archive, sfxStream);
@@ -440,17 +424,10 @@
         /// </summary>
         /// <param name="archiveFileName">The archive file name.</param>
         /// <param name="sfxFileName">The name of the self-extracting executable.</param>
-        public void MakeSfx(string archiveFileName, string sfxFileName)
-        {
-            using (Stream sfxStream = File.Create(sfxFileName))
-            {
-                using (
-                    Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                    )
-                {
-                    MakeSfx(archive, GetDefaultSettings(), sfxStream);
-                }
-            }
+        public void MakeSfx(string archiveFileName, string sfxFileName) {
+	        using Stream sfxStream = File.Create(sfxFileName);
+	        using Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+	        MakeSfx(archive, GetDefaultSettings(), sfxStream);
         }
 
         /// <summary>
@@ -458,13 +435,9 @@
         /// </summary>
         /// <param name="archiveFileName">The archive file name.</param>
         /// <param name="sfxStream">The stream to write the self-extracting executable to.</param>
-        public void MakeSfx(string archiveFileName, Stream sfxStream)
-        {
-            using (Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                )
-            {
-                MakeSfx(archive, GetDefaultSettings(), sfxStream);
-            }
+        public void MakeSfx(string archiveFileName, Stream sfxStream) {
+	        using Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+	        MakeSfx(archive, GetDefaultSettings(), sfxStream);
         }
 
         /// <summary>
@@ -473,17 +446,10 @@
         /// <param name="archiveFileName">The archive file name.</param>
         /// <param name="settings">The sfx settings.</param>
         /// <param name="sfxFileName">The name of the self-extracting executable.</param>
-        public void MakeSfx(string archiveFileName, SfxSettings settings, string sfxFileName)
-        {
-            using (Stream sfxStream = File.Create(sfxFileName))
-            {
-                using (
-                    Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                    )
-                {
-                    MakeSfx(archive, settings, sfxStream);
-                }
-            }
+        public void MakeSfx(string archiveFileName, SfxSettings settings, string sfxFileName) {
+	        using Stream sfxStream = File.Create(sfxFileName);
+	        using Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+	        MakeSfx(archive, settings, sfxStream);
         }
 
         /// <summary>
@@ -492,13 +458,9 @@
         /// <param name="archiveFileName">The archive file name.</param>
         /// <param name="settings">The sfx settings.</param>
         /// <param name="sfxStream">The stream to write the self-extracting executable to.</param>
-        public void MakeSfx(string archiveFileName, SfxSettings settings, Stream sfxStream)
-        {
-            using (Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                )
-            {
-                MakeSfx(archive, settings, sfxStream);
-            }
+        public void MakeSfx(string archiveFileName, SfxSettings settings, Stream sfxStream) {
+	        using Stream archive = new FileStream(archiveFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+	        MakeSfx(archive, settings, sfxStream);
         }
     }
 #endif
