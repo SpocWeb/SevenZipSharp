@@ -3,6 +3,7 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);**\*.vrn;**\*.vrn.zip</DefaultItemExcludes>
     <AssemblyName>SevenZipSharp</AssemblyName>
     <TargetFrameworks>net48;net6</TargetFrameworks>
+    <LangVersion>latest</LangVersion><!--8.0 with Classes, except Interfaces Default Implementations!-->
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>SevenZip.snk</AssemblyOriginatorKeyFile>
     <AssemblyTitle>SevenZipSharp</AssemblyTitle>
