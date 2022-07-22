@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
@@ -18,3 +17,8 @@ using System.Runtime.InteropServices;
     "4db0149e1bd71f314943b667ac6f1374ce06a32ce8db9d8389385cbbd3a0bc1d9e9ad9ce51b440" +
     "08d909c438dc9473a79c088ffc51e9f9b26d89c89fe93c17e8fc2d6e771c400423608bea1577b6" +
     "a2c3cdad")]
+
+// ReSharper disable once EmptyNamespace
+// ReSharper disable once CheckNamespace
+namespace System.Net.Http { }
+
