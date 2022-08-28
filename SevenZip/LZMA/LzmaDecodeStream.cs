@@ -163,35 +163,26 @@
             return readCount;
         }
 
-        /// <summary>
-        /// Sets the position within the current stream.
-        /// </summary>
-        /// <param name="offset">A byte offset relative to the origin parameter.</param>
-        /// <param name="origin">A value of type System.IO.SeekOrigin indicating the reference point used to obtain the new position.</param>
-        /// <returns>The new position within the current stream.</returns>       
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new NotSupportedException();
-        }
+		/// <summary>
+		/// Sets the position within the current stream.
+		/// </summary>
+		/// <param name="offset">A byte offset relative to the origin parameter.</param>
+		/// <param name="origin">A value of type System.IO.SeekOrigin indicating the reference point used to obtain the new position.</param>
+		/// <returns>The new position within the current stream.</returns>       
+		public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
 
-        /// <summary>
-        /// Sets the length of the current stream.
-        /// </summary>
-        /// <param name="value">The desired length of the current stream in bytes.</param>
-        public override void SetLength(long value)
-        {
-            throw new NotSupportedException();
-        }
+		/// <summary>
+		/// Sets the length of the current stream.
+		/// </summary>
+		/// <param name="value">The desired length of the current stream in bytes.</param>
+		public override void SetLength(long value) => throw new NotSupportedException();
 
-        /// <summary>
-        /// Writes a sequence of bytes to the current stream.
-        /// </summary>
-        /// <param name="buffer">An array of bytes.</param>
-        /// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
-        /// <param name="count">The maximum number of bytes to be read from the current stream.</param>
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            throw new NotSupportedException();
-        }
-    }
+		/// <summary>
+		/// Writes a sequence of bytes to the current stream.
+		/// </summary>
+		/// <param name="buffer">An array of bytes.</param>
+		/// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
+		/// <param name="count">The maximum number of bytes to be read from the current stream.</param>
+		public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException();
+	}
 }

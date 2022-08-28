@@ -26,12 +26,9 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             }
         }
 
-        public void Init()
-        {
-            Prob = kBitModelTotal >> 1;
-        }
+		public void Init() => Prob = kBitModelTotal >> 1;
 
-        /*public void UpdateModel(uint symbol)
+		/*public void UpdateModel(uint symbol)
 		{
 			if (symbol == 0)
 				Prob += (kBitModelTotal - Prob) >> kNumMoveBits;
@@ -39,7 +36,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 				Prob -= (Prob) >> kNumMoveBits;
 		}*/
 
-        public void Encode(Encoder encoder, uint symbol)
+		public void Encode(Encoder encoder, uint symbol)
         {
             // encoder.EncodeBit(Prob, kNumBitModelTotalBits, symbol);
             // UpdateModel(symbol);
@@ -62,21 +59,12 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             }
         }
 
-        public uint GetPrice(uint symbol)
-        {
-            return ProbPrices[(((Prob - symbol) ^ ((-(int) symbol))) & (kBitModelTotal - 1)) >> kNumMoveReducingBits];
-        }
+		public uint GetPrice(uint symbol) => ProbPrices[(((Prob - symbol) ^ ((-(int) symbol))) & (kBitModelTotal - 1)) >> kNumMoveReducingBits];
 
-        public uint GetPrice0()
-        {
-            return ProbPrices[Prob >> kNumMoveReducingBits];
-        }
+		public uint GetPrice0() => ProbPrices[Prob >> kNumMoveReducingBits];
 
-        public uint GetPrice1()
-        {
-            return ProbPrices[(kBitModelTotal - Prob) >> kNumMoveReducingBits];
-        }
-    }
+		public uint GetPrice1() => ProbPrices[(kBitModelTotal - Prob) >> kNumMoveReducingBits];
+	}
 
     internal struct BitDecoder
     {
@@ -86,7 +74,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 
         private uint Prob;
 
-        /*public void UpdateModel(int numMoveBits, uint symbol)
+		/*public void UpdateModel(int numMoveBits, uint symbol)
 		{
 			if (symbol == 0)
 				Prob += (kBitModelTotal - Prob) >> numMoveBits;
@@ -94,12 +82,9 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 				Prob -= (Prob) >> numMoveBits;
 		}*/
 
-        public void Init()
-        {
-            Prob = kBitModelTotal >> 1;
-        }
+		public void Init() => Prob = kBitModelTotal >> 1;
 
-        public uint Decode(Decoder rangeDecoder)
+		public uint Decode(Decoder rangeDecoder)
         {
             uint newBound = (rangeDecoder.Range >> kNumBitModelTotalBits)*Prob;
             if (rangeDecoder.Code < newBound)

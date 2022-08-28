@@ -95,12 +95,9 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-        private void Free()
-        {
-            _bufferBase = null;
-        }
+		private void Free() => _bufferBase = null;
 
-        public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
+		public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
         {
             _keepSizeBefore = keepSizeBefore;
             _keepSizeAfter = keepSizeAfter;
@@ -114,17 +111,11 @@ namespace SevenZip.Sdk.Compression.LZ
             _pointerToLastSafePosition = _blockSize - keepSizeAfter;
         }
 
-        public void SetStream(Stream stream)
-        {
-            _stream = stream;
-        }
+		public void SetStream(Stream stream) => _stream = stream;
 
-        public void ReleaseStream()
-        {
-            _stream = null;
-        }
+		public void ReleaseStream() => _stream = null;
 
-        public void Init()
+		public void Init()
         {
             _bufferOffset = 0;
             _pos = 0;
@@ -146,19 +137,16 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-        public Byte GetIndexByte(Int32 index)
-        {
-            return _bufferBase[_bufferOffset + _pos + index];
-        }
+		public Byte GetIndexByte(Int32 index) => _bufferBase[_bufferOffset + _pos + index];
 
-        /// <summary>
-        /// index + limit have not to exceed _keepSizeAfter
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="distance"></param>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        public UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
+		/// <summary>
+		/// index + limit have not to exceed _keepSizeAfter
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="distance"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
         {
             if (_streamEndWasReached) {
 	            if ((_pos + index) + limit > _streamPos) {
@@ -174,12 +162,9 @@ namespace SevenZip.Sdk.Compression.LZ
             return i;
         }
 
-        public UInt32 GetNumAvailableBytes()
-        {
-            return _streamPos - _pos;
-        }
+		public UInt32 GetNumAvailableBytes() => _streamPos - _pos;
 
-        public void ReduceOffsets(Int32 subValue)
+		public void ReduceOffsets(Int32 subValue)
         {
             _bufferOffset += (UInt32) subValue;
             _posLimit -= (UInt32) subValue;

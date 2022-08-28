@@ -665,13 +665,11 @@ namespace SevenZip
             return 0;
         }
 
-        public long EnumProperties(IntPtr enumerator)
-        {
-            //Not implemented HRESULT
-            return 0x80004001L;
-        }
+		public long EnumProperties(IntPtr enumerator) =>
+			//Not implemented HRESULT
+			0x80004001L;
 
-        public void SetOperationResult(OperationResult operationResult)
+		public void SetOperationResult(OperationResult operationResult)
         {
             if (operationResult != OperationResult.Ok && ReportErrors)
             {

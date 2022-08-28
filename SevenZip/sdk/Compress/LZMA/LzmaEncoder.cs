@@ -350,12 +350,9 @@ namespace SevenZip.Sdk.Compression.Lzma
             _numFastBytesPrev = _numFastBytes;
         }
 
-        private void SetWriteEndMarkerMode(bool writeEndMarker)
-        {
-            _writeEndMark = writeEndMarker;
-        }
+		private void SetWriteEndMarkerMode(bool writeEndMarker) => _writeEndMark = writeEndMarker;
 
-        private void Init()
+		private void Init()
         {
             BaseInit();
             _rangeEncoder.Init();
@@ -416,13 +413,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
-        private UInt32 GetRepLen1Price(Base.State state, UInt32 posState)
-        {
-            return _isRepG0[state.Index].GetPrice0() +
-                   _isRep0Long[(state.Index << Base.kNumPosStatesBitsMax) + posState].GetPrice0();
-        }
+		private UInt32 GetRepLen1Price(Base.State state, UInt32 posState) => _isRepG0[state.Index].GetPrice0() +
+				   _isRep0Long[(state.Index << Base.kNumPosStatesBitsMax) + posState].GetPrice0();
 
-        private UInt32 GetPureRepPrice(UInt32 repIndex, Base.State state, UInt32 posState)
+		private UInt32 GetPureRepPrice(UInt32 repIndex, Base.State state, UInt32 posState)
         {
             UInt32 price;
             if (repIndex == 0)
@@ -1236,17 +1230,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
-        private void SetOutStream(Stream outStream)
-        {
-            _rangeEncoder.SetStream(outStream);
-        }
+		private void SetOutStream(Stream outStream) => _rangeEncoder.SetStream(outStream);
 
-        private void ReleaseOutStream()
-        {
-            _rangeEncoder.ReleaseStream();
-        }
+		private void ReleaseOutStream() => _rangeEncoder.ReleaseStream();
 
-        private void ReleaseStreams()
+		private void ReleaseStreams()
         {
             ReleaseMFStream();
             ReleaseOutStream();
@@ -1426,17 +1414,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             private readonly UInt32[] _prices = new UInt32[Base.kNumLenSymbols << Base.kNumPosStatesBitsEncodingMax];
             private UInt32 _tableSize;
 
-            public void SetTableSize(UInt32 tableSize)
-            {
-                _tableSize = tableSize;
-            }
+			public void SetTableSize(UInt32 tableSize) => _tableSize = tableSize;
 
-            public UInt32 GetPrice(UInt32 symbol, UInt32 posState)
-            {
-                return _prices[posState*Base.kNumLenSymbols + symbol];
-            }
+			public UInt32 GetPrice(UInt32 symbol, UInt32 posState) => _prices[posState * Base.kNumLenSymbols + symbol];
 
-            private void UpdateTable(UInt32 posState)
+			private void UpdateTable(UInt32 posState)
             {
                 SetPrices(posState, _tableSize, _prices, posState*Base.kNumLenSymbols);
                 _counters[posState] = _tableSize;
@@ -1489,23 +1471,17 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
-            internal Encoder2 GetSubCoder(UInt32 pos, Byte prevByte)
-            {
-                return m_Coders[((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits))];
-            }
+			internal Encoder2 GetSubCoder(UInt32 pos, Byte prevByte) => m_Coders[((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits))];
 
-            #region Nested type: Encoder2
+			#region Nested type: Encoder2
 
-            public struct Encoder2
+			public struct Encoder2
             {
                 private BitEncoder[] m_Encoders;
 
-                public void Create()
-                {
-                    m_Encoders = new BitEncoder[0x300];
-                }
+				public void Create() => m_Encoders = new BitEncoder[0x300];
 
-                public void Init()
+				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Encoders[i].Init();
                 }
@@ -1606,17 +1582,11 @@ namespace SevenZip.Sdk.Compression.Lzma
                 Prev1IsChar = false;
             }
 
-            public bool IsShortRep()
-            {
-                return (BackPrev == 0);
-            }
-        } ;
+			public bool IsShortRep() => (BackPrev == 0);
+		} ;
 
-        #endregion
+		#endregion
 
-        internal void SetTrainSize(uint trainSize)
-		{
-			_trainSize = trainSize;
-		}
-    }
+		internal void SetTrainSize(uint trainSize) => _trainSize = trainSize;
+	}
 }

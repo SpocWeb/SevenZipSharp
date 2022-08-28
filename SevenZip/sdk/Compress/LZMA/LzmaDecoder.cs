@@ -383,33 +383,21 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
-            private uint GetState(uint pos, byte prevByte)
-            {
-                return ((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits));
-            }
+			private uint GetState(uint pos, byte prevByte) => ((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits));
 
-            public byte DecodeNormal(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte)
-            {
-                return m_Coders[GetState(pos, prevByte)].DecodeNormal(rangeDecoder);
-            }
+			public byte DecodeNormal(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte) => m_Coders[GetState(pos, prevByte)].DecodeNormal(rangeDecoder);
 
-            public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte, byte matchByte)
-            {
-                return m_Coders[GetState(pos, prevByte)].DecodeWithMatchByte(rangeDecoder, matchByte);
-            }
+			public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte, byte matchByte) => m_Coders[GetState(pos, prevByte)].DecodeWithMatchByte(rangeDecoder, matchByte);
 
-            #region Nested type: Decoder2
+			#region Nested type: Decoder2
 
-            private struct Decoder2
+			private struct Decoder2
             {
                 private BitDecoder[] m_Decoders;
 
-                public void Create()
-                {
-                    m_Decoders = new BitDecoder[0x300];
-                }
+				public void Create() => m_Decoders = new BitDecoder[0x300];
 
-                public void Init()
+				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Decoders[i].Init();
                 }

@@ -27,13 +27,11 @@
         /// Path to archive file to test against.
         /// </summary>
         public string TestDataFilePath { get; }
-        
-        public override string ToString()
-        {
-            // Used to get useful test results.
-            return ExpectedFormat.ToString();
-        }
-    }
+
+		public override string ToString() =>
+			// Used to get useful test results.
+			ExpectedFormat.ToString();
+	}
 
     [TestFixture]
     public class FileCheckerTests
@@ -79,14 +77,12 @@
             new FileCheckerTestData(@"TestData\zip.zip", InArchiveFormat.Zip)
         };
 
-        [SetUp]
-        public void SetUp()
-        {
-            // Ensures we're in the correct working directory (for test data files).
-            Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
-        }
-        
-        [TestCaseSource(nameof(TestData))]
+		[SetUp]
+		public void SetUp() =>
+			// Ensures we're in the correct working directory (for test data files).
+			Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
+
+		[TestCaseSource(nameof(TestData))]
         public void CheckFileSignatureTest(FileCheckerTestData data)
         {
             if (!File.Exists(data.TestDataFilePath))

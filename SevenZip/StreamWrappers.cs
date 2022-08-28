@@ -153,11 +153,8 @@ namespace SevenZip
         /// </summary>
         public event EventHandler<IntEventArgs> BytesRead;
 
-        private void OnBytesRead(IntEventArgs e)
-        {
-            BytesRead?.Invoke(this, e);
-        }
-    }
+		private void OnBytesRead(IntEventArgs e) => BytesRead?.Invoke(this, e);
+	}
 
     /// <summary>
     /// IOutStream wrapper used in stream write operations.
@@ -219,11 +216,8 @@ namespace SevenZip
         /// </summary>
         public event EventHandler<IntEventArgs> BytesWritten;
 
-        private void OnBytesWritten(IntEventArgs e)
-        {
-            BytesWritten?.Invoke(this, e);
-        }
-    }
+		private void OnBytesWritten(IntEventArgs e) => BytesWritten?.Invoke(this, e);
+	}
 
     /// <summary>
     /// Base multi volume stream wrapper class.
@@ -410,18 +404,15 @@ namespace SevenZip
             NewVolumeStream();
         }
 
-        #region IOutStream Members
+		#region IOutStream Members
 
-        public int SetSize(long newSize)
-        {
-            return 0;
-        }
+		public int SetSize(long newSize) => 0;
 
-        #endregion
+		#endregion
 
-        #region ISequentialOutStream Members
+		#region ISequentialOutStream Members
 
-        public int Write(byte[] data, uint size, IntPtr processedSize)
+		public int Write(byte[] data, uint size, IntPtr processedSize)
         {
             int offset = 0;
             var originalSize = (int) size;
@@ -463,25 +454,22 @@ namespace SevenZip
 
     internal sealed class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
     {
-        #region IDisposable Members
+		#region IDisposable Members
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
+		public void Dispose() => GC.SuppressFinalize(this);
 
-        #endregion
+		#endregion
 
-        #region ISequentialOutStream Members
+		#region ISequentialOutStream Members
 
-        /// <summary>
-        /// Does nothing except calling the BytesWritten event
-        /// </summary>
-        /// <param name="data">Data array</param>
-        /// <param name="size">Array size</param>
-        /// <param name="processedSize">Count of written bytes</param>
-        /// <returns>Zero if Ok</returns>
-        public int Write(byte[] data, uint size, IntPtr processedSize)
+		/// <summary>
+		/// Does nothing except calling the BytesWritten event
+		/// </summary>
+		/// <param name="data">Data array</param>
+		/// <param name="size">Array size</param>
+		/// <param name="processedSize">Count of written bytes</param>
+		/// <returns>Zero if Ok</returns>
+		public int Write(byte[] data, uint size, IntPtr processedSize)
         {
             OnBytesWritten(new IntEventArgs((int) size));
             if (processedSize != IntPtr.Zero)
@@ -498,10 +486,7 @@ namespace SevenZip
         /// </summary>
         public event EventHandler<IntEventArgs> BytesWritten;
 
-        private void OnBytesWritten(IntEventArgs e)
-        {
-            BytesWritten?.Invoke(this, e);
-        }
-    }
+		private void OnBytesWritten(IntEventArgs e) => BytesWritten?.Invoke(this, e);
+	}
 #endif
 }

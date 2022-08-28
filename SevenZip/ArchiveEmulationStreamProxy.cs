@@ -36,12 +36,9 @@
 
         public override bool CanWrite => Source.CanWrite;
 
-        public override void Flush()
-        {
-            Source.Flush();
-        }
+		public override void Flush() => Source.Flush();
 
-        public override long Length => Source.Length - Offset;
+		public override long Length => Source.Length - Offset;
 
         public override long Position
         {
@@ -49,35 +46,17 @@
             set => Source.Position = value;
         }
 
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            return Source.Read(buffer, offset, count);
-        }
+		public override int Read(byte[] buffer, int offset, int count) => Source.Read(buffer, offset, count);
 
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            return Source.Seek(origin == SeekOrigin.Begin ? offset + Offset : offset,
-                origin) - Offset;
-        }
+		public override long Seek(long offset, SeekOrigin origin) => Source.Seek(origin == SeekOrigin.Begin ? offset + Offset : offset,
+				origin) - Offset;
 
-        public override void SetLength(long value)
-        {
-            Source.SetLength(value);
-        }
+		public override void SetLength(long value) => Source.SetLength(value);
 
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            Source.Write(buffer, offset, count);
-        }
+		public override void Write(byte[] buffer, int offset, int count) => Source.Write(buffer, offset, count);
 
-        public new void Dispose()
-        {
-            Source.Dispose();
-        }
+		public new void Dispose() => Source.Dispose();
 
-        public override void Close()
-        {
-            Source.Close();
-        }
-    }
+		public override void Close() => Source.Close();
+	}
 }

@@ -5,13 +5,10 @@
     [TestFixture]
     public class LibraryManagerTests : TestBase
     {
-        [Test]
-        public void SetNonExistant7zDllLocationTest()
-        {
-            Assert.Throws<SevenZipLibraryException>(() => SevenZipLibraryManager.SetLibraryPath("null"));
-        }
+		[Test]
+		public void SetNonExistant7zDllLocationTest() => Assert.Throws<SevenZipLibraryException>(() => SevenZipLibraryManager.SetLibraryPath("null"));
 
-        [Test]
+		[Test]
         public void CurrentLibraryFeaturesTest()
         {
             var features = SevenZipBase.CurrentLibraryFeatures;

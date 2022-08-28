@@ -249,9 +249,6 @@
             FilePath = filePath;
         }
 
-        public override string ToString()
-        {
-            return Path.GetFileName(FilePath);
-        }
-    }
+		public override string ToString() => Path.GetFileName(FilePath);
+	}
 }

@@ -172,22 +172,19 @@
             }
         }
 
-        /// <summary>
-        /// Determines whether the specified System.Object is equal to the current PropVariant.
-        /// </summary>
-        /// <param name="obj">The System.Object to compare with the current PropVariant.</param>
-        /// <returns>true if the specified System.Object is equal to the current PropVariant; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            return obj is PropVariant variant && Equals(variant);
-        }
+		/// <summary>
+		/// Determines whether the specified System.Object is equal to the current PropVariant.
+		/// </summary>
+		/// <param name="obj">The System.Object to compare with the current PropVariant.</param>
+		/// <returns>true if the specified System.Object is equal to the current PropVariant; otherwise, false.</returns>
+		public override bool Equals(object obj) => obj is PropVariant variant && Equals(variant);
 
-        /// <summary>
-        /// Determines whether the specified PropVariant is equal to the current PropVariant.
-        /// </summary>
-        /// <param name="afi">The PropVariant to compare with the current PropVariant.</param>
-        /// <returns>true if the specified PropVariant is equal to the current PropVariant; otherwise, false.</returns>
-        private bool Equals(PropVariant afi)
+		/// <summary>
+		/// Determines whether the specified PropVariant is equal to the current PropVariant.
+		/// </summary>
+		/// <param name="afi">The PropVariant to compare with the current PropVariant.</param>
+		/// <returns>true if the specified PropVariant is equal to the current PropVariant; otherwise, false.</returns>
+		private bool Equals(PropVariant afi)
         {
             if (afi.VarType != VarType)
             {
@@ -202,31 +199,25 @@
             return afi.Value == Value;
         }
 
-        /// <summary>
-        ///  Serves as a hash function for a particular type.
-        /// </summary>
-        /// <returns> A hash code for the current PropVariant.</returns>
-        public override int GetHashCode()
-        {
-            return Value.GetHashCode();
-        }
+		/// <summary>
+		///  Serves as a hash function for a particular type.
+		/// </summary>
+		/// <returns> A hash code for the current PropVariant.</returns>
+		public override int GetHashCode() => Value.GetHashCode();
 
-        /// <summary>
-        /// Returns a System.String that represents the current PropVariant.
-        /// </summary>
-        /// <returns>A System.String that represents the current PropVariant.</returns>
-        public override string ToString()
-        {
-            return "[" + Value + "] " + Int64Value.ToString(CultureInfo.CurrentCulture);
-        }
+		/// <summary>
+		/// Returns a System.String that represents the current PropVariant.
+		/// </summary>
+		/// <returns>A System.String that represents the current PropVariant.</returns>
+		public override string ToString() => "[" + Value + "] " + Int64Value.ToString(CultureInfo.CurrentCulture);
 
-        /// <summary>
-        /// Determines whether the specified PropVariant instances are considered equal.
-        /// </summary>
-        /// <param name="afi1">The first PropVariant to compare.</param>
-        /// <param name="afi2">The second PropVariant to compare.</param>
-        /// <returns>true if the specified PropVariant instances are considered equal; otherwise, false.</returns>
-        public static bool operator ==(PropVariant afi1, PropVariant afi2)
+		/// <summary>
+		/// Determines whether the specified PropVariant instances are considered equal.
+		/// </summary>
+		/// <param name="afi1">The first PropVariant to compare.</param>
+		/// <param name="afi2">The second PropVariant to compare.</param>
+		/// <returns>true if the specified PropVariant instances are considered equal; otherwise, false.</returns>
+		public static bool operator ==(PropVariant afi1, PropVariant afi2)
         {
             return afi1.Equals(afi2);
         }

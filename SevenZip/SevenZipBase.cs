@@ -159,17 +159,11 @@ namespace SevenZip
         /// </summary>
         internal ReadOnlyCollection<Exception> Exceptions => new ReadOnlyCollection<Exception>(_exceptions);
 
-        internal void AddException(Exception e)
-        {
-            _exceptions.Add(e);
-        }
+		internal void AddException(Exception e) => _exceptions.Add(e);
 
-        internal void ClearExceptions()
-        {
-            _exceptions.Clear();
-        }
+		internal void ClearExceptions() => _exceptions.Clear();
 
-        internal bool HasExceptions => _exceptions.Count > 0;
+		internal bool HasExceptions => _exceptions.Count > 0;
 
         /// <summary>
         /// Throws the specified exception when is able to.
@@ -256,19 +250,16 @@ namespace SevenZip
             }
         }
 
-        /// <summary>
-        /// Changes the path to the 7-zip native library.
-        /// </summary>
-        /// <param name="libraryPath">The path to the 7-zip native library.</param>
-        public static void SetLibraryPath(string libraryPath)
-        {
-            SevenZipLibraryManager.SetLibraryPath(libraryPath);
-        }
+		/// <summary>
+		/// Changes the path to the 7-zip native library.
+		/// </summary>
+		/// <param name="libraryPath">The path to the 7-zip native library.</param>
+		public static void SetLibraryPath(string libraryPath) => SevenZipLibraryManager.SetLibraryPath(libraryPath);
 
-        /// <summary>
-        /// Gets the current library features.
-        /// </summary>
-        [CLSCompliant(false)]
+		/// <summary>
+		/// Gets the current library features.
+		/// </summary>
+		[CLSCompliant(false)]
         public static LibraryFeature CurrentLibraryFeatures => SevenZipLibraryManager.CurrentLibraryFeatures;
 
         /// <summary>
@@ -286,20 +277,17 @@ namespace SevenZip
             return _uniqueID == instance._uniqueID;
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type.
-        /// </summary>
-        /// <returns> A hash code for the current SevenZipBase.</returns>
-        public override int GetHashCode()
-        {
-            return _uniqueID;
-        }
+		/// <summary>
+		/// Serves as a hash function for a particular type.
+		/// </summary>
+		/// <returns> A hash code for the current SevenZipBase.</returns>
+		public override int GetHashCode() => _uniqueID;
 
-        /// <summary>
-        /// Returns a System.String that represents the current SevenZipBase.
-        /// </summary>
-        /// <returns>A System.String that represents the current SevenZipBase.</returns>
-        public override string ToString()
+		/// <summary>
+		/// Returns a System.String that represents the current SevenZipBase.
+		/// </summary>
+		/// <returns>A System.String that represents the current SevenZipBase.</returns>
+		public override string ToString()
         {
             var type = "SevenZipBase";
 

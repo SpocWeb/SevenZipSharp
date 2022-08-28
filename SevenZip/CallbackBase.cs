@@ -61,17 +61,11 @@ namespace SevenZip
         /// </summary>
         public ReadOnlyCollection<Exception> Exceptions => new ReadOnlyCollection<Exception>(_exceptions);
 
-        public void AddException(Exception e)
-        {
-            _exceptions.Add(e);
-        }
+		public void AddException(Exception e) => _exceptions.Add(e);
 
-        public void ClearExceptions()
-        {
-            _exceptions.Clear();
-        }
+		public void ClearExceptions() => _exceptions.Clear();
 
-        public bool HasExceptions => _exceptions.Count > 0;
+		public bool HasExceptions => _exceptions.Count > 0;
 
         /// <summary>
         /// Throws the specified exception when is able to.

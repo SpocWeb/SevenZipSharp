@@ -29,19 +29,13 @@ namespace SevenZip.Sdk.Compression.LZ
         private UInt32 kMinMatchCheck = 4;
         private UInt32 kNumHashDirectBytes;
 
-        #region IMatchFinder Members
+		#region IMatchFinder Members
 
-        public new void SetStream(Stream stream)
-        {
-            base.SetStream(stream);
-        }
+		public new void SetStream(Stream stream) => base.SetStream(stream);
 
-        public new void ReleaseStream()
-        {
-            base.ReleaseStream();
-        }
+		public new void ReleaseStream() => base.ReleaseStream();
 
-        public new void Init()
+		public new void Init()
         {
             base.Init();
             for (UInt32 i = 0; i < _hashSizeSum; i++)
@@ -50,22 +44,13 @@ namespace SevenZip.Sdk.Compression.LZ
             ReduceOffsets(-1);
         }
 
-        public new Byte GetIndexByte(Int32 index)
-        {
-            return base.GetIndexByte(index);
-        }
+		public new Byte GetIndexByte(Int32 index) => base.GetIndexByte(index);
 
-        public new UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
-        {
-            return base.GetMatchLen(index, distance, limit);
-        }
+		public new UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit) => base.GetMatchLen(index, distance, limit);
 
-        public new UInt32 GetNumAvailableBytes()
-        {
-            return base.GetNumAvailableBytes();
-        }
+		public new UInt32 GetNumAvailableBytes() => base.GetNumAvailableBytes();
 
-        public void Create(UInt32 historySize, UInt32 keepAddBufferBefore,
+		public void Create(UInt32 historySize, UInt32 keepAddBufferBefore,
                            UInt32 matchMaxLen, UInt32 keepAddBufferAfter)
         {
             if (historySize + 256 > kMaxValForNormalize)

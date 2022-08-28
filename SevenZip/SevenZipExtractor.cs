@@ -372,20 +372,17 @@ namespace SevenZip
             RecreateInstanceIfNeeded();
         }
 
-        #region Core private functions
+		#region Core private functions
 
-        private ArchiveOpenCallback GetArchiveOpenCallback()
-        {
-            return _openCallback ?? (_openCallback = string.IsNullOrEmpty(Password)
-                                    ? new ArchiveOpenCallback(_fileName)
-                                    : new ArchiveOpenCallback(_fileName, Password));
-        }
+		private ArchiveOpenCallback GetArchiveOpenCallback() => _openCallback ?? (_openCallback = string.IsNullOrEmpty(Password)
+									? new ArchiveOpenCallback(_fileName)
+									: new ArchiveOpenCallback(_fileName, Password));
 
-        /// <summary>
-        /// Gets the archive input stream.
-        /// </summary>
-        /// <returns>The archive input wrapper stream.</returns>
-        private IInStream GetArchiveStream(bool dispose)
+		/// <summary>
+		/// Gets the archive input stream.
+		/// </summary>
+		/// <returns>The archive input wrapper stream.</returns>
+		private IInStream GetArchiveStream(bool dispose)
         {
             if (_archiveStream != null)
             {
@@ -643,17 +640,14 @@ namespace SevenZip
             return indexes;
         }
 
-        /// <summary>
-        /// Checks whether all the indexes are valid.
-        /// </summary>
-        /// <param name="indexes">The indexes to check.</param>
-        /// <returns>True is valid; otherwise, false.</returns>
-        private static bool CheckIndexes(params int[] indexes)
-        {
-            return indexes.All(i => i >= 0);
-        }
+		/// <summary>
+		/// Checks whether all the indexes are valid.
+		/// </summary>
+		/// <param name="indexes">The indexes to check.</param>
+		/// <returns>True is valid; otherwise, false.</returns>
+		private static bool CheckIndexes(params int[] indexes) => indexes.All(i => i >= 0);
 
-        private void ArchiveExtractCallbackCommonInit(ArchiveExtractCallback aec)
+		private void ArchiveExtractCallbackCommonInit(ArchiveExtractCallback aec)
         {
             aec.Open += ((s, e) => { _unpackedSize = (long)e.TotalSize; });
             aec.FileExtractionStarted += FileExtractionStartedEventProxy;
@@ -839,58 +833,46 @@ namespace SevenZip
         /// </summary>
         public event EventHandler<FileOverwriteEventArgs> FileExists;
 
-        #region Event proxies
+		#region Event proxies
 
-        /// <summary>
-        /// Event proxy for FileExtractionStarted.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FileExtractionStartedEventProxy(object sender, FileInfoEventArgs e)
-        {
-            OnEvent(FileExtractionStarted, e, true);
-        }
+		/// <summary>
+		/// Event proxy for FileExtractionStarted.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FileExtractionStartedEventProxy(object sender, FileInfoEventArgs e) => OnEvent(FileExtractionStarted, e, true);
 
-        /// <summary>
-        /// Event proxy for FileExtractionFinished.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FileExtractionFinishedEventProxy(object sender, FileInfoEventArgs e)
-        {
-            OnEvent(FileExtractionFinished, e, true);
-        }
+		/// <summary>
+		/// Event proxy for FileExtractionFinished.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FileExtractionFinishedEventProxy(object sender, FileInfoEventArgs e) => OnEvent(FileExtractionFinished, e, true);
 
-        /// <summary>
-        /// Event proxy for Extracting.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void ExtractingEventProxy(object sender, ProgressEventArgs e)
-        {
-            OnEvent(Extracting, e, false);
-        }
+		/// <summary>
+		/// Event proxy for Extracting.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void ExtractingEventProxy(object sender, ProgressEventArgs e) => OnEvent(Extracting, e, false);
 
-        /// <summary>
-        /// Event proxy for FileExists.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FileExistsEventProxy(object sender, FileOverwriteEventArgs e)
-        {
-            OnEvent(FileExists, e, true);
-        }
+		/// <summary>
+		/// Event proxy for FileExists.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FileExistsEventProxy(object sender, FileOverwriteEventArgs e) => OnEvent(FileExists, e, true);
 
-        #endregion
+		#endregion
 
-        #endregion
+		#endregion
 
-        #region Properties
+		#region Properties
 
-        /// <summary>
-        /// Gets the collection of ArchiveFileInfo with all information about files in the archive
-        /// </summary>
-        public ReadOnlyCollection<ArchiveFileInfo> ArchiveFileData
+		/// <summary>
+		/// Gets the collection of ArchiveFileInfo with all information about files in the archive
+		/// </summary>
+		public ReadOnlyCollection<ArchiveFileInfo> ArchiveFileData
         {
             get
             {

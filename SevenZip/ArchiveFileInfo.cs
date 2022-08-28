@@ -74,51 +74,39 @@ namespace SevenZip
         /// </summary>
         public string Method { get; set; }
 
-        /// <summary>
-        /// Determines whether the specified System.Object is equal to the current ArchiveFileInfo.
-        /// </summary>
-        /// <param name="obj">The System.Object to compare with the current ArchiveFileInfo.</param>
-        /// <returns>true if the specified System.Object is equal to the current ArchiveFileInfo; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            return obj is ArchiveFileInfo info && Equals(info);
-        }
+		/// <summary>
+		/// Determines whether the specified System.Object is equal to the current ArchiveFileInfo.
+		/// </summary>
+		/// <param name="obj">The System.Object to compare with the current ArchiveFileInfo.</param>
+		/// <returns>true if the specified System.Object is equal to the current ArchiveFileInfo; otherwise, false.</returns>
+		public override bool Equals(object obj) => obj is ArchiveFileInfo info && Equals(info);
 
-        /// <summary>
-        /// Determines whether the specified ArchiveFileInfo is equal to the current ArchiveFileInfo.
-        /// </summary>
-        /// <param name="afi">The ArchiveFileInfo to compare with the current ArchiveFileInfo.</param>
-        /// <returns>true if the specified ArchiveFileInfo is equal to the current ArchiveFileInfo; otherwise, false.</returns>
-        public bool Equals(ArchiveFileInfo afi)
-        {
-            return afi.Index == Index && afi.FileName == FileName;
-        }
+		/// <summary>
+		/// Determines whether the specified ArchiveFileInfo is equal to the current ArchiveFileInfo.
+		/// </summary>
+		/// <param name="afi">The ArchiveFileInfo to compare with the current ArchiveFileInfo.</param>
+		/// <returns>true if the specified ArchiveFileInfo is equal to the current ArchiveFileInfo; otherwise, false.</returns>
+		public bool Equals(ArchiveFileInfo afi) => afi.Index == Index && afi.FileName == FileName;
 
-        /// <summary>
-        /// Serves as a hash function for a particular type.
-        /// </summary>
-        /// <returns> A hash code for the current ArchiveFileInfo.</returns>
-        public override int GetHashCode()
-        {
-            return FileName.GetHashCode() ^ Index;
-        }
+		/// <summary>
+		/// Serves as a hash function for a particular type.
+		/// </summary>
+		/// <returns> A hash code for the current ArchiveFileInfo.</returns>
+		public override int GetHashCode() => FileName.GetHashCode() ^ Index;
 
-        /// <summary>
-        /// Returns a System.String that represents the current ArchiveFileInfo.
-        /// </summary>
-        /// <returns>A System.String that represents the current ArchiveFileInfo.</returns>
-        public override string ToString()
-        {
-            return "[" + Index.ToString(CultureInfo.CurrentCulture) + "] " + FileName;
-        }
+		/// <summary>
+		/// Returns a System.String that represents the current ArchiveFileInfo.
+		/// </summary>
+		/// <returns>A System.String that represents the current ArchiveFileInfo.</returns>
+		public override string ToString() => "[" + Index.ToString(CultureInfo.CurrentCulture) + "] " + FileName;
 
-        /// <summary>
-        /// Determines whether the specified ArchiveFileInfo instances are considered equal.
-        /// </summary>
-        /// <param name="afi1">The first ArchiveFileInfo to compare.</param>
-        /// <param name="afi2">The second ArchiveFileInfo to compare.</param>
-        /// <returns>true if the specified ArchiveFileInfo instances are considered equal; otherwise, false.</returns>
-        public static bool operator ==(ArchiveFileInfo afi1, ArchiveFileInfo afi2)
+		/// <summary>
+		/// Determines whether the specified ArchiveFileInfo instances are considered equal.
+		/// </summary>
+		/// <param name="afi1">The first ArchiveFileInfo to compare.</param>
+		/// <param name="afi2">The second ArchiveFileInfo to compare.</param>
+		/// <returns>true if the specified ArchiveFileInfo instances are considered equal; otherwise, false.</returns>
+		public static bool operator ==(ArchiveFileInfo afi1, ArchiveFileInfo afi2)
         {
             return afi1.Equals(afi2);
         }

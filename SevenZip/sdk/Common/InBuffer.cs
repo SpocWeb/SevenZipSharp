@@ -55,21 +55,19 @@ namespace SevenZip.Sdk.Buffer
             return (!m_StreamWasExhausted);
         }
 
-        /// <summary>
-        /// Releases the stream
-        /// </summary>
-        private void ReleaseStream()
-        {
-            // m_Stream.Close(); 
-            m_Stream = null;
-        }
+		/// <summary>
+		/// Releases the stream
+		/// </summary>
+		private void ReleaseStream() =>
+			// m_Stream.Close(); 
+			m_Stream = null;
 
-        /// <summary>
-        /// Reads the byte to check it
-        /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        private bool ReadByte(out byte b)
+		/// <summary>
+		/// Reads the byte to check it
+		/// </summary>
+		/// <param name="b"></param>
+		/// <returns></returns>
+		private bool ReadByte(out byte b)
         {
             b = 0;
             if (m_Pos >= m_Limit) {
@@ -96,13 +94,10 @@ namespace SevenZip.Sdk.Buffer
             return m_Buffer[m_Pos++];
         }
 
-        /// <summary>
-        /// Gets processed size
-        /// </summary>
-        /// <returns></returns>
-        private ulong GetProcessedSize()
-        {
-            return m_ProcessedSize + m_Pos;
-        }
-    }
+		/// <summary>
+		/// Gets processed size
+		/// </summary>
+		/// <returns></returns>
+		private ulong GetProcessedSize() => m_ProcessedSize + m_Pos;
+	}
 }

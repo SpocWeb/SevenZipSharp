@@ -140,22 +140,16 @@
             }
         }
 
-        private void CommonInit()
-        {
-            LoadCommandsFromResource("Configs");
-        }
+		private void CommonInit() => LoadCommandsFromResource("Configs");
 
-        private static string GetResourceString(string str)
-        {
-            return "SevenZip.sfx." + str;
-        }
+		private static string GetResourceString(string str) => "SevenZip.sfx." + str;
 
-        /// <summary>
-        /// Gets the sfx module enum by the list of supported modules
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        private static SfxModule GetModuleByName(string name)
+		/// <summary>
+		/// Gets the sfx module enum by the list of supported modules
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		private static SfxModule GetModuleByName(string name)
         {
             if (name.IndexOf("7z.sfx", StringComparison.Ordinal) > -1)
             {
@@ -370,23 +364,20 @@
 	        MakeSfx(archive, GetDefaultSettings(), sfxStream);
         }
 
-        /// <summary>
-        /// Makes the self-extracting archive.
-        /// </summary>
-        /// <param name="archive">The archive stream.</param>
-        /// <param name="sfxStream">The stream to write the self-extracting executable to.</param>
-        public void MakeSfx(Stream archive, Stream sfxStream)
-        {
-            MakeSfx(archive, GetDefaultSettings(), sfxStream);
-        }
+		/// <summary>
+		/// Makes the self-extracting archive.
+		/// </summary>
+		/// <param name="archive">The archive stream.</param>
+		/// <param name="sfxStream">The stream to write the self-extracting executable to.</param>
+		public void MakeSfx(Stream archive, Stream sfxStream) => MakeSfx(archive, GetDefaultSettings(), sfxStream);
 
-        /// <summary>
-        /// Makes the self-extracting archive.
-        /// </summary>
-        /// <param name="archive">The archive stream.</param>
-        /// <param name="settings">The sfx settings.</param>
-        /// <param name="sfxFileName">The name of the self-extracting executable.</param>
-        public void MakeSfx(Stream archive, SfxSettings settings, string sfxFileName) {
+		/// <summary>
+		/// Makes the self-extracting archive.
+		/// </summary>
+		/// <param name="archive">The archive stream.</param>
+		/// <param name="settings">The sfx settings.</param>
+		/// <param name="sfxFileName">The name of the self-extracting executable.</param>
+		public void MakeSfx(Stream archive, SfxSettings settings, string sfxFileName) {
 	        using Stream sfxStream = File.Create(sfxFileName);
 	        MakeSfx(archive, settings, sfxStream);
         }

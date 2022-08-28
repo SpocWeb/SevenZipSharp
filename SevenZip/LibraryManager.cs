@@ -180,12 +180,9 @@ namespace SevenZip
 
         static readonly string Namespace = Assembly.GetExecutingAssembly().GetManifestResourceNames()[0].Split('.')[0];
 
-        private static string GetResourceString(string str)
-        {
-            return Namespace + ".arch." + str;
-        }
+		private static string GetResourceString(string str) => Namespace + ".arch." + str;
 
-        private static bool ExtractionBenchmark(string archiveFileName, Stream outStream, ref LibraryFeature? features, LibraryFeature testedFeature)
+		private static bool ExtractionBenchmark(string archiveFileName, Stream outStream, ref LibraryFeature? features, LibraryFeature testedFeature)
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetResourceString(archiveFileName));
             

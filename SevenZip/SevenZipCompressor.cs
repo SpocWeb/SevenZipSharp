@@ -244,15 +244,12 @@ namespace SevenZip
             }
         }
 
-        private bool SwitchIsInCustomParameters(string name)
-        {
-            return CustomParameters.ContainsKey(name);
-        }
+		private bool SwitchIsInCustomParameters(string name) => CustomParameters.ContainsKey(name);
 
-        /// <summary>
-        /// Sets the compression properties
-        /// </summary>
-        private void SetCompressionProperties()
+		/// <summary>
+		/// Sets the compression properties
+		/// </summary>
+		private void SetCompressionProperties()
         {
             switch (_archiveFormat)
             {
@@ -864,12 +861,9 @@ namespace SevenZip
             callback.FileCompressionFinished -= FileCompressionFinishedEventProxy;
         }
 
-        private string GetTempArchiveFileName(string archiveName)
-        {
-            return Path.Combine(TempFolderPath, Path.GetFileName(archiveName) + ".~");
-        }
+		private string GetTempArchiveFileName(string archiveName) => Path.Combine(TempFolderPath, Path.GetFileName(archiveName) + ".~");
 
-        public FileStream GetArchiveFileStream(string archiveName)
+		public FileStream GetArchiveFileStream(string archiveName)
         {
             if ((CompressionMode != CompressionMode.Create || _updateData.FileNamesToModify != null) && !File.Exists(archiveName))
             {
@@ -936,35 +930,29 @@ namespace SevenZip
             return new OutMultiStreamWrapper(_archiveName, _volumeSize);
         }
 
-        private IInStream GetInStream()
-        {
-            return File.Exists(_archiveName) &&
-                   (CompressionMode != CompressionMode.Create && _compressingFilesOnDisk ||
-                    _updateData.FileNamesToModify != null)
-                ? new InStreamWrapper(
-                    new FileStream(_archiveName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
-                    true)
-                : null;
-        }
+		private IInStream GetInStream() => File.Exists(_archiveName) &&
+				   (CompressionMode != CompressionMode.Create && _compressingFilesOnDisk ||
+					_updateData.FileNamesToModify != null)
+				? new InStreamWrapper(
+					new FileStream(_archiveName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
+					true)
+				: null;
 
-        private ArchiveOpenCallback GetArchiveOpenCallback()
-        {
-            return string.IsNullOrEmpty(Password)
-                ? new ArchiveOpenCallback(_archiveName)
-                : new ArchiveOpenCallback(_archiveName, Password);
-        }
+		private ArchiveOpenCallback GetArchiveOpenCallback() => string.IsNullOrEmpty(Password)
+				? new ArchiveOpenCallback(_archiveName)
+				: new ArchiveOpenCallback(_archiveName, Password);
 
-#endregion
+		#endregion
 
-#region Core public Members
+		#region Core public Members
 
-#region Events
+		#region Events
 
-        /// <summary>
-        /// Occurs when the next file is going to be packed.
-        /// </summary>
-        /// <remarks>Occurs when 7-zip engine requests for an input stream for the next file to pack it</remarks>
-        public event EventHandler<FileNameEventArgs> FileCompressionStarted;
+		/// <summary>
+		/// Occurs when the next file is going to be packed.
+		/// </summary>
+		/// <remarks>Occurs when 7-zip engine requests for an input stream for the next file to pack it</remarks>
+		public event EventHandler<FileNameEventArgs> FileCompressionStarted;
 
         /// <summary>
         /// Occurs when the current file was compressed.
@@ -988,58 +976,46 @@ namespace SevenZip
         /// </summary>
         public event EventHandler<EventArgs> CompressionFinished;
 
-#region Event proxies
+		#region Event proxies
 
-        /// <summary>
-        /// Event proxy for FileCompressionStarted.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FileCompressionStartedEventProxy(object sender, FileNameEventArgs e)
-        {
-            OnEvent(FileCompressionStarted, e, false);
-        }
+		/// <summary>
+		/// Event proxy for FileCompressionStarted.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FileCompressionStartedEventProxy(object sender, FileNameEventArgs e) => OnEvent(FileCompressionStarted, e, false);
 
-        /// <summary>
-        /// Event proxy for FileCompressionFinished.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FileCompressionFinishedEventProxy(object sender, EventArgs e)
-        {
-            OnEvent(FileCompressionFinished, e, false);
-        }
+		/// <summary>
+		/// Event proxy for FileCompressionFinished.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FileCompressionFinishedEventProxy(object sender, EventArgs e) => OnEvent(FileCompressionFinished, e, false);
 
-        /// <summary>
-        /// Event proxy for Compressing.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void CompressingEventProxy(object sender, ProgressEventArgs e)
-        {
-            OnEvent(Compressing, e, false);
-        }
+		/// <summary>
+		/// Event proxy for Compressing.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void CompressingEventProxy(object sender, ProgressEventArgs e) => OnEvent(Compressing, e, false);
 
-        /// <summary>
-        /// Event proxy for FilesFound.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void FilesFoundEventProxy(object sender, IntEventArgs e)
-        {
-            OnEvent(FilesFound, e, false);
-        }
+		/// <summary>
+		/// Event proxy for FilesFound.
+		/// </summary>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="e">The event arguments.</param>
+		private void FilesFoundEventProxy(object sender, IntEventArgs e) => OnEvent(FilesFound, e, false);
 
-#endregion
+		#endregion
 
-#endregion
+		#endregion
 
-#region Properties
+		#region Properties
 
-        /// <summary>
-        /// Gets or sets the archive format
-        /// </summary>
-        public OutArchiveFormat ArchiveFormat
+		/// <summary>
+		/// Gets or sets the archive format
+		/// </summary>
+		public OutArchiveFormat ArchiveFormat
         {
             get => _archiveFormat;
 
@@ -1074,53 +1050,44 @@ namespace SevenZip
             set => _volumeSize = value > 0 ? value : 0;
         }
 
-#endregion
+		#endregion
 
-#region CompressFiles overloads
+		#region CompressFiles overloads
 
-        /// <summary>
-        /// Packs files into the archive.
-        /// </summary>
-        /// <param name="fileFullNames">Array of file names to pack.</param>
-        /// <param name="archiveName">The archive file name.</param>
-        public void CompressFiles(
-            string archiveName, params string[] fileFullNames)
-        {
-            CompressFilesEncrypted(archiveName, string.Empty, fileFullNames);
-        }
+		/// <summary>
+		/// Packs files into the archive.
+		/// </summary>
+		/// <param name="fileFullNames">Array of file names to pack.</param>
+		/// <param name="archiveName">The archive file name.</param>
+		public void CompressFiles(
+			string archiveName, params string[] fileFullNames) => CompressFilesEncrypted(archiveName, string.Empty, fileFullNames);
 
-        /// <summary>
-        /// Packs files into the archive.
-        /// </summary>
-        /// <param name="fileFullNames">Array of file names to pack.</param>
-        /// <param name="archiveStream">The archive output stream. 
-        /// Use CompressFiles(string archiveName ... ) overloads for archiving to disk.</param>       
-        public void CompressFiles(
-            Stream archiveStream, params string[] fileFullNames)
-        {
-            CompressFilesEncrypted(archiveStream, string.Empty, fileFullNames);
-        }
+		/// <summary>
+		/// Packs files into the archive.
+		/// </summary>
+		/// <param name="fileFullNames">Array of file names to pack.</param>
+		/// <param name="archiveStream">The archive output stream. 
+		/// Use CompressFiles(string archiveName ... ) overloads for archiving to disk.</param>       
+		public void CompressFiles(
+			Stream archiveStream, params string[] fileFullNames) => CompressFilesEncrypted(archiveStream, string.Empty, fileFullNames);
 
-        /// <summary>
-        /// Packs files into the archive.
-        /// </summary>
-        /// <param name="fileFullNames">Array of file names to pack.</param>
-        /// <param name="commonRootLength">The length of the common root of the file names.</param>
-        /// <param name="archiveName">The archive file name.</param>
-        public void CompressFiles(
-            string archiveName, int commonRootLength, params string[] fileFullNames)
-        {
-            CompressFilesEncrypted(archiveName, commonRootLength, string.Empty, fileFullNames);
-        }
+		/// <summary>
+		/// Packs files into the archive.
+		/// </summary>
+		/// <param name="fileFullNames">Array of file names to pack.</param>
+		/// <param name="commonRootLength">The length of the common root of the file names.</param>
+		/// <param name="archiveName">The archive file name.</param>
+		public void CompressFiles(
+			string archiveName, int commonRootLength, params string[] fileFullNames) => CompressFilesEncrypted(archiveName, commonRootLength, string.Empty, fileFullNames);
 
-        /// <summary>
-        /// Packs files into the archive.
-        /// </summary>
-        /// <param name="fileFullNames">Array of file names to pack.</param>
-        /// <param name="commonRootLength">The length of the common root of the file names.</param>
-        /// <param name="archiveStream">The archive output stream.
-        /// Use CompressFiles(string archiveName, ... ) overloads for archiving to disk.</param>
-        public void CompressFiles(
+		/// <summary>
+		/// Packs files into the archive.
+		/// </summary>
+		/// <param name="fileFullNames">Array of file names to pack.</param>
+		/// <param name="commonRootLength">The length of the common root of the file names.</param>
+		/// <param name="archiveStream">The archive output stream.
+		/// Use CompressFiles(string archiveName, ... ) overloads for archiving to disk.</param>
+		public void CompressFiles(
             Stream archiveStream, int commonRootLength, params string[] fileFullNames)
         {
             fileFullNames = GetFullFilePaths(fileFullNames);
@@ -1849,14 +1816,11 @@ namespace SevenZip
 	        return outStream.ToArray();
         }
 
-        /// <summary>
-        /// Ensures an array of file names is the full path to that file.
-        /// </summary>
-        /// <param name="fileFullNames">Array of file names.</param>
-        /// <returns>Array of file names with full paths.</returns>
-        private static string[] GetFullFilePaths(IEnumerable<string> fileFullNames)
-        {
-            return fileFullNames.Select(Path.GetFullPath).ToArray();
-        }
-    }
+		/// <summary>
+		/// Ensures an array of file names is the full path to that file.
+		/// </summary>
+		/// <param name="fileFullNames">Array of file names.</param>
+		/// <returns>Array of file names with full paths.</returns>
+		private static string[] GetFullFilePaths(IEnumerable<string> fileFullNames) => fileFullNames.Select(Path.GetFullPath).ToArray();
+	}
 }

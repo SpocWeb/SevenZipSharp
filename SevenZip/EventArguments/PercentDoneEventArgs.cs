@@ -29,15 +29,12 @@
         /// </summary>
         public byte PercentDone => _percentDone;
 
-        /// <summary>
-        /// Converts a [0, 1] rate to its percent equivalent.
-        /// </summary>
-        /// <param name="doneRate">The rate of the done work.</param>
-        /// <returns>Percent integer equivalent.</returns>
-        /// <exception cref="System.ArgumentException"/>
-        internal static byte ProducePercentDone(float doneRate)
-        {
-            return (byte)Math.Round(Math.Min(100 * doneRate, 100), MidpointRounding.AwayFromZero);
-        }
-    }
+		/// <summary>
+		/// Converts a [0, 1] rate to its percent equivalent.
+		/// </summary>
+		/// <param name="doneRate">The rate of the done work.</param>
+		/// <returns>Percent integer equivalent.</returns>
+		/// <exception cref="System.ArgumentException"/>
+		internal static byte ProducePercentDone(float doneRate) => (byte) Math.Round(Math.Min(100 * doneRate, 100), MidpointRounding.AwayFromZero);
+	}
 }
