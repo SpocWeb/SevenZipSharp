@@ -83,8 +83,9 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             for (int i = numTotalBits - 1; i >= 0; i--)
             {
                 Range >>= 1;
-                if (((v >> i) & 1) == 1)
-                    Low += Range;
+                if (((v >> i) & 1) == 1) {
+	                Low += Range;
+                }
                 if (Range < kTopValue)
                 {
                     Range <<= 8;

@@ -1258,11 +1258,12 @@ namespace SevenZip
                         {
                             try
                             {
-                                if (files != null)
-                                    CheckedExecute(
-                                        outArchive.UpdateItems(
-                                            sequentialArchiveStream, (uint) files.Length + _oldFilesCount, auc),
-                                        SevenZipCompressionFailedException.DEFAULT_MESSAGE, auc);
+                                if (files != null) {
+	                                CheckedExecute(
+		                                outArchive.UpdateItems(
+			                                sequentialArchiveStream, (uint) files.Length + _oldFilesCount, auc),
+		                                SevenZipCompressionFailedException.DEFAULT_MESSAGE, auc);
+                                }
                             }
                             finally
                             {

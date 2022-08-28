@@ -988,8 +988,9 @@ namespace SevenZip
             finally
             {
                 _archive?.Close();
-                if (_archiveStream is IDisposable)
-                    ((IDisposable)_archiveStream).Dispose();
+                if (_archiveStream is IDisposable) {
+	                ((IDisposable)_archiveStream).Dispose();
+                }
                 _archiveStream = null;
                 _opened = false;
             }

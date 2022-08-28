@@ -53,8 +53,9 @@ namespace SevenZip.Sdk.Compression.LZ
         {
             UInt32 offset = (_bufferOffset) + _pos - _keepSizeBefore;
             // we need one additional byte, since MovePos moves on 1 byte.
-            if (offset > 0)
-                offset--;
+            if (offset > 0) {
+	            offset--;
+            }
 
             UInt32 numBytes = (_bufferOffset) + _streamPos - offset;
 
@@ -66,27 +67,31 @@ namespace SevenZip.Sdk.Compression.LZ
 
         public virtual void ReadBlock()
         {
-            if (_streamEndWasReached)
-                return;
+            if (_streamEndWasReached) {
+	            return;
+            }
             while (true)
             {
                 var size = (int) ((0 - _bufferOffset) + _blockSize - _streamPos);
-                if (size == 0)
-                    return;
+                if (size == 0) {
+	                return;
+                }
                 int numReadBytes = _stream.Read(_bufferBase, (int) (_bufferOffset + _streamPos), size);
                 if (numReadBytes == 0)
                 {
                     _posLimit = _streamPos;
                     UInt32 pointerToPostion = _bufferOffset + _posLimit;
-                    if (pointerToPostion > _pointerToLastSafePosition)
-                        _posLimit = (_pointerToLastSafePosition - _bufferOffset);
+                    if (pointerToPostion > _pointerToLastSafePosition) {
+	                    _posLimit = (_pointerToLastSafePosition - _bufferOffset);
+                    }
 
                     _streamEndWasReached = true;
                     return;
                 }
                 _streamPos += (UInt32) numReadBytes;
-                if (_streamPos >= _pos + _keepSizeAfter)
-                    _posLimit = _streamPos - _keepSizeAfter;
+                if (_streamPos >= _pos + _keepSizeAfter) {
+	                _posLimit = _streamPos - _keepSizeAfter;
+                }
             }
         }
 
@@ -134,8 +139,9 @@ namespace SevenZip.Sdk.Compression.LZ
             if (_pos > _posLimit)
             {
                 UInt32 pointerToPostion = _bufferOffset + _pos;
-                if (pointerToPostion > _pointerToLastSafePosition)
-                    MoveBlock();
+                if (pointerToPostion > _pointerToLastSafePosition) {
+	                MoveBlock();
+                }
                 ReadBlock();
             }
         }
@@ -154,9 +160,11 @@ namespace SevenZip.Sdk.Compression.LZ
         /// <returns></returns>
         public UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
         {
-            if (_streamEndWasReached)
-                if ((_pos + index) + limit > _streamPos)
-                    limit = _streamPos - (UInt32) (_pos + index);
+            if (_streamEndWasReached) {
+	            if ((_pos + index) + limit > _streamPos) {
+		            limit = _streamPos - (UInt32) (_pos + index);
+	            }
+            }
             distance++;
             // Byte *pby = _buffer + (size_t)_pos + index;
             UInt32 pby = _bufferOffset + _pos + (UInt32) index;

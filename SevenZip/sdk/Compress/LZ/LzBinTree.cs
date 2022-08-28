@@ -82,8 +82,9 @@ namespace SevenZip.Sdk.Compression.LZ
             _matchMaxLen = matchMaxLen;
 
             UInt32 cyclicBufferSize = historySize + 1;
-            if (_cyclicBufferSize != cyclicBufferSize)
-                _son = new UInt32[(_cyclicBufferSize = cyclicBufferSize)*2];
+            if (_cyclicBufferSize != cyclicBufferSize) {
+	            _son = new UInt32[(_cyclicBufferSize = cyclicBufferSize)*2];
+            }
 
             UInt32 hs = kBT2HashSize;
 
@@ -96,22 +97,24 @@ namespace SevenZip.Sdk.Compression.LZ
                 hs |= (hs >> 8);
                 hs >>= 1;
                 hs |= 0xFFFF;
-                if (hs > (1 << 24))
-                    hs >>= 1;
+                if (hs > (1 << 24)) {
+	                hs >>= 1;
+                }
                 _hashMask = hs;
                 hs++;
                 hs += kFixHashSize;
             }
-            if (hs != _hashSizeSum)
-                _hash = new UInt32[_hashSizeSum = hs];
+            if (hs != _hashSizeSum) {
+	            _hash = new UInt32[_hashSizeSum = hs];
+            }
         }
 
         public UInt32 GetMatches(UInt32[] distances)
         {
             UInt32 lenLimit;
-            if (_pos + _matchMaxLen <= _streamPos)
-                lenLimit = _matchMaxLen;
-            else
+            if (_pos + _matchMaxLen <= _streamPos) {
+	            lenLimit = _matchMaxLen;
+            } else
             {
                 lenLimit = _streamPos - _pos;
                 if (lenLimit < kMinMatchCheck)
@@ -135,8 +138,9 @@ namespace SevenZip.Sdk.Compression.LZ
                 hash3Value = (temp & (((int) kHash3Size) - 1));
                 hashValue = (temp ^ (CRC.Table[_bufferBase[cur + 3]] << 5)) & _hashMask;
             }
-            else
-                hashValue = _bufferBase[cur] ^ ((UInt32) (_bufferBase[cur + 1]) << 8);
+            else {
+	            hashValue = _bufferBase[cur] ^ ((UInt32) (_bufferBase[cur + 1]) << 8);
+            }
 
             UInt32 curMatch = _hash[kFixHashSize + hashValue];
             if (HASH_ARRAY)
@@ -145,21 +149,24 @@ namespace SevenZip.Sdk.Compression.LZ
                 UInt32 curMatch3 = _hash[kHash3Offset + hash3Value];
                 _hash[hash2Value] = _pos;
                 _hash[kHash3Offset + hash3Value] = _pos;
-                if (curMatch2 > matchMinPos)
-                    if (_bufferBase[_bufferOffset + curMatch2] == _bufferBase[cur])
-                    {
-                        distances[offset++] = maxLen = 2;
-                        distances[offset++] = _pos - curMatch2 - 1;
-                    }
-                if (curMatch3 > matchMinPos)
-                    if (_bufferBase[_bufferOffset + curMatch3] == _bufferBase[cur])
-                    {
-                        if (curMatch3 == curMatch2)
-                            offset -= 2;
-                        distances[offset++] = maxLen = 3;
-                        distances[offset++] = _pos - curMatch3 - 1;
-                        curMatch2 = curMatch3;
-                    }
+                if (curMatch2 > matchMinPos) {
+	                if (_bufferBase[_bufferOffset + curMatch2] == _bufferBase[cur])
+	                {
+		                distances[offset++] = maxLen = 2;
+		                distances[offset++] = _pos - curMatch2 - 1;
+	                }
+                }
+                if (curMatch3 > matchMinPos) {
+	                if (_bufferBase[_bufferOffset + curMatch3] == _bufferBase[cur])
+	                {
+		                if (curMatch3 == curMatch2) {
+			                offset -= 2;
+		                }
+		                distances[offset++] = maxLen = 3;
+		                distances[offset++] = _pos - curMatch3 - 1;
+		                curMatch2 = curMatch3;
+	                }
+                }
                 if (offset != 0 && curMatch2 == curMatch)
                 {
                     offset -= 2;
@@ -209,8 +216,9 @@ namespace SevenZip.Sdk.Compression.LZ
                 if (_bufferBase[pby1 + len] == _bufferBase[cur + len])
                 {
                     while (++len != lenLimit)
-                        if (_bufferBase[pby1 + len] != _bufferBase[cur + len])
-                            break;
+                        if (_bufferBase[pby1 + len] != _bufferBase[cur + len]) {
+	                        break;
+                        }
                     if (maxLen < len)
                     {
                         distances[offset++] = maxLen = len;
@@ -247,9 +255,9 @@ namespace SevenZip.Sdk.Compression.LZ
             do
             {
                 UInt32 lenLimit;
-                if (_pos + _matchMaxLen <= _streamPos)
-                    lenLimit = _matchMaxLen;
-                else
+                if (_pos + _matchMaxLen <= _streamPos) {
+	                lenLimit = _matchMaxLen;
+                } else
                 {
                     lenLimit = _streamPos - _pos;
                     if (lenLimit < kMinMatchCheck)
@@ -274,8 +282,9 @@ namespace SevenZip.Sdk.Compression.LZ
                     _hash[kHash3Offset + hash3Value] = _pos;
                     hashValue = (temp ^ (CRC.Table[_bufferBase[cur + 3]] << 5)) & _hashMask;
                 }
-                else
-                    hashValue = _bufferBase[cur] ^ ((UInt32) (_bufferBase[cur + 1]) << 8);
+                else {
+	                hashValue = _bufferBase[cur] ^ ((UInt32) (_bufferBase[cur + 1]) << 8);
+                }
 
                 UInt32 curMatch = _hash[kFixHashSize + hashValue];
                 _hash[kFixHashSize + hashValue] = _pos;
@@ -307,8 +316,9 @@ namespace SevenZip.Sdk.Compression.LZ
                     if (_bufferBase[pby1 + len] == _bufferBase[cur + len])
                     {
                         while (++len != lenLimit)
-                            if (_bufferBase[pby1 + len] != _bufferBase[cur + len])
-                                break;
+                            if (_bufferBase[pby1 + len] != _bufferBase[cur + len]) {
+	                            break;
+                            }
                         if (len == lenLimit)
                         {
                             _son[ptr1] = _son[cyclicPos];
@@ -356,11 +366,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
         public new void MovePos()
         {
-            if (++_cyclicBufferPos >= _cyclicBufferSize)
-                _cyclicBufferPos = 0;
+            if (++_cyclicBufferPos >= _cyclicBufferSize) {
+	            _cyclicBufferPos = 0;
+            }
             base.MovePos();
-            if (_pos == kMaxValForNormalize)
-                Normalize();
+            if (_pos == kMaxValForNormalize) {
+	            Normalize();
+            }
         }
 
         private static void NormalizeLinks(UInt32[] items, UInt32 numItems, UInt32 subValue)
@@ -368,10 +380,11 @@ namespace SevenZip.Sdk.Compression.LZ
             for (UInt32 i = 0; i < numItems; i++)
             {
                 UInt32 value = items[i];
-                if (value <= subValue)
-                    value = kEmptyHashValue;
-                else
-                    value -= subValue;
+                if (value <= subValue) {
+	                value = kEmptyHashValue;
+                } else {
+	                value -= subValue;
+                }
                 items[i] = value;
             }
         }
