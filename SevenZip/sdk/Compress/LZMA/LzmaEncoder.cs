@@ -131,11 +131,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 SetStreams(inStream, outStream /*, inSize, outSize*/);
                 while (true)
                 {
-                    Int64 processedInSize;
-                    Int64 processedOutSize;
-                    bool finished;
-                    CodeOneBlock(out processedInSize, out processedOutSize, out finished);
-                    if (finished) {
+					CodeOneBlock(out var processedInSize, out var processedOutSize, out var finished);
+					if (finished) {
 	                    return;
                     }
                     if (progress != null)
@@ -658,9 +655,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 if (cur == lenEnd) {
 	                return Backward(out backRes, cur);
                 }
-                UInt32 newLen;
-                ReadMatchDistances(out newLen, out numDistancePairs);
-                if (newLen >= _numFastBytes)
+				ReadMatchDistances(out var newLen, out numDistancePairs);
+				if (newLen >= _numFastBytes)
                 {
                     _numDistancePairs = numDistancePairs;
                     _longestMatchLength = newLen;
@@ -1075,9 +1071,9 @@ namespace SevenZip.Sdk.Compression.Lzma
                     Flush((UInt32) nowPos64);
                     return;
                 }
-                UInt32 len, numDistancePairs; // it's not used
-                ReadMatchDistances(out len, out numDistancePairs);
-                UInt32 posState = (UInt32) (nowPos64) & _posStateMask;
+				// it's not used
+				ReadMatchDistances(out var len, out var numDistancePairs);
+				UInt32 posState = (UInt32) (nowPos64) & _posStateMask;
                 _isMatch[(_state.Index << Base.kNumPosStatesBitsMax) + posState].Encode(_rangeEncoder, 0);
                 _state.UpdateChar();
                 Byte curByte = _matchFinder.GetIndexByte((Int32) (0 - _additionalOffset));
@@ -1093,10 +1089,9 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
             while (true)
             {
-                UInt32 pos;
-                UInt32 len = GetOptimum((UInt32) nowPos64, out pos);
+				UInt32 len = GetOptimum((UInt32) nowPos64, out var pos);
 
-                UInt32 posState = ((UInt32) nowPos64) & _posStateMask;
+				UInt32 posState = ((UInt32) nowPos64) & _posStateMask;
                 UInt32 complexState = (_state.Index << Base.kNumPosStatesBitsMax) + posState;
                 if (len == 1 && pos == 0xFFFFFFFF)
                 {
