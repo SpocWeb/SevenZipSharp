@@ -84,4 +84,5 @@
   <ItemGroup>
     <ProjectReference Include="..\SevenZip\SevenZip.csproj" />
   </ItemGroup>
+<PropertyGroup><GenerateDocumentationFile>True</GenerateDocumentationFile></PropertyGroup>
 </Project>
