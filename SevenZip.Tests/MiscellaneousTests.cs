@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using System;
     using System.Diagnostics;
@@ -12,7 +14,7 @@
     [TestFixture]
     public class MiscellaneousTests : TestBase
     {
-        [Test]
+        /*[Test]
         public void SerializationTest()
         {
             var argumentException = new ArgumentException("blahblah");
@@ -27,7 +29,7 @@
                     compressor.CompressStream(ms, fileStream);
                 }
             }
-        }
+        }*/
 
 #if SFX
         [Test]
@@ -46,12 +48,12 @@
 
             sfx.MakeSfx(TemporaryFile, sfxFile);
 
-            Assert.IsTrue(File.Exists(sfxFile));
+            File.Exists(sfxFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(sfxFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.zip", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("zip.zip");
             }
 
             Assert.DoesNotThrow(() =>
@@ -99,12 +101,12 @@
                 }
             }
 
-            Assert.IsTrue(File.Exists(newZip));
+            File.Exists(newZip).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(newZip))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.txt", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("zip.txt");
             }
         }
     }

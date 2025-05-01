@@ -94,7 +94,7 @@
                 }
             }
 
-            Assert.IsTrue(extractionFinishedInvoked);
+            Should.ShouldBe(extractionFinishedInvoked);
             Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
@@ -124,7 +124,7 @@
                 }
             }
 
-            Assert.IsTrue(extractionFinishedInvoked);
+            Should.ShouldBe(extractionFinishedInvoked);
             Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
 

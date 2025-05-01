@@ -16,9 +16,9 @@
             // Exercising more code paths...
             features = SevenZipLibraryManager.CurrentLibraryFeatures;
 
-            Assert.IsTrue(features.HasFlag(LibraryFeature.ExtractAll));
-            Assert.IsTrue(features.HasFlag(LibraryFeature.CompressAll));
-            Assert.IsTrue(features.HasFlag(LibraryFeature.Modify));
+            Should.ShouldBe(features.HasFlag(LibraryFeature.ExtractAll));
+            Should.ShouldBe(features.HasFlag(LibraryFeature.CompressAll));
+            Should.ShouldBe(features.HasFlag(LibraryFeature.Modify));
         }
     }
 }

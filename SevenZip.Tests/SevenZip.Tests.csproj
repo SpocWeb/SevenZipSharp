@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48</TargetFrameworks>
+    <TargetFrameworks>net48;net8</TargetFrameworks>
     <AssemblyTitle>SevenZip.Tests</AssemblyTitle>
     <Product>SevenZipTests</Product>
     <Copyright>Copyright © Joel Ahlgren 2021</Copyright>
@@ -82,6 +82,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\_std\SpocWeb.Proxies\SpocWeb.Proxies.csproj" />
     <ProjectReference Include="..\SevenZip\SevenZip.csproj" />
   </ItemGroup>
 <PropertyGroup><GenerateDocumentationFile>True</GenerateDocumentationFile></PropertyGroup>
