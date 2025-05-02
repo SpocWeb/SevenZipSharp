@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -40,12 +42,12 @@
             };
 
             compressor.CompressDirectory("TESTDA~1", TemporaryFile);
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames[0].StartsWith("TestData_LongerDirectoryName", StringComparison.OrdinalIgnoreCase));
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldStartWith("TestData_LongerDirectoryName", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -67,12 +69,12 @@
             };
 
             compressor.CompressFiles(TemporaryFile, @"TESTDA~1\emptyfile.txt");
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("emptyfile.txt", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("emptyfile.txt");
             }
         }
 
@@ -86,14 +88,14 @@
             };
             
             compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
                 extractor.ExtractArchive(OutputDirectory);
             }
 
-            Should.ShouldBe(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
+            File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldBe();
         }
 
         [Test]
@@ -106,7 +108,7 @@
             };
 
             compressor.CompressDirectory("TestData", TemporaryFile);
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
@@ -115,7 +117,8 @@
 
             File.Delete(TemporaryFile);
 
-            Assert.AreEqual(Directory.GetFiles("TestData").Select(Path.GetFileName).ToArray(), Directory.GetFiles(OutputDirectory).Select(Path.GetFileName).ToArray());
+            Directory.GetFiles("TestData").Select(Path.GetFileName).ToArray()
+                .ShouldBeSequence(Directory.GetFiles(OutputDirectory).Select(Path.GetFileName));
         }
 
         [Test]
@@ -128,11 +131,11 @@
             };
 
             compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
+                extractor.FilesCount.ShouldBe(1u);
             }
 
             compressor.CompressionMode = CompressionMode.Append;
@@ -141,7 +144,7 @@
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(2, extractor.FilesCount);
+                extractor.FilesCount.ShouldBe(2u);
             }
         }
 
@@ -164,12 +167,12 @@
 
             compressor.ModifyArchive(TemporaryFile, modificationList, "password");
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile, "password"))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("changed.zap", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("changed.zap");
             }
         }
 
@@ -198,18 +201,18 @@
             };
 
             compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             compressor.ModifyArchive(TemporaryFile, new Dictionary<int, string> { { 0, "renamed.7z" }});
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
+                extractor.FilesCount.ShouldBe(1u);
                 extractor.ExtractArchive(OutputDirectory);
             }
 
-            Should.ShouldBe(File.Exists(Path.Combine(OutputDirectory, "renamed.7z")));
-            Assert.IsFalse(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
+            File.Exists(Path.Combine(OutputDirectory, "renamed.7z")).ShouldBe();
+            File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldNotBe();
         }
 
         [Test]
@@ -222,17 +225,17 @@
             };
 
             compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             compressor.ModifyArchive(TemporaryFile, new Dictionary<int, string> { { 0, null } });
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(0, extractor.FilesCount);
+                extractor.FilesCount.ShouldBe(0u);
                 extractor.ExtractArchive(OutputDirectory);
             }
 
-            Assert.IsFalse(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
+            File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldNotBe();
         }
 
         [Test]
@@ -247,8 +250,8 @@
 
             compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
 
-            Assert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
-            Should.ShouldBe(File.Exists($"{TemporaryFile}.003"));
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(3);
+            File.Exists($"{TemporaryFile}.003").ShouldBe();
         }
 
         [Test]
@@ -261,12 +264,12 @@
                 compressor.CompressFiles(stream, @"TestData\zip.zip");
             }
             
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.zip", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("zip.zip");
             }
         }
 
@@ -287,12 +290,12 @@
                     
             }
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual(new FileInfo(@"TestData\zip.zip").Length, extractor.ArchiveFileData[0].Size);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileData[0].Size.ShouldBe((ulong)new FileInfo(@"TestData\zip.zip").Length);
             }
         }
 
@@ -308,12 +311,12 @@
 
             compressor.CompressFileDictionary(fileDict, TemporaryFile);
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.zip", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("zip.zip");
             }
         }
 
@@ -340,8 +343,8 @@
             t1.Join();
             t2.Join();
 
-			Should.ShouldBe(File.Exists(tempFile1));
-			Should.ShouldBe(File.Exists(tempFile2));
+			File.Exists(tempFile1).ShouldBe();
+			File.Exists(tempFile2).ShouldBe();
 		}
 
         [Test, TestCaseSource(nameof(CompressionMethods))]
@@ -355,7 +358,7 @@
 
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using System.Collections.Generic;
     using System.IO;
@@ -42,13 +44,13 @@
 
             var numberOfTestDataFiles = Directory.GetFiles("TestData").Length;
 
-            Assert.AreEqual(1, filesFoundInvoked);
-            Assert.AreEqual(numberOfTestDataFiles, fileCompressionStartedInvoked);
-            Assert.AreEqual(numberOfTestDataFiles, fileCompressionFinishedInvoked);
-            Assert.AreEqual(numberOfTestDataFiles, compressingInvoked);
-            Assert.AreEqual(1, compressionFinishedInvoked);
+            filesFoundInvoked.ShouldBe(1);
+            fileCompressionStartedInvoked.ShouldBe(numberOfTestDataFiles);
+            fileCompressionFinishedInvoked.ShouldBe(numberOfTestDataFiles);
+            compressingInvoked.ShouldBe(numberOfTestDataFiles);
+            compressionFinishedInvoked.ShouldBe(1);
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
         }
 
         [Test]
@@ -73,13 +75,13 @@
                 timeToWait -= 25;
             }
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(2, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("zip.zip"));
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("tar.tar"));
+                extractor.FilesCount.ShouldBe(2u);
+                extractor.ArchiveFileNames.ShouldContain("zip.zip");
+                extractor.ArchiveFileNames.ShouldContain("tar.tar");
             }
         }
 
@@ -111,11 +113,11 @@
                 }
             }
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
+                extractor.FilesCount.ShouldBe(1u);
             }
         }
 
@@ -143,12 +145,12 @@
                 timeToWait -= 25;
             }
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("tartar", extractor.ArchiveFileNames[0]);
+                extractor.FilesCount.ShouldBe(1u);
+                extractor.ArchiveFileNames[0].ShouldBe("tartar");
             }
         }
 
@@ -174,13 +176,13 @@
                 timeToWait -= 25;
             }
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(2, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("zip.zip"));
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("tar.tar"));
+                extractor.FilesCount.ShouldBe(2u);
+                extractor.ArchiveFileNames.ShouldContain("zip.zip");
+                extractor.ArchiveFileNames.ShouldContain("tar.tar");
 
                 Assert.Throws<ExtractionFailedException>(() => extractor.ExtractArchive(OutputDirectory));
             }
@@ -192,13 +194,13 @@
             var compressor = new SevenZipCompressor { DirectoryStructure = false };
             await compressor.CompressFilesAsync(TemporaryFile, @"TestData\zip.zip", @"TestData\tar.tar");
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(2, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("zip.zip"));
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("tar.tar"));
+                extractor.FilesCount.ShouldBe(2u);
+                extractor.ArchiveFileNames.Contains("zip.zip").ShouldBe();
+                extractor.ArchiveFileNames.Contains("tar.tar").ShouldBe();
             }
         }
 
@@ -208,13 +210,13 @@
             var compressor = new SevenZipCompressor { DirectoryStructure = false };
             await compressor.CompressDirectoryAsync("TestData", TemporaryFile);
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile))
             {
-                Assert.AreEqual(Directory.GetFiles("TestData").Length, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("zip.zip"));
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("tar.tar"));
+                extractor.FilesCount.ShouldBe((uint)Directory.GetFiles("TestData").Length);
+                extractor.ArchiveFileNames.Contains("zip.zip").ShouldBe();
+                extractor.ArchiveFileNames.ShouldContain("tar.tar");
             }
         }
 
@@ -224,13 +226,13 @@
             var compressor = new SevenZipCompressor { DirectoryStructure = false };
             await compressor.CompressFilesEncryptedAsync(TemporaryFile, "secure", @"TestData\zip.zip", @"TestData\tar.tar");
 
-            Should.ShouldBe(File.Exists(TemporaryFile));
+            File.Exists(TemporaryFile).ShouldBe();
 
             using (var extractor = new SevenZipExtractor(TemporaryFile, "insecure"))
             {
-                Assert.AreEqual(2, extractor.FilesCount);
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("zip.zip"));
-                Should.ShouldBe(extractor.ArchiveFileNames.Contains("tar.tar"));
+                extractor.FilesCount.ShouldBe(2u);
+                extractor.ArchiveFileNames.ShouldContain("zip.zip");
+                extractor.ArchiveFileNames.ShouldContain("tar.tar");
 
                 Assert.Throws<ExtractionFailedException>(() => extractor.ExtractArchive(OutputDirectory));
             }

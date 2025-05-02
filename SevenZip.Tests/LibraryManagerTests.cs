@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using NUnit.Framework;
 
@@ -16,9 +18,9 @@
             // Exercising more code paths...
             features = SevenZipLibraryManager.CurrentLibraryFeatures;
 
-            Should.ShouldBe(features.HasFlag(LibraryFeature.ExtractAll));
-            Should.ShouldBe(features.HasFlag(LibraryFeature.CompressAll));
-            Should.ShouldBe(features.HasFlag(LibraryFeature.Modify));
+            features.HasFlag(LibraryFeature.ExtractAll).ShouldBe();
+            features.HasFlag(LibraryFeature.CompressAll).ShouldBe();
+            features.HasFlag(LibraryFeature.Modify).ShouldBe();
         }
     }
 }

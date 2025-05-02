@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using System.Collections.Generic;
     using System.IO;
@@ -93,7 +95,7 @@
             {
                 int ignored;
                 bool ignored2;
-                Assert.AreEqual(data.ExpectedFormat, FileChecker.CheckSignature(data.TestDataFilePath, out ignored, out ignored2));
+                FileChecker.CheckSignature(data.TestDataFilePath, out ignored, out ignored2).ShouldBe(data.ExpectedFormat);
             }
         }
     }

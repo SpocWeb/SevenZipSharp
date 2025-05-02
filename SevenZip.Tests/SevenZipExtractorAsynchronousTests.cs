@@ -1,4 +1,6 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Logging;
+
+namespace SevenZip.Tests
 {
     using System.IO;
     using System.Threading;
@@ -41,11 +43,11 @@
                     timeToWait -= 25;
                 }
 
-                Assert.AreEqual(3, extractingInvoked);
-                Assert.AreEqual(1, extractionFinishedInvoked);
-                Assert.AreEqual(0, fileExistsInvoked);
-                Assert.AreEqual(3, fileExtractionStartedInvoked);
-                Assert.AreEqual(3, fileExtractionFinishedInvoked);
+                extractingInvoked.ShouldBe(3);
+                extractionFinishedInvoked.ShouldBe(1);
+                fileExistsInvoked.ShouldBe(0);
+                fileExtractionStartedInvoked.ShouldBe(3);
+                fileExtractionFinishedInvoked.ShouldBe(3);
 
                 extractionFinishedInvoked = 0;
                 extractor.BeginExtractArchive(OutputDirectory);
@@ -62,7 +64,7 @@
                     timeToWait -= 25;
                 }
 
-                Assert.AreEqual(3, fileExistsInvoked);
+                fileExistsInvoked.ShouldBe(3);
             }
         }
 
@@ -94,8 +96,8 @@
                 }
             }
 
-            Should.ShouldBe(extractionFinishedInvoked);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            extractionFinishedInvoked.ShouldBe();
+            File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
         [Test]
@@ -124,8 +126,8 @@
                 }
             }
 
-            Should.ShouldBe(extractionFinishedInvoked);
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            extractionFinishedInvoked.ShouldBe();
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(2);
         }
 
         [Test]
@@ -136,7 +138,7 @@
                 await extractor.ExtractArchiveAsync(OutputDirectory);
             }
 
-            Assert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(3);
         }
 
         [Test]
@@ -150,8 +152,8 @@
                 }
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(1);
+            File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
         [Test]
@@ -165,8 +167,8 @@
                 }
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(1);
+            File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
         [Test]
@@ -177,7 +179,7 @@
                 await extractor.ExtractFilesAsync(args => { args.ExtractToFile = TemporaryFile; });
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(1);
         }
 
         [Test]
@@ -188,7 +190,7 @@
                 await extractor.ExtractFilesAsync(OutputDirectory, 0, 2);
             }
 
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(2);
         }
 
         [Test]
@@ -199,7 +201,7 @@
                 await extractor.ExtractFilesAsync(OutputDirectory, "file1.txt", "file3.txt");
             }
 
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            Directory.GetFiles(OutputDirectory).Length.ShouldBe(2);
         }
     }
 }
