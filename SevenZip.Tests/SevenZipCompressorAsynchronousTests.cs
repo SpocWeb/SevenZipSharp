@@ -1,4 +1,4 @@
-﻿using org.SpocWeb.root.Logging;
+﻿using org.SpocWeb.root.logging;
 
 namespace SevenZip.Tests
 {
