@@ -1,4 +1,4 @@
-﻿using org.SpocWeb.root.logging;
+using org.SpocWeb.root.logging;
 
 namespace SevenZip.Tests
 {
@@ -242,6 +242,14 @@ namespace SevenZip.Tests
     /// <summary>
     /// Simple wrapper to get better names for ExtractDifferentFormatsTest results.
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2025-05-02T17:50:09Z
+    /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    /// </code>
+    /// </example>
     public class TestFile
     {
         public string FilePath { get; }

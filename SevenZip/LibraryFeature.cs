@@ -1,10 +1,18 @@
-﻿namespace SevenZip
+namespace SevenZip
 {
     using System;
 
     /// <summary>
     /// The set of features supported by the library.
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2022-05-25T21:39:37Z
+    /// digest: 5589d311440652e581fbcb84a7cce5df4f554c81ab94106f8a42bb611fe69bf0
+    /// </code>
+    /// </example>
     [Flags]
     [CLSCompliant(false)]
     public enum LibraryFeature : uint

@@ -1,4 +1,4 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using System;
     using NUnit.Framework;
@@ -6,6 +6,13 @@
     /// <remarks>
     /// See https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm for parameter details.
     /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2022-05-25T21:39:37Z
+    /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    /// </code>
+    /// </example>
     [TestFixture]
     public class SevenZipCompressorCustomParameterTests : TestBase
     {

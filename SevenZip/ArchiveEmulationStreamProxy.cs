@@ -1,4 +1,4 @@
-﻿namespace SevenZip
+namespace SevenZip
 {
     using System;
     using System.IO;
@@ -6,6 +6,14 @@
     /// <summary>
     /// The Stream extension class to emulate the archive part of a stream.
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2022-08-28T11:01:42Z
+    /// digest: aa5ae3679b6994afdd7d9e95eb40113ecaf62e2698f5142820af82dceb37d7b1
+    /// </code>
+    /// </example>
     internal class ArchiveEmulationStreamProxy : Stream, IDisposable
     {
         /// <summary>

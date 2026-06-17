@@ -1,4 +1,4 @@
-﻿using org.SpocWeb.root.logging;
+using org.SpocWeb.root.logging;
 
 namespace SevenZip.Tests
 {
@@ -12,6 +12,14 @@ namespace SevenZip.Tests
     /// <summary>
     /// Test data to use for CheckFileSignatureTest.
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2025-05-02T17:50:09Z
+    /// digest: 83f92356dab5e530c9e1431fb4c9b10f1fdf43e88681b0832c2d5846551af2ca
+    /// </code>
+    /// </example>
     public struct FileCheckerTestData
     {
         public FileCheckerTestData(string testDataFilePath, InArchiveFormat expectedFormat)
@@ -26,7 +34,15 @@ namespace SevenZip.Tests
         public InArchiveFormat ExpectedFormat { get; }
 
         /// <summary>
-        /// Path to archive file to test against.
+        /// Path t        ///
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2025-05-02T17:50:09Z
+        /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        /// </code>
+        /// </example>
+o archive file to test against.
         /// </summary>
         public string TestDataFilePath { get; }
 
