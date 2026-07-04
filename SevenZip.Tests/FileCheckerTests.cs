@@ -33,18 +33,16 @@ namespace SevenZip.Tests
         /// </summary>
         public InArchiveFormat ExpectedFormat { get; }
 
-        /// <summary>
-        /// Path t        ///
-        /// <example>
-        /// <code language="yaml">
-        /// pass: 2
-        /// mtime: 2025-05-02T17:50:09Z
-        /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        /// </code>
-        /// </example>
-o archive file to test against.
-        /// </summary>
-        public string TestDataFilePath { get; }
+		/// <summary> Path to archive file to test against. </summary>
+		///
+		/// <example>
+		/// <code language="yaml">
+		/// pass: 2
+		/// mtime: 2025-05-02T17:50:09Z
+		/// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+		/// </code>
+		/// </example>
+		public string TestDataFilePath { get; }
 
 		public override string ToString() =>
 			// Used to get useful test results.
