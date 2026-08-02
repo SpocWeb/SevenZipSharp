@@ -1,4 +1,4 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using System;
     using System.Diagnostics;
@@ -6,6 +6,8 @@
     using System.Runtime.Serialization.Formatters.Binary;
 
     using NUnit.Framework;
+
+    using NUnit.Framework.Legacy;
 
     using SevenZip;
 
@@ -46,12 +48,12 @@
 
             sfx.MakeSfx(TemporaryFile, sfxFile);
 
-            Assert.IsTrue(File.Exists(sfxFile));
+            ClassicAssert.IsTrue(File.Exists(sfxFile));
 
             using (var extractor = new SevenZipExtractor(sfxFile))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.zip", extractor.ArchiveFileNames[0]);
+                ClassicAssert.AreEqual(1, extractor.FilesCount);
+                ClassicAssert.AreEqual("zip.zip", extractor.ArchiveFileNames[0]);
             }
 
             Assert.DoesNotThrow(() =>
@@ -99,12 +101,12 @@
                 }
             }
 
-            Assert.IsTrue(File.Exists(newZip));
+            ClassicAssert.IsTrue(File.Exists(newZip));
 
             using (var extractor = new SevenZipExtractor(newZip))
             {
-                Assert.AreEqual(1, extractor.FilesCount);
-                Assert.AreEqual("zip.txt", extractor.ArchiveFileNames[0]);
+                ClassicAssert.AreEqual(1, extractor.FilesCount);
+                ClassicAssert.AreEqual("zip.txt", extractor.ArchiveFileNames[0]);
             }
         }
     }

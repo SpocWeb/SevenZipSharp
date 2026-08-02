@@ -1,4 +1,4 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using System.Collections.Generic;
     using System.IO;
@@ -6,6 +6,8 @@
     using SevenZip;
 
     using NUnit.Framework;
+
+    using NUnit.Framework.Legacy;
 
     /// <summary>
     /// Test data to use for CheckFileSignatureTest.
@@ -93,7 +95,7 @@
             {
                 int ignored;
                 bool ignored2;
-                Assert.AreEqual(data.ExpectedFormat, FileChecker.CheckSignature(data.TestDataFilePath, out ignored, out ignored2));
+                ClassicAssert.AreEqual(data.ExpectedFormat, FileChecker.CheckSignature(data.TestDataFilePath, out ignored, out ignored2));
             }
         }
     }

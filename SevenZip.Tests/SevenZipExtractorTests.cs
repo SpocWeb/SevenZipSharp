@@ -1,4 +1,4 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,8 @@
     using SevenZip;
 
     using NUnit.Framework;
+
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class SevenZipExtractorTests : TestBase
@@ -43,7 +45,7 @@
                     extractor.ExtractFiles(OutputDirectory, extractor.ArchiveFileData[i].Index);
                 }
 
-                Assert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
             }
         }
 
@@ -53,12 +55,12 @@
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
             {
                 extractor.ExtractFiles(OutputDirectory, 0, 2);
-                Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
             }
 
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
-            Assert.Contains(Path.Combine(OutputDirectory, "file1.txt"), Directory.GetFiles(OutputDirectory));
-            Assert.Contains(Path.Combine(OutputDirectory, "file3.txt"), Directory.GetFiles(OutputDirectory));
+            ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.Contains(Path.Combine(OutputDirectory, "file1.txt"), Directory.GetFiles(OutputDirectory));
+            ClassicAssert.Contains(Path.Combine(OutputDirectory, "file3.txt"), Directory.GetFiles(OutputDirectory));
         }
 
         [Test]
@@ -69,8 +71,8 @@
                 extractor.ExtractArchive(OutputDirectory);
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
-            Assert.IsTrue(File.ReadAllText(Directory.GetFiles(OutputDirectory)[0]).StartsWith("Lorem ipsum dolor sit amet"));
+            ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.IsTrue(File.ReadAllText(Directory.GetFiles(OutputDirectory)[0]).StartsWith("Lorem ipsum dolor sit amet"));
         }
 
         [Test]
@@ -88,7 +90,7 @@
                
                 tmp.ExtractArchive(OutputDirectory);
 
-                Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
             }
         }
 
@@ -107,7 +109,7 @@
 
                 tmp.ExtractArchive(OutputDirectory);
 
-                Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
             }
         }
 
@@ -119,7 +121,7 @@
             using (var tmp = new SevenZipExtractor(File.OpenRead(@"TestData\multiple_files.7z")))
             {
                 tmp.ExtractArchive(OutputDirectory);
-                Assert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
             }
         }
 
@@ -134,11 +136,11 @@
                 }
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
 
             var extractedFile = Directory.GetFiles(OutputDirectory)[0];
 
-            Assert.AreEqual("file2", File.ReadAllText(extractedFile));
+            ClassicAssert.AreEqual("file2", File.ReadAllText(extractedFile));
         }
 
         [Test]
@@ -146,14 +148,14 @@
         {
             using (var tmp = new SevenZipExtractor(@"TestData\multivolume.part0001.rar"))
             {
-                Assert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)));
-                Assert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0));
+                ClassicAssert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)));
+                ClassicAssert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0));
             }
 
             using (var tmp = new SevenZipExtractor(@"TestData\multivolume.part0002.rar"))
             {
-                Assert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)));
-                Assert.IsFalse(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0));
+                ClassicAssert.IsTrue(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)));
+                ClassicAssert.IsFalse(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0));
             }
         }
 
@@ -183,10 +185,10 @@
             t1.Join();
             t2.Join();
 
-			Assert.IsTrue(Directory.Exists(destination1));
-	        Assert.IsTrue(Directory.Exists(destination2));
-			Assert.AreEqual(3, Directory.GetFiles(destination1).Length);
-	        Assert.AreEqual(3, Directory.GetFiles(destination2).Length);
+			ClassicAssert.IsTrue(Directory.Exists(destination1));
+	        ClassicAssert.IsTrue(Directory.Exists(destination2));
+			ClassicAssert.AreEqual(3, Directory.GetFiles(destination1).Length);
+	        ClassicAssert.AreEqual(3, Directory.GetFiles(destination2).Length);
 		}
 
         [Test]
@@ -204,11 +206,11 @@
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
             {
                 var fileNames = extractor.ArchiveFileNames;
-                Assert.AreEqual(3, fileNames.Count);
+                ClassicAssert.AreEqual(3, fileNames.Count);
 
-                Assert.AreEqual("file1.txt", fileNames[0]);
-                Assert.AreEqual("file2.txt", fileNames[1]);
-                Assert.AreEqual("file3.txt", fileNames[2]);
+                ClassicAssert.AreEqual("file1.txt", fileNames[0]);
+                ClassicAssert.AreEqual("file2.txt", fileNames[1]);
+                ClassicAssert.AreEqual("file3.txt", fileNames[2]);
             }
         }
         
@@ -218,11 +220,11 @@
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
             {
                 var fileData = extractor.ArchiveFileData;
-                Assert.AreEqual(3, fileData.Count);
+                ClassicAssert.AreEqual(3, fileData.Count);
 
-                Assert.AreEqual("file1.txt", fileData[0].FileName);
-                Assert.IsFalse(fileData[0].Encrypted);
-                Assert.IsFalse(fileData[0].IsDirectory);
+                ClassicAssert.AreEqual("file1.txt", fileData[0].FileName);
+                ClassicAssert.IsFalse(fileData[0].Encrypted);
+                ClassicAssert.IsFalse(fileData[0].IsDirectory);
             }
         }
 
@@ -232,7 +234,7 @@
             using (var extractor = new SevenZipExtractor(file.FilePath))
             {
                 extractor.ExtractArchive(OutputDirectory);
-                Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+                ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
             }
         }
     }

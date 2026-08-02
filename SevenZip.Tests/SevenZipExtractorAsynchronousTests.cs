@@ -1,9 +1,11 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using NUnit.Framework;
+
+    using NUnit.Framework.Legacy;
 
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
     public class SevenZipExtractorAsynchronousTests : TestBase
@@ -41,11 +43,11 @@
                     timeToWait -= 25;
                 }
 
-                Assert.AreEqual(3, extractingInvoked);
-                Assert.AreEqual(1, extractionFinishedInvoked);
-                Assert.AreEqual(0, fileExistsInvoked);
-                Assert.AreEqual(3, fileExtractionStartedInvoked);
-                Assert.AreEqual(3, fileExtractionFinishedInvoked);
+                ClassicAssert.AreEqual(3, extractingInvoked);
+                ClassicAssert.AreEqual(1, extractionFinishedInvoked);
+                ClassicAssert.AreEqual(0, fileExistsInvoked);
+                ClassicAssert.AreEqual(3, fileExtractionStartedInvoked);
+                ClassicAssert.AreEqual(3, fileExtractionFinishedInvoked);
 
                 extractionFinishedInvoked = 0;
                 extractor.BeginExtractArchive(OutputDirectory);
@@ -62,7 +64,7 @@
                     timeToWait -= 25;
                 }
 
-                Assert.AreEqual(3, fileExistsInvoked);
+                ClassicAssert.AreEqual(3, fileExistsInvoked);
             }
         }
 
@@ -94,8 +96,8 @@
                 }
             }
 
-            Assert.IsTrue(extractionFinishedInvoked);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            ClassicAssert.IsTrue(extractionFinishedInvoked);
+            ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
         [Test]
@@ -124,8 +126,8 @@
                 }
             }
 
-            Assert.IsTrue(extractionFinishedInvoked);
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.IsTrue(extractionFinishedInvoked);
+            ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
 
         [Test]
@@ -136,7 +138,7 @@
                 await extractor.ExtractArchiveAsync(OutputDirectory);
             }
 
-            Assert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
         }
 
         [Test]
@@ -150,8 +152,8 @@
                 }
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
         [Test]
@@ -165,8 +167,8 @@
                 }
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
-            Assert.AreEqual("file1", File.ReadAllText(TemporaryFile));
+            ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
         [Test]
@@ -177,7 +179,7 @@
                 await extractor.ExtractFilesAsync(args => { args.ExtractToFile = TemporaryFile; });
             }
 
-            Assert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
         }
 
         [Test]
@@ -188,7 +190,7 @@
                 await extractor.ExtractFilesAsync(OutputDirectory, 0, 2);
             }
 
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
 
         [Test]
@@ -199,7 +201,7 @@
                 await extractor.ExtractFilesAsync(OutputDirectory, "file1.txt", "file3.txt");
             }
 
-            Assert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
+            ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
     }
 }

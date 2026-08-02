@@ -1,6 +1,8 @@
-﻿namespace SevenZip.Tests
+namespace SevenZip.Tests
 {
     using NUnit.Framework;
+
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class LibraryManagerTests : TestBase
@@ -16,9 +18,9 @@
             // Exercising more code paths...
             features = SevenZipLibraryManager.CurrentLibraryFeatures;
 
-            Assert.IsTrue(features.HasFlag(LibraryFeature.ExtractAll));
-            Assert.IsTrue(features.HasFlag(LibraryFeature.CompressAll));
-            Assert.IsTrue(features.HasFlag(LibraryFeature.Modify));
+            ClassicAssert.IsTrue(features.HasFlag(LibraryFeature.ExtractAll));
+            ClassicAssert.IsTrue(features.HasFlag(LibraryFeature.CompressAll));
+            ClassicAssert.IsTrue(features.HasFlag(LibraryFeature.Modify));
         }
     }
 }
