@@ -11,6 +11,21 @@ namespace SevenZip.Tests
 
     using SevenZip;
 
+    /// <summary>Tests for miscellaneous.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 69 | <see cref="LzmaEncodeDecodeTest"/> | Lzma Encode Decode Test. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 26782b32c60853e3fc9d29a1bc56ac8e23e85e2cecf63ebe1ebe5f6c0bffd369
+    /// </code>
+    /// </example>
     [TestFixture]
     public class MiscellaneousTests : TestBase
     {
@@ -64,6 +79,7 @@ namespace SevenZip.Tests
         }
 #endif
 
+        /// <summary>Lzma Encode Decode Test.</summary>
         [Test]
         public void LzmaEncodeDecodeTest()
         {

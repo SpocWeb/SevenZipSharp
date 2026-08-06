@@ -6,6 +6,31 @@
     /// <summary>
     /// Exception class for LZMA operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 23 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 28 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    /// | 34 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    /// | 41 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: a3c323420e890497054cb6eaa7722a0fcfb96306c7a1dd0c1d866057fd00f94d
+    /// </code>
+    /// </example>
     [Serializable]
     public class LzmaException : SevenZipException
     {

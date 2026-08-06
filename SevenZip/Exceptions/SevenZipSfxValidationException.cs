@@ -6,6 +6,31 @@
     /// <summary>
     /// Exception class for 7-zip sfx settings validation.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 23 | <see cref="DefaultMessage"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 28 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    /// | 34 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    /// | 41 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: f5b7081dd8ff92fdc4e070f72c021ddf797a582ca574e19ecabbe8731154074a
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipSfxValidationException : SevenZipException
     {

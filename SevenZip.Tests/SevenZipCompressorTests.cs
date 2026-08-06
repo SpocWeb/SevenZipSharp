@@ -12,6 +12,43 @@ namespace SevenZip.Tests
 
     using NUnit.Framework;
 
+    /// <summary>Tests for seven Zip Compressor.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 22 | <see cref="CompressionMethods"/> | TestCaseSource for CompressDifferentFormatsTest |
+    /// | 37 | <see cref="CompressDirectory_WithSfnPath"/> | Compress Directory — with Sfn Path. |
+    /// | 57 | <see cref="CompressDirectory_NonExistentDirectory"/> | Compress Directory — non Existent Directory. |
+    /// | 67 | <see cref="CompressFile_WithSfnPath"/> | Compress File — with Sfn Path. |
+    /// | 86 | <see cref="CompressFileTest"/> | Compress File Test. |
+    /// | 107 | <see cref="CompressDirectoryTest"/> | Compress Directory Test. |
+    /// | 131 | <see cref="CompressWithAppendModeTest"/> | Compress With Append Mode Test. |
+    /// | 159 | <see cref="ModifyProtectedArchiveTest"/> | Modify Protected Archive Test. |
+    /// | 188 | <see cref="ModifyNonArchiveTest"/> | Modify Non Archive Test. |
+    /// | 204 | <see cref="CompressWithModifyModeRenameTest"/> | Compress With Modify Mode Rename Test. |
+    /// | 229 | <see cref="CompressWithModifyModeDeleteTest"/> | Compress With Modify Mode Delete Test. |
+    /// | 253 | <see cref="MultiVolumeCompressionTest"/> | Multi Volume Compression Test. |
+    /// | 270 | <see cref="CompressToStreamTest"/> | Compress To Stream Test. |
+    /// | 290 | <see cref="CompressFromStreamTest"/> | Compress From Stream Test. |
+    /// | 317 | <see cref="CompressFileDictionaryTest"/> | Compress File Dictionary Test. |
+    /// | 339 | <see cref="ThreadedCompressionTest"/> | Threaded Compression Test. |
+    /// | 367 | <see cref="CompressDifferentFormatsTest"/> | Compress Different Formats Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="CompressionMethod"/> | Used as a property. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2
+    /// </code>
+    /// </example>
     [TestFixture]
     public class SevenZipCompressorTests : TestBase
     {
@@ -32,6 +69,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory — with Sfn Path.</summary>
         [Test]
         public void CompressDirectory_WithSfnPath()
         {
@@ -51,6 +89,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory — non Existent Directory.</summary>
         [Test]
         public void CompressDirectory_NonExistentDirectory()
         {
@@ -60,6 +99,7 @@ namespace SevenZip.Tests
             Assert.Throws<ArgumentException>(() => compressor.CompressDirectory("", TemporaryFile));
         }
 
+        /// <summary>Compress File — with Sfn Path.</summary>
         [Test]
         public void CompressFile_WithSfnPath()
         {
@@ -78,6 +118,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress File Test.</summary>
         [Test]
         public void CompressFileTest()
         {
@@ -98,6 +139,7 @@ namespace SevenZip.Tests
             File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldBe();
         }
 
+        /// <summary>Compress Directory Test.</summary>
         [Test]
         public void CompressDirectoryTest()
         {
@@ -121,6 +163,7 @@ namespace SevenZip.Tests
                 .ShouldBeSequence(Directory.GetFiles(OutputDirectory).Select(Path.GetFileName));
         }
 
+        /// <summary>Compress With Append Mode Test.</summary>
         [Test]
         public void CompressWithAppendModeTest()
         {
@@ -148,6 +191,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Modify Protected Archive Test.</summary>
         [Test]
         public void ModifyProtectedArchiveTest()
         {
@@ -176,6 +220,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Modify Non Archive Test.</summary>
         [Test]
         public void ModifyNonArchiveTest()
         {
@@ -191,6 +236,7 @@ namespace SevenZip.Tests
             Assert.Throws<SevenZipArchiveException>(() => compressor.ModifyArchive(TemporaryFile, modificationList));
         }
 
+        /// <summary>Compress With Modify Mode Rename Test.</summary>
         [Test]
         public void CompressWithModifyModeRenameTest()
         {
@@ -215,6 +261,7 @@ namespace SevenZip.Tests
             File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldNotBe();
         }
 
+        /// <summary>Compress With Modify Mode Delete Test.</summary>
         [Test]
         public void CompressWithModifyModeDeleteTest()
         {
@@ -238,6 +285,7 @@ namespace SevenZip.Tests
             File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")).ShouldNotBe();
         }
 
+        /// <summary>Multi Volume Compression Test.</summary>
         [Test]
         public void MultiVolumeCompressionTest()
         {
@@ -254,6 +302,7 @@ namespace SevenZip.Tests
             File.Exists($"{TemporaryFile}.003").ShouldBe();
         }
 
+        /// <summary>Compress To Stream Test.</summary>
         [Test]
         public void CompressToStreamTest()
         {
@@ -273,6 +322,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress From Stream Test.</summary>
         [Test]
         public void CompressFromStreamTest()
         {
@@ -299,6 +349,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress File Dictionary Test.</summary>
         [Test]
         public void CompressFileDictionaryTest()
         {
@@ -320,6 +371,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Threaded Compression Test.</summary>
         [Test]
         public void ThreadedCompressionTest()
         {
@@ -347,6 +399,7 @@ namespace SevenZip.Tests
 			File.Exists(tempFile2).ShouldBe();
 		}
 
+        /// <summary>Compress Different Formats Test.</summary>
         [Test, TestCaseSource(nameof(CompressionMethods))]
         public void CompressDifferentFormatsTest(CompressionMethod method)
         {

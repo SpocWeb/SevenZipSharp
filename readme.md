@@ -75,3 +75,24 @@ For the complete switches list, refer to SevenZipDoc.chm in the 7-zip installati
 ## Conditional compilation symbols
 These compilation symbols are supported: UNMANAGED.
 * UNMANAGED allows the main COM part of SevenZipSharp to be built.
+
+-------------------------------------------------------------
+
+## Subsystems
+
+_(local addendum — repo-generated, not part of the upstream project description above)_
+
+| Folder | Responsibility |
+|---|---|
+| [`SevenZip/`](SevenZip/ReadMe.md) | The managed library: `SevenZipCompressor`/`SevenZipExtractor` and their supporting types. |
+| [`SevenZip.Tests/`](SevenZip.Tests/ReadMe.md) | NUnit tests exercising `SevenZip/` against the archives in `SevenZip.Tests/TestData/`. |
+
+## Architecture
+
+```mermaid
+flowchart LR
+    SevenZip["SevenZip/ (library)"]
+    Tests["SevenZip.Tests/"]
+
+    Tests -->|exercises| SevenZip
+```

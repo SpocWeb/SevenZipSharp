@@ -5,6 +5,33 @@ namespace SevenZip
     /// <summary>
     /// The set of features supported by the library.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 23 | <see cref="None"/> | Default feature. |
+    /// | 27 | <see cref="Extract7z"/> | The library can extract 7zip archives compressed with LZMA method. |
+    /// | 31 | <see cref="Extract7zLZMA2"/> | The library can extract 7zip archives compressed with LZMA2 method. |
+    /// | 35 | <see cref="Extract7zAll"/> | The library can extract 7z archives compressed with all known methods. |
+    /// | 39 | <see cref="ExtractZip"/> | The library can extract zip archives. |
+    /// | 43 | <see cref="ExtractRar"/> | The library can extract rar archives. |
+    /// | 47 | <see cref="ExtractGzip"/> | The library can extract gzip archives. |
+    /// | 51 | <see cref="ExtractBzip2"/> | The library can extract bzip2 archives. |
+    /// | 55 | <see cref="ExtractTar"/> | The library can extract tar archives. |
+    /// | 59 | <see cref="ExtractXz"/> | The library can extract xz archives. |
+    /// | 63 | <see cref="ExtractAll"/> | The library can extract all types of archives supported. |
+    /// | 67 | <see cref="Compress7z"/> | The library can compress data to 7zip archives with LZMA method. |
+    /// | 71 | <see cref="Compress7zLZMA2"/> | The library can compress data to 7zip archives with LZMA2 method. |
+    /// | 75 | <see cref="Compress7zAll"/> | The library can compress data to 7zip archives with all methods known. |
+    /// | 79 | <see cref="CompressTar"/> | The library can compress data to tar archives. |
+    /// | 83 | <see cref="CompressGzip"/> | The library can compress data to gzip archives. |
+    /// | 87 | <see cref="CompressBzip2"/> | The library can compress data to bzip2 archives. |
+    /// | 91 | <see cref="CompressXz"/> | The library can compress data to xz archives. |
+    /// | 95 | <see cref="CompressZip"/> | The library can compress data to zip archives. |
+    /// | 99 | <see cref="CompressAll"/> | The library can compress data to all types of archives supported. |
+    /// | 103 | <see cref="Modify"/> | The library can modify archives. |
+    /// </remarks>
     ///
     /// <example>
     /// <code language="yaml">

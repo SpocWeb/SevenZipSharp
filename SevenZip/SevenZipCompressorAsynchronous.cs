@@ -4,6 +4,30 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>Asynchronous (Begin*/*Async) overloads of <see cref="SevenZipCompressor"/>'s pack and modify operations.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 38 | <see cref="BeginCompressFiles"/> | Packs files into the archive asynchronously. |
+    /// | 91 | <see cref="BeginCompressFilesEncrypted"/> | Packs files into the archive asynchronously. |
+    /// | 150 | <see cref="CompressFilesAsync"/> | Packs files into the archive asynchronously. |
+    /// | 227 | <see cref="CompressFilesEncryptedAsync"/> | Packs files into the archive asynchronously. |
+    /// | 313 | <see cref="BeginCompressDirectory"/> | Packs all files in the specified directory asynchronously. |
+    /// | 348 | <see cref="CompressDirectoryAsync"/> | Packs all files in the specified directory asynchronously. |
+    /// | 394 | <see cref="BeginCompressStream"/> | Compresses the specified stream. |
+    /// | 412 | <see cref="CompressStreamAsync"/> | Compresses the specified stream. |
+    /// | 435 | <see cref="BeginModifyArchive"/> | Modifies the existing archive asynchronously (renames files or deletes them). |
+    /// | 452 | <see cref="ModifyArchiveAsync"/> | Modifies the existing archive asynchronously (renames files or deletes them). |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 18c86e8dfe6787af1c88517afc8511e99655e40bf1b0eeaf51a7dcdbe248d6d3
+    /// </code>
+    /// </example>
     partial class SevenZipCompressor
     {
         #region Delegates

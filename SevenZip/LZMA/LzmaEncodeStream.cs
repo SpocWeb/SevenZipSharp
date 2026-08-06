@@ -8,8 +8,39 @@
     /// <summary>
     /// The stream which compresses data with LZMA on the fly.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 34 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 45 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 61 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 76 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 193 | <see cref="ToDecodeStream"/> | Converts the LzmaEncodeStream to the LzmaDecodeStream to read data. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="MemoryStream"/> | Used as a field. |
+    /// | <see cref="Encoder"/> | Used as a field. |
+    /// | <see cref="LzmaDecodeStream"/> | Returned by a method. |
+    /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: 55a8a71e703d311fe72a666aa61e91672a94f13a7bc91ba49599fa318613e8a7
+    /// stale: true
+    /// </code>
+    /// </example>
     public class LzmaEncodeStream : Stream
     {
+
+        /// <summary>Specifies the constant max BUFFER CAPACITY.</summary>
         private const int MAX_BUFFER_CAPACITY = 1 << 30; //1 Gb
         private readonly MemoryStream _buffer = new MemoryStream();
         private readonly int _bufferCapacity = 1 << 18; //256 kb
@@ -137,6 +168,8 @@
             set => throw new NotSupportedException();
         }
 
+        /// <summary>Sizes <c>_buffer</c> to <c>_bufferCapacity</c> and creates a fresh<br/>
+        /// <see cref="Encoder"/> configured with the current <see cref="SevenZipCompressor.LzmaDictionarySize"/>.</summary>
         private void Init()
         {
             _buffer.Capacity = _bufferCapacity;
@@ -157,6 +190,8 @@
             }
         }
 
+        /// <summary>Encodes the buffered chunk with <c>_lzmaEncoder</c> and writes it to<br/>
+        /// the output stream, prefixed by its uncompressed size as an 8-byte header.</summary>
         private void WriteChunk()
         {
             _lzmaEncoder.WriteCoderProperties(_output);

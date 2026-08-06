@@ -7,9 +7,34 @@ namespace SevenZip.Tests
     using System.Threading.Tasks;
     using NUnit.Framework;
 
+    /// <summary>Tests for seven Zip Extractor Asynchronous.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 16 | <see cref="AsynchronousExtractArchiveEventsTest"/> | Asynchronous Extract Archive Events Test. |
+    /// | 75 | <see cref="AsynchronousExtractFileEventsTest"/> | Asynchronous Extract File Events Test. |
+    /// | 108 | <see cref="AsynchronousExtractFilesEventsTest"/> | Asynchronous Extract Files Events Test. |
+    /// | 139 | <see cref="ExtractArchiveAsync"/> | Extract Archive Async. |
+    /// | 151 | <see cref="ExtractFileAsync_ByIndex"/> | Extract File Async — by Index. |
+    /// | 167 | <see cref="ExtractFileAsync_ByFileName"/> | Extract File Async — by File Name. |
+    /// | 183 | <see cref="ExtractFilesAsync_ByCallback"/> | Extract Files Async — by Callback. |
+    /// | 195 | <see cref="ExtractFilesAsync_ByIndex"/> | Extract Files Async — by Index. |
+    /// | 207 | <see cref="ExtractFilesAsync_ByFileName"/> | Extract Files Async — by File Name. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: fff1830b02b33e3b563ad797e03ec0353d38ee52623aaf8392011933bc9024ff
+    /// </code>
+    /// </example>
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
     public class SevenZipExtractorAsynchronousTests : TestBase
     {
+
+        /// <summary>Asynchronous Extract Archive Events Test.</summary>
         [Test]
         public void AsynchronousExtractArchiveEventsTest()
         {
@@ -68,6 +93,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Extract File Events Test.</summary>
         [Test]
         public void AsynchronousExtractFileEventsTest()
         {
@@ -100,6 +126,7 @@ namespace SevenZip.Tests
             File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
+        /// <summary>Asynchronous Extract Files Events Test.</summary>
         [Test]
         public void AsynchronousExtractFilesEventsTest()
         {
@@ -130,6 +157,7 @@ namespace SevenZip.Tests
             Directory.GetFiles(OutputDirectory).Length.ShouldBe(2);
         }
 
+        /// <summary>Extract Archive Async.</summary>
         [Test]
         public async Task ExtractArchiveAsync()
         {
@@ -141,6 +169,7 @@ namespace SevenZip.Tests
             Directory.GetFiles(OutputDirectory).Length.ShouldBe(3);
         }
 
+        /// <summary>Extract File Async — by Index.</summary>
         [Test]
         public async Task ExtractFileAsync_ByIndex()
         {
@@ -156,6 +185,7 @@ namespace SevenZip.Tests
             File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
+        /// <summary>Extract File Async — by File Name.</summary>
         [Test]
         public async Task ExtractFileAsync_ByFileName()
         {
@@ -171,6 +201,7 @@ namespace SevenZip.Tests
             File.ReadAllText(TemporaryFile).ShouldBe("file1");
         }
 
+        /// <summary>Extract Files Async — by Callback.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByCallback()
         {
@@ -182,6 +213,7 @@ namespace SevenZip.Tests
             Directory.GetFiles(OutputDirectory).Length.ShouldBe(1);
         }
 
+        /// <summary>Extract Files Async — by Index.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByIndex()
         {
@@ -193,6 +225,7 @@ namespace SevenZip.Tests
             Directory.GetFiles(OutputDirectory).Length.ShouldBe(2);
         }
 
+        /// <summary>Extract Files Async — by File Name.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByFileName()
         {

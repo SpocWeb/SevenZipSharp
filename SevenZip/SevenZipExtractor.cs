@@ -13,6 +13,21 @@ namespace SevenZip
     /// <summary>
     /// Class to unpack data from archives supported by 7-Zip.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1402 | <see cref="DecompressStream"/> | Decompress the specified stream (C# inside) |
+    /// | 1420 | <see cref="ExtractBytes"/> | Decompress byte array compressed with LZMA algorithm (C# inside) |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
     /// <example>
     /// using (var extr = new SevenZipExtractor(@"C:\Test.7z"))
     /// {
@@ -1365,6 +1380,9 @@ namespace SevenZip
 
         #region LZMA SDK functions
 
+        /// <summary>Reads the 5-byte LZMA coder-properties header and the following<br/>
+        /// 8-byte uncompressed size from <paramref name="inStream"/>.</summary>
+        /// <returns>The raw 5-byte LZMA properties block.</returns>
         internal static byte[] GetLzmaProperties(Stream inStream, out long outSize)
         {
             var lzmAproperties = new byte[5];

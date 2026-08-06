@@ -8,9 +8,33 @@ namespace SevenZip.Tests
     using System.Threading.Tasks;
     using NUnit.Framework;
 
+    /// <summary>Tests for seven Zip Compressor Asynchronous.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 17 | <see cref="AsynchronousCompressDirectoryAndEventsTest"/> | Asynchronous Compress Directory And Events Test. |
+    /// | 60 | <see cref="AsynchronousCompressFilesTest"/> | Asynchronous Compress Files Test. |
+    /// | 93 | <see cref="AsynchronousCompressStreamTest"/> | Asynchronous Compress Stream Test. |
+    /// | 130 | <see cref="AsynchronousModifyArchiveTest"/> | Asynchronous Modify Archive Test. |
+    /// | 164 | <see cref="AsynchronousCompressFilesEncryptedTest"/> | Asynchronous Compress Files Encrypted Test. |
+    /// | 199 | <see cref="CompressFilesAsync"/> | Compress Files Async. |
+    /// | 216 | <see cref="CompressDirectoryAsync"/> | Compress Directory Async. |
+    /// | 233 | <see cref="CompressFilesEncryptedAsync"/> | Compress Files Encrypted Async. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 443dd3b5eaeb0c19dbda88700012ef2cbd96e07d18c2601caf18a74cc340046c
+    /// </code>
+    /// </example>
     [TestFixture]
     public class SevenZipCompressorAsynchronousTests : TestBase
     {
+
+        /// <summary>Asynchronous Compress Directory And Events Test.</summary>
         [Test]
         public void AsynchronousCompressDirectoryAndEventsTest()
         {
@@ -53,6 +77,7 @@ namespace SevenZip.Tests
             File.Exists(TemporaryFile).ShouldBe();
         }
 
+        /// <summary>Asynchronous Compress Files Test.</summary>
         [Test]
         public void AsynchronousCompressFilesTest()
         {
@@ -85,6 +110,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Compress Stream Test.</summary>
         [Test]
         public void AsynchronousCompressStreamTest()
         {
@@ -121,6 +147,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Modify Archive Test.</summary>
         [Test]
         public void AsynchronousModifyArchiveTest()
         {
@@ -154,6 +181,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Compress Files Encrypted Test.</summary>
         [Test]
         public void AsynchronousCompressFilesEncryptedTest()
         {
@@ -188,6 +216,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Files Async.</summary>
         [Test]
         public async Task CompressFilesAsync()
         {
@@ -204,6 +233,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory Async.</summary>
         [Test]
         public async Task CompressDirectoryAsync()
         {
@@ -220,6 +250,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Files Encrypted Async.</summary>
         [Test]
         public async Task CompressFilesEncryptedAsync()
         {

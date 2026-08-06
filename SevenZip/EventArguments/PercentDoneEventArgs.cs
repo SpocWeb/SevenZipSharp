@@ -5,6 +5,22 @@
     /// <summary>
     /// EventArgs for storing PercentDone property.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 25 | <see cref="PercentDoneEventArgs"/> | Initializes a new instance of the PercentDoneEventArgs class. |
+    /// | 38 | <see cref="PercentDone"/> | Gets the percent of finished work. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: fcc9dfbeac1504d9102c3708677713d7c201d569b8af5f88940bc1efc32df227
+    /// </code>
+    /// </example>
     public class PercentDoneEventArgs : EventArgs
     {
         private readonly byte _percentDone;

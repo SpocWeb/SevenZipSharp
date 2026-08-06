@@ -10,18 +10,65 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// <summary>
     /// The LZMA encoder class
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 129 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="UInt32"/> | Used as a field. |
+    /// | <see cref="Byte"/> | Used as a field. |
+    /// | <see cref="BitEncoder"/> | Used as a field. |
+    /// | <see cref="LenPriceTableEncoder"/> | Used as a field. |
+    /// | <see cref="LiteralEncoder"/> | Used as a field. |
+    /// | <see cref="Optimal"/> | Used as a field. |
+    /// | <see cref="BitTreeEncoder"/> | Used as a field. |
+    /// | <see cref="Encoder"/> | Used as a field. |
+    /// | <see cref="IMatchFinder"/> | Used as a field. |
+    /// | <see cref="EMatchFinderType"/> | Used as a field. |
+    /// | <see cref="State"/> | Used as a field. |
+    /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
+    /// | <see cref="CoderPropId"/> | Passed as a parameter. |
+    /// | <see cref="LenEncoder"/> | Nested type. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-12-15T13:51:08Z
+    /// digest: 9c7f25f09e7adebd9919abcabed9f7be5c282e454732c48c804174ef695a6d0b
+    /// </code>
+    /// </example>
     public class Encoder : ICoder, ISetCoderProperties, IWriteCoderProperties
     {
+
+        /// <summary>Specifies the constant k Default Dictionary Log Size.</summary>
         private const int kDefaultDictionaryLogSize = 22;
+
+        /// <summary>Specifies the constant k Ifinity Price.</summary>
         private const UInt32 kIfinityPrice = 0xFFFFFFF;
+
+        /// <summary>Specifies the constant k Num Fast Bytes Default.</summary>
         private const UInt32 kNumFastBytesDefault = 0x20;
 
+        /// <summary>Specifies the constant k Num Len Spec Symbols.</summary>
         private const UInt32 kNumLenSpecSymbols = Base.kNumLowLenSymbols + Base.kNumMidLenSymbols;
 
+        /// <summary>Specifies the constant k Num Opts.</summary>
         private const UInt32 kNumOpts = 1 << 12;
+
+        /// <summary>Specifies the constant k Prop Size.</summary>
         private const int kPropSize = 5;
+
+        /// <summary>Gets the g Fast Pos.</summary>
         private static readonly Byte[] g_FastPos = new Byte[1 << 11];
 
+        /// <summary>Gets the k Match Finder I Ds.</summary>
         private static readonly string[] kMatchFinderIDs =
             {
                 "BT2",
@@ -87,6 +134,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         private bool _writeEndMark;
         private Int64 nowPos64;
 
+        /// <summary>Initializes a new instance of <see cref="Encoder"/>.</summary>
         static Encoder()
         {
             const Byte kFastSlots = 22;
@@ -295,6 +343,8 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #endregion
 
+        /// <summary>Maps a match <paramref name='pos'/>ition (distance) to its distance-slot <br/>
+        /// index, using the precomputed <see cref="g_FastPos"/> lookup table for speed.</summary>
         private static UInt32 GetPosSlot(UInt32 pos)
         {
             if (pos < (1 << 11)) {
@@ -306,6 +356,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             return (UInt32) (g_FastPos[pos >> 20] + 40);
         }
 
+        /// <summary>Maps a large match <paramref name='pos'/>ition (distance) to its distance-slot <br/>
+        /// index, for positions beyond the range handled by <see cref="GetPosSlot"/>.</summary>
         private static UInt32 GetPosSlot2(UInt32 pos)
         {
             if (pos < (1 << 17)) {
@@ -317,6 +369,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             return (UInt32) (g_FastPos[pos >> 26] + 52);
         }
 
+        /// <summary>Resets the literal/match state machine and repeat-distance <br/>
+        /// history to their initial values at the start of a stream.</summary>
         private void BaseInit()
         {
             _state.Init();
@@ -325,6 +379,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 _repDistances[i] = 0;
         }
 
+        /// <summary>Lazily instantiates the configured match finder and (re)allocates <br/>
+        /// its dictionary when the dictionary size or fast-bytes setting changed.</summary>
         private void Create()
         {
             if (_matchFinder == null)
@@ -347,8 +403,12 @@ namespace SevenZip.Sdk.Compression.Lzma
             _numFastBytesPrev = _numFastBytes;
         }
 
+		/// <summary>Controls whether an explicit end-of-stream marker is written <br/>
+		/// when the encoded output does not carry a known uncompressed size.</summary>
 		private void SetWriteEndMarkerMode(bool writeEndMarker) => _writeEndMark = writeEndMarker;
 
+		/// <summary>Resets all probability models, the range encoder, and optimizer <br/>
+		/// bookkeeping to their initial state before encoding a new stream.</summary>
 		private void Init()
         {
             BaseInit();
@@ -385,6 +445,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             _additionalOffset = 0;
         }
 
+        /// <summary>Queries the match finder at the current position and extends the <br/>
+        /// longest match length when it reaches the fast-bytes limit.</summary>
         private void ReadMatchDistances(out UInt32 lenRes, out UInt32 numDistancePairs)
         {
             lenRes = 0;
@@ -401,6 +463,8 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
+        /// <summary>Advances the match finder by <paramref name='num'/> bytes without <br/>
+        /// encoding them, used to skip over bytes already accounted for.</summary>
         private void MovePos(UInt32 num)
         {
             if (num > 0)
@@ -410,9 +474,13 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
+		/// <summary>Estimates the bit cost of encoding a single-byte short-repeat match <br/>
+		/// (distance rep0, length 1) in the given <paramref name='state'/> and <paramref name='posState'/>.</summary>
 		private UInt32 GetRepLen1Price(Base.State state, UInt32 posState) => _isRepG0[state.Index].GetPrice0() +
 				   _isRep0Long[(state.Index << Base.kNumPosStatesBitsMax) + posState].GetPrice0();
 
+		/// <summary>Estimates the bit cost of selecting repeat distance <paramref name='repIndex'/> <br/>
+		/// (excluding its length), used by the optimal-parse cost model.</summary>
 		private UInt32 GetPureRepPrice(UInt32 repIndex, Base.State state, UInt32 posState)
         {
             UInt32 price;
@@ -435,12 +503,16 @@ namespace SevenZip.Sdk.Compression.Lzma
             return price;
         }
 
+        /// <summary>Estimates the total bit cost of encoding a repeat-distance match of <br/>
+        /// length <paramref name='len'/> using repeat distance <paramref name='repIndex'/>.</summary>
         private UInt32 GetRepPrice(UInt32 repIndex, UInt32 len, Base.State state, UInt32 posState)
         {
             UInt32 price = _repMatchLenEncoder.GetPrice(len - Base.kMatchMinLen, posState);
             return price + GetPureRepPrice(repIndex, state, posState);
         }
 
+        /// <summary>Estimates the total bit cost of encoding a new-distance match at <br/>
+        /// distance <paramref name='pos'/> with length <paramref name='len'/>.</summary>
         private UInt32 GetPosLenPrice(UInt32 pos, UInt32 len, UInt32 posState)
         {
             UInt32 price;
@@ -454,6 +526,9 @@ namespace SevenZip.Sdk.Compression.Lzma
             return price + _lenEncoder.GetPrice(len - Base.kMatchMinLen, posState);
         }
 
+        /// <summary>Walks the optimal-parse chain backward from position <paramref name='cur'/> <br/>
+        /// to the start, reversing the linked choices into a forward decode order.</summary>
+        /// <returns>The position of the first optimizer decision to emit.</returns>
         private UInt32 Backward(out UInt32 backRes, UInt32 cur)
         {
             _optimumEndIndex = cur;
@@ -488,6 +563,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
+        /// <summary>Runs the optimal-parse cost model to decide the best next literal, <br/>
+        /// repeat, or match to emit at <paramref name='position'/>.</summary>
+        /// <returns>The chosen symbol length; <paramref name='backRes'/> carries the <br/>
+        /// distance/rep-index, or 0xFFFFFFFF for a plain literal.</returns>
         private UInt32 GetOptimum(UInt32 position, out UInt32 backRes)
         {
             if (_optimumEndIndex != _optimumCurrentIndex)
@@ -1012,6 +1091,8 @@ namespace SevenZip.Sdk.Compression.Lzma
 			return (smallDist < ((UInt32)(1) << (32 - kDif)) && bigDist >= (smallDist << kDif));
 		}*/
 
+        /// <summary>Emits the special zero-length, maximum-distance match that signals <br/>
+        /// end of stream, when end-marker writing is enabled.</summary>
         private void WriteEndMarker(UInt32 posState)
         {
             if (!_writeEndMark) {
@@ -1032,6 +1113,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             _posAlignEncoder.ReverseEncode(_rangeEncoder, posReduced & Base.kAlignMask);
         }
 
+        /// <summary>Releases the match-finder stream, writes the end marker if enabled, <br/>
+        /// and flushes any buffered range-coder output to the output stream.</summary>
         private void Flush(UInt32 nowPos)
         {
             ReleaseMFStream();
@@ -1040,6 +1123,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             _rangeEncoder.FlushStream();
         }
 
+        /// <summary>Encodes one chunk of the input stream, running the optimal parser <br/>
+        /// and range coder until a progress checkpoint or end of input is reached.</summary>
         internal void CodeOneBlock(out Int64 inSize, out Int64 outSize, out bool finished)
         {
             inSize = 0;
@@ -1216,6 +1301,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
+        /// <summary>Releases the match finder's reference to the input stream once <br/>
+        /// it is no longer needed.</summary>
         private void ReleaseMFStream()
         {
             if (_matchFinder != null && _needReleaseMFStream)
@@ -1225,16 +1312,21 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
+		/// <summary>Binds the range encoder to the given <paramref name='outStream'/>.</summary>
 		private void SetOutStream(Stream outStream) => _rangeEncoder.SetStream(outStream);
 
+		/// <summary>Releases the range encoder's reference to the output stream.</summary>
 		private void ReleaseOutStream() => _rangeEncoder.ReleaseStream();
 
+		/// <summary>Releases both the match-finder and range-encoder stream references.</summary>
 		private void ReleaseStreams()
         {
             ReleaseMFStream();
             ReleaseOutStream();
         }
 
+        /// <summary>Prepares the encoder for a new coding run: allocates the match <br/>
+        /// finder, resets state, and rebuilds the price tables.</summary>
         private void SetStreams(Stream inStream, Stream outStream /*,
 				Int64 inSize, Int64 outSize*/)
         {
@@ -1258,6 +1350,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             nowPos64 = 0;
         }
 
+        /// <summary>Recomputes the cached bit-price tables for match distances, used <br/>
+        /// by the optimal parser to avoid repeated probability-price lookups.</summary>
         private void FillDistancesPrices()
         {
             for (UInt32 i = Base.kStartPosModelIndex; i < Base.kNumFullDistances; i++)
@@ -1291,6 +1385,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             _matchPriceCount = 0;
         }
 
+        /// <summary>Recomputes the cached bit-price table for the 4-bit distance-alignment <br/>
+        /// bit-tree encoder.</summary>
         private void FillAlignPrices()
         {
             for (UInt32 i = 0; i < Base.kAlignTableSize; i++)
@@ -1299,6 +1395,9 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
+        /// <summary>Looks up the match-finder type index matching the given identifier <br/>
+        /// <paramref name='s'/> (e.g. "BT2", "BT4").</summary>
+        /// <returns>The matching index into <see cref="EMatchFinderType"/>, or -1 if unknown.</returns>
         private static int FindMatchFinder(string s)
         {
             for (int m = 0; m < kMatchFinderIDs.Length; m++)
@@ -1310,9 +1409,28 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: EMatchFinderType
 
+        /// <summary>Selects which binary-tree match-finder hash width the encoder uses to<br/>
+        /// search the sliding window for LZ77-style back-references.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1391 | <see cref="BT2"/> | 2-byte hash match finder; faster, lower compression ratio. |
+        /// | 1393 | <see cref="BT4"/> | 4-byte hash match finder; slower, higher compression ratio. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: d59fab05ac76e1d09bcfe4e251d9ccc6c7f27c94c11291fdab4f9ee7860da556
+        /// </code>
+        /// </example>
         private enum EMatchFinderType
         {
+            /// <summary>2-byte hash match finder; faster, lower compression ratio.</summary>
             BT2,
+            /// <summary>4-byte hash match finder; slower, higher compression ratio.</summary>
             BT4,
         } ;
 
@@ -1320,6 +1438,34 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenEncoder
 
+        /// <summary>Encodes match/rep-match lengths using a three-tier low/mid/high <br/>
+        /// bit-tree scheme, mirroring the decode logic in <see cref="Decoder"/>.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1411 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
+        /// | 1422 | <see cref="Init"/> | Resets the choice bits and all low/mid/high bit-tree probabilities   for up to   position states. |
+        /// | 1436 | <see cref="Encode"/> | Encodes a length   by selecting the   low, mid, or high bit-tree tier based on its magnitude. |
+        /// | 1462 | <see cref="SetPrices"/> | Fills   starting at offset     with the bit cost of every length symbol up to  . |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="BitTreeEncoder"/> | Used as a field. |
+        /// | <see cref="BitEncoder"/> | Used as a field. |
+        /// | <see cref="UInt32"/> | Passed as a parameter. |
+        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: 0d4c57a1ec122922c0417824a7844ad063372a50f0d2318bc6fdf224edfbdd5d
+        /// </code>
+        /// </example>
         private class LenEncoder
         {
             private readonly BitTreeEncoder[] _lowCoder = new BitTreeEncoder[Base.kNumPosStatesEncodingMax];
@@ -1328,6 +1474,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             private BitEncoder _choice2;
             private BitTreeEncoder _highCoder = new BitTreeEncoder(Base.kNumHighLenBits);
 
+            /// <summary>Initializes a new instance of <see cref="LenEncoder"/>.</summary>
             public LenEncoder()
             {
                 for (UInt32 posState = 0; posState < Base.kNumPosStatesEncodingMax; posState++)
@@ -1337,6 +1484,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 }
             }
 
+            /// <summary>Resets the choice bits and all low/mid/high bit-tree probabilities <br/>
+            /// for up to <paramref name='numPosStates'/> position states.</summary>
             public void Init(UInt32 numPosStates)
             {
                 _choice.Init();
@@ -1349,6 +1498,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 _highCoder.Init();
             }
 
+            /// <summary>Encodes a length <paramref name='symbol'/> by selecting the <br/>
+            /// low, mid, or high bit-tree tier based on its magnitude.</summary>
             public void Encode(RangeCoder.Encoder rangeEncoder, UInt32 symbol, UInt32 posState)
             {
                 if (symbol < Base.kNumLowLenSymbols)
@@ -1373,6 +1524,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 }
             }
 
+            /// <summary>Fills <paramref name='prices'/> starting at offset <paramref name='st'/> <br/>
+            /// with the bit cost of every length symbol up to <paramref name='numSymbols'/>.</summary>
             public void SetPrices(UInt32 posState, UInt32 numSymbols, UInt32[] prices, UInt32 st)
             {
                 UInt32 a0 = _choice.GetPrice0();
@@ -1403,28 +1556,63 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenPriceTableEncoder
 
+        /// <summary>Wraps <see cref="LenEncoder"/> with a cached bit-price table that is <br/>
+        /// refreshed periodically instead of recomputed on every length encode.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1501 | <see cref="SetTableSize"/> | Sets the number of length symbols covered by the cached price table. |
+        /// | 1505 | <see cref="GetPrice"/> | Returns the cached bit cost of encoding     in the given  . |
+        /// | 1517 | <see cref="UpdateTables"/> | Recomputes the cached price table for every position state up   to  . |
+        /// | 1525 | <see cref="Encode"/> | Encodes a length   and refreshes the cached   price table for   once its counter expires. |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="UInt32"/> | Used as a field. |
+        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: 326e026b32d17ffac28e97f7ad7e67fdde78740aa078c423d4dd440f6fbe526b
+        /// </code>
+        /// </example>
         private class LenPriceTableEncoder : LenEncoder
         {
             private readonly UInt32[] _counters = new UInt32[Base.kNumPosStatesEncodingMax];
             private readonly UInt32[] _prices = new UInt32[Base.kNumLenSymbols << Base.kNumPosStatesBitsEncodingMax];
             private UInt32 _tableSize;
 
+			/// <summary>Sets the number of length symbols covered by the cached price table.</summary>
 			public void SetTableSize(UInt32 tableSize) => _tableSize = tableSize;
 
+			/// <summary>Returns the cached bit cost of encoding <paramref name='symbol'/> <br/>
+			/// in the given <paramref name='posState'/>.</summary>
 			public UInt32 GetPrice(UInt32 symbol, UInt32 posState) => _prices[posState * Base.kNumLenSymbols + symbol];
 
+			/// <summary>Recomputes the cached price table for <paramref name='posState'/> and <br/>
+			/// resets its refresh counter.</summary>
 			private void UpdateTable(UInt32 posState)
             {
                 SetPrices(posState, _tableSize, _prices, posState*Base.kNumLenSymbols);
                 _counters[posState] = _tableSize;
             }
 
+            /// <summary>Recomputes the cached price table for every position state up <br/>
+            /// to <paramref name='numPosStates'/>.</summary>
             public void UpdateTables(UInt32 numPosStates)
             {
                 for (UInt32 posState = 0; posState < numPosStates; posState++)
                     UpdateTable(posState);
             }
 
+            /// <summary>Encodes a length <paramref name='symbol'/> and refreshes the cached <br/>
+            /// price table for <paramref name='posState'/> once its counter expires.</summary>
             public new void Encode(RangeCoder.Encoder rangeEncoder, UInt32 symbol, UInt32 posState)
             {
                 base.Encode(rangeEncoder, symbol, posState);
@@ -1438,6 +1626,16 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LiteralEncoder
 
+        /// <summary>Encodes literal bytes using per-context (previous-byte and position) <br/>
+        /// bit trees, optionally biased by a match byte for post-match literals.</summary>
+        ///
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: 982fcd5ebca6ddaa7b54723e13a2f479177a3b2bbba8d0e2b846ace32baf43d2
+        /// </code>
+        /// </example>
         private class LiteralEncoder
         {
             private Encoder2[] m_Coders;
@@ -1445,6 +1643,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             private int m_NumPrevBits;
             private uint m_PosMask;
 
+            /// <summary>Allocates one <see cref="Encoder2"/> per combination of literal-position <br/>
+            /// bits (<paramref name='numPosBits'/>) and previous-byte bits (<paramref name='numPrevBits'/>).</summary>
             internal void Create(int numPosBits, int numPrevBits)
             {
                 if (m_Coders != null && m_NumPrevBits == numPrevBits && m_NumPosBits == numPosBits) {
@@ -1459,6 +1659,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Create();
             }
 
+            /// <summary>Resets every per-context literal encoder's probabilities to their <br/>
+            /// initial, unbiased state.</summary>
             internal void Init()
             {
                 uint numStates = (uint) 1 << (m_NumPrevBits + m_NumPosBits);
@@ -1466,21 +1668,56 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
+			/// <summary>Selects the literal encoder for the context derived from the output <br/>
+			/// <paramref name='pos'/> and the <paramref name='prevByte'/> already written.</summary>
 			internal Encoder2 GetSubCoder(UInt32 pos, Byte prevByte) => m_Coders[((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits))];
 
 			#region Nested type: Encoder2
 
+			/// <summary>Adaptive 8-bit tree of probabilities encoding a single literal byte <br/>
+			/// for one literal context.</summary>
+			/// <remarks>
+			/// ## Public Methods
+			///
+			/// | Line | Method | Description |
+			/// |--:|---|---|
+			/// | 1586 | <see cref="Create"/> | Allocates the 0x300-entry probability array covering both the   plain and match-byte-biased encode paths. |
+			/// | 1590 | <see cref="Init"/> | Resets all 0x300 bit-tree probabilities to their initial,   unbiased state. |
+			/// | 1597 | <see cref="Encode"/> | Encodes a literal byte by walking the plain 8-level bit tree,   with no bias from a preceding match. |
+			/// | 1610 | <see cref="EncodeMatched"/> | Encodes a literal byte immediately following a match, biasing each   bit toward   until a bit diverges from it. |
+			/// | 1631 | <see cref="GetPrice"/> | Estimates the bit cost of encoding  , optionally   biased against   when   is set. |
+			///
+			/// ## Collaborators
+			///
+			/// | Type | Role |
+			/// |---|---|
+			/// | <see cref="BitEncoder"/> | Used as a field. |
+			/// | <see cref="Encoder"/> | Passed as a parameter. |
+			/// </remarks>
+			/// <example>
+			/// <code language="yaml">
+			/// pass: 2
+			/// mtime: 2026-08-06T06:59:29Z
+			/// digest: 2f45c8c2917b82c53f180e244b95698409176ec37d43290988a1ee9f24c714ab
+			/// </code>
+			/// </example>
 			public struct Encoder2
             {
                 private BitEncoder[] m_Encoders;
 
+				/// <summary>Allocates the 0x300-entry probability array covering both the <br/>
+				/// plain and match-byte-biased encode paths.</summary>
 				public void Create() => m_Encoders = new BitEncoder[0x300];
 
+				/// <summary>Resets all 0x300 bit-tree probabilities to their initial, <br/>
+				/// unbiased state.</summary>
 				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Encoders[i].Init();
                 }
 
+                /// <summary>Encodes a literal byte by walking the plain 8-level bit tree, <br/>
+                /// with no bias from a preceding match.</summary>
                 public void Encode(RangeCoder.Encoder rangeEncoder, byte symbol)
                 {
                     uint context = 1;
@@ -1492,6 +1729,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                     }
                 }
 
+                /// <summary>Encodes a literal byte immediately following a match, biasing each <br/>
+                /// bit toward <paramref name='matchByte'/> until a bit diverges from it.</summary>
                 public void EncodeMatched(RangeCoder.Encoder rangeEncoder, byte matchByte, byte symbol)
                 {
                     uint context = 1;
@@ -1511,6 +1750,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                     }
                 }
 
+                /// <summary>Estimates the bit cost of encoding <paramref name='symbol'/>, optionally <br/>
+                /// biased against <paramref name='matchByte'/> when <paramref name='matchMode'/> is set.</summary>
                 public uint GetPrice(bool matchMode, byte matchByte, byte symbol)
                 {
                     uint price = 0;
@@ -1548,6 +1789,31 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: Optimal
 
+        /// <summary>One node of the optimal-parse lattice: the cheapest known way to <br/>
+        /// reach a given position, and the choice that got there.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1687 | <see cref="MakeAsChar"/> | Marks this node as reached by encoding a plain literal. |
+        /// | 1694 | <see cref="MakeAsShortRep"/> | Marks this node as reached by encoding a single-byte short-repeat match. |
+        /// | 1702 | <see cref="IsShortRep"/> | Determines whether short Rep. |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="UInt32"/> | Used as a field. |
+        /// | <see cref="State"/> | Used as a field. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: 5bc1eb1ced70c2e9a8dd0599ba7f0874af38cf557aa34b31f0a6e8bfbc896ff0
+        /// </code>
+        /// </example>
         private class Optimal
         {
             public UInt32 BackPrev;
@@ -1564,12 +1830,14 @@ namespace SevenZip.Sdk.Compression.Lzma
             public UInt32 Price;
             public Base.State State;
 
+            /// <summary>Marks this node as reached by encoding a plain literal.</summary>
             public void MakeAsChar()
             {
                 BackPrev = 0xFFFFFFFF;
                 Prev1IsChar = false;
             }
 
+            /// <summary>Marks this node as reached by encoding a single-byte short-repeat match.</summary>
             public void MakeAsShortRep()
             {
                 BackPrev = 0;
@@ -1577,11 +1845,14 @@ namespace SevenZip.Sdk.Compression.Lzma
                 Prev1IsChar = false;
             }
 
+			/// <summary>Determines whether short Rep.</summary>
 			public bool IsShortRep() => (BackPrev == 0);
 		} ;
 
 		#endregion
 
+		/// <summary>Sets the number of leading bytes to feed the match finder as <br/>
+		/// dictionary training data before encoding actually begins.</summary>
 		internal void SetTrainSize(uint trainSize) => _trainSize = trainSize;
 	}
 }

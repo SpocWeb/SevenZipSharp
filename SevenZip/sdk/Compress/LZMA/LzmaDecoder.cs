@@ -9,6 +9,33 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// <summary>
     /// The LZMA decoder class
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 51 | <see cref="Decoder"/> | Initializes the Lzma Decoder class. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="BitDecoder"/> | Used as a field. |
+    /// | <see cref="LenDecoder"/> | Used as a field. |
+    /// | <see cref="LiteralDecoder"/> | Used as a field. |
+    /// | <see cref="OutWindow"/> | Used as a field. |
+    /// | <see cref="BitTreeDecoder"/> | Used as a field. |
+    /// | <see cref="Decoder"/> | Used as a field. |
+    /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: bde535cd7ada2052eac9130fe51370110afdfd837121af38e3d90e4f11d2837a
+    /// </code>
+    /// </example>
     public class Decoder : ICoder, ISetDecoderProperties // ,System.IO.Stream
     {
         private readonly BitDecoder[] m_IsMatchDecoders = new BitDecoder[Base.kNumStates << Base.kNumPosStatesBitsMax];
@@ -216,6 +243,8 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #endregion
 
+        /// <summary>Applies the decoded dictionary size, (re)allocating the output <br/>
+        /// sliding window when the value changes.</summary>
         private void SetDictionarySize(uint dictionarySize)
         {
             if (m_DictionarySize != dictionarySize)
@@ -227,6 +256,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
+        /// <summary>Validates and applies the literal-context (<paramref name='lc'/>) and <br/>
+        /// literal-position (<paramref name='lp'/>) bit counts, sizing the literal decoder.</summary>
         private void SetLiteralProperties(int lp, int lc)
         {
             if (lp > 8) {
@@ -238,6 +269,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             m_LiteralDecoder.Create(lp, lc);
         }
 
+        /// <summary>Validates and applies the position-state bit count <paramref name='pb'/>, <br/>
+        /// sizing the length decoders and deriving the position-state mask.</summary>
         private void SetPosBitsProperties(int pb)
         {
             if (pb > Base.kNumPosStatesBitsMax) {
@@ -249,6 +282,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             m_PosStateMask = numPosStates - 1;
         }
 
+        /// <summary>Resets all probability models to their initial state and binds <br/>
+        /// the range decoder and output window to the given streams.</summary>
         private void Init(Stream inStream, Stream outStream)
         {
             m_RangeDecoder.Init(inStream);
@@ -294,6 +329,30 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenDecoder
 
+        /// <summary>Decodes match/rep-match lengths using the three-tier <br/>
+        /// low/mid/high bit-tree scheme shared with <see cref="Encoder"/>.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 356 | <see cref="Decode"/> | Decodes the stream |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="BitTreeDecoder"/> | Used as a field. |
+        /// | <see cref="BitDecoder"/> | Used as a field. |
+        /// | <see cref="Decoder"/> | Passed as a parameter. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: bc874865fc247a0f252e0d61f2b210baac499ed53c8bafff14b07fd4cc9d0c42
+        /// </code>
+        /// </example>
         private class LenDecoder
         {
             private readonly BitTreeDecoder[] m_LowCoder = new BitTreeDecoder[Base.kNumPosStatesMax];
@@ -303,6 +362,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             private BitTreeDecoder m_HighCoder = new BitTreeDecoder(Base.kNumHighLenBits);
             private uint m_NumPosStates;
 
+            /// <summary>Allocates the per-position-state low/mid bit-tree decoders <br/>
+            /// for up to <paramref name='numPosStates'/> position states.</summary>
             internal void Create(uint numPosStates)
             {
                 for (uint posState = m_NumPosStates; posState < numPosStates; posState++)
@@ -313,6 +374,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                 m_NumPosStates = numPosStates;
             }
 
+            /// <summary>Resets the choice bits and all low/mid/high bit-tree probabilities <br/>
+            /// to their initial, unbiased state.</summary>
             internal void Init()
             {
                 m_Choice.Init();
@@ -354,6 +417,32 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LiteralDecoder
 
+        /// <summary>Decodes literal bytes using per-context (previous-byte and position) <br/>
+        /// bit trees, optionally biased by a match byte for post-match literals.</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 390 | <see cref="Create"/> | Allocates one Decoder2 per combination of literal-position   bits ( ) and previous-byte bits ( ). |
+        /// | 407 | <see cref="Init"/> | Resets every per-context literal decoder's probabilities to their   initial, unbiased state. |
+        /// | 421 | <see cref="DecodeNormal"/> | Decodes a literal byte for the context selected by     and   when the previous symbol was not a match. |
+        /// | 425 | <see cref="DecodeWithMatchByte"/> | Decodes a literal byte immediately following a match, using     to bias the bit tree toward the matched byte. |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="Decoder2"/> | Used as a field. |
+        /// | <see cref="Decoder"/> | Passed as a parameter. |
+        /// </remarks>
+        /// <example>
+        /// <code language="yaml">
+        /// pass: 2
+        /// mtime: 2026-08-06T06:59:29Z
+        /// digest: f08b23ae0e24f51396fea2892ad15a0cf601b45bf4415652e8d6ff5b4d1a0c08
+        /// </code>
+        /// </example>
         private class LiteralDecoder
         {
             private Decoder2[] m_Coders;
@@ -361,6 +450,8 @@ namespace SevenZip.Sdk.Compression.Lzma
             private int m_NumPrevBits;
             private uint m_PosMask;
 
+            /// <summary>Allocates one <see cref="Decoder2"/> per combination of literal-position <br/>
+            /// bits (<paramref name='numPosBits'/>) and previous-byte bits (<paramref name='numPrevBits'/>).</summary>
             public void Create(int numPosBits, int numPrevBits)
             {
                 if (m_Coders != null && m_NumPrevBits == numPrevBits &&
@@ -376,6 +467,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Create();
             }
 
+            /// <summary>Resets every per-context literal decoder's probabilities to their <br/>
+            /// initial, unbiased state.</summary>
             public void Init()
             {
                 uint numStates = (uint) 1 << (m_NumPrevBits + m_NumPosBits);
@@ -383,25 +476,64 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
+			/// <summary>Computes the literal-context index from the output <paramref name='pos'/> <br/>
+			/// and the <paramref name='prevByte'/> already written to the output window.</summary>
+			/// <returns>An index into the per-context <see cref="Decoder2"/> array.</returns>
 			private uint GetState(uint pos, byte prevByte) => ((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits));
 
+			/// <summary>Decodes a literal byte for the context selected by <paramref name='pos'/> <br/>
+			/// and <paramref name='prevByte'/> when the previous symbol was not a match.</summary>
 			public byte DecodeNormal(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte) => m_Coders[GetState(pos, prevByte)].DecodeNormal(rangeDecoder);
 
+			/// <summary>Decodes a literal byte immediately following a match, using <br/>
+			/// <paramref name='matchByte'/> to bias the bit tree toward the matched byte.</summary>
 			public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte, byte matchByte) => m_Coders[GetState(pos, prevByte)].DecodeWithMatchByte(rangeDecoder, matchByte);
 
 			#region Nested type: Decoder2
 
+			/// <summary>Adaptive 8-bit tree of probabilities decoding a single literal byte <br/>
+			/// for one literal context.</summary>
+			/// <remarks>
+			/// ## Public Methods
+			///
+			/// | Line | Method | Description |
+			/// |--:|---|---|
+			/// | 437 | <see cref="Create"/> | Allocates the 0x300-entry probability array covering both the   plain and match-byte-biased decode paths. |
+			/// | 441 | <see cref="Init"/> | Resets all 0x300 bit-tree probabilities to their initial,   unbiased state. |
+			/// | 448 | <see cref="DecodeNormal"/> | Decodes a literal byte by walking the plain 8-level bit tree,   with no bias from a preceding match. |
+			/// | 458 | <see cref="DecodeWithMatchByte"/> | Decodes a literal byte, biasing each bit toward     until a decoded bit diverges from it, then falls back to the plain bit tree. |
+			///
+			/// ## Collaborators
+			///
+			/// | Type | Role |
+			/// |---|---|
+			/// | <see cref="BitDecoder"/> | Used as a field. |
+			/// | <see cref="Decoder"/> | Passed as a parameter. |
+			/// </remarks>
+			/// <example>
+			/// <code language="yaml">
+			/// pass: 2
+			/// mtime: 2026-08-06T06:59:29Z
+			/// digest: 1c9dc232792ca5edeb65b7f9fc7e1fda3e426bf139280842ddd66f63f1386975
+			/// </code>
+			/// </example>
 			private struct Decoder2
             {
                 private BitDecoder[] m_Decoders;
 
+				/// <summary>Allocates the 0x300-entry probability array covering both the <br/>
+				/// plain and match-byte-biased decode paths.</summary>
 				public void Create() => m_Decoders = new BitDecoder[0x300];
 
+				/// <summary>Resets all 0x300 bit-tree probabilities to their initial, <br/>
+				/// unbiased state.</summary>
 				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Decoders[i].Init();
                 }
 
+                /// <summary>Decodes a literal byte by walking the plain 8-level bit tree, <br/>
+                /// with no bias from a preceding match.</summary>
                 public byte DecodeNormal(RangeCoder.Decoder rangeDecoder)
                 {
                     uint symbol = 1;
@@ -410,6 +542,8 @@ namespace SevenZip.Sdk.Compression.Lzma
                     return (byte) symbol;
                 }
 
+                /// <summary>Decodes a literal byte, biasing each bit toward <paramref name='matchByte'/> <br/>
+                /// until a decoded bit diverges from it, then falls back to the plain bit tree.</summary>
                 public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, byte matchByte)
                 {
                     uint symbol = 1;

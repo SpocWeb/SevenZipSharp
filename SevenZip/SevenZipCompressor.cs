@@ -16,6 +16,23 @@ namespace SevenZip
     /// <summary>
     /// Class to pack data into archives supported by 7-Zip.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1731 | <see cref="LzmaDictionarySize"/> | Gets or sets the dictionary size for the managed LZMA algorithm. |
+    /// | 1777 | <see cref="CompressStream"/> | Compresses the specified stream with LZMA algorithm (C# inside) |
+    /// | 1803 | <see cref="CompressBytes"/> | Compresses byte array with LZMA algorithm (C# inside) |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Encoder"/> | Passed as a parameter. |
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
     /// <example>
     /// var compr = new SevenZipCompressor();
     /// compr.CompressDirectory(@"C:\Dir", @"C:\Archive.7z");
@@ -1734,6 +1751,8 @@ namespace SevenZip
             set => _lzmaDictionarySize = value;
         }
 
+        /// <summary>Writes <see cref="LzmaDictionarySize"/> and the other fixed LZMA<br/>
+        /// coder properties into <paramref name="encoder"/> and to the output stream.</summary>
         internal static void WriteLzmaProperties(Encoder encoder)
         {
 #region LZMA properties definition

@@ -6,6 +6,32 @@
     /// <summary>
     /// Base SevenZip exception class.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 29 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 35 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 43 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 52 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 63 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: 72b28c3fc269b6d34f1a34ee59c085c9b16ad1e31daad46a871de15fd5a60d27
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipException : Exception
     {

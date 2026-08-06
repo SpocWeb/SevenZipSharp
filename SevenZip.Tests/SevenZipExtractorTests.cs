@@ -12,9 +12,45 @@ namespace SevenZip.Tests
 
     using NUnit.Framework;
 
+    /// <summary>Tests for seven Zip Extractor.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 21 | <see cref="TestFiles"/> | Gets every file in the TestData directory, excluding multi-volume and long-path archives. |
+    /// | 42 | <see cref="ExtractFilesTest"/> | Extract Files Test. |
+    /// | 57 | <see cref="ExtractSpecificFilesTest"/> | Extract Specific Files Test. |
+    /// | 72 | <see cref="ExtractArchiveMultiVolumesTest"/> | Extract Archive Multi Volumes Test. |
+    /// | 85 | <see cref="ExtractionWithCancellationTest"/> | Extraction With Cancellation Test. |
+    /// | 105 | <see cref="ExtractionWithSkipTest"/> | Extraction With Skip Test. |
+    /// | 125 | <see cref="ExtractionFromStreamTest"/> | Extraction From Stream Test. |
+    /// | 138 | <see cref="ExtractionToStreamTest"/> | Extraction To Stream Test. |
+    /// | 157 | <see cref="DetectMultiVolumeIndexTest"/> | Detect Multi Volume Index Test. |
+    /// | 174 | <see cref="ThreadedExtractionTest"/> | Threaded Extraction Test. |
+    /// | 207 | <see cref="ExtractArchiveWithLongPath"/> | Extract Archive With Long Path. |
+    /// | 217 | <see cref="ReadArchivedFileNames"/> | Read Archived File Names. |
+    /// | 232 | <see cref="ReadArchivedFileData"/> | Read Archived File Data. |
+    /// | 247 | <see cref="ExtractDifferentFormatsTest"/> | Extract Different Formats Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="TestFile"/> | Used as a property. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 8ecf22186c0ca90d5c2283ab27d5d863c9793d29fa43b0d4066a7fb47f5497ac
+    /// </code>
+    /// </example>
     [TestFixture]
     public class SevenZipExtractorTests : TestBase
     {
+
+        /// <summary>Gets every file in the TestData directory, excluding multi-volume and long-path archives.</summary>
         public static List<TestFile> TestFiles
         {
             get
@@ -35,6 +71,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Files Test.</summary>
         [Test]
         public void ExtractFilesTest()
         {
@@ -49,6 +86,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Specific Files Test.</summary>
         [Test]
         public void ExtractSpecificFilesTest()
         {
@@ -63,6 +101,7 @@ namespace SevenZip.Tests
             Directory.GetFiles(OutputDirectory).ShouldContain(Path.Combine(OutputDirectory, "file3.txt"));
         }
 
+        /// <summary>Extract Archive Multi Volumes Test.</summary>
         [Test]
         public void ExtractArchiveMultiVolumesTest()
         {
@@ -75,6 +114,7 @@ namespace SevenZip.Tests
             File.ReadAllText(Directory.GetFiles(OutputDirectory)[0]).StartsWith("Lorem ipsum dolor sit amet").ShouldBe();
         }
 
+        /// <summary>Extraction With Cancellation Test.</summary>
         [Test]
         public void ExtractionWithCancellationTest()
         {
@@ -94,6 +134,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction With Skip Test.</summary>
         [Test]
         public void ExtractionWithSkipTest()
         {
@@ -113,6 +154,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction From Stream Test.</summary>
         [Test]
         public void ExtractionFromStreamTest()
         {
@@ -125,6 +167,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction To Stream Test.</summary>
         [Test]
         public void ExtractionToStreamTest()
         {
@@ -143,6 +186,7 @@ namespace SevenZip.Tests
             File.ReadAllText(extractedFile).ShouldBe("file2");
         }
 
+        /// <summary>Detect Multi Volume Index Test.</summary>
         [Test]
         public void DetectMultiVolumeIndexTest()
         {
@@ -159,6 +203,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Threaded Extraction Test.</summary>
         [Test]
         public void ThreadedExtractionTest()
         {
@@ -191,6 +236,7 @@ namespace SevenZip.Tests
 	        Directory.GetFiles(destination2).Length.ShouldBe(3);
 		}
 
+        /// <summary>Extract Archive With Long Path.</summary>
         [Test]
         public void ExtractArchiveWithLongPath()
         {
@@ -200,6 +246,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Read Archived File Names.</summary>
         [Test]
         public void ReadArchivedFileNames()
         {
@@ -214,6 +261,7 @@ namespace SevenZip.Tests
             }
         }
         
+        /// <summary>Read Archived File Data.</summary>
         [Test]
         public void ReadArchivedFileData()
         {
@@ -228,6 +276,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Different Formats Test.</summary>
         [Test, TestCaseSource(nameof(TestFiles))]
         public void ExtractDifferentFormatsTest(TestFile file)
         {
@@ -242,18 +291,29 @@ namespace SevenZip.Tests
     /// <summary>
     /// Simple wrapper to get better names for ExtractDifferentFormatsTest results.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 273 | <see cref="FilePath"/> | Path of the extracted or referenced test archive file. |
+    /// | 276 | <see cref="TestFile"/> | Initializes a new instance of TestFile wrapping filePath. |
+    /// </remarks>
     ///
     /// <example>
     /// <code language="yaml">
     /// pass: 2
     /// mtime: 2025-05-02T17:50:09Z
-    /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    /// digest: 6b8b55b97e299d81c17c4dba2c079c6e91ea59f37bd466c65fc677f86efc8917
     /// </code>
     /// </example>
     public class TestFile
     {
+
+        /// <summary>Path of the extracted or referenced test archive file.</summary>
         public string FilePath { get; }
 
+        /// <summary>Initializes a new instance of <see cref="TestFile"/> wrapping <paramref name="filePath"/>.</summary>
         public TestFile(string filePath)
         {
             FilePath = filePath;

@@ -7,6 +7,28 @@
     /// <summary>
     /// Callback to implement the ICodeProgress interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 28 | <see cref="LzmaProgressCallback"/> | Initializes a new instance of the LzmaProgressCallback class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: d52e5afa51eaa5b99c848bfc9f78ba7985d6635d2aebd99ada8c7d42e65ae155
+    /// </code>
+    /// </example>
     internal sealed class LzmaProgressCallback : ICodeProgress
     {
         private readonly long _inSize;

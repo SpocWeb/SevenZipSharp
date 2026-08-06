@@ -4,6 +4,32 @@ namespace SevenZip
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>Asynchronous (Begin*/*Async) overloads of <see cref="SevenZipExtractor"/>'s unpack operations.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 107 | <see cref="BeginExtractArchive"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
+    /// | 118 | <see cref="ExtractArchiveAsync"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
+    /// | 136 | <see cref="BeginExtractFile"/> | Unpacks the file asynchronously by its name to the specified stream. |
+    /// | 148 | <see cref="ExtractFileAsync"/> | Unpacks the file asynchronously by its name to the specified stream. |
+    /// | 257 | <see cref="BeginExtractFiles"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
+    /// | 270 | <see cref="ExtractFilesAsync"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="ExtractFileCallback"/> | Passed as a parameter. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 7d2cdcccb7dadd2da9a8055bba8d94331a13ba54d26c520a70ae7f1cb6468524
+    /// </code>
+    /// </example>
     partial class SevenZipExtractor
     {
         #region Asynchronous core methods
@@ -39,6 +65,7 @@ namespace SevenZip
             }
         }
 
+        /// <inheritdoc />
         internal override void SaveContext()
         {
             DisposedCheck();
@@ -46,6 +73,7 @@ namespace SevenZip
             base.SaveContext();
         }
 
+        /// <inheritdoc />
         internal override void ReleaseContext()
         {
             base.ReleaseContext();

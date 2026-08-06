@@ -12,16 +12,33 @@ namespace SevenZip.Tests
     /// <summary>
     /// Test data to use for CheckFileSignatureTest.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 27 | <see cref="FileCheckerTestData"/> | Initializes a new instance of FileCheckerTestData with the specified testDataFilePath and expectedFormat. |
+    /// | 36 | <see cref="ExpectedFormat"/> | Format this test expects to find. |
+    /// | 47 | <see cref="TestDataFilePath"/> | Path to archive file to test against. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="InArchiveFormat"/> | Passed as a parameter. |
+    /// </remarks>
     ///
     /// <example>
     /// <code language="yaml">
     /// pass: 2
     /// mtime: 2025-05-02T17:50:09Z
-    /// digest: 83f92356dab5e530c9e1431fb4c9b10f1fdf43e88681b0832c2d5846551af2ca
+    /// digest: fa7a89f3b2d9944b3333bb79cdad1f85e5348c2ae2a018b5c685126d679bc06d
     /// </code>
     /// </example>
     public struct FileCheckerTestData
     {
+
+        /// <summary>Initializes a new instance of <see cref="FileCheckerTestData"/> with the specified <paramref name="testDataFilePath"/> and <paramref name="expectedFormat"/>.</summary>
         public FileCheckerTestData(string testDataFilePath, InArchiveFormat expectedFormat)
         {
             TestDataFilePath = testDataFilePath;
@@ -44,11 +61,34 @@ namespace SevenZip.Tests
 		/// </example>
 		public string TestDataFilePath { get; }
 
+		/// <inheritdoc />
 		public override string ToString() =>
 			// Used to get useful test results.
 			ExpectedFormat.ToString();
 	}
 
+    /// <summary>Tests for file Checker.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 101 | <see cref="SetUp"/> | Sets the current directory to the test directory so relative TestData paths resolve. |
+    /// | 107 | <see cref="CheckFileSignatureTest"/> | Check File Signature Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="FileCheckerTestData"/> | Used as a field. |
+    /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-06T06:59:29Z
+    /// digest: 00cdec4095cd6faa29684326c9c1ddda13fcff07c3fad574c6e5e32f89b818c5
+    /// </code>
+    /// </example>
     [TestFixture]
     public class FileCheckerTests
     {
@@ -93,11 +133,13 @@ namespace SevenZip.Tests
             new FileCheckerTestData(@"TestData\zip.zip", InArchiveFormat.Zip)
         };
 
+		/// <summary>Sets the current directory to the test directory so relative TestData paths resolve.</summary>
 		[SetUp]
 		public void SetUp() =>
 			// Ensures we're in the correct working directory (for test data files).
 			Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
 
+		/// <summary>Check File Signature Test.</summary>
 		[TestCaseSource(nameof(TestData))]
         public void CheckFileSignatureTest(FileCheckerTestData data)
         {

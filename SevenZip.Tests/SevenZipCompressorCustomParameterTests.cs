@@ -3,6 +3,8 @@ namespace SevenZip.Tests
     using System;
     using NUnit.Framework;
 
+    /// <summary>Verifies that <see cref="SevenZipCompressor.CustomParameters"/> is only honored<br/>
+    /// when combined with a compatible compression method.</summary>
     /// <remarks>
     /// See https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm for parameter details.
     /// </remarks>
@@ -10,12 +12,14 @@ namespace SevenZip.Tests
     /// <code language="yaml">
     /// pass: 2
     /// mtime: 2022-05-25T21:39:37Z
-    /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    /// digest: c01abb6091bf59ec49d3b4eb9ca8d438d4f6730537ebb83cb12d6ef5b5540f5b
     /// </code>
     /// </example>
     [TestFixture]
     public class SevenZipCompressorCustomParameterTests : TestBase
     {
+
+        /// <summary>Compress With Custom Parameters — only Works With Correct Method.</summary>
         [Test]
         public void CompressWithCustomParameters_OnlyWorksWithCorrectMethod()
         {
@@ -34,6 +38,7 @@ namespace SevenZip.Tests
             compressor.CustomParameters.Remove("o");
         }
 
+        /// <summary>Invalid Custom Parameters — throws.</summary>
         [Test]
         public void InvalidCustomParameters_Throws()
         {
@@ -50,6 +55,7 @@ namespace SevenZip.Tests
             Assert.Throws<CompressionFailedException>(() => compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip"));
         }
 
+        /// <summary>Zip — deflate — with Custom Parameters.</summary>
         [Test]
         public void Zip_Deflate_WithCustomParameters()
         {
@@ -70,6 +76,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Zip — deflate64 — with Custom Parameters.</summary>
         [Test]
         public void Zip_Deflate64_WithCustomParameters()
         {
@@ -90,6 +97,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Zip — pp Md — with Custom Parameters.</summary>
         [Test]
         public void Zip_PPMd_WithCustomParameters()
         {
@@ -105,6 +113,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Zip — b Zip2 — with Custom Parameters.</summary>
         [Test]
         public void Zip_BZip2_WithCustomParameters()
         {
@@ -122,6 +131,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Seven Zip — default — with Custom Parameters.</summary>
         [Test]
         public void SevenZip_Default_WithCustomParameters()
         {
@@ -147,6 +157,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Seven Zip — lzma — with Custom Parameters.</summary>
         [Test]
         public void SevenZip_Lzma_WithCustomParameters()
         {
@@ -168,6 +179,7 @@ namespace SevenZip.Tests
             compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
         }
 
+        /// <summary>Seven Zip — lzma2 — with Custom Parameters.</summary>
         [Test]
         public void SevenZip_Lzma2_WithCustomParameters()
         {

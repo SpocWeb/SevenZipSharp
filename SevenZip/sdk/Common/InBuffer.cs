@@ -5,6 +5,14 @@ namespace SevenZip.Sdk.Buffer
     /// <summary>
     /// Implements the input buffer work
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: 13a96da22f1bacae96f168bf0175bc3bc9188de44f9117e2752b3f80bc52a181
+    /// </code>
+    /// </example>
     internal class InBuffer
     {
         private readonly byte[] m_Buffer;

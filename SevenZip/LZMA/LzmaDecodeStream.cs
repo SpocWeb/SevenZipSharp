@@ -8,6 +8,31 @@
     /// <summary>
     /// The stream which decompresses data with LZMA on the fly.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 32 | <see cref="LzmaDecodeStream"/> | Initializes a new instance of the LzmaDecodeStream class. |
+    /// | 44 | <see cref="ChunkSize"/> | Gets the chunk size. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="MemoryStream"/> | Used as a field. |
+    /// | <see cref="Decoder"/> | Used as a field. |
+    /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: aaf482e4e1899a7a54e713f187885de07863eb02dcff968bf738a582badde2a0
+    /// stale: true
+    /// </code>
+    /// </example>
     public class LzmaDecodeStream : Stream
     {
         private readonly MemoryStream _buffer = new MemoryStream();
@@ -82,6 +107,9 @@
             set => throw new NotSupportedException();
         }
 
+        /// <summary>Reads the next LZMA chunk header from the input stream into<br/>
+        /// <c>_buffer</c>, validating that its properties match the first chunk's<br/>
+        /// and setting <c>_error</c> on any mismatch or malformed header.</summary>
         private void ReadChunk()
         {
             long size;

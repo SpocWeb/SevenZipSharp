@@ -6,6 +6,38 @@ namespace SevenZip.Sdk.Compression.LZ
     /// <summary>
     /// Input window class
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 62 | <see cref="MoveBlock"/> | Shifts the buffered data down to the start of the backing array, discarding   bytes older than _keepSizeBefore, to make room for further reads. |
+    /// | 80 | <see cref="ReadBlock"/> | Fills the remaining free space in the buffer from the attached stream, updating   the read limit, and marks the stream as exhausted once no more bytes are available. |
+    /// | 116 | <see cref="Create"/> | Allocates the backing buffer large enough to hold     bytes of history,   bytes of lookahead, and     extra bytes reserved for a read block. |
+    /// | 131 | <see cref="SetStream"/> | Attaches   as the source the window reads its data from. |
+    /// | 134 | <see cref="ReleaseStream"/> | Detaches the current input stream without disposing it. |
+    /// | 137 | <see cref="Init"/> | Resets the window to the start of the stream and preloads the first data block. |
+    /// | 148 | <see cref="MovePos"/> | Advances the current position by one byte, refilling or shifting the buffer   from the stream when the position reaches the safe-read limit. |
+    /// | 162 | <see cref="GetIndexByte"/> | Returns the byte located   positions from the current position. |
+    /// | 171 | <see cref="GetMatchLen"/> | index + limit have not to exceed _keepSizeAfter |
+    /// | 188 | <see cref="GetNumAvailableBytes"/> | Returns the number of bytes still available for reading ahead of the current position. |
+    /// | 192 | <see cref="ReduceOffsets"/> | Rebases the buffer offset, position, and stream limits by subtracting    , keeping their absolute magnitude from growing unbounded. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="UInt32"/> | Used as a field. |
+    /// | <see cref="Byte"/> | Used as a field. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2023-02-21T22:10:02Z
+    /// digest: 69b3261a8ab707ba88efcf40bef53b843c2f737aa003eaaa86ff446275843136
+    /// </code>
+    /// </example>
     internal class InWindow
     {
         /// <summary>
@@ -49,6 +81,8 @@ namespace SevenZip.Sdk.Compression.LZ
         /// </summary>
         public UInt32 _streamPos;
 
+        /// <summary>Shifts the buffered data down to the start of the backing array, discarding <br/>
+        /// bytes older than <see cref="_keepSizeBefore"/>, to make room for further reads.</summary>
         public void MoveBlock()
         {
             UInt32 offset = (_bufferOffset) + _pos - _keepSizeBefore;
@@ -65,6 +99,8 @@ namespace SevenZip.Sdk.Compression.LZ
             _bufferOffset -= offset;
         }
 
+        /// <summary>Fills the remaining free space in the buffer from the attached stream, updating <br/>
+        /// the read limit, and marks the stream as exhausted once no more bytes are available.</summary>
         public virtual void ReadBlock()
         {
             if (_streamEndWasReached) {
@@ -95,8 +131,12 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+		/// <summary>Releases the backing byte array so it can be reallocated with a different size.</summary>
 		private void Free() => _bufferBase = null;
 
+		/// <summary>Allocates the backing buffer large enough to hold <paramref name='keepSizeBefore'/> <br/>
+		/// bytes of history, <paramref name='keepSizeAfter'/> bytes of lookahead, and <br/>
+		/// <paramref name='keepSizeReserv'/> extra bytes reserved for a read block.</summary>
 		public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
         {
             _keepSizeBefore = keepSizeBefore;
@@ -111,10 +151,13 @@ namespace SevenZip.Sdk.Compression.LZ
             _pointerToLastSafePosition = _blockSize - keepSizeAfter;
         }
 
+		/// <summary>Attaches <paramref name='stream'/> as the source the window reads its data from.</summary>
 		public void SetStream(Stream stream) => _stream = stream;
 
+		/// <summary>Detaches the current input stream without disposing it.</summary>
 		public void ReleaseStream() => _stream = null;
 
+		/// <summary>Resets the window to the start of the stream and preloads the first data block.</summary>
 		public void Init()
         {
             _bufferOffset = 0;
@@ -124,6 +167,8 @@ namespace SevenZip.Sdk.Compression.LZ
             ReadBlock();
         }
 
+        /// <summary>Advances the current position by one byte, refilling or shifting the buffer <br/>
+        /// from the stream when the position reaches the safe-read limit.</summary>
         public void MovePos()
         {
             _pos++;
@@ -137,6 +182,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+		/// <summary>Returns the byte located <paramref name='index'/> positions from the current position.</summary>
 		public Byte GetIndexByte(Int32 index) => _bufferBase[_bufferOffset + _pos + index];
 
 		/// <summary>
@@ -162,8 +208,11 @@ namespace SevenZip.Sdk.Compression.LZ
             return i;
         }
 
+		/// <summary>Returns the number of bytes still available for reading ahead of the current position.</summary>
 		public UInt32 GetNumAvailableBytes() => _streamPos - _pos;
 
+		/// <summary>Rebases the buffer offset, position, and stream limits by subtracting <br/>
+		/// <paramref name='subValue'/>, keeping their absolute magnitude from growing unbounded.</summary>
 		public void ReduceOffsets(Int32 subValue)
         {
             _bufferOffset += (UInt32) subValue;
