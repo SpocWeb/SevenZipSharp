@@ -23,6 +23,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NUnit.ConsoleRunner" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="OpenCover" />
     <PackageReference Include="System.Data.DataSetExtensions" />
