@@ -34,7 +34,6 @@
     /// pass: 2
     /// mtime: 2023-02-21T22:10:02Z
     /// digest: 55a8a71e703d311fe72a666aa61e91672a94f13a7bc91ba49599fa318613e8a7
-    /// stale: true
     /// </code>
     /// </example>
     public class LzmaEncodeStream : Stream

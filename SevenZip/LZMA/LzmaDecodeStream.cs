@@ -30,7 +30,6 @@
     /// pass: 2
     /// mtime: 2023-02-21T22:10:02Z
     /// digest: aaf482e4e1899a7a54e713f187885de07863eb02dcff968bf738a582badde2a0
-    /// stale: true
     /// </code>
     /// </example>
     public class LzmaDecodeStream : Stream
