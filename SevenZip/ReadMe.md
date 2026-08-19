@@ -32,26 +32,12 @@ This folder provides `SevenZipCompressor`, `LibraryFeature`, `ArchiveEmulationSt
 
 ## Subsystems
 
-| Folder | Class | Responsibility |
-|---|---|---|
-| [`EventArguments/`](EventArguments/ReadMe.md) | [FileInfoEventArgs](EventArguments/FileInfoEventArgs.cs) | EventArgs used to report the file information which is going to be packed. |
-| [`EventArguments/`](EventArguments/ReadMe.md) | [ICancellable](EventArguments/ICancellable.cs) | The definition of the interface which supports the cancellation of a process. |
-| [`EventArguments/`](EventArguments/ReadMe.md) | [PercentDoneEventArgs](EventArguments/PercentDoneEventArgs.cs) | EventArgs for storing PercentDone property. |
-| [`EventArguments/`](EventArguments/ReadMe.md) | [ProgressEventArgs](EventArguments/ProgressEventArgs.cs) | The EventArgs class for accurate progress handling. |
-| [`Exceptions/`](Exceptions/ReadMe.md) | [LzmaException](Exceptions/LzmaException.cs) | Exception class for LZMA operations. |
-| [`Exceptions/`](Exceptions/ReadMe.md) | [SevenZipException](Exceptions/SevenZipException.cs) | Base SevenZip exception class. |
-| [`Exceptions/`](Exceptions/ReadMe.md) | [SevenZipSfxValidationException](Exceptions/SevenZipSfxValidationException.cs) | Exception class for 7-zip sfx settings validation. |
-| [`LZMA/`](LZMA/ReadMe.md) | [LzmaDecodeStream](LZMA/LzmaDecodeStream.cs) | The stream which decompresses data with LZMA on the fly. |
-| [`LZMA/`](LZMA/ReadMe.md) | [LzmaEncodeStream](LZMA/LzmaEncodeStream.cs) | The stream which compresses data with LZMA on the fly. |
-| [`LZMA/`](LZMA/ReadMe.md) | [LzmaProgressCallback](LZMA/LzmaProgressCallback.cs) | Callback to implement the ICodeProgress interface |
-| [`sdk/`](sdk/ReadMe.md) | [DataErrorException](sdk/ICoder.cs) | The exception that is thrown when an error in input stream occurs during decoding. |
-| [`sdk/`](sdk/ReadMe.md) | [InvalidParamException](sdk/ICoder.cs) | The exception that is thrown when the value of an argument is outside the allowable range. |
-| [`sdk/`](sdk/ReadMe.md) | [ICodeProgress](sdk/ICoder.cs) | Callback progress interface. |
-| [`sdk/`](sdk/ReadMe.md) | [ICoder](sdk/ICoder.cs) | Stream coder interface |
-| [`sdk/`](sdk/ReadMe.md) | [ISetCoderProperties](sdk/ICoder.cs) | The ISetCoderProperties interface |
-| [`sdk/`](sdk/ReadMe.md) | [IWriteCoderProperties](sdk/ICoder.cs) | The IWriteCoderProperties interface |
-| [`sdk/`](sdk/ReadMe.md) | [ISetDecoderProperties](sdk/ICoder.cs) | The ISetDecoderPropertiesinterface |
-| [`sdk/`](sdk/ReadMe.md) | [CoderPropId](sdk/ICoder.cs) | Provides the fields that represent properties idenitifiers for compressing. |
+| Folder | Domain Role |
+|---|---|
+| [`EventArguments/`](EventArguments/ReadMe.md) | This folder provides `FileInfoEventArgs`, `ICancellable`, `PercentDoneEventArgs` and related types. |
+| [`Exceptions/`](Exceptions/ReadMe.md) | This folder provides `SevenZipException`, `LzmaException`, `SevenZipSfxValidationException` and related types. |
+| [`LZMA/`](LZMA/ReadMe.md) | This folder provides `LzmaEncodeStream`, `LzmaDecodeStream`, `LzmaProgressCallback` and related types. |
+| [`sdk/`](sdk/ReadMe.md) | This folder provides `CoderPropId`, `DataErrorException`, `InvalidParamException` and related types. |
 
 ## Architecture
 
