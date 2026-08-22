@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Tests
 {
     using System;
@@ -18,6 +19,7 @@ namespace SevenZip.Tests
         /// <summary>
         /// TestCaseSource for CompressDifferentFormatsTest
         /// </summary>
+        [System.ComponentModel.Description("TestCaseSource for CompressDifferentFormatsTest")]
         public static List<CompressionMethod> CompressionMethods
         {
             get

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk.Compression.LZ
 {
     using System;
@@ -146,6 +147,7 @@ namespace SevenZip.Sdk.Compression.LZ
 		/// <param name="distance"></param>
 		/// <param name="limit"></param>
 		/// <returns></returns>
+		[System.ComponentModel.Description("index + limit have not to exceed _keepSizeAfter")]
 		public UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
         {
             if (_streamEndWasReached) {

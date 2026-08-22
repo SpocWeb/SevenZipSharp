@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
 
@@ -14,6 +15,7 @@
         /// </summary>
         /// <param name="percentDone">The percent of finished work.</param>
         /// <exception cref="System.ArgumentOutOfRangeException"/>
+        [System.ComponentModel.Description("Initializes a new instance of the PercentDoneEventArgs class.")]
         public PercentDoneEventArgs(byte percentDone)
         {
             if (percentDone > 100 || percentDone < 0)
@@ -27,6 +29,7 @@
         /// <summary>
         /// Gets the percent of finished work.
         /// </summary>
+        [System.ComponentModel.Description("Gets the percent of finished work.")]
         public byte PercentDone => _percentDone;
 
 		/// <summary>
@@ -35,6 +38,7 @@
 		/// <param name="doneRate">The rate of the done work.</param>
 		/// <returns>Percent integer equivalent.</returns>
 		/// <exception cref="System.ArgumentException"/>
+		[System.ComponentModel.Description("Converts a [0, 1] rate to its percent equivalent.")]
 		internal static byte ProducePercentDone(float doneRate) => (byte) Math.Round(Math.Min(100 * doneRate, 100), MidpointRounding.AwayFromZero);
 	}
 }

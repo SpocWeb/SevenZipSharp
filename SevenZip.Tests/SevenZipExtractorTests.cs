@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Tests
 {
     using System;

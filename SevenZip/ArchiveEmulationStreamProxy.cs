@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
     using System.IO;
@@ -11,11 +12,13 @@
         /// <summary>
         /// Gets the file offset.
         /// </summary>
+        [System.ComponentModel.Description("Gets the file offset.")]
         public int Offset { get; }
 
         /// <summary>
         /// The source wrapped stream.
         /// </summary>
+        [System.ComponentModel.Description("The source wrapped stream.")]
         public Stream Source { get; }
 
         /// <summary>
@@ -23,6 +26,7 @@
         /// </summary>
         /// <param name="stream">The stream to wrap.</param>
         /// <param name="offset">The stream offset.</param>
+        [System.ComponentModel.Description("Initializes a new instance of the ArchiveEmulationStream class.")]
         public ArchiveEmulationStreamProxy(Stream stream, int offset)
         {
             Source = stream;

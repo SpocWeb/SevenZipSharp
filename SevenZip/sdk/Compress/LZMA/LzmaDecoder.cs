@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk.Compression.Lzma
 {
     using System;
@@ -40,6 +41,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <summary>
         /// Initializes the Lzma Decoder class.
         /// </summary>
+        [System.ComponentModel.Description("Initializes the Lzma Decoder class.")]
         public Decoder()
         {
             m_DictionarySize = 0xFFFFFFFF;
@@ -57,6 +59,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <param name="outSize">The output size</param>
         /// <param name="outStream">The output stream</param>
         /// <param name="progress">Progress interface</param>
+        [System.ComponentModel.Description("Codes a stream with LZMA algorithm to an output stream")]
         public void Code(Stream inStream, Stream outStream,
                          Int64 inSize, Int64 outSize, ICodeProgress progress)
         {
@@ -194,6 +197,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Sets decoder properties
         /// </summary>
         /// <param name="properties">Array of byte properties</param>
+        [System.ComponentModel.Description("Sets decoder properties")]
         public void SetDecoderProperties(byte[] properties)
         {
             if (properties.Length < 5) {
@@ -286,6 +290,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// </summary>
         /// <param name="stream">The stream to train.</param>
         /// <returns>true if Ok; otherwise, false.</returns>
+        [System.ComponentModel.Description("Trains a stream")]
         public bool Train(Stream stream)
         {
             _solid = true;
@@ -331,6 +336,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// <param name="rangeDecoder">The specified RangeCoder</param>
             /// <param name="posState">The position state</param>
             /// <returns></returns>
+            [System.ComponentModel.Description("Decodes the stream")]
             public uint Decode(RangeCoder.Decoder rangeDecoder, uint posState)
             {
                 if (m_Choice.Decode(rangeDecoder) == 0) {

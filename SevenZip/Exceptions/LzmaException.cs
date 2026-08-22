@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
     using System.Runtime.Serialization;
@@ -17,12 +18,14 @@
         /// <summary>
         /// Initializes a new instance of the LzmaException class
         /// </summary>
+        [System.ComponentModel.Description("Initializes a new instance of the LzmaException class")]
         public LzmaException() : base(DEFAULT_MESSAGE) { }
 
         /// <summary>
         /// Initializes a new instance of the LzmaException class
         /// </summary>
         /// <param name="message">Additional detailed message</param>
+        [System.ComponentModel.Description("Initializes a new instance of the LzmaException class")]
         public LzmaException(string message) : base(DEFAULT_MESSAGE, message) { }
 
         /// <summary>
@@ -30,6 +33,7 @@
         /// </summary>
         /// <param name="message">Additional detailed message</param>
         /// <param name="inner">Inner exception occured</param>
+        [System.ComponentModel.Description("Initializes a new instance of the LzmaException class")]
         public LzmaException(string message, Exception inner) : base(DEFAULT_MESSAGE, message, inner) { }
 
         /// <summary>
@@ -37,6 +41,7 @@
         /// </summary>
         /// <param name="info">All data needed for serialization or deserialization</param>
         /// <param name="context">Serialized stream descriptor</param>
+        [System.ComponentModel.Description("Initializes a new instance of the LzmaException class")]
         protected LzmaException(
             SerializationInfo info, StreamingContext context)
             : base(info, context) { }

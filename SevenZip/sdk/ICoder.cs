@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk
 {
     using System;
@@ -35,6 +36,7 @@ namespace SevenZip.Sdk
         /// <param name="outSize">
         /// Processed output size. -1 if unknown.
         /// </param>
+        [System.ComponentModel.Description("Callback progress.")]
         void SetProgress(Int64 inSize, Int64 outSize);
     } ;
 
@@ -64,6 +66,7 @@ namespace SevenZip.Sdk
         /// <exception cref="SevenZip.Sdk.DataErrorException">
         /// if input stream is not valid
         /// </exception>
+        [System.ComponentModel.Description("Codes streams.")]
         void Code(Stream inStream, Stream outStream,
                   Int64 inSize, Int64 outSize, ICodeProgress progress);
     } ;
@@ -171,6 +174,7 @@ namespace SevenZip.Sdk
         /// Sets decoder properties
         /// </summary>
         /// <param name="properties">Array of byte properties</param>
+        [System.ComponentModel.Description("Sets decoder properties")]
         void SetDecoderProperties(byte[] properties);
     }
 }

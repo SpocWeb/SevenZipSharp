@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk.Compression.Lzma
 {
     using System;
@@ -104,6 +105,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <summary>
         /// Initializes a new instance of the Encoder class
         /// </summary>
+        [System.ComponentModel.Description("Initializes a new instance of the Encoder class")]
         public Encoder()
         {
             for (int i = 0; i < kNumOpts; i++)
@@ -122,6 +124,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <param name="outSize">The output size</param>
         /// <param name="outStream">The output stream</param>
         /// <param name="progress">The progress callback</param>
+        [System.ComponentModel.Description("Codes the specified stream")]
         public void Code(Stream inStream, Stream outStream,
                          Int64 inSize, Int64 outSize, ICodeProgress progress)
         {
@@ -159,6 +162,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// </summary>
         /// <param name="propIDs">The property identificators</param>
         /// <param name="properties">The array of properties</param>
+        [System.ComponentModel.Description("Sets the coder properties")]
         public void SetCoderProperties(CoderPropId[] propIDs, object[] properties)
         {
             for (UInt32 i = 0; i < properties.Length; i++)
@@ -288,6 +292,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Writes the coder properties
         /// </summary>
         /// <param name="outStream">The output stream to write the properties to.</param>
+        [System.ComponentModel.Description("Writes the coder properties")]
         public void WriteCoderProperties(Stream outStream)
         {
             properties[0] = (Byte) ((_posStateBits*5 + _numLiteralPosStateBits)*9 + _numLiteralContextBits);

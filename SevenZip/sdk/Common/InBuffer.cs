@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk.Buffer
 {
     using System.IO;
@@ -19,6 +20,7 @@ namespace SevenZip.Sdk.Buffer
         /// Initializes the input buffer
         /// </summary>
         /// <param name="bufferSize"></param>
+        [System.ComponentModel.Description("Initializes the input buffer")]
         private InBuffer(uint bufferSize)
         {
             m_Buffer = new byte[bufferSize];
@@ -29,6 +31,7 @@ namespace SevenZip.Sdk.Buffer
         /// Initializes the class
         /// </summary>
         /// <param name="stream"></param>
+        [System.ComponentModel.Description("Initializes the class")]
         private void Init(Stream stream)
         {
             m_Stream = stream;
@@ -42,6 +45,7 @@ namespace SevenZip.Sdk.Buffer
         /// Reads the whole block
         /// </summary>
         /// <returns></returns>
+        [System.ComponentModel.Description("Reads the whole block")]
         private bool ReadBlock()
         {
             if (m_StreamWasExhausted) {
@@ -58,6 +62,7 @@ namespace SevenZip.Sdk.Buffer
 		/// <summary>
 		/// Releases the stream
 		/// </summary>
+		[System.ComponentModel.Description("Releases the stream")]
 		private void ReleaseStream() =>
 			// m_Stream.Close(); 
 			m_Stream = null;
@@ -67,6 +72,7 @@ namespace SevenZip.Sdk.Buffer
 		/// </summary>
 		/// <param name="b"></param>
 		/// <returns></returns>
+		[System.ComponentModel.Description("Reads the byte to check it")]
 		private bool ReadByte(out byte b)
         {
             b = 0;
@@ -83,6 +89,7 @@ namespace SevenZip.Sdk.Buffer
         /// Reads the next byte
         /// </summary>
         /// <returns></returns>
+        [System.ComponentModel.Description("Reads the next byte")]
         private byte ReadByte()
         {
             // return (byte)m_Stream.ReadByte();
@@ -98,6 +105,7 @@ namespace SevenZip.Sdk.Buffer
 		/// Gets processed size
 		/// </summary>
 		/// <returns></returns>
+		[System.ComponentModel.Description("Gets processed size")]
 		private ulong GetProcessedSize() => m_ProcessedSize + m_Pos;
 	}
 }

@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
 

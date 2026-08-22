@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip
 {
     using System;
@@ -12,6 +13,7 @@ namespace SevenZip
         /// Recreates the instance of the SevenZipExtractor class.
         /// Used in asynchronous methods.
         /// </summary>
+        [System.ComponentModel.Description("Recreates the instance of the SevenZipExtractor class.")]
         private void RecreateInstanceIfNeeded()
         {
             if (NeedsToBeRecreated)
@@ -101,6 +103,7 @@ namespace SevenZip
         /// Unpacks the whole archive asynchronously to the specified directory name at the specified priority.
         /// </summary>
         /// <param name="directory">The directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the whole archive asynchronously to the specified directory name at the specified priority.")]
         public void BeginExtractArchive(string directory)
         {
             SaveContext();
@@ -112,6 +115,7 @@ namespace SevenZip
         /// Unpacks the whole archive asynchronously to the specified directory name at the specified priority.
         /// </summary>
         /// <param name="directory">The directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the whole archive asynchronously to the specified directory name at the specified priority.")]
         public async Task ExtractArchiveAsync(string directory)
         {
             try
@@ -130,6 +134,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="fileName">The file full name in the archive file table.</param>
         /// <param name="stream">The stream where the file is to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the file asynchronously by its name to the specified stream.")]
         public void BeginExtractFile(string fileName, Stream stream)
         {
             SaveContext();
@@ -142,6 +147,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="fileName">The file full name in the archive file table.</param>
         /// <param name="stream">The stream where the file is to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the file asynchronously by its name to the specified stream.")]
         public async Task ExtractFileAsync(string fileName, Stream stream)
         {
             try
@@ -160,6 +166,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="index">Index in the archive file table.</param>
         /// <param name="stream">The stream where the file is to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the file asynchronously by its index to the specified stream.")]
         public void BeginExtractFile(int index, Stream stream)
         {
             SaveContext();
@@ -172,6 +179,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="index">Index in the archive file table.</param>
         /// <param name="stream">The stream where the file is to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks the file asynchronously by its name to the specified stream.")]
         public async Task ExtractFileAsync(int index, Stream stream)
         {
             try
@@ -190,6 +198,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="indexes">indexes of the files in the archive file table.</param>
         /// <param name="directory">Directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks files asynchronously by their indices to the specified directory.")]
         public void BeginExtractFiles(string directory, params int[] indexes)
         {
             SaveContext();
@@ -202,6 +211,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="indexes">indexes of the files in the archive file table.</param>
         /// <param name="directory">Directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks files asynchronously by their indices to the specified directory.")]
         public async Task ExtractFilesAsync(string directory, params int[] indexes)
         {
             try
@@ -220,6 +230,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="fileNames">Full file names in the archive file table.</param>
         /// <param name="directory">Directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks files asynchronously by their full names to the specified directory.")]
         public void BeginExtractFiles(string directory, params string[] fileNames)
         {
             SaveContext();
@@ -232,6 +243,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="fileNames">Full file names in the archive file table.</param>
         /// <param name="directory">Directory where the files are to be unpacked.</param>
+        [System.ComponentModel.Description("Unpacks files asynchronously by their full names to the specified directory.")]
         public async Task ExtractFilesAsync(string directory, params string[] fileNames)
         {
             try
@@ -251,6 +263,7 @@ namespace SevenZip
         /// 7-Zip (and any other solid) archives are NOT supported.
         /// </summary>
         /// <param name="extractFileCallback">The callback to call for each file in the archive.</param>
+        [System.ComponentModel.Description("Extracts files from the archive asynchronously, giving a callback the choice what to do with each file.")]
         public void BeginExtractFiles(ExtractFileCallback extractFileCallback)
         {
             SaveContext();
@@ -264,6 +277,7 @@ namespace SevenZip
         /// 7-Zip (and any other solid) archives are NOT supported.
         /// </summary>
         /// <param name="extractFileCallback">The callback to call for each file in the archive.</param>
+        [System.ComponentModel.Description("Extracts files from the archive asynchronously, giving a callback the choice what to do with each file.")]
         public async Task ExtractFilesAsync(ExtractFileCallback extractFileCallback)
         {
             try

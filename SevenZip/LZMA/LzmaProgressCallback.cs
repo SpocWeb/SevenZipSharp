@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
 
@@ -17,6 +18,7 @@
         /// </summary>
         /// <param name="inSize">The input size</param>
         /// <param name="working">Progress event handler</param>
+        [System.ComponentModel.Description("Initializes a new instance of the LzmaProgressCallback class")]
         public LzmaProgressCallback(long inSize, EventHandler<ProgressEventArgs> working)
         {
             _inSize = inSize;
@@ -30,6 +32,7 @@
         /// </summary>
         /// <param name="inSize">The processed input size</param>
         /// <param name="outSize">The processed output size</param>
+        [System.ComponentModel.Description("Sets the progress")]
         public void SetProgress(long inSize, long outSize)
         {
             if (Working != null)

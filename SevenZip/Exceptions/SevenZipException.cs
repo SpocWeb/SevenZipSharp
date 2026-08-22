@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System;
     using System.Runtime.Serialization;
@@ -18,12 +19,14 @@
         /// <summary>
         /// Initializes a new instance of the SevenZipException class
         /// </summary>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         public SevenZipException() : base("SevenZip unknown exception.") { }
 
         /// <summary>
         /// Initializes a new instance of the SevenZipException class
         /// </summary>
         /// <param name="defaultMessage">Default exception message</param>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         public SevenZipException(string defaultMessage)
             : base(defaultMessage) { }
 
@@ -32,6 +35,7 @@
         /// </summary>
         /// <param name="defaultMessage">Default exception message</param>
         /// <param name="message">Additional detailed message</param>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         public SevenZipException(string defaultMessage, string message)
             : base(defaultMessage + " Message: " + message) { }
 
@@ -41,6 +45,7 @@
         /// <param name="defaultMessage">Default exception message</param>
         /// <param name="message">Additional detailed message</param>
         /// <param name="inner">Inner exception occured</param>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         public SevenZipException(string defaultMessage, string message, Exception inner)
             : base(
                 defaultMessage + (defaultMessage.EndsWith(" ", StringComparison.CurrentCulture) ? "" : " Message: ") +
@@ -52,6 +57,7 @@
         /// </summary>
         /// <param name="defaultMessage">Default exception message</param>
         /// <param name="inner">Inner exception occured</param>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         public SevenZipException(string defaultMessage, Exception inner)
             : base(defaultMessage, inner) { }
         /// <summary>
@@ -59,6 +65,7 @@
         /// </summary>
         /// <param name="info">All data needed for serialization or deserialization</param>
         /// <param name="context">Serialized stream descriptor</param>
+        [System.ComponentModel.Description("Initializes a new instance of the SevenZipException class")]
         protected SevenZipException(
             SerializationInfo info, StreamingContext context)
             : base(info, context) { }

@@ -1,4 +1,5 @@
-﻿namespace SevenZip
+﻿using System.ComponentModel;
+namespace SevenZip
 {
     using System.Collections.Generic;
     using System.IO;
@@ -34,6 +35,7 @@
         /// </summary>
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveName">The archive file name.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFiles(string archiveName, params string[] fileFullNames)
         {
             SaveContext();
@@ -47,6 +49,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveStream">The archive output stream. 
         /// Use CompressFiles(string archiveName ... ) overloads for archiving to disk.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFiles(Stream archiveStream, params string[] fileFullNames)
         {
             SaveContext();
@@ -60,6 +63,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
         /// <param name="archiveName">The archive file name.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFiles(string archiveName, int commonRootLength, params string[] fileFullNames)
         {
             SaveContext();
@@ -74,6 +78,7 @@
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
         /// <param name="archiveStream">The archive output stream.
         /// Use CompressFiles(string archiveName, ... ) overloads for archiving to disk.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFiles(Stream archiveStream, int commonRootLength, params string[] fileFullNames)
         {
             SaveContext();
@@ -87,6 +92,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveName">The archive file name</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFilesEncrypted(string archiveName, string password, params string[] fileFullNames  )
         {
             SaveContext();
@@ -101,6 +107,7 @@
         /// <param name="archiveStream">The archive output stream.
         /// Use CompressFiles( ... string archiveName ... ) overloads for archiving to disk.</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFilesEncrypted(Stream archiveStream, string password, params string[] fileFullNames)
         {
             SaveContext();
@@ -115,6 +122,7 @@
         /// <param name="archiveName">The archive file name</param>
         /// <param name="password">The archive password.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFilesEncrypted(string archiveName, int commonRootLength, string password, params string[] fileFullNames)
         {
             SaveContext();
@@ -130,6 +138,7 @@
         /// Use CompressFiles( ... string archiveName ... ) overloads for archiving to disk.</param>
         /// <param name="password">The archive password.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public void BeginCompressFilesEncrypted(Stream archiveStream, int commonRootLength, string password, params string[] fileFullNames)
         {
             SaveContext();
@@ -146,6 +155,7 @@
         /// </summary>
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveName">The archive file name.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesAsync(string archiveName, params string[] fileFullNames)
         {
             try
@@ -165,6 +175,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveStream">The archive output stream. 
         /// Use CompressFiles(string archiveName ... ) overloads for archiving to disk.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesAsync(Stream archiveStream, params string[] fileFullNames)
         {
             try
@@ -184,6 +195,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
         /// <param name="archiveName">The archive file name.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesAsync(string archiveName, int commonRootLength, params string[] fileFullNames)
         {
             try
@@ -204,6 +216,7 @@
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
         /// <param name="archiveStream">The archive output stream.
         /// Use CompressFiles(string archiveName, ... ) overloads for archiving to disk.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesAsync(Stream archiveStream, int commonRootLength, params string[] fileFullNames)
         {
             try
@@ -223,6 +236,7 @@
         /// <param name="fileFullNames">Array of file names to pack.</param>
         /// <param name="archiveName">The archive file name</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesEncryptedAsync(string archiveName, string password, params string[] fileFullNames)
         {
             try
@@ -243,6 +257,7 @@
         /// <param name="archiveStream">The archive output stream.
         /// Use CompressFiles( ... string archiveName ... ) overloads for archiving to disk.</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesEncryptedAsync(Stream archiveStream, string password, params string[] fileFullNames)
         {
             try
@@ -263,6 +278,7 @@
         /// <param name="archiveName">The archive file name</param>
         /// <param name="password">The archive password.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesEncryptedAsync(string archiveName, int commonRootLength, string password, params string[] fileFullNames)
         {
             try
@@ -284,6 +300,7 @@
         /// Use CompressFiles( ... string archiveName ... ) overloads for archiving to disk.</param>
         /// <param name="password">The archive password.</param>
         /// <param name="commonRootLength">The length of the common root of the file names.</param>
+        [System.ComponentModel.Description("Packs files into the archive asynchronously.")]
         public async Task CompressFilesEncryptedAsync(Stream archiveStream, int commonRootLength, string password, params string[] fileFullNames)
         {
             try
@@ -309,6 +326,7 @@
         /// <param name="password">The archive password.</param>
         /// <param name="searchPattern">Search string, such as "*.txt".</param>
         /// <param name="recursion">If true, files will be searched for recursively; otherwise, not.</param>
+        [System.ComponentModel.Description("Packs all files in the specified directory asynchronously.")]
         public void BeginCompressDirectory(string directory, string archiveName, string password = "", string searchPattern = "*", bool recursion = true)
         {
             SaveContext();
@@ -325,6 +343,7 @@
         /// <param name="password">The archive password.</param>
         /// <param name="searchPattern">Search string, such as "*.txt".</param>
         /// <param name="recursion">If true, files will be searched for recursively; otherwise, not.</param>
+        [System.ComponentModel.Description("Packs all files in the specified directory asynchronously.")]
         public void BeginCompressDirectory(string directory, Stream archiveStream, string password , string searchPattern = "*", bool recursion = true)
         {
             SaveContext();
@@ -344,6 +363,7 @@
         /// <param name="password">The archive password.</param>
         /// <param name="searchPattern">Search string, such as "*.txt".</param>
         /// <param name="recursion">If true, files will be searched for recursively; otherwise, not.</param>
+        [System.ComponentModel.Description("Packs all files in the specified directory asynchronously.")]
         public async Task CompressDirectoryAsync(string directory, string archiveName, string password = "", string searchPattern = "*", bool recursion = true)
         {
             try
@@ -366,6 +386,7 @@
         /// <param name="password">The archive password.</param>
         /// <param name="searchPattern">Search string, such as "*.txt".</param>
         /// <param name="recursion">If true, files will be searched for recursively; otherwise, not.</param>
+        [System.ComponentModel.Description("Packs all files in the specified directory asynchronously.")]
         public async Task CompressDirectoryAsync(string directory, Stream archiveStream, string password, string searchPattern = "*", bool recursion = true)
         {
             try
@@ -390,6 +411,7 @@
         /// <param name="outStream">The destination compressed stream.</param>
         /// <param name="password">The archive password.</param>
         /// <exception cref="System.ArgumentException">ArgumentException: at least one of the specified streams is invalid.</exception>
+        [System.ComponentModel.Description("Compresses the specified stream.")]
         public void BeginCompressStream(Stream inStream, Stream outStream, string password = "")
         {
             SaveContext();
@@ -408,6 +430,7 @@
         /// <param name="outStream">The destination compressed stream.</param>
         /// <param name="password">The archive password.</param>
         /// <exception cref="System.ArgumentException">ArgumentException: at least one of the specified streams is invalid.</exception>
+        [System.ComponentModel.Description("Compresses the specified stream.")]
         public async Task CompressStreamAsync(Stream inStream, Stream outStream, string password = "")
         {
             try
@@ -431,6 +454,7 @@
         /// <param name="archiveName">The archive file name.</param>
         /// <param name="newFileNames">New file names. Null value to delete the corresponding index.</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Modifies the existing archive asynchronously (renames files or deletes them).")]
         public void BeginModifyArchive(string archiveName, IDictionary<int, string> newFileNames, string password = "")
         {
             SaveContext();
@@ -448,6 +472,7 @@
         /// <param name="archiveName">The archive file name.</param>
         /// <param name="newFileNames">New file names. Null value to delete the corresponding index.</param>
         /// <param name="password">The archive password.</param>
+        [System.ComponentModel.Description("Modifies the existing archive asynchronously (renames files or deletes them).")]
         public async Task ModifyArchiveAsync(string archiveName, IDictionary<int, string> newFileNames, string password = "")
         {
             try

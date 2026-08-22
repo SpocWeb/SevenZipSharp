@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip
 {
     using System;
@@ -167,6 +168,7 @@ namespace SevenZip
         /// Checks if the specified stream supports compression.
         /// </summary>
         /// <param name="stream">The stream to check.</param>
+        [System.ComponentModel.Description("Checks if the specified stream supports compression.")]
         private static void ValidateStream(Stream stream)
         {
             if (!stream.CanWrite || !stream.CanSeek)
@@ -1728,6 +1730,7 @@ namespace SevenZip
         /// <summary>
         /// Gets or sets the dictionary size for the managed LZMA algorithm.
         /// </summary>
+        [System.ComponentModel.Description("Gets or sets the dictionary size for the managed LZMA algorithm.")]
         public static int LzmaDictionarySize
         {
             get => _lzmaDictionarySize;
@@ -1773,6 +1776,7 @@ namespace SevenZip
         /// <param name="outStream">The destination compressed stream</param>
         /// <param name="inLength">The length of uncompressed data (null for inStream.Length)</param>
         /// <param name="codeProgressEvent">The event for handling the code progress</param>
+        [System.ComponentModel.Description("Compresses the specified stream with LZMA algorithm (C# inside)")]
         public static void CompressStream(Stream inStream, Stream outStream, int? inLength,
             EventHandler<ProgressEventArgs> codeProgressEvent)
         {
@@ -1799,6 +1803,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="data">Byte array to compress</param>
         /// <returns>Compressed byte array</returns>
+        [System.ComponentModel.Description("Compresses byte array with LZMA algorithm (C# inside)")]
         public static byte[] CompressBytes(byte[] data) {
 	        using var inStream = new MemoryStream(data);
 	        using var outStream = new MemoryStream();
@@ -1821,6 +1826,7 @@ namespace SevenZip
 		/// </summary>
 		/// <param name="fileFullNames">Array of file names.</param>
 		/// <returns>Array of file names with full paths.</returns>
+		[System.ComponentModel.Description("Ensures an array of file names is the full path to that file.")]
 		private static string[] GetFullFilePaths(IEnumerable<string> fileFullNames) => fileFullNames.Select(Path.GetFullPath).ToArray();
 	}
 }

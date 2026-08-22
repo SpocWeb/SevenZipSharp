@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Tests
 {
     using System.Collections.Generic;
@@ -23,11 +24,13 @@ namespace SevenZip.Tests
         /// <summary>
         /// Format this test expects to find.
         /// </summary>
+        [System.ComponentModel.Description("Format this test expects to find.")]
         public InArchiveFormat ExpectedFormat { get; }
 
         /// <summary>
         /// Path to archive file to test against.
         /// </summary>
+        [System.ComponentModel.Description("Path to archive file to test against.")]
         public string TestDataFilePath { get; }
 
 		public override string ToString() =>

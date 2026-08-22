@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip
 {
     using System;
@@ -706,6 +707,7 @@ namespace SevenZip
         /// Checks if the specified stream supports extraction.
         /// </summary>
         /// <param name="stream">The stream to check.</param>
+        [System.ComponentModel.Description("Checks if the specified stream supports extraction.")]
         private static void ValidateStream(Stream stream)
         {
 			if (stream == null)
@@ -1398,6 +1400,7 @@ namespace SevenZip
         /// <param name="outStream">The destination uncompressed stream</param>
         /// <param name="inLength">The length of compressed data (null for inStream.Length)</param>
         /// <param name="codeProgressEvent">The event for handling the code progress</param>
+        [System.ComponentModel.Description("Decompress the specified stream (C# inside)")]
         public static void DecompressStream(Stream inStream, Stream outStream, int? inLength, EventHandler<ProgressEventArgs> codeProgressEvent)
         {
             if (!inStream.CanRead || !outStream.CanWrite)
@@ -1416,6 +1419,7 @@ namespace SevenZip
         /// </summary>
         /// <param name="data">Byte array to decompress</param>
         /// <returns>Decompressed byte array</returns>
+        [System.ComponentModel.Description("Decompress byte array compressed with LZMA algorithm (C# inside)")]
         public static byte[] ExtractBytes(byte[] data) {
 	        using var inStream = new MemoryStream(data);
 	        var decoder = new Decoder();

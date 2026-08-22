@@ -1,3 +1,4 @@
+using System.ComponentModel;
 namespace SevenZip.Sdk.Buffer
 {
     using System.IO;
@@ -14,6 +15,7 @@ namespace SevenZip.Sdk.Buffer
         /// Initializes a new instance of the OutBuffer class
         /// </summary>
         /// <param name="bufferSize"></param>
+        [System.ComponentModel.Description("Initializes a new instance of the OutBuffer class")]
         public OutBuffer(uint bufferSize)
         {
             m_Buffer = new byte[bufferSize];
