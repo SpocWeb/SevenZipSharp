@@ -1,8 +1,11 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Buffer
 {
     using System.IO;
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:44Z", Digest = "8fa9cde83bd95224abc0f25627b2003a80cf707e18040674af6803c42fedfe68", Stale = true, Path = "sdk/Common/OutBuffer.cs", Since = "2026-08-23")]
     internal class OutBuffer
     {
         private readonly byte[] m_Buffer;
@@ -22,20 +25,26 @@ namespace SevenZip.Sdk.Buffer
             m_BufferSize = bufferSize;
         }
 
+		/// <summary>TODO: LLM</summary>
 		public void SetStream(Stream stream) => m_Stream = stream;
 
+		/// <summary>TODO: LLM</summary>
 		public void FlushStream() => m_Stream.Flush();
 
+		/// <summary>TODO: LLM</summary>
 		public void CloseStream() => m_Stream.Close();
 
+		/// <summary>TODO: LLM</summary>
 		public void ReleaseStream() => m_Stream = null;
 
+		/// <summary>TODO: LLM</summary>
 		public void Init()
         {
             m_ProcessedSize = 0;
             m_Pos = 0;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void WriteByte(byte b)
         {
             m_Buffer[m_Pos++] = b;
@@ -44,6 +53,7 @@ namespace SevenZip.Sdk.Buffer
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         public void FlushData()
         {
             if (m_Pos == 0) {
@@ -53,6 +63,7 @@ namespace SevenZip.Sdk.Buffer
             m_Pos = 0;
         }
 
+		/// <summary>TODO: LLM</summary>
 		public ulong GetProcessedSize() => m_ProcessedSize + m_Pos;
 	}
 }

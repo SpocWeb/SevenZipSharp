@@ -1,12 +1,16 @@
-﻿namespace SevenZip.Tests
+﻿using org.SpocWeb.root.Attributes;
+namespace SevenZip.Tests
 {
     using System.IO;
     using System.Threading;
 
     using NUnit.Framework;
 
+    /// <summary>base used in tests.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:53:01Z", Digest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", Stale = false, Path = "TestBase.cs", Since = "2026-08-23")]
     public abstract class TestBase
     {
+
         protected const string OutputDirectory = "output";
         protected readonly string TemporaryFile = Path.Combine(OutputDirectory, "tmp.7z");
 

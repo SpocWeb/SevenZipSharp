@@ -1,3 +1,4 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System.Collections.Generic;
@@ -8,9 +9,13 @@ namespace SevenZip.Tests
 
     using NUnit.Framework.Legacy;
 
+    /// <summary>Tests for seven Zip Compressor Asynchronous.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "443dd3b5eaeb0c19dbda88700012ef2cbd96e07d18c2601caf18a74cc340046c", Stale = false, Path = "SevenZipCompressorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorAsynchronousTests : TestBase
     {
+
+        /// <summary>Asynchronous Compress Directory And Events Test.</summary>
         [Test]
         public void AsynchronousCompressDirectoryAndEventsTest()
         {
@@ -53,6 +58,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsTrue(File.Exists(TemporaryFile));
         }
 
+        /// <summary>Asynchronous Compress Files Test.</summary>
         [Test]
         public void AsynchronousCompressFilesTest()
         {
@@ -85,6 +91,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Compress Stream Test.</summary>
         [Test]
         public void AsynchronousCompressStreamTest()
         {
@@ -121,6 +128,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Modify Archive Test.</summary>
         [Test]
         public void AsynchronousModifyArchiveTest()
         {
@@ -154,6 +162,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Compress Files Encrypted Test.</summary>
         [Test]
         public void AsynchronousCompressFilesEncryptedTest()
         {
@@ -188,6 +197,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Files Async.</summary>
         [Test]
         public async Task CompressFilesAsync()
         {
@@ -204,6 +214,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory Async.</summary>
         [Test]
         public async Task CompressDirectoryAsync()
         {
@@ -220,6 +231,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Files Encrypted Async.</summary>
         [Test]
         public async Task CompressFilesEncryptedAsync()
         {

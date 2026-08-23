@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Buffer
 {
     using System.IO;
@@ -6,6 +7,7 @@ namespace SevenZip.Sdk.Buffer
     /// <summary>
     /// Implements the input buffer work
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:33:05Z", Digest = "13a96da22f1bacae96f168bf0175bc3bc9188de44f9117e2752b3f80bc52a181", Stale = false, Path = "sdk/Common/InBuffer.cs", Since = "2026-08-23")]
     internal class InBuffer
     {
         private readonly byte[] m_Buffer;

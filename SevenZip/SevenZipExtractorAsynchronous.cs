@@ -1,10 +1,13 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:35:17Z", Digest = "7d2cdcccb7dadd2da9a8055bba8d94331a13ba54d26c520a70ae7f1cb6468524", Stale = true, Path = "SevenZipExtractorAsynchronous.cs", Since = "2026-08-23")]
     partial class SevenZipExtractor
     {
         #region Asynchronous core methods
@@ -41,6 +44,7 @@ namespace SevenZip
             }
         }
 
+        /// <inheritdoc />
         internal override void SaveContext()
         {
             DisposedCheck();
@@ -48,6 +52,7 @@ namespace SevenZip
             base.SaveContext();
         }
 
+        /// <inheritdoc />
         internal override void ReleaseContext()
         {
             base.ReleaseContext();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -6,6 +7,7 @@ namespace SevenZip
     /// <summary>
     /// EventArgs for storing PercentDone property.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "fcc9dfbeac1504d9102c3708677713d7c201d569b8af5f88940bc1efc32df227", Stale = false, Path = "EventArguments/PercentDoneEventArgs.cs", Since = "2026-08-23")]
     public class PercentDoneEventArgs : EventArgs
     {
         private readonly byte _percentDone;

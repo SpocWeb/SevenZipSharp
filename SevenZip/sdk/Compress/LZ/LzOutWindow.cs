@@ -1,7 +1,10 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Compression.LZ
 {
     using System.IO;
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "df75b33a8399ce273334a9916da0281a9ba8e7ca246a4a0e5c0d12d794e838f3", Stale = true, Path = "sdk/Compress/LZ/LzOutWindow.cs", Since = "2026-08-23")]
     internal class OutWindow
     {
         private byte[] _buffer;
@@ -11,6 +14,7 @@ namespace SevenZip.Sdk.Compression.LZ
         private uint _windowSize;
         public uint TrainSize;
 
+        /// <summary>TODO: LLM</summary>
         public void Create(uint windowSize)
         {
             if (_windowSize != windowSize)
@@ -23,6 +27,7 @@ namespace SevenZip.Sdk.Compression.LZ
             _streamPos = 0;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void Init(Stream stream, bool solid)
         {
             ReleaseStream();
@@ -35,6 +40,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         public bool Train(Stream stream)
         {
             long len = stream.Length;
@@ -62,12 +68,14 @@ namespace SevenZip.Sdk.Compression.LZ
             return true;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void ReleaseStream()
         {
             Flush();
             _stream = null;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void Flush()
         {
             uint size = _pos - _streamPos;
@@ -81,6 +89,7 @@ namespace SevenZip.Sdk.Compression.LZ
             _streamPos = _pos;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void CopyBlock(uint distance, uint len)
         {
             uint pos = _pos - distance - 1;
@@ -99,6 +108,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         public void PutByte(byte b)
         {
             _buffer[_pos++] = b;
@@ -107,6 +117,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         public byte GetByte(uint distance)
         {
             uint pos = _pos - distance - 1;

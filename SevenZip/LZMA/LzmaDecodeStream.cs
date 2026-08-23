@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -9,6 +10,7 @@ namespace SevenZip
     /// <summary>
     /// The stream which decompresses data with LZMA on the fly.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "484f43e46119c1254b87d39a49acdbc598da0e3aae1deb8743fe721351a59ab3", Stale = true, Path = "LZMA/LzmaDecodeStream.cs", Since = "2026-08-23")]
     public class LzmaDecodeStream : Stream
     {
         private readonly MemoryStream _buffer = new MemoryStream();
@@ -90,6 +92,7 @@ namespace SevenZip
             set => throw new NotSupportedException();
         }
 
+        /// <summary>TODO: LLM</summary>
         private void ReadChunk()
         {
             long size;

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     /// <summary>
     /// The EventArgs class for accurate progress handling.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "c241f573236c3c082b26e9c4c7445c861e714b933c652bc94ea2fb4dcf893bcc", Stale = false, Path = "EventArguments/ProgressEventArgs.cs", Since = "2026-08-23")]
     public sealed class ProgressEventArgs : PercentDoneEventArgs
     {
         private readonly byte _delta;

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk
 {
     using System;
@@ -7,24 +8,31 @@ namespace SevenZip.Sdk
     /// <summary>
     /// The exception that is thrown when an error in input stream occurs during decoding.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "2a54acf601042205aacae5aee63187feb5a00b4bcfccaffaf6aec4c5679c39b4", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Serializable]
     internal class DataErrorException : ApplicationException
     {
+
+        /// <summary>Initializes a new instance of <see cref="DataErrorException"/>.</summary>
         public DataErrorException() : base("Data Error") {}
     }
 
     /// <summary>
     /// The exception that is thrown when the value of an argument is outside the allowable range.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "f2d9b2b9b0610d7243ec731a37c174a011116806f0d45f9d64c783653c069468", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Serializable]
     internal class InvalidParamException : ApplicationException
     {
+
+        /// <summary>Initializes a new instance of <see cref="InvalidParamException"/>.</summary>
         public InvalidParamException() : base("Invalid Parameter") {}
     }
 
     /// <summary>
     /// Callback progress interface.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "fbb6c8dad66643c6593060e6ff6413d90de67a7ed73d42d1bc7eb0389f24bfa1", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public interface ICodeProgress
     {
         /// <summary>
@@ -43,6 +51,7 @@ namespace SevenZip.Sdk
     /// <summary>
     /// Stream coder interface
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "cb5cbf12d71d7b0f3bd00d2075455a9fa66fcd7a9cd3b8b7cfbb40a8f23e85a7", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public interface ICoder
     {
         /// <summary>
@@ -85,6 +94,7 @@ namespace SevenZip.Sdk
     /// <summary>
     /// Provides the fields that represent properties idenitifiers for compressing.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "b3bddf342dfda561777005f4c5504a23222268a333432d73e128252de6cc2eef", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public enum CoderPropId
     {
         /// <summary>
@@ -152,22 +162,29 @@ namespace SevenZip.Sdk
     /// <summary>
     /// The ISetCoderProperties interface
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "d20518cf5542f1185a0d481d2c8a2f9eaa88e3d91da31a3343ab2d08adf13926", Stale = true, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     internal interface ISetCoderProperties
     {
+
+        /// <summary>TODO: LLM</summary>
         void SetCoderProperties(CoderPropId[] propIDs, object[] properties);
     } ;
 
     /// <summary>
     /// The IWriteCoderProperties interface
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "d20518cf5542f1185a0d481d2c8a2f9eaa88e3d91da31a3343ab2d08adf13926", Stale = true, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     internal interface IWriteCoderProperties
     {
+
+        /// <summary>TODO: LLM</summary>
         void WriteCoderProperties(Stream outStream);
     }
 
     /// <summary>
     /// The ISetDecoderPropertiesinterface
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "4cf33d8bdde3edb8feb51cfba66727968c5cb3ff777473d5f744eaa0c0503999", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     internal interface ISetDecoderProperties
     {
         /// <summary>

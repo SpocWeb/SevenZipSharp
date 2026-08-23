@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:35:17Z", Digest = "18c86e8dfe6787af1c88517afc8511e99655e40bf1b0eeaf51a7dcdbe248d6d3", Stale = true, Path = "SevenZipCompressorAsynchronous.cs", Since = "2026-08-23")]
     partial class SevenZipCompressor
     {
         #region Delegates

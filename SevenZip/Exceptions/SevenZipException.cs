@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -7,6 +8,7 @@ namespace SevenZip
     /// <summary>
     /// Base SevenZip exception class.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "72b28c3fc269b6d34f1a34ee59c085c9b16ad1e31daad46a871de15fd5a60d27", Stale = false, Path = "Exceptions/SevenZipException.cs", Since = "2026-08-23")]
     [Serializable]
     public class SevenZipException : Exception
     {

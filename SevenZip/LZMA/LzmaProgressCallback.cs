@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -8,6 +9,7 @@ namespace SevenZip
     /// <summary>
     /// Callback to implement the ICodeProgress interface
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "d52e5afa51eaa5b99c848bfc9f78ba7985d6635d2aebd99ada8c7d42e65ae155", Stale = false, Path = "LZMA/LzmaProgressCallback.cs", Since = "2026-08-23")]
     internal sealed class LzmaProgressCallback : ICodeProgress
     {
         private readonly long _inSize;

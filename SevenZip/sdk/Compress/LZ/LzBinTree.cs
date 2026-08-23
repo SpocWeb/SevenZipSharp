@@ -1,16 +1,33 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Compression.LZ
 {
     using System;
     using System.IO;
 
+    /// <inheritdoc cref="IMatchFinder"/>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "725be727d0f0b0cf9162885f380d0b4fd1255128e2cd432ce44eff5b85d0a774", Stale = true, Path = "sdk/Compress/LZ/LzBinTree.cs", Since = "2026-08-23")]
     internal class BinTree : InWindow, IMatchFinder
     {
+
+        /// <summary>Specifies the constant k B T2 Hash Size.</summary>
         private const UInt32 kBT2HashSize = 1 << 16;
+
+        /// <summary>Specifies the constant k Empty Hash Value.</summary>
         private const UInt32 kEmptyHashValue = 0;
+
+        /// <summary>Specifies the constant k Hash2 Size.</summary>
         private const UInt32 kHash2Size = 1 << 10;
+
+        /// <summary>Specifies the constant k Hash3 Offset.</summary>
         private const UInt32 kHash3Offset = kHash2Size;
+
+        /// <summary>Specifies the constant k Hash3 Size.</summary>
         private const UInt32 kHash3Size = 1 << 16;
+
+        /// <summary>Specifies the constant k Max Val For Normalize.</summary>
         private const UInt32 kMaxValForNormalize = ((UInt32) 1 << 31) - 1;
+
+        /// <summary>Specifies the constant k Start Max Len.</summary>
         private const UInt32 kStartMaxLen = 1;
         private UInt32 _cutValue = 0xFF;
         private UInt32 _cyclicBufferPos;
@@ -31,10 +48,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
 		#region IMatchFinder Members
 
+		/// <summary>TODO: LLM</summary>
 		public new void SetStream(Stream stream) => base.SetStream(stream);
 
+		/// <summary>TODO: LLM</summary>
 		public new void ReleaseStream() => base.ReleaseStream();
 
+		/// <summary>TODO: LLM</summary>
 		public new void Init()
         {
             base.Init();
@@ -44,12 +64,16 @@ namespace SevenZip.Sdk.Compression.LZ
             ReduceOffsets(-1);
         }
 
+		/// <summary>TODO: LLM</summary>
 		public new Byte GetIndexByte(Int32 index) => base.GetIndexByte(index);
 
+		/// <summary>TODO: LLM</summary>
 		public new UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit) => base.GetMatchLen(index, distance, limit);
 
+		/// <summary>TODO: LLM</summary>
 		public new UInt32 GetNumAvailableBytes() => base.GetNumAvailableBytes();
 
+		/// <inheritdoc />
 		public void Create(UInt32 historySize, UInt32 keepAddBufferBefore,
                            UInt32 matchMaxLen, UInt32 keepAddBufferAfter)
         {
@@ -94,6 +118,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <inheritdoc />
         public UInt32 GetMatches(UInt32[] distances)
         {
             UInt32 lenLimit;
@@ -235,6 +260,7 @@ namespace SevenZip.Sdk.Compression.LZ
             return offset;
         }
 
+        /// <inheritdoc />
         public void Skip(UInt32 num)
         {
             do
@@ -332,6 +358,7 @@ namespace SevenZip.Sdk.Compression.LZ
 
         #endregion
 
+        /// <inheritdoc />
         public void SetType(int numHashBytes)
         {
             HASH_ARRAY = (numHashBytes > 2);
@@ -349,6 +376,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         public new void MovePos()
         {
             if (++_cyclicBufferPos >= _cyclicBufferSize) {
@@ -360,6 +388,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         private static void NormalizeLinks(UInt32[] items, UInt32 numItems, UInt32 subValue)
         {
             for (UInt32 i = 0; i < numItems; i++)
@@ -374,6 +403,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         private void Normalize()
         {
             UInt32 subValue = _pos - _cyclicBufferSize;

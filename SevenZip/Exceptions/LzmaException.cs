@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -7,6 +8,7 @@ namespace SevenZip
     /// <summary>
     /// Exception class for LZMA operations.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "a3c323420e890497054cb6eaa7722a0fcfb96306c7a1dd0c1d866057fd00f94d", Stale = false, Path = "Exceptions/LzmaException.cs", Since = "2026-08-23")]
     [Serializable]
     public class LzmaException : SevenZipException
     {

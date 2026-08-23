@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -6,6 +7,7 @@ namespace SevenZip
     /// <summary>
     /// The set of features supported by the library.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:43Z", Digest = "5589d311440652e581fbcb84a7cce5df4f554c81ab94106f8a42bb611fe69bf0", Stale = false, Path = "LibraryFeature.cs", Since = "2026-08-23")]
     [Flags]
     [CLSCompliant(false)]
     public enum LibraryFeature : uint

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -7,6 +8,7 @@ namespace SevenZip
     /// <summary>
     /// Exception class for 7-zip sfx settings validation.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "f5b7081dd8ff92fdc4e070f72c021ddf797a582ca574e19ecabbe8731154074a", Stale = false, Path = "Exceptions/SevenZipSfxValidationException.cs", Since = "2026-08-23")]
     [Serializable]
     public class SevenZipSfxValidationException : SevenZipException
     {

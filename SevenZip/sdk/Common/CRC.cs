@@ -1,11 +1,18 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk
 {
+
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:44Z", Digest = "350698694eafae3341871b61d923e3848a87699114a9e33e5dac9cbc7db3fb06", Stale = true, Path = "sdk/Common/CRC.cs", Since = "2026-08-23")]
     internal class CRC
     {
+
+        /// <summary>Gets the table.</summary>
         public static readonly uint[] Table;
 
         private uint _value = 0xFFFFFFFF;
 
+        /// <summary>Initializes a new instance of <see cref="CRC"/>.</summary>
         static CRC()
         {
             Table = new uint[256];
@@ -31,16 +38,20 @@ namespace SevenZip.Sdk
             }
         }
 
+		/// <summary>TODO: LLM</summary>
 		public void Init() => _value = 0xFFFFFFFF;
 
+		/// <summary>TODO: LLM</summary>
 		public void UpdateByte(byte b) => _value = Table[(((byte) (_value)) ^ b)] ^ (_value >> 8);
 
+		/// <summary>TODO: LLM</summary>
 		public void Update(byte[] data, uint offset, uint size)
         {
             for (uint i = 0; i < size; i++)
                 _value = Table[(((byte) (_value)) ^ data[offset + i])] ^ (_value >> 8);
         }
 
+		/// <summary>TODO: LLM</summary>
 		public uint GetDigest() => _value ^ 0xFFFFFFFF;
 	}
 }

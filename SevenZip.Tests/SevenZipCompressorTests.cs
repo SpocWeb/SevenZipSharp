@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System;
@@ -13,6 +14,8 @@ namespace SevenZip.Tests
 
     using NUnit.Framework.Legacy;
 
+    /// <summary>Tests for seven Zip Compressor.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorTests : TestBase
     {
@@ -34,6 +37,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory — with Sfn Path.</summary>
         [Test]
         public void CompressDirectory_WithSfnPath()
         {
@@ -53,6 +57,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress Directory — non Existent Directory.</summary>
         [Test]
         public void CompressDirectory_NonExistentDirectory()
         {
@@ -62,6 +67,7 @@ namespace SevenZip.Tests
             Assert.Throws<ArgumentException>(() => compressor.CompressDirectory("", TemporaryFile));
         }
 
+        /// <summary>Compress File — with Sfn Path.</summary>
         [Test]
         public void CompressFile_WithSfnPath()
         {
@@ -80,6 +86,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress File Test.</summary>
         [Test]
         public void CompressFileTest()
         {
@@ -100,6 +107,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsTrue(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
         }
 
+        /// <summary>Compress Directory Test.</summary>
         [Test]
         public void CompressDirectoryTest()
         {
@@ -122,6 +130,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual(Directory.GetFiles("TestData").Select(Path.GetFileName).ToArray(), Directory.GetFiles(OutputDirectory).Select(Path.GetFileName).ToArray());
         }
 
+        /// <summary>Compress With Append Mode Test.</summary>
         [Test]
         public void CompressWithAppendModeTest()
         {
@@ -149,6 +158,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Modify Protected Archive Test.</summary>
         [Test]
         public void ModifyProtectedArchiveTest()
         {
@@ -177,6 +187,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Modify Non Archive Test.</summary>
         [Test]
         public void ModifyNonArchiveTest()
         {
@@ -192,6 +203,7 @@ namespace SevenZip.Tests
             Assert.Throws<SevenZipArchiveException>(() => compressor.ModifyArchive(TemporaryFile, modificationList));
         }
 
+        /// <summary>Compress With Modify Mode Rename Test.</summary>
         [Test]
         public void CompressWithModifyModeRenameTest()
         {
@@ -216,6 +228,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsFalse(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
         }
 
+        /// <summary>Compress With Modify Mode Delete Test.</summary>
         [Test]
         public void CompressWithModifyModeDeleteTest()
         {
@@ -239,6 +252,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsFalse(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")));
         }
 
+        /// <summary>Multi Volume Compression Test.</summary>
         [Test]
         public void MultiVolumeCompressionTest()
         {
@@ -255,6 +269,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsTrue(File.Exists($"{TemporaryFile}.003"));
         }
 
+        /// <summary>Compress To Stream Test.</summary>
         [Test]
         public void CompressToStreamTest()
         {
@@ -274,6 +289,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress From Stream Test.</summary>
         [Test]
         public void CompressFromStreamTest()
         {
@@ -300,6 +316,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Compress File Dictionary Test.</summary>
         [Test]
         public void CompressFileDictionaryTest()
         {
@@ -321,6 +338,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Threaded Compression Test.</summary>
         [Test]
         public void ThreadedCompressionTest()
         {
@@ -348,6 +366,7 @@ namespace SevenZip.Tests
 			ClassicAssert.IsTrue(File.Exists(tempFile2));
 		}
 
+        /// <summary>Compress Different Formats Test.</summary>
         [Test, TestCaseSource(nameof(CompressionMethods))]
         public void CompressDifferentFormatsTest(CompressionMethod method)
         {

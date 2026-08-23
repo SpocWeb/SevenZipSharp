@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System.Collections.Generic;
@@ -13,8 +14,11 @@ namespace SevenZip.Tests
     /// <summary>
     /// Test data to use for CheckFileSignatureTest.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "fa7a89f3b2d9944b3333bb79cdad1f85e5348c2ae2a018b5c685126d679bc06d", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     public struct FileCheckerTestData
     {
+
+        /// <summary>Initializes a new instance of <see cref="FileCheckerTestData"/> with the specified <paramref name="testDataFilePath"/> and <paramref name="expectedFormat"/>.</summary>
         public FileCheckerTestData(string testDataFilePath, InArchiveFormat expectedFormat)
         {
             TestDataFilePath = testDataFilePath;
@@ -33,11 +37,14 @@ namespace SevenZip.Tests
         [System.ComponentModel.Description("Path to archive file to test against.")]
         public string TestDataFilePath { get; }
 
+		/// <inheritdoc />
 		public override string ToString() =>
 			// Used to get useful test results.
 			ExpectedFormat.ToString();
 	}
 
+    /// <summary>Tests for file Checker.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "e6485fa88365900e876db4bdcf0071c3636e619745ee016da1e789a8e5f21ee9", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class FileCheckerTests
     {
@@ -87,6 +94,7 @@ namespace SevenZip.Tests
 			// Ensures we're in the correct working directory (for test data files).
 			Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
 
+		/// <summary>Check File Signature Test.</summary>
 		[TestCaseSource(nameof(TestData))]
         public void CheckFileSignatureTest(FileCheckerTestData data)
         {

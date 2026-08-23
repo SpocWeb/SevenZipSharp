@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -9,8 +10,11 @@ namespace SevenZip
     /// <summary>
     /// The stream which compresses data with LZMA on the fly.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "644b43dc464782171056f60190b1308d7ba5ca5debcee496cd30780052cf502e", Stale = true, Path = "LZMA/LzmaEncodeStream.cs", Since = "2026-08-23")]
     public class LzmaEncodeStream : Stream
     {
+
+        /// <summary>Specifies the constant max BUFFER CAPACITY.</summary>
         private const int MAX_BUFFER_CAPACITY = 1 << 30; //1 Gb
         private readonly MemoryStream _buffer = new MemoryStream();
         private readonly int _bufferCapacity = 1 << 18; //256 kb
@@ -147,6 +151,7 @@ namespace SevenZip
             set => throw new NotSupportedException();
         }
 
+        /// <summary>TODO: LLM</summary>
         private void Init()
         {
             _buffer.Capacity = _bufferCapacity;
@@ -168,6 +173,7 @@ namespace SevenZip
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         private void WriteChunk()
         {
             _lzmaEncoder.WriteCoderProperties(_output);

@@ -1,10 +1,15 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Compression.RangeCoder
 {
     using System;
     using System.IO;
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "0192f06a43b15370f75c9923b20f0e5e4d5efd6fab23cd2cbeabb2d0f6e23904", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
     internal class Encoder
     {
+
+        /// <summary>Specifies the constant k Top Value.</summary>
         public const uint kTopValue = (1 << 24);
         private byte _cache;
         private uint _cacheSize;
@@ -15,10 +20,13 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         private long StartPosition;
         private Stream Stream;
 
+		/// <summary>TODO: LLM</summary>
 		public void SetStream(Stream stream) => Stream = stream;
 
+		/// <summary>TODO: LLM</summary>
 		public void ReleaseStream() => Stream = null;
 
+		/// <summary>TODO: LLM</summary>
 		public void Init()
         {
             StartPosition = Stream.Position;
@@ -29,12 +37,14 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             _cache = 0;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void FlushData()
         {
             for (int i = 0; i < 5; i++)
                 ShiftLow();
         }
 
+		/// <summary>TODO: LLM</summary>
 		public void FlushStream() => Stream.Flush();
 
 		/*public void CloseStream()
@@ -53,6 +63,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			}
 		}*/
 
+		/// <summary>TODO: LLM</summary>
 		public void ShiftLow()
         {
             if ((uint) Low < 0xFF000000 || (uint) (Low >> 32) == 1)
@@ -69,6 +80,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             Low = ((uint) Low) << 8;
         }
 
+        /// <summary>TODO: LLM</summary>
         public void EncodeDirectBits(uint v, int numTotalBits)
         {
             for (int i = numTotalBits - 1; i >= 0; i--)
@@ -102,18 +114,24 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			}
 		}*/
 
+		/// <summary>TODO: LLM</summary>
 		public long GetProcessedSizeAdd() => _cacheSize +
 				   Stream.Position - StartPosition + 4;// (long)Stream.GetProcessedSize();
 	}
 
+    /// <summary>TODO: LLM</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "44a865a4a0cc0dc8e020fb1ca33fe946485b9ba56a41931a9a2124b679922079", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
     internal class Decoder
     {
+
+        /// <summary>Specifies the constant k Top Value.</summary>
         public const uint kTopValue = (1 << 24);
         public uint Code;
         public uint Range;
         // public Buffer.InBuffer Stream = new Buffer.InBuffer(1 << 16);
         public Stream Stream;
 
+        /// <summary>TODO: LLM</summary>
         public void Init(Stream stream)
         {
             // Stream.Init(stream);
@@ -125,6 +143,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
                 Code = (Code << 8) | (byte) Stream.ReadByte();
         }
 
+		/// <summary>TODO: LLM</summary>
 		public void ReleaseStream() =>
 			// Stream.ReleaseStream();
 			Stream = null;
@@ -164,6 +183,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			Normalize();
 		}*/
 
+		/// <summary>TODO: LLM</summary>
 		public uint DecodeDirectBits(int numTotalBits)
         {
             uint range = Range;

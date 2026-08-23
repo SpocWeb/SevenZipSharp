@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -20,6 +21,7 @@ namespace SevenZip
     ///     extr.ExtractArchive(@"C:\TestDirectory");
     /// }
     /// </example>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "9fb460c27a3a4da1c16e090229ac9a950b07280e49ed70d7c241752e417a625d", Stale = true, Path = "SevenZipExtractor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipExtractor
 #if UNMANAGED
         : SevenZipBase, IDisposable
@@ -1367,6 +1369,7 @@ namespace SevenZip
 
         #region LZMA SDK functions
 
+        /// <summary>TODO: LLM</summary>
         internal static byte[] GetLzmaProperties(Stream inStream, out long outSize)
         {
             var lzmAproperties = new byte[5];

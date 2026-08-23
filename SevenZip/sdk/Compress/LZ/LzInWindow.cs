@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Compression.LZ
 {
     using System;
@@ -7,6 +8,7 @@ namespace SevenZip.Sdk.Compression.LZ
     /// <summary>
     /// Input window class
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "7cbaf6eeef7a4554e2d6fce5510458561c06e0d9c8c464c3ed50f20b828f0efe", Stale = true, Path = "sdk/Compress/LZ/LzInWindow.cs", Since = "2026-08-23")]
     internal class InWindow
     {
         /// <summary>
@@ -50,6 +52,7 @@ namespace SevenZip.Sdk.Compression.LZ
         /// </summary>
         public UInt32 _streamPos;
 
+        /// <summary>TODO: LLM</summary>
         public void MoveBlock()
         {
             UInt32 offset = (_bufferOffset) + _pos - _keepSizeBefore;
@@ -66,6 +69,7 @@ namespace SevenZip.Sdk.Compression.LZ
             _bufferOffset -= offset;
         }
 
+        /// <summary>TODO: LLM</summary>
         public virtual void ReadBlock()
         {
             if (_streamEndWasReached) {
@@ -96,8 +100,10 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+		/// <summary>TODO: LLM</summary>
 		private void Free() => _bufferBase = null;
 
+		/// <summary>TODO: LLM</summary>
 		public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
         {
             _keepSizeBefore = keepSizeBefore;
@@ -112,10 +118,13 @@ namespace SevenZip.Sdk.Compression.LZ
             _pointerToLastSafePosition = _blockSize - keepSizeAfter;
         }
 
+		/// <summary>TODO: LLM</summary>
 		public void SetStream(Stream stream) => _stream = stream;
 
+		/// <summary>TODO: LLM</summary>
 		public void ReleaseStream() => _stream = null;
 
+		/// <summary>TODO: LLM</summary>
 		public void Init()
         {
             _bufferOffset = 0;
@@ -125,6 +134,7 @@ namespace SevenZip.Sdk.Compression.LZ
             ReadBlock();
         }
 
+        /// <summary>TODO: LLM</summary>
         public void MovePos()
         {
             _pos++;
@@ -138,6 +148,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
+		/// <summary>TODO: LLM</summary>
 		public Byte GetIndexByte(Int32 index) => _bufferBase[_bufferOffset + _pos + index];
 
 		/// <summary>
@@ -164,8 +175,10 @@ namespace SevenZip.Sdk.Compression.LZ
             return i;
         }
 
+		/// <summary>TODO: LLM</summary>
 		public UInt32 GetNumAvailableBytes() => _streamPos - _pos;
 
+		/// <summary>TODO: LLM</summary>
 		public void ReduceOffsets(Int32 subValue)
         {
             _bufferOffset += (UInt32) subValue;

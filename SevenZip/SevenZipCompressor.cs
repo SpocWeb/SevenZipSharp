@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip
 {
     using System;
@@ -21,6 +22,7 @@ namespace SevenZip
     /// var compr = new SevenZipCompressor();
     /// compr.CompressDirectory(@"C:\Dir", @"C:\Archive.7z");
     /// </example>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "de122e951a07cac5c9e2d45bd5e735eacb7c9394c20fbbb982007006ca989714", Stale = true, Path = "SevenZipCompressor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipCompressor
 #if UNMANAGED
         : SevenZipBase
@@ -1737,6 +1739,7 @@ namespace SevenZip
             set => _lzmaDictionarySize = value;
         }
 
+        /// <summary>TODO: LLM</summary>
         internal static void WriteLzmaProperties(Encoder encoder)
         {
 #region LZMA properties definition

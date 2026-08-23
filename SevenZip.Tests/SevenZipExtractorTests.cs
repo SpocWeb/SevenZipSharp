@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System;
@@ -13,9 +14,12 @@ namespace SevenZip.Tests
 
     using NUnit.Framework.Legacy;
 
+    /// <summary>Tests for seven Zip Extractor.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "dde28f0e288e410981650752ea40bd740da8ebcf478f6fd83adba1e228529739", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipExtractorTests : TestBase
     {
+
         public static List<TestFile> TestFiles
         {
             get
@@ -36,6 +40,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Files Test.</summary>
         [Test]
         public void ExtractFilesTest()
         {
@@ -50,6 +55,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Specific Files Test.</summary>
         [Test]
         public void ExtractSpecificFilesTest()
         {
@@ -64,6 +70,7 @@ namespace SevenZip.Tests
             ClassicAssert.Contains(Path.Combine(OutputDirectory, "file3.txt"), Directory.GetFiles(OutputDirectory));
         }
 
+        /// <summary>Extract Archive Multi Volumes Test.</summary>
         [Test]
         public void ExtractArchiveMultiVolumesTest()
         {
@@ -76,6 +83,7 @@ namespace SevenZip.Tests
             ClassicAssert.IsTrue(File.ReadAllText(Directory.GetFiles(OutputDirectory)[0]).StartsWith("Lorem ipsum dolor sit amet"));
         }
 
+        /// <summary>Extraction With Cancellation Test.</summary>
         [Test]
         public void ExtractionWithCancellationTest()
         {
@@ -95,6 +103,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction With Skip Test.</summary>
         [Test]
         public void ExtractionWithSkipTest()
         {
@@ -114,6 +123,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction From Stream Test.</summary>
         [Test]
         public void ExtractionFromStreamTest()
         {
@@ -126,6 +136,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extraction To Stream Test.</summary>
         [Test]
         public void ExtractionToStreamTest()
         {
@@ -144,6 +155,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual("file2", File.ReadAllText(extractedFile));
         }
 
+        /// <summary>Detect Multi Volume Index Test.</summary>
         [Test]
         public void DetectMultiVolumeIndexTest()
         {
@@ -160,6 +172,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Threaded Extraction Test.</summary>
         [Test]
         public void ThreadedExtractionTest()
         {
@@ -192,6 +205,7 @@ namespace SevenZip.Tests
 	        ClassicAssert.AreEqual(3, Directory.GetFiles(destination2).Length);
 		}
 
+        /// <summary>Extract Archive With Long Path.</summary>
         [Test]
         public void ExtractArchiveWithLongPath()
         {
@@ -201,6 +215,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Read Archived File Names.</summary>
         [Test]
         public void ReadArchivedFileNames()
         {
@@ -215,6 +230,7 @@ namespace SevenZip.Tests
             }
         }
         
+        /// <summary>Read Archived File Data.</summary>
         [Test]
         public void ReadArchivedFileData()
         {
@@ -229,6 +245,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Extract Different Formats Test.</summary>
         [Test, TestCaseSource(nameof(TestFiles))]
         public void ExtractDifferentFormatsTest(TestFile file)
         {
@@ -243,8 +260,10 @@ namespace SevenZip.Tests
     /// <summary>
     /// Simple wrapper to get better names for ExtractDifferentFormatsTest results.
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     public class TestFile
     {
+
         public string FilePath { get; }
 
         public TestFile(string filePath)

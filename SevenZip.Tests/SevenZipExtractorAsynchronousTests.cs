@@ -1,3 +1,4 @@
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System.IO;
@@ -7,9 +8,13 @@ namespace SevenZip.Tests
 
     using NUnit.Framework.Legacy;
 
+    /// <summary>Tests for seven Zip Extractor Asynchronous.</summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "fff1830b02b33e3b563ad797e03ec0353d38ee52623aaf8392011933bc9024ff", Stale = false, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
     public class SevenZipExtractorAsynchronousTests : TestBase
     {
+
+        /// <summary>Asynchronous Extract Archive Events Test.</summary>
         [Test]
         public void AsynchronousExtractArchiveEventsTest()
         {
@@ -68,6 +73,7 @@ namespace SevenZip.Tests
             }
         }
 
+        /// <summary>Asynchronous Extract File Events Test.</summary>
         [Test]
         public void AsynchronousExtractFileEventsTest()
         {
@@ -100,6 +106,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
+        /// <summary>Asynchronous Extract Files Events Test.</summary>
         [Test]
         public void AsynchronousExtractFilesEventsTest()
         {
@@ -130,6 +137,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
 
+        /// <summary>Extract Archive Async.</summary>
         [Test]
         public async Task ExtractArchiveAsync()
         {
@@ -141,6 +149,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual(3, Directory.GetFiles(OutputDirectory).Length);
         }
 
+        /// <summary>Extract File Async — by Index.</summary>
         [Test]
         public async Task ExtractFileAsync_ByIndex()
         {
@@ -156,6 +165,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
+        /// <summary>Extract File Async — by File Name.</summary>
         [Test]
         public async Task ExtractFileAsync_ByFileName()
         {
@@ -171,6 +181,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual("file1", File.ReadAllText(TemporaryFile));
         }
 
+        /// <summary>Extract Files Async — by Callback.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByCallback()
         {
@@ -182,6 +193,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual(1, Directory.GetFiles(OutputDirectory).Length);
         }
 
+        /// <summary>Extract Files Async — by Index.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByIndex()
         {
@@ -193,6 +205,7 @@ namespace SevenZip.Tests
             ClassicAssert.AreEqual(2, Directory.GetFiles(OutputDirectory).Length);
         }
 
+        /// <summary>Extract Files Async — by File Name.</summary>
         [Test]
         public async Task ExtractFilesAsync_ByFileName()
         {

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk.Compression.Lzma
 {
     using System;
@@ -10,6 +11,7 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// <summary>
     /// The LZMA decoder class
     /// </summary>
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "29af3792e06e534f907e043c4024d836d77dda396ffb0f930905fb03232ac102", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
     public class Decoder : ICoder, ISetDecoderProperties // ,System.IO.Stream
     {
         private readonly BitDecoder[] m_IsMatchDecoders = new BitDecoder[Base.kNumStates << Base.kNumPosStatesBitsMax];
@@ -220,6 +222,7 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #endregion
 
+        /// <summary>TODO: LLM</summary>
         private void SetDictionarySize(uint dictionarySize)
         {
             if (m_DictionarySize != dictionarySize)
@@ -231,6 +234,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
+        /// <summary>TODO: LLM</summary>
         private void SetLiteralProperties(int lp, int lc)
         {
             if (lp > 8) {
@@ -242,6 +246,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             m_LiteralDecoder.Create(lp, lc);
         }
 
+        /// <summary>TODO: LLM</summary>
         private void SetPosBitsProperties(int pb)
         {
             if (pb > Base.kNumPosStatesBitsMax) {
@@ -253,6 +258,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             m_PosStateMask = numPosStates - 1;
         }
 
+        /// <summary>TODO: LLM</summary>
         private void Init(Stream inStream, Stream outStream)
         {
             m_RangeDecoder.Init(inStream);
@@ -299,6 +305,8 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenDecoder
 
+        /// <summary>TODO: LLM</summary>
+        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "7f220484d76e01e8988c3d049f63515b3d15bbff9a9c85ed7e2c7ac867e9c2e3", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
         private class LenDecoder
         {
             private readonly BitTreeDecoder[] m_LowCoder = new BitTreeDecoder[Base.kNumPosStatesMax];
@@ -308,6 +316,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             private BitTreeDecoder m_HighCoder = new BitTreeDecoder(Base.kNumHighLenBits);
             private uint m_NumPosStates;
 
+            /// <summary>TODO: LLM</summary>
             internal void Create(uint numPosStates)
             {
                 for (uint posState = m_NumPosStates; posState < numPosStates; posState++)
@@ -318,6 +327,7 @@ namespace SevenZip.Sdk.Compression.Lzma
                 m_NumPosStates = numPosStates;
             }
 
+            /// <summary>TODO: LLM</summary>
             internal void Init()
             {
                 m_Choice.Init();
@@ -360,6 +370,8 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LiteralDecoder
 
+        /// <summary>TODO: LLM</summary>
+        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
         private class LiteralDecoder
         {
             private Decoder2[] m_Coders;
@@ -367,6 +379,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             private int m_NumPrevBits;
             private uint m_PosMask;
 
+            /// <summary>TODO: LLM</summary>
             public void Create(int numPosBits, int numPrevBits)
             {
                 if (m_Coders != null && m_NumPrevBits == numPrevBits &&
@@ -382,6 +395,7 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Create();
             }
 
+            /// <summary>TODO: LLM</summary>
             public void Init()
             {
                 uint numStates = (uint) 1 << (m_NumPrevBits + m_NumPosBits);
@@ -389,25 +403,33 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
+			/// <summary>TODO: LLM</summary>
 			private uint GetState(uint pos, byte prevByte) => ((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits));
 
+			/// <summary>TODO: LLM</summary>
 			public byte DecodeNormal(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte) => m_Coders[GetState(pos, prevByte)].DecodeNormal(rangeDecoder);
 
+			/// <summary>TODO: LLM</summary>
 			public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte, byte matchByte) => m_Coders[GetState(pos, prevByte)].DecodeWithMatchByte(rangeDecoder, matchByte);
 
 			#region Nested type: Decoder2
 
+			/// <summary>TODO: LLM</summary>
+			[DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "c614671c19c02e8cf5e46a266bf981def0dccbaf19bbb3e427fce14d73e24f64", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
 			private struct Decoder2
             {
                 private BitDecoder[] m_Decoders;
 
+				/// <summary>TODO: LLM</summary>
 				public void Create() => m_Decoders = new BitDecoder[0x300];
 
+				/// <summary>TODO: LLM</summary>
 				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Decoders[i].Init();
                 }
 
+                /// <summary>TODO: LLM</summary>
                 public byte DecodeNormal(RangeCoder.Decoder rangeDecoder)
                 {
                     uint symbol = 1;
@@ -416,6 +438,7 @@ namespace SevenZip.Sdk.Compression.Lzma
                     return (byte) symbol;
                 }
 
+                /// <summary>TODO: LLM</summary>
                 public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, byte matchByte)
                 {
                     uint symbol = 1;
