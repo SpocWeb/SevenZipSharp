@@ -15,7 +15,7 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Compressor.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "12b1e638a4508aa7b1174da7414e032968026416c595bc26d0be69a44dbe1d26", Stale = true, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorTests : TestBase
     {

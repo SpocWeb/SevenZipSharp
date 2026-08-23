@@ -9,7 +9,7 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Extractor Asynchronous.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "fff1830b02b33e3b563ad797e03ec0353d38ee52623aaf8392011933bc9024ff", Stale = false, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "c2e116caa26548f79ad9b94ecf04d357b19cb00eb7fa6f9da30ebaac67f94be0", Stale = true, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
     public class SevenZipExtractorAsynchronousTests : TestBase
     {
