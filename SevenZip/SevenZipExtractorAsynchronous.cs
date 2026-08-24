@@ -21,12 +21,12 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 129 | <see cref="BeginExtractArchive"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
-    /// | 141 | <see cref="ExtractArchiveAsync"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
-    /// | 160 | <see cref="BeginExtractFile"/> | Unpacks the file asynchronously by its name to the specified stream. |
-    /// | 173 | <see cref="ExtractFileAsync"/> | Unpacks the file asynchronously by its name to the specified stream. |
-    /// | 289 | <see cref="BeginExtractFiles"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
-    /// | 303 | <see cref="ExtractFilesAsync"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
+    /// | 133 | <see cref="BeginExtractArchive"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
+    /// | 145 | <see cref="ExtractArchiveAsync"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
+    /// | 164 | <see cref="BeginExtractFile"/> | Unpacks the file asynchronously by its name to the specified stream. |
+    /// | 177 | <see cref="ExtractFileAsync"/> | Unpacks the file asynchronously by its name to the specified stream. |
+    /// | 293 | <see cref="BeginExtractFiles"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
+    /// | 307 | <see cref="ExtractFilesAsync"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
     /// </remarks>
     /// <seealso cref="ExtractFileCallback">ExtractFileCallback: Callback invoked for each archive member during callback-driven extraction.</seealso>
     [DocState(Pass = 2, MTime = "2026-08-24T14:23:33Z", Digest = "7d2cdcccb7dadd2da9a8055bba8d94331a13ba54d26c520a70ae7f1cb6468524", Stale = false, Path = "SevenZipExtractorAsynchronous.cs", Since = "2026-08-23")]

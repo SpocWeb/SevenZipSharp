@@ -8,6 +8,23 @@ namespace SevenZip
     /// <summary>
     /// Exception class for LZMA operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    /// | 47 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    /// | 55 | <see cref="LzmaException"/> | Initializes a new instance of the LzmaException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "a3c323420e890497054cb6eaa7722a0fcfb96306c7a1dd0c1d866057fd00f94d", Stale = false, Path = "Exceptions/LzmaException.cs", Since = "2026-08-23")]
     [Serializable]
     public class LzmaException : SevenZipException

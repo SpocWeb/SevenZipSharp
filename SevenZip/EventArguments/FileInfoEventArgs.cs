@@ -5,6 +5,22 @@ namespace SevenZip
     /// <summary>
     /// EventArgs used to report the file information which is going to be packed.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 34 | <see cref="FileInfoEventArgs"/> | Initializes a new instance of the FileInfoEventArgs class. |
+    /// | 44 | <see cref="Cancel"/> | Gets or sets whether to stop the current archive operation. |
+    /// | 50 | <see cref="Skip"/> | Gets or sets whether to skip the current file. |
+    /// | 56 | <see cref="FileInfo"/> | Gets the corresponding FileInfo to the event. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="ArchiveFileInfo"/> | Used as a field. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "097e5d4153c9d338237ae08235d531fed7d16a2a904e70c20e95de09caf7b56c", Stale = false, Path = "EventArguments/FileInfoEventArgs.cs", Since = "2026-08-23")]
     public sealed class FileInfoEventArgs : PercentDoneEventArgs, ICancellable
     {

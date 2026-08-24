@@ -1,4 +1,4 @@
-using org.SpocWeb.root.Attributes;
+﻿using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {
     using System.IO;

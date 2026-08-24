@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Base SevenZip exception class.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 42 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 49 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 58 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 68 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    /// | 80 | <see cref="SevenZipException"/> | Initializes a new instance of the SevenZipException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "72b28c3fc269b6d34f1a34ee59c085c9b16ad1e31daad46a871de15fd5a60d27", Stale = false, Path = "Exceptions/SevenZipException.cs", Since = "2026-08-23")]
     [Serializable]
     public class SevenZipException : Exception

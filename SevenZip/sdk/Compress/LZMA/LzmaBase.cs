@@ -9,34 +9,34 @@ namespace SevenZip.Sdk.Compression.Lzma
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 12 | <see cref="kAlignMask"/> | Specifies the constant k Align Mask. |
-    /// | 15 | <see cref="kAlignTableSize"/> | Specifies the constant k Align Table Size. |
-    /// | 18 | <see cref="kDicLogSizeMin"/> | Specifies the constant k Dic Log Size Min. |
-    /// | 21 | <see cref="kEndPosModelIndex"/> | Specifies the constant k End Pos Model Index. |
-    /// | 24 | <see cref="kMatchMaxLen"/> | Specifies the constant k Match Max Len. |
-    /// | 29 | <see cref="kMatchMinLen"/> | Specifies the constant k Match Min Len. |
-    /// | 32 | <see cref="kNumAlignBits"/> | Specifies the constant k Num Align Bits. |
-    /// | 35 | <see cref="kNumFullDistances"/> | Specifies the constant k Num Full Distances. |
-    /// | 38 | <see cref="kNumHighLenBits"/> | Specifies the constant k Num High Len Bits. |
-    /// | 41 | <see cref="kNumLenSymbols"/> | Specifies the constant k Num Len Symbols. |
-    /// | 45 | <see cref="kNumLenToPosStates"/> | Specifies the constant k Num Len To Pos States. |
-    /// | 48 | <see cref="kNumLenToPosStatesBits"/> | Specifies the constant k Num Len To Pos States Bits. |
-    /// | 51 | <see cref="kNumLitContextBitsMax"/> | Specifies the constant k Num Lit Context Bits Max. |
-    /// | 54 | <see cref="kNumLitPosStatesBitsEncodingMax"/> | Specifies the constant k Num Lit Pos States Bits Encoding Max. |
-    /// | 57 | <see cref="kNumLowLenBits"/> | Specifies the constant k Num Low Len Bits. |
-    /// | 60 | <see cref="kNumLowLenSymbols"/> | Specifies the constant k Num Low Len Symbols. |
-    /// | 63 | <see cref="kNumMidLenBits"/> | Specifies the constant k Num Mid Len Bits. |
-    /// | 66 | <see cref="kNumMidLenSymbols"/> | Specifies the constant k Num Mid Len Symbols. |
-    /// | 69 | <see cref="kNumPosModels"/> | Specifies the constant k Num Pos Models. |
-    /// | 72 | <see cref="kNumPosSlotBits"/> | Specifies the constant k Num Pos Slot Bits. |
-    /// | 75 | <see cref="kNumPosStatesBitsEncodingMax"/> | Specifies the constant k Num Pos States Bits Encoding Max. |
-    /// | 78 | <see cref="kNumPosStatesBitsMax"/> | Specifies the constant k Num Pos States Bits Max. |
-    /// | 81 | <see cref="kNumPosStatesEncodingMax"/> | Specifies the constant k Num Pos States Encoding Max. |
-    /// | 84 | <see cref="kNumPosStatesMax"/> | Specifies the constant k Num Pos States Max. |
-    /// | 87 | <see cref="kNumRepDistances"/> | Specifies the constant k Num Rep Distances. |
-    /// | 90 | <see cref="kNumStates"/> | Specifies the constant k Num States. |
-    /// | 93 | <see cref="kStartPosModelIndex"/> | Specifies the constant k Start Pos Model Index. |
-    /// | 98 | <see cref="GetLenToPosState"/> | Computes the position state for the given match length, clamped to   the maximum valid state. |
+    /// | 52 | <see cref="kAlignMask"/> | Specifies the constant k Align Mask. |
+    /// | 55 | <see cref="kAlignTableSize"/> | Specifies the constant k Align Table Size. |
+    /// | 58 | <see cref="kDicLogSizeMin"/> | Specifies the constant k Dic Log Size Min. |
+    /// | 61 | <see cref="kEndPosModelIndex"/> | Specifies the constant k End Pos Model Index. |
+    /// | 64 | <see cref="kMatchMaxLen"/> | Specifies the constant k Match Max Len. |
+    /// | 69 | <see cref="kMatchMinLen"/> | Specifies the constant k Match Min Len. |
+    /// | 72 | <see cref="kNumAlignBits"/> | Specifies the constant k Num Align Bits. |
+    /// | 75 | <see cref="kNumFullDistances"/> | Specifies the constant k Num Full Distances. |
+    /// | 78 | <see cref="kNumHighLenBits"/> | Specifies the constant k Num High Len Bits. |
+    /// | 81 | <see cref="kNumLenSymbols"/> | Specifies the constant k Num Len Symbols. |
+    /// | 85 | <see cref="kNumLenToPosStates"/> | Specifies the constant k Num Len To Pos States. |
+    /// | 88 | <see cref="kNumLenToPosStatesBits"/> | Specifies the constant k Num Len To Pos States Bits. |
+    /// | 91 | <see cref="kNumLitContextBitsMax"/> | Specifies the constant k Num Lit Context Bits Max. |
+    /// | 94 | <see cref="kNumLitPosStatesBitsEncodingMax"/> | Specifies the constant k Num Lit Pos States Bits Encoding Max. |
+    /// | 97 | <see cref="kNumLowLenBits"/> | Specifies the constant k Num Low Len Bits. |
+    /// | 100 | <see cref="kNumLowLenSymbols"/> | Specifies the constant k Num Low Len Symbols. |
+    /// | 103 | <see cref="kNumMidLenBits"/> | Specifies the constant k Num Mid Len Bits. |
+    /// | 106 | <see cref="kNumMidLenSymbols"/> | Specifies the constant k Num Mid Len Symbols. |
+    /// | 109 | <see cref="kNumPosModels"/> | Specifies the constant k Num Pos Models. |
+    /// | 112 | <see cref="kNumPosSlotBits"/> | Specifies the constant k Num Pos Slot Bits. |
+    /// | 115 | <see cref="kNumPosStatesBitsEncodingMax"/> | Specifies the constant k Num Pos States Bits Encoding Max. |
+    /// | 118 | <see cref="kNumPosStatesBitsMax"/> | Specifies the constant k Num Pos States Bits Max. |
+    /// | 121 | <see cref="kNumPosStatesEncodingMax"/> | Specifies the constant k Num Pos States Encoding Max. |
+    /// | 124 | <see cref="kNumPosStatesMax"/> | Specifies the constant k Num Pos States Max. |
+    /// | 127 | <see cref="kNumRepDistances"/> | Specifies the constant k Num Rep Distances. |
+    /// | 130 | <see cref="kNumStates"/> | Specifies the constant k Num States. |
+    /// | 133 | <see cref="kStartPosModelIndex"/> | Specifies the constant k Start Pos Model Index. |
+    /// | 138 | <see cref="GetLenToPosState"/> | Computes the position state for the given match length, clamped to   the maximum valid state. |
     ///
     /// ## Collaborators
     ///
@@ -153,12 +153,12 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 117 | <see cref="Init"/> | Initializes the state index to zero. |
-        /// | 120 | <see cref="UpdateChar"/> | Transitions the state after matching a literal character. |
-        /// | 132 | <see cref="UpdateMatch"/> | Transitions the state after matching a string sequence. |
-        /// | 135 | <see cref="UpdateRep"/> | Transitions the state after repeating a previously matched sequence. |
-        /// | 138 | <see cref="UpdateShortRep"/> | Transitions the state after a short repeat match. |
-        /// | 141 | <see cref="IsCharState"/> | Determines whether char State. |
+        /// | 169 | <see cref="Init"/> | Initializes the state index to zero. |
+        /// | 172 | <see cref="UpdateChar"/> | Transitions the state after matching a literal character. |
+        /// | 184 | <see cref="UpdateMatch"/> | Transitions the state after matching a string sequence. |
+        /// | 187 | <see cref="UpdateRep"/> | Transitions the state after repeating a previously matched sequence. |
+        /// | 190 | <see cref="UpdateShortRep"/> | Transitions the state after a short repeat match. |
+        /// | 193 | <see cref="IsCharState"/> | Determines whether char State. |
         /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-24T13:58:58Z", Digest = "59737f0501ed960b4514767c70dcc0e5871dd31ae9141ea42d67237cf1cfcb88", Stale = false, Path = "sdk/Compress/LZMA/LzmaBase.cs", Since = "2026-08-23")]
         public struct State

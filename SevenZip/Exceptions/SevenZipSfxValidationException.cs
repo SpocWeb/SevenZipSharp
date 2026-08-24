@@ -8,6 +8,23 @@ namespace SevenZip
     /// <summary>
     /// Exception class for 7-zip sfx settings validation.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DefaultMessage"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    /// | 47 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    /// | 55 | <see cref="SevenZipSfxValidationException"/> | Initializes a new instance of the SevenZipSfxValidationException class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="SerializationInfo"/> | Passed as a parameter. |
+    /// | <see cref="StreamingContext"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "f5b7081dd8ff92fdc4e070f72c021ddf797a582ca574e19ecabbe8731154074a", Stale = false, Path = "Exceptions/SevenZipSfxValidationException.cs", Since = "2026-08-23")]
     [Serializable]
     public class SevenZipSfxValidationException : SevenZipException

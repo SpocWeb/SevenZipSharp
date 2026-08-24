@@ -25,15 +25,15 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 17 | <see cref="CompressWithCustomParameters_OnlyWorksWithCorrectMethod"/> | Compress With Custom Parameters - only Works With Correct Method. |
-    /// | 36 | <see cref="InvalidCustomParameters_Throws"/> | Invalid Custom Parameters - throws. |
-    /// | 53 | <see cref="Zip_Deflate_WithCustomParameters"/> | Zip - deflate - with Custom Parameters. |
-    /// | 74 | <see cref="Zip_Deflate64_WithCustomParameters"/> | Zip - deflate64 - with Custom Parameters. |
-    /// | 95 | <see cref="Zip_PPMd_WithCustomParameters"/> | Zip - pp Md - with Custom Parameters. |
-    /// | 111 | <see cref="Zip_BZip2_WithCustomParameters"/> | Zip - b Zip2 - with Custom Parameters. |
-    /// | 129 | <see cref="SevenZip_Default_WithCustomParameters"/> | Seven Zip - default - with Custom Parameters. |
-    /// | 155 | <see cref="SevenZip_Lzma_WithCustomParameters"/> | Seven Zip - lzma - with Custom Parameters. |
-    /// | 177 | <see cref="SevenZip_Lzma2_WithCustomParameters"/> | Seven Zip - lzma2 - with Custom Parameters. |
+    /// | 47 | <see cref="CompressWithCustomParameters_OnlyWorksWithCorrectMethod"/> | Compress With Custom Parameters — only Works With Correct Method. |
+    /// | 66 | <see cref="InvalidCustomParameters_Throws"/> | Invalid Custom Parameters — throws. |
+    /// | 83 | <see cref="Zip_Deflate_WithCustomParameters"/> | Zip — deflate — with Custom Parameters. |
+    /// | 104 | <see cref="Zip_Deflate64_WithCustomParameters"/> | Zip — deflate64 — with Custom Parameters. |
+    /// | 125 | <see cref="Zip_PPMd_WithCustomParameters"/> | Zip — pp Md — with Custom Parameters. |
+    /// | 141 | <see cref="Zip_BZip2_WithCustomParameters"/> | Zip — b Zip2 — with Custom Parameters. |
+    /// | 159 | <see cref="SevenZip_Default_WithCustomParameters"/> | Seven Zip — default — with Custom Parameters. |
+    /// | 185 | <see cref="SevenZip_Lzma_WithCustomParameters"/> | Seven Zip — lzma — with Custom Parameters. |
+    /// | 207 | <see cref="SevenZip_Lzma2_WithCustomParameters"/> | Seven Zip — lzma2 — with Custom Parameters. |
     ///
     /// See https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm for parameter details.
     /// </remarks>

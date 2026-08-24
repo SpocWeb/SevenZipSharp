@@ -7,6 +7,14 @@ namespace SevenZip
     /// <summary>
     /// EventArgs for storing PercentDone property.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 28 | <see cref="PercentDoneEventArgs"/> | Initializes a new instance of the PercentDoneEventArgs class. |
+    /// | 42 | <see cref="PercentDone"/> | Gets the percent of finished work. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "fcc9dfbeac1504d9102c3708677713d7c201d569b8af5f88940bc1efc32df227", Stale = false, Path = "EventArguments/PercentDoneEventArgs.cs", Since = "2026-08-23")]
     public class PercentDoneEventArgs : EventArgs
     {

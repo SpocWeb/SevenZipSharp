@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using org.SpocWeb.root.Attributes;
 namespace SevenZip.Tests
 {

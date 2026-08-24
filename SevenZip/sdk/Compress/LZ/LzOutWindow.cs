@@ -10,14 +10,14 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 32 | <see cref="Create"/> | Creates or resizes the output window buffer to the specified size. |
-    /// | 48 | <see cref="Init"/> | Initializes the output window with the target stream. |
-    /// | 64 | <see cref="Train"/> | Loads data from the stream into the window for initial training. |
-    /// | 92 | <see cref="ReleaseStream"/> | Flushes any pending data and releases the output stream. |
-    /// | 99 | <see cref="Flush"/> | Writes buffered data to the output stream and updates the window position. |
-    /// | 118 | <see cref="CopyBlock"/> | Copies data from the specified distance-back within the window, repeating for  the given length. |
-    /// | 138 | <see cref="PutByte"/> | Writes a byte to the output window, flushing automatically if the window is full. |
-    /// | 149 | <see cref="GetByte"/> | Retrieves the byte at the specified distance-back from the current position. |
+    /// | 33 | <see cref="Create"/> | Creates or resizes the output window buffer to the specified size. |
+    /// | 49 | <see cref="Init"/> | Initializes the output window with the target stream. |
+    /// | 65 | <see cref="Train"/> | Loads data from the stream into the window for initial training. |
+    /// | 93 | <see cref="ReleaseStream"/> | Flushes any pending data and releases the output stream. |
+    /// | 100 | <see cref="Flush"/> | Writes buffered data to the output stream and updates the window position. |
+    /// | 119 | <see cref="CopyBlock"/> | Copies data from the specified distance-back within the window, repeating for  the given length. |
+    /// | 139 | <see cref="PutByte"/> | Writes a byte to the output window, flushing automatically if the window is full. |
+    /// | 150 | <see cref="GetByte"/> | Retrieves the byte at the specified distance-back from the current position. |
     /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-24T13:58:14Z", Digest = "d07b9a965a5b1e5e651084ed25fc9f752894566cc9123f589c3072f9f00417e1", Stale = false, Path = "sdk/Compress/LZ/LzOutWindow.cs", Since = "2026-08-23")]
     internal class OutWindow

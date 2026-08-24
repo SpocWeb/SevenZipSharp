@@ -13,17 +13,17 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 80 | <see cref="MoveBlock"/> | Compacts buffer data by discarding bytes before the keep-before boundary,  adjusting position tracking accordingly. |
-    /// | 97 | <see cref="ReadBlock"/> | Reads data from the stream into the buffer until the stream ends or  sufficient data is available after the current position. |
-    /// | 131 | <see cref="Create"/> | Allocates and initializes the buffer with the specified keep-before,  keep-after, and reserve sizes. |
-    /// | 146 | <see cref="SetStream"/> | Associates the stream to read data from. |
-    /// | 149 | <see cref="ReleaseStream"/> | Disassociates the stream. |
-    /// | 152 | <see cref="Init"/> | Initializes the window state and reads the first data block from the stream. |
-    /// | 162 | <see cref="MovePos"/> | Advances the current position by one byte, triggering buffer  compaction and stream read when necessary. |
-    /// | 176 | <see cref="GetIndexByte"/> | Returns the byte at the specified index offset from the current position. |
-    /// | 185 | <see cref="GetMatchLen"/> | index + limit have not to exceed _keepSizeAfter |
-    /// | 203 | <see cref="GetNumAvailableBytes"/> | Returns the count of unread bytes from the current position to the stream position. |
-    /// | 206 | <see cref="ReduceOffsets"/> | Subtracts a value from all position-tracking fields. |
+    /// | 83 | <see cref="MoveBlock"/> | Compacts buffer data by discarding bytes before the keep-before boundary,  adjusting position tracking accordingly. |
+    /// | 100 | <see cref="ReadBlock"/> | Reads data from the stream into the buffer until the stream ends or  sufficient data is available after the current position. |
+    /// | 134 | <see cref="Create"/> | Allocates and initializes the buffer with the specified keep-before,  keep-after, and reserve sizes. |
+    /// | 149 | <see cref="SetStream"/> | Associates the stream to read data from. |
+    /// | 152 | <see cref="ReleaseStream"/> | Disassociates the stream. |
+    /// | 155 | <see cref="Init"/> | Initializes the window state and reads the first data block from the stream. |
+    /// | 165 | <see cref="MovePos"/> | Advances the current position by one byte, triggering buffer  compaction and stream read when necessary. |
+    /// | 179 | <see cref="GetIndexByte"/> | Returns the byte at the specified index offset from the current position. |
+    /// | 188 | <see cref="GetMatchLen"/> | index + limit have not to exceed _keepSizeAfter |
+    /// | 206 | <see cref="GetNumAvailableBytes"/> | Returns the count of unread bytes from the current position to the stream position. |
+    /// | 209 | <see cref="ReduceOffsets"/> | Subtracts a value from all position-tracking fields. |
     ///
     /// ## Collaborators
     ///
