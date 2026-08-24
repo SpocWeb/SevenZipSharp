@@ -293,13 +293,14 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 303 | <see cref="FilePath"/> | Gets the file Path. |
-    /// | 307 | <see cref="TestFile"/> | Initializes a new instance of TestFile with  the specified filePath. |
+    /// | 304 | <see cref="FilePath"/> | Gets the file path. |
+    /// | 308 | <see cref="TestFile"/> | Initializes a new instance of TestFile with  the specified filePath. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:52:59Z", Digest = "a2c9a38d8f06f9053f688a04d1e59abc09f3077039dca507dc5e40e212b852ad", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-24T15:42:44Z", Digest = "2f4b897ceab1031536ede96e7d07d89ef51437f57b3267bf10a7014218f1628e", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     public class TestFile
     {
 
+        /// <summary>Gets the file path.</summary>
         public string FilePath { get; }
 
         /// <summary>Initializes a new instance of <see cref="TestFile"/> with<br/>
