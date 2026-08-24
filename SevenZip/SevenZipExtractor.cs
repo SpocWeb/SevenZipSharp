@@ -15,13 +15,28 @@ namespace SevenZip
     /// <summary>
     /// Class to unpack data from archives supported by 7-Zip.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1442 | <see cref="DecompressStream"/> | Decompress the specified stream (C# inside) |
+    /// | 1461 | <see cref="ExtractBytes"/> | Decompress byte array compressed with LZMA algorithm (C# inside) |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
     /// <example>
     /// using (var extr = new SevenZipExtractor(@"C:\Test.7z"))
     /// {
     ///     extr.ExtractArchive(@"C:\TestDirectory");
     /// }
     /// </example>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "9fb460c27a3a4da1c16e090229ac9a950b07280e49ed70d7c241752e417a625d", Stale = true, Path = "SevenZipExtractor.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-24T14:22:40Z", Digest = "746f7db90e0c5893b78cfdbf6d7844a3f4836a47fbd1c8fec6c45794f9463ff6", Stale = false, Path = "SevenZipExtractor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipExtractor
 #if UNMANAGED
         : SevenZipBase, IDisposable
@@ -377,6 +392,10 @@ namespace SevenZip
 
 		#region Core private functions
 
+		/// <summary>
+		/// Gets or creates the archive open callback, caching it for reuse.
+		/// </summary>
+		/// <returns>The cached or newly created ArchiveOpenCallback instance.</returns>
 		private ArchiveOpenCallback GetArchiveOpenCallback() => _openCallback ?? (_openCallback = string.IsNullOrEmpty(Password)
 									? new ArchiveOpenCallback(_fileName)
 									: new ArchiveOpenCallback(_fileName, Password));
@@ -650,11 +669,15 @@ namespace SevenZip
 		/// <returns>True is valid; otherwise, false.</returns>
 		private static bool CheckIndexes(params int[] indexes) => indexes.All(i => i >= 0);
 
+		/// <summary>
+		/// Initializes an extraction callback with standard event handlers.
+		/// </summary>
+		/// <param name="aec">The extraction callback to initialize.</param>
 		private void ArchiveExtractCallbackCommonInit(ArchiveExtractCallback aec)
         {
             aec.Open += ((s, e) => { _unpackedSize = (long)e.TotalSize; });
             aec.FileExtractionStarted += FileExtractionStartedEventProxy;
-            aec.FileExtractionFinished += FileExtractionFinishedEventProxy;            
+            aec.FileExtractionFinished += FileExtractionFinishedEventProxy;
             aec.Extracting += ExtractingEventProxy;
             aec.FileExists += FileExistsEventProxy;
         }
@@ -693,6 +716,10 @@ namespace SevenZip
             return aec;
         }
 
+        /// <summary>
+        /// Detaches standard event handlers from an extraction callback.
+        /// </summary>
+        /// <param name="callback">The extraction callback to clean up.</param>
         private void FreeArchiveExtractCallback(ArchiveExtractCallback callback)
         {
             callback.Open -= ((s, e) => { _unpackedSize = (long)e.TotalSize; });
@@ -732,6 +759,10 @@ namespace SevenZip
 
         #region IDisposable Members
 
+        /// <summary>
+        /// Performs shared cleanup of archive resources, streams, and<br/>
+        /// callbacks; releases unmanaged library resources.
+        /// </summary>
         private void CommonDispose()
         {
             if (_opened)
@@ -747,13 +778,13 @@ namespace SevenZip
             _archiveFileData = null;
             _archiveProperties = null;
             _archiveFileInfoCollection = null;
-            
+
 	        if (_inStream != null)
 	        {
                 _inStream.Dispose();
                 _inStream = null;
 	        }
-                
+
 	        if (_openCallback != null)
             {
                 try
@@ -763,7 +794,7 @@ namespace SevenZip
                 catch (ObjectDisposedException) { }
                 _openCallback = null;
             }
-            
+
             if (_archiveStream != null)
             {
                 if (_archiveStream is IDisposable)
@@ -1369,7 +1400,12 @@ namespace SevenZip
 
         #region LZMA SDK functions
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Reads LZMA decoder properties and output size from the input stream.
+        /// </summary>
+        /// <param name="inStream">The stream to read properties and size from.</param>
+        /// <param name="outSize">The uncompressed output size extracted from the stream.</param>
+        /// <returns>A byte array containing the LZMA decoder properties.</returns>
         internal static byte[] GetLzmaProperties(Stream inStream, out long outSize)
         {
             var lzmAproperties = new byte[5];

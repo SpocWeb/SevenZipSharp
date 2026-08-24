@@ -4,10 +4,41 @@ namespace SevenZip.Tests
     using System;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Tests that custom compression parameters are correctly applied<br/>
+    /// across different archive formats and compression methods.
+    /// </summary>
     /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Class | Relationship |
+    /// |---|---|
+    /// | <see cref="SevenZipCompressor"/> | Subject under test. |
+    /// | <see cref="TestBase"/> | Base class providing test infrastructure. |
+    ///
+    /// ## Invariants
+    /// Each test validates parameter acceptance for a specific compression<br/>
+    /// method, verifying both successful application and error handling of<br/>
+    /// invalid parameters.
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 17 | <see cref="CompressWithCustomParameters_OnlyWorksWithCorrectMethod"/> | Compress With Custom Parameters - only Works With Correct Method. |
+    /// | 36 | <see cref="InvalidCustomParameters_Throws"/> | Invalid Custom Parameters - throws. |
+    /// | 53 | <see cref="Zip_Deflate_WithCustomParameters"/> | Zip - deflate - with Custom Parameters. |
+    /// | 74 | <see cref="Zip_Deflate64_WithCustomParameters"/> | Zip - deflate64 - with Custom Parameters. |
+    /// | 95 | <see cref="Zip_PPMd_WithCustomParameters"/> | Zip - pp Md - with Custom Parameters. |
+    /// | 111 | <see cref="Zip_BZip2_WithCustomParameters"/> | Zip - b Zip2 - with Custom Parameters. |
+    /// | 129 | <see cref="SevenZip_Default_WithCustomParameters"/> | Seven Zip - default - with Custom Parameters. |
+    /// | 155 | <see cref="SevenZip_Lzma_WithCustomParameters"/> | Seven Zip - lzma - with Custom Parameters. |
+    /// | 177 | <see cref="SevenZip_Lzma2_WithCustomParameters"/> | Seven Zip - lzma2 - with Custom Parameters. |
+    ///
     /// See https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm for parameter details.
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:35:17Z", Digest = "c01abb6091bf59ec49d3b4eb9ca8d438d4f6730537ebb83cb12d6ef5b5540f5b", Stale = true, Path = "SevenZipCompressorCustomParameterTests.cs", Since = "2026-08-23")]
+    /// <seealso cref="SevenZipCompressor">SevenZipCompressor: provides compression functionality with custom parameter support.</seealso>
+    [DocState(Pass = 2, MTime = "2026-08-24T14:17:17Z", Digest = "c01abb6091bf59ec49d3b4eb9ca8d438d4f6730537ebb83cb12d6ef5b5540f5b", Stale = false, Path = "SevenZipCompressorCustomParameterTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorCustomParameterTests : TestBase
     {

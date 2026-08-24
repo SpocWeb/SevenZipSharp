@@ -6,9 +6,29 @@ namespace SevenZip
     using System.IO;
 
     /// <summary>
-    /// The Stream extension class to emulate the archive part of a stream.
+    /// A Stream proxy that presents a portion of an underlying stream starting<br/>
+    /// from a specified offset, remapping position and seek operations<br/>
+    /// accordingly.
     /// </summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "f1e253f9417578b25d2859f25ec4eb33b8e4d4e8e5e4fda8e98c4154b74aae15", Stale = true, Path = "ArchiveEmulationStreamProxy.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Stream"/> | The wrapped stream whose operations are delegated and adapted. |
+    /// | <see cref="SeekOrigin"/> | Enumeration used in Seek method to determine origin point. |
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 37 | <see cref="Offset"/> | Gets the file offset. |
+    /// | 43 | <see cref="Source"/> | The source wrapped stream. |
+    /// | 51 | <see cref="ArchiveEmulationStreamProxy"/> | Initializes a new instance of the ArchiveEmulationStream class. |
+    /// | 95 | <see cref="Dispose"/> | Disposes the underlying source stream. |
+    /// </remarks>
+    /// <seealso cref="Stream">Stream — underlying operations are delegated with position adjustments.</seealso>
+    [DocState(Pass = 2, MTime = "2026-08-24T14:17:09Z", Digest = "12066dd21476c4e3fc1ee07d1b0906de0a1dd6a10c5ffe4210abb9f9dbbad71f", Stale = false, Path = "ArchiveEmulationStreamProxy.cs", Since = "2026-08-23")]
     internal class ArchiveEmulationStreamProxy : Stream, IDisposable
     {
         /// <summary>
@@ -71,7 +91,7 @@ namespace SevenZip
 		/// <inheritdoc />
 		public override void Write(byte[] buffer, int offset, int count) => Source.Write(buffer, offset, count);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Disposes the underlying source stream.</summary>
 		public new void Dispose() => Source.Dispose();
 
 		/// <inheritdoc />

@@ -4,8 +4,32 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     using System;
     using System.IO;
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "0192f06a43b15370f75c9923b20f0e5e4d5efd6fab23cd2cbeabb2d0f6e23904", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
+    /// <summary>Encodes bit sequences using arithmetic range coding,<br/>
+    /// maintaining a probability range and flushing encoded output to a stream.</summary>
+    /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Stream"/> | Output stream for encoded bytes. |
+    /// | <see cref="UInt64"/> | Maintains low bound of the range interval. |
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 37 | <see cref="kTopValue"/> | Specifies the constant k Top Value. |
+    /// | 48 | <see cref="SetStream"/> | Sets the underlying stream for encoded output. |
+    /// | 51 | <see cref="ReleaseStream"/> | Clears the stream reference by releasing the stream. |
+    /// | 55 | <see cref="Init"/> | Initializes encoder state from the current stream position,  resetting all range-coding state and output cache. |
+    /// | 67 | <see cref="FlushData"/> | Flushes all remaining encoded data to the stream by  calling ShiftLow five times. |
+    /// | 74 | <see cref="FlushStream"/> | Flushes the underlying stream. |
+    /// | 94 | <see cref="ShiftLow"/> | Shifts the low-order 8 bits to the stream and advances the  low value, managing cached byte output across range-code boundaries. |
+    /// | 112 | <see cref="EncodeDirectBits"/> | Encodes numTotalBits consecutive bits of  v by narrowing the range according to each bit value. |
+    /// | 148 | <see cref="GetProcessedSizeAdd"/> | Returns the number of bytes written to the stream since  the last Init call. |
+    /// </remarks>
+    /// <seealso cref="Stream">Stream: output stream for encoded bytes.</seealso>
+    [DocState(Pass = 2, MTime = "2026-08-24T14:19:13Z", Digest = "11d2d3ae5e45757bb98c8d0887b0ace587744bd6542e1de00f2f48c066c8f507", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
     internal class Encoder
     {
 
@@ -20,13 +44,14 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         private long StartPosition;
         private Stream Stream;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Sets the underlying stream for encoded output.</summary>
 		public void SetStream(Stream stream) => Stream = stream;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Clears the stream reference by releasing the stream.</summary>
 		public void ReleaseStream() => Stream = null;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Initializes encoder state from the current stream position,<br/>
+		/// resetting all range-coding state and output cache.</summary>
 		public void Init()
         {
             StartPosition = Stream.Position;
@@ -37,14 +62,15 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             _cache = 0;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Flushes all remaining encoded data to the stream by<br/>
+        /// calling <see cref="ShiftLow"/> five times.</summary>
         public void FlushData()
         {
             for (int i = 0; i < 5; i++)
                 ShiftLow();
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Flushes the underlying stream.</summary>
 		public void FlushStream() => Stream.Flush();
 
 		/*public void CloseStream()
@@ -63,7 +89,8 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			}
 		}*/
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Shifts the low-order 8 bits to the stream and advances the<br/>
+		/// low value, managing cached byte output across range-code boundaries.</summary>
 		public void ShiftLow()
         {
             if ((uint) Low < 0xFF000000 || (uint) (Low >> 32) == 1)
@@ -80,7 +107,8 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             Low = ((uint) Low) << 8;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Encodes <paramref name="numTotalBits"/> consecutive bits of<br/>
+        /// <paramref name="v"/> by narrowing the range according to each bit value.</summary>
         public void EncodeDirectBits(uint v, int numTotalBits)
         {
             for (int i = numTotalBits - 1; i >= 0; i--)
@@ -114,13 +142,33 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			}
 		}*/
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the number of bytes written to the stream since<br/>
+		/// the last <see cref="Init"/> call.</summary>
+		/// <returns>The cumulative byte count including cache and stream position.</returns>
 		public long GetProcessedSizeAdd() => _cacheSize +
 				   Stream.Position - StartPosition + 4;// (long)Stream.GetProcessedSize();
 	}
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "44a865a4a0cc0dc8e020fb1ca33fe946485b9ba56a41931a9a2124b679922079", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
+    /// <summary>Decodes bit sequences from a stream using arithmetic range coding<br/>
+    /// by tracking a code value and probability range.</summary>
+    /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Stream"/> | Input stream for encoded bytes. |
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 176 | <see cref="kTopValue"/> | Specifies the constant k Top Value. |
+    /// | 184 | <see cref="Init"/> | Initializes decoder state from the given stream by reading 5  seed bytes and resetting range-code state. |
+    /// | 196 | <see cref="ReleaseStream"/> | Clears the stream reference by releasing the stream. |
+    /// | 238 | <see cref="DecodeDirectBits"/> | Decodes and returns numTotalBits consecutive  bits from the stream by narrowing the range for each bit. |
+    /// </remarks>
+    /// <seealso cref="Stream">Stream: input stream for encoded bytes.</seealso>
+    [DocState(Pass = 2, MTime = "2026-08-24T14:19:13Z", Digest = "1aa247d30f8d0a7c095c1d022b86f7f49f76003c73cc14278b47f765f8763f2e", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
     internal class Decoder
     {
 
@@ -131,7 +179,8 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         // public Buffer.InBuffer Stream = new Buffer.InBuffer(1 << 16);
         public Stream Stream;
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Initializes decoder state from the given stream by reading 5<br/>
+        /// seed bytes and resetting range-code state.</summary>
         public void Init(Stream stream)
         {
             // Stream.Init(stream);
@@ -143,7 +192,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
                 Code = (Code << 8) | (byte) Stream.ReadByte();
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Clears the stream reference by releasing the stream.</summary>
 		public void ReleaseStream() =>
 			// Stream.ReleaseStream();
 			Stream = null;
@@ -183,7 +232,9 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 			Normalize();
 		}*/
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Decodes and returns <paramref name="numTotalBits"/> consecutive<br/>
+		/// bits from the stream by narrowing the range for each bit.</summary>
+		/// <returns>The decoded bit sequence as an unsigned integer.</returns>
 		public uint DecodeDirectBits(int numTotalBits)
         {
             uint range = Range;

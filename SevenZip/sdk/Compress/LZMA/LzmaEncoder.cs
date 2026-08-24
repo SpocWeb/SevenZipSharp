@@ -17,7 +17,7 @@ namespace SevenZip.Sdk.Compression.Lzma
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 124 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
+    /// | 150 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
     ///
     /// ## Collaborators
     ///
@@ -38,7 +38,7 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// | <see cref="CoderPropId"/> | Passed as a parameter. |
     /// | <see cref="LenEncoder"/> | Nested type. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "589e2ad075cedfb079c421af681751c671bc083053ac6a70219923bbdad4c8d1", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-24T14:20:41Z", Digest = "b14608aa30bfb7ec09c323e12c00431012f7cde990cd08413ea904adab4145e4", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
     public class Encoder : ICoder, ISetCoderProperties, IWriteCoderProperties
     {
 
@@ -345,7 +345,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #endregion
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Retrieves the position slot for a given position value<br/>
+        /// using a fast lookup table with logarithmic scaling.
+        /// </summary>
+        /// <returns>The position slot corresponding to <paramref name="pos"/>.</returns>
         private static UInt32 GetPosSlot(UInt32 pos)
         {
             if (pos < (1 << 11)) {
@@ -357,7 +361,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             return (UInt32) (g_FastPos[pos >> 20] + 40);
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Retrieves the position slot for a distance using<br/>
+        /// high-range position-slot lookup with coarser granularity.
+        /// </summary>
+        /// <returns>The position slot for large distances.</returns>
         private static UInt32 GetPosSlot2(UInt32 pos)
         {
             if (pos < (1 << 17)) {
@@ -369,7 +377,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             return (UInt32) (g_FastPos[pos >> 26] + 52);
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Initializes the encoder state, previous byte, and<br/>
+        /// repetition distances to their default values.
+        /// </summary>
         private void BaseInit()
         {
             _state.Init();
@@ -378,7 +389,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                 _repDistances[i] = 0;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Initializes the match finder and literal encoder<br/>
+        /// with the configured dictionary size and fast bytes.
+        /// </summary>
         private void Create()
         {
             if (_matchFinder == null)
@@ -401,10 +415,13 @@ namespace SevenZip.Sdk.Compression.Lzma
             _numFastBytesPrev = _numFastBytes;
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Sets whether to write an end-of-stream marker.</summary>
 		private void SetWriteEndMarkerMode(bool writeEndMarker) => _writeEndMark = writeEndMarker;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Initializes all range and bit encoders, position models,<br/>
+		/// and optimization state for a new encoding sequence.
+		/// </summary>
 		private void Init()
         {
             BaseInit();
@@ -441,7 +458,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             _additionalOffset = 0;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Retrieves the longest match and all match distances<br/>
+        /// at the current position from the match finder.
+        /// </summary>
         private void ReadMatchDistances(out UInt32 lenRes, out UInt32 numDistancePairs)
         {
             lenRes = 0;
@@ -458,7 +478,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Advances the match finder position by the<br/>
+        /// specified number of bytes.
+        /// </summary>
         private void MovePos(UInt32 num)
         {
             if (num > 0)
@@ -468,11 +491,19 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Computes the price of encoding a single-byte<br/>
+		/// repetition match using the rep0 and rep0long encoders.
+		/// </summary>
+		/// <returns>The cumulative encoder price for this condition.</returns>
 		private UInt32 GetRepLen1Price(Base.State state, UInt32 posState) => _isRepG0[state.Index].GetPrice0() +
 				   _isRep0Long[(state.Index << Base.kNumPosStatesBitsMax) + posState].GetPrice0();
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Computes the encoder price for selecting a<br/>
+		/// specific repetition distance register.
+		/// </summary>
+		/// <returns>The price of switching to <paramref name="repIndex"/>.</returns>
 		private UInt32 GetPureRepPrice(UInt32 repIndex, Base.State state, UInt32 posState)
         {
             UInt32 price;
@@ -495,14 +526,22 @@ namespace SevenZip.Sdk.Compression.Lzma
             return price;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Computes the total encoder price for a repetition<br/>
+        /// match of specified length and distance register.
+        /// </summary>
+        /// <returns>The combined price of the repetition match.</returns>
         private UInt32 GetRepPrice(UInt32 repIndex, UInt32 len, Base.State state, UInt32 posState)
         {
             UInt32 price = _repMatchLenEncoder.GetPrice(len - Base.kMatchMinLen, posState);
             return price + GetPureRepPrice(repIndex, state, posState);
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Computes the total encoder price for an absolute<br/>
+        /// distance match of specified length and position.
+        /// </summary>
+        /// <returns>The combined price of the distance match.</returns>
         private UInt32 GetPosLenPrice(UInt32 pos, UInt32 len, UInt32 posState)
         {
             UInt32 price;
@@ -516,7 +555,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             return price + _lenEncoder.GetPrice(len - Base.kMatchMinLen, posState);
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Traces backward through the optimization array<br/>
+        /// to extract the optimal encoding sequence.
+        /// </summary>
+        /// <returns>The number of bytes in the optimal sequence.</returns>
         private UInt32 Backward(out UInt32 backRes, UInt32 cur)
         {
             _optimumEndIndex = cur;
@@ -551,7 +594,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Computes the optimal match or literal choice at<br/>
+        /// the current position using dynamic programming.
+        /// </summary>
+        /// <returns>The length of the optimal match or literal sequence.</returns>
         private UInt32 GetOptimum(UInt32 position, out UInt32 backRes)
         {
             if (_optimumEndIndex != _optimumCurrentIndex)
@@ -1077,7 +1124,10 @@ namespace SevenZip.Sdk.Compression.Lzma
 			return (smallDist < ((UInt32)(1) << (32 - kDif)) && bigDist >= (smallDist << kDif));
 		}*/
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Encodes an end-of-stream marker using a<br/>
+        /// maximum-distance match sentinel value.
+        /// </summary>
         private void WriteEndMarker(UInt32 posState)
         {
             if (!_writeEndMark) {
@@ -1098,7 +1148,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             _posAlignEncoder.ReverseEncode(_rangeEncoder, posReduced & Base.kAlignMask);
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Writes the end-of-stream marker and flushes<br/>
+        /// all remaining data to the output stream.
+        /// </summary>
         private void Flush(UInt32 nowPos)
         {
             ReleaseMFStream();
@@ -1107,7 +1160,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             _rangeEncoder.FlushStream();
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Encodes a block of input using optimal matching and<br/>
+        /// returns the sizes of data processed and produced.
+        /// </summary>
         internal void CodeOneBlock(out Int64 inSize, out Int64 outSize, out bool finished)
         {
             inSize = 0;
@@ -1285,7 +1341,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Releases the match finder stream if it<br/>
+        /// was previously acquired by the encoder.
+        /// </summary>
         private void ReleaseMFStream()
         {
             if (_matchFinder != null && _needReleaseMFStream)
@@ -1295,20 +1354,26 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Sets the output stream for the range encoder.</summary>
 		private void SetOutStream(Stream outStream) => _rangeEncoder.SetStream(outStream);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Releases the output stream from the range encoder.</summary>
 		private void ReleaseOutStream() => _rangeEncoder.ReleaseStream();
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Releases both the match finder and output<br/>
+		/// streams from the encoder.
+		/// </summary>
 		private void ReleaseStreams()
         {
             ReleaseMFStream();
             ReleaseOutStream();
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Initializes the encoder with input and output streams,<br/>
+        /// and prepares all price tables for encoding.
+        /// </summary>
         private void SetStreams(Stream inStream, Stream outStream /*,
 				Int64 inSize, Int64 outSize*/)
         {
@@ -1332,7 +1397,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             nowPos64 = 0;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Computes and caches the encoder prices for all<br/>
+        /// distance encodings across all position states.
+        /// </summary>
         private void FillDistancesPrices()
         {
             for (UInt32 i = Base.kStartPosModelIndex; i < Base.kNumFullDistances; i++)
@@ -1366,7 +1434,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             _matchPriceCount = 0;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Computes and caches the encoder prices for<br/>
+        /// distance alignment bit encoding.
+        /// </summary>
         private void FillAlignPrices()
         {
             for (UInt32 i = 0; i < Base.kAlignTableSize; i++)
@@ -1375,7 +1446,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         }
 
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Searches for the match finder ID in the supported<br/>
+        /// match finder types list.
+        /// </summary>
+        /// <returns>The zero-based index if found; otherwise, -1.</returns>
         private static int FindMatchFinder(string s)
         {
             for (int m = 0; m < kMatchFinderIDs.Length; m++)
@@ -1400,27 +1475,28 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenEncoder
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Encodes match lengths using a tiered bit tree<br/>
+        /// approach that scales from low to high values.
+        /// </summary>
         /// <remarks>
         /// ## Public Methods
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1388 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
-        /// | 1398 | <see cref="Init"/> | TODO: LLM |
-        /// | 1411 | <see cref="Encode"/> | TODO: LLM |
-        /// | 1436 | <see cref="SetPrices"/> | TODO: LLM |
+        /// | 1509 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
+        /// | 1522 | <see cref="Init"/> | Initializes all length encoders for the  specified number of position states. |
+        /// | 1538 | <see cref="Encode"/> | Encodes a match length symbol using low,  mid, or high encoder based on the value. |
+        /// | 1566 | <see cref="SetPrices"/> | Computes and caches encoder prices for all  length symbols up to the specified limit. |
         ///
         /// ## Collaborators
         ///
         /// | Type | Role |
         /// |---|---|
-        /// | <see cref="BitTreeEncoder"/> | Used as a field. |
-        /// | <see cref="BitEncoder"/> | Used as a field. |
-        /// | <see cref="UInt32"/> | Passed as a parameter. |
-        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// | <see cref="BitTreeEncoder"/> | Stores low, mid, and high-range bit tree encoders. |
+        /// | <see cref="BitEncoder"/> | Choice selectors for range branching. |
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "1af4cc1bb123210430371b7d6b0633dc28e46d9e89bc842322b1f13c32ac676b", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+        [DocState(Pass = 2, MTime = "2026-08-24T14:21:35Z", Digest = "e6174d61a4dd8d28a1cdb1bab053d2a31961330d316673b52ed13bda3ed55a06", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class LenEncoder
         {
             private readonly BitTreeEncoder[] _lowCoder = new BitTreeEncoder[Base.kNumPosStatesEncodingMax];
@@ -1439,7 +1515,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                 }
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Initializes all length encoders for the<br/>
+            /// specified number of position states.
+            /// </summary>
             public void Init(UInt32 numPosStates)
             {
                 _choice.Init();
@@ -1452,7 +1531,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                 _highCoder.Init();
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Encodes a match length symbol using low,<br/>
+            /// mid, or high encoder based on the value.
+            /// </summary>
             public void Encode(RangeCoder.Encoder rangeEncoder, UInt32 symbol, UInt32 posState)
             {
                 if (symbol < Base.kNumLowLenSymbols)
@@ -1477,7 +1559,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                 }
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Computes and caches encoder prices for all<br/>
+            /// length symbols up to the specified limit.
+            /// </summary>
             public void SetPrices(UInt32 posState, UInt32 numSymbols, UInt32[] prices, UInt32 st)
             {
                 UInt32 a0 = _choice.GetPrice0();
@@ -1508,52 +1593,67 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LenPriceTableEncoder
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Caches precomputed encoder prices for length<br/>
+        /// symbols to accelerate repeated price lookups.
+        /// </summary>
         /// <remarks>
         /// ## Public Methods
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1475 | <see cref="SetTableSize"/> | TODO: LLM |
-        /// | 1478 | <see cref="GetPrice"/> | TODO: LLM |
-        /// | 1488 | <see cref="UpdateTables"/> | TODO: LLM |
-        /// | 1495 | <see cref="Encode"/> | TODO: LLM |
+        /// | 1624 | <see cref="SetTableSize"/> | Sets the maximum length symbol size for price computation. |
+        /// | 1631 | <see cref="GetPrice"/> | Retrieves the cached encoder price for  a length symbol at the specified position state. |
+        /// | 1647 | <see cref="UpdateTables"/> | Recomputes the cached price tables for  all specified position states. |
+        /// | 1657 | <see cref="Encode"/> | Encodes a length symbol and updates the  cached prices when the counter expires. |
         ///
         /// ## Collaborators
         ///
         /// | Type | Role |
         /// |---|---|
-        /// | <see cref="UInt32"/> | Used as a field. |
-        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// | <see cref="LenEncoder"/> | Base class providing length encoding logic. |
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+        [DocState(Pass = 2, MTime = "2026-08-24T14:21:57Z", Digest = "8c1080afb1921087312aded327262da66fe65330f7e43ef48cf616c89e63b377", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class LenPriceTableEncoder : LenEncoder
         {
             private readonly UInt32[] _counters = new UInt32[Base.kNumPosStatesEncodingMax];
             private readonly UInt32[] _prices = new UInt32[Base.kNumLenSymbols << Base.kNumPosStatesBitsEncodingMax];
             private UInt32 _tableSize;
 
-			/// <summary>TODO: LLM</summary>
+			/// <summary>Sets the maximum length symbol size for price computation.</summary>
 			public void SetTableSize(UInt32 tableSize) => _tableSize = tableSize;
 
-			/// <summary>TODO: LLM</summary>
+			/// <summary>
+			/// Retrieves the cached encoder price for<br/>
+			/// a length symbol at the specified position state.
+			/// </summary>
+			/// <returns>The cached price value.</returns>
 			public UInt32 GetPrice(UInt32 symbol, UInt32 posState) => _prices[posState * Base.kNumLenSymbols + symbol];
 
-			/// <summary>TODO: LLM</summary>
+			/// <summary>
+			/// Recomputes the cached prices for the<br/>
+			/// specified position state.
+			/// </summary>
 			private void UpdateTable(UInt32 posState)
             {
                 SetPrices(posState, _tableSize, _prices, posState*Base.kNumLenSymbols);
                 _counters[posState] = _tableSize;
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Recomputes the cached price tables for<br/>
+            /// all specified position states.
+            /// </summary>
             public void UpdateTables(UInt32 numPosStates)
             {
                 for (UInt32 posState = 0; posState < numPosStates; posState++)
                     UpdateTable(posState);
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Encodes a length symbol and updates the<br/>
+            /// cached prices when the counter expires.
+            /// </summary>
             public new void Encode(RangeCoder.Encoder rangeEncoder, UInt32 symbol, UInt32 posState)
             {
                 base.Encode(rangeEncoder, symbol, posState);
@@ -1567,8 +1667,26 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: LiteralEncoder
 
-        /// <summary>TODO: LLM</summary>
-        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "6d66ee628326d43048c3e3f20b9f2fccf21e37e7b15298b2338b874def24126e", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+        /// <summary>
+        /// Encodes literal bytes using context-dependent<br/>
+        /// bit tree encoders based on position and previous byte.
+        /// </summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1683 | <see cref="Create"/> | Initializes the literal encoder with the specified position and previous byte context bits. |
+        /// | 1701 | <see cref="Init"/> | Initializes all literal encoder contexts for a new encoding sequence. |
+        /// | 1710 | <see cref="GetSubCoder"/> | Retrieves the context-specific literal encoder for the given position and previous byte. |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="Encoder2"/> | Context-specific literal encoders. |
+        /// </remarks>
+        [DocState(Pass = 2, MTime = "2026-08-24T14:21:57Z", Digest = "32dfcd907dfed8934ec4c099526f4ca8d4ca0aac22bf5b21cbec5c8b564c6296", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class LiteralEncoder
         {
             private Encoder2[] m_Coders;
@@ -1576,7 +1694,10 @@ namespace SevenZip.Sdk.Compression.Lzma
             private int m_NumPrevBits;
             private uint m_PosMask;
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Initializes the literal encoder with the<br/>
+            /// specified position and previous byte context bits.
+            /// </summary>
             internal void Create(int numPosBits, int numPrevBits)
             {
                 if (m_Coders != null && m_NumPrevBits == numPrevBits && m_NumPosBits == numPosBits) {
@@ -1591,7 +1712,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Create();
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Initializes all literal encoder contexts<br/>
+            /// for a new encoding sequence.
+            /// </summary>
             internal void Init()
             {
                 uint numStates = (uint) 1 << (m_NumPrevBits + m_NumPosBits);
@@ -1599,45 +1723,57 @@ namespace SevenZip.Sdk.Compression.Lzma
                     m_Coders[i].Init();
             }
 
-			/// <summary>TODO: LLM</summary>
+			/// <summary>
+			/// Retrieves the context-specific literal<br/>
+			/// encoder for the given position and previous byte.
+			/// </summary>
+			/// <returns>The Encoder2 context for the position and byte.</returns>
 			internal Encoder2 GetSubCoder(UInt32 pos, Byte prevByte) => m_Coders[((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits))];
 
 			#region Nested type: Encoder2
 
-			/// <summary>TODO: LLM</summary>
+			/// <summary>
+			/// Encodes a single literal byte using binary<br/>
+			/// tree range encoding with adaptive contexts.
+			/// </summary>
 			/// <remarks>
 			/// ## Public Methods
 			///
 			/// | Line | Method | Description |
 			/// |--:|---|---|
-			/// | 1552 | <see cref="Create"/> | TODO: LLM |
-			/// | 1555 | <see cref="Init"/> | TODO: LLM |
-			/// | 1561 | <see cref="Encode"/> | TODO: LLM |
-			/// | 1573 | <see cref="EncodeMatched"/> | TODO: LLM |
-			/// | 1593 | <see cref="GetPrice"/> | TODO: LLM |
+			/// | 1762 | <see cref="Create"/> | Allocates the bit encoder array for literal encoding. |
+			/// | 1768 | <see cref="Init"/> | Initializes all bit encoders for  a new literal encoding sequence. |
+			/// | 1777 | <see cref="Encode"/> | Encodes a literal byte using bit-by-bit  range encoding through a binary tree. |
+			/// | 1792 | <see cref="EncodeMatched"/> | Encodes a literal byte relative to a match  byte from a repeated distance using adaptive contexts. |
+			/// | 1816 | <see cref="GetPrice"/> | Computes the encoder price for encoding a literal  byte optionally relative to a match byte. |
 			///
 			/// ## Collaborators
 			///
 			/// | Type | Role |
 			/// |---|---|
-			/// | <see cref="BitEncoder"/> | Used as a field. |
-			/// | <see cref="Encoder"/> | Passed as a parameter. |
+			/// | <see cref="BitEncoder"/> | 768 bit encoders for binary tree contexts. |
 			/// </remarks>
-			[DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+			[DocState(Pass = 2, MTime = "2026-08-24T14:22:17Z", Digest = "ae91a8cdca004807af2931d961e583ba60e6509a049b4446dcb44e94ec737e3c", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
 			public struct Encoder2
             {
                 private BitEncoder[] m_Encoders;
 
-				/// <summary>TODO: LLM</summary>
+				/// <summary>Allocates the bit encoder array for literal encoding.</summary>
 				public void Create() => m_Encoders = new BitEncoder[0x300];
 
-				/// <summary>TODO: LLM</summary>
+				/// <summary>
+				/// Initializes all bit encoders for<br/>
+				/// a new literal encoding sequence.
+				/// </summary>
 				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Encoders[i].Init();
                 }
 
-                /// <summary>TODO: LLM</summary>
+                /// <summary>
+                /// Encodes a literal byte using bit-by-bit<br/>
+                /// range encoding through a binary tree.
+                /// </summary>
                 public void Encode(RangeCoder.Encoder rangeEncoder, byte symbol)
                 {
                     uint context = 1;
@@ -1649,7 +1785,10 @@ namespace SevenZip.Sdk.Compression.Lzma
                     }
                 }
 
-                /// <summary>TODO: LLM</summary>
+                /// <summary>
+                /// Encodes a literal byte relative to a match<br/>
+                /// byte from a repeated distance using adaptive contexts.
+                /// </summary>
                 public void EncodeMatched(RangeCoder.Encoder rangeEncoder, byte matchByte, byte symbol)
                 {
                     uint context = 1;
@@ -1669,7 +1808,11 @@ namespace SevenZip.Sdk.Compression.Lzma
                     }
                 }
 
-                /// <summary>TODO: LLM</summary>
+                /// <summary>
+                /// Computes the encoder price for encoding a literal<br/>
+                /// byte optionally relative to a match byte.
+                /// </summary>
+                /// <returns>The total price in encoder units.</returns>
                 public uint GetPrice(bool matchMode, byte matchByte, byte symbol)
                 {
                     uint price = 0;
@@ -1707,24 +1850,26 @@ namespace SevenZip.Sdk.Compression.Lzma
 
         #region Nested type: Optimal
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Tracks the optimal parsing state and cost for<br/>
+        /// each position in dynamic programming optimization.
+        /// </summary>
         /// <remarks>
         /// ## Public Methods
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1649 | <see cref="MakeAsChar"/> | TODO: LLM |
-        /// | 1656 | <see cref="MakeAsShortRep"/> | TODO: LLM |
-        /// | 1664 | <see cref="IsShortRep"/> | Determines whether short Rep. |
+        /// | 1893 | <see cref="MakeAsChar"/> | Marks this optimal step as a literal  (non-match) encoding. |
+        /// | 1903 | <see cref="MakeAsShortRep"/> | Marks this optimal step as a single-byte  repetition match. |
+        /// | 1911 | <see cref="IsShortRep"/> | Determines whether short Rep. |
         ///
-        /// ## Collaborators
+        /// ## Invariants
         ///
-        /// | Type | Role |
-        /// |---|---|
-        /// | <see cref="UInt32"/> | Used as a field. |
-        /// | <see cref="State"/> | Used as a field. |
+        /// Repetition distances are stored in Backs0-Backs3<br/>
+        /// following the LZMA state machine; BackPrev<br/>
+        /// distance codes are resolved after backtracking.
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "28bbc03621af221e0c7db2ed3f0ea83c51b06763228c7943e6b92a1d07603e3c", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
+        [DocState(Pass = 2, MTime = "2026-08-24T14:22:17Z", Digest = "93a0deb52772a4b399b4e675c5bb25f7a5e93f3ead5ca106603ae02ac923d2d1", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class Optimal
         {
             public UInt32 BackPrev;
@@ -1741,14 +1886,20 @@ namespace SevenZip.Sdk.Compression.Lzma
             public UInt32 Price;
             public Base.State State;
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Marks this optimal step as a literal<br/>
+            /// (non-match) encoding.
+            /// </summary>
             public void MakeAsChar()
             {
                 BackPrev = 0xFFFFFFFF;
                 Prev1IsChar = false;
             }
 
-            /// <summary>TODO: LLM</summary>
+            /// <summary>
+            /// Marks this optimal step as a single-byte<br/>
+            /// repetition match.
+            /// </summary>
             public void MakeAsShortRep()
             {
                 BackPrev = 0;
@@ -1762,7 +1913,10 @@ namespace SevenZip.Sdk.Compression.Lzma
 
 		#endregion
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Sets the size of training data to skip at the<br/>
+		/// beginning of the input stream.
+		/// </summary>
 		internal void SetTrainSize(uint trainSize) => _trainSize = trainSize;
 	}
 }

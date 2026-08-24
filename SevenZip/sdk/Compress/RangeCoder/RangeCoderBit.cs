@@ -3,8 +3,34 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 {
     using System;
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "8b9d321f2461c57997fc1a51e2e05396f03d9f0560d2ecd9028f3dfa6e0949c5", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    /// <summary>
+    /// Encodes binary symbols for range compression using adaptive<br/>
+    /// probability estimates.
+    /// </summary>
+    /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Type | Relationship |
+    /// |---|---|
+    /// | <see cref="UInt32"/> | Stores probability estimates and probability lookup table values. |
+    /// | <see cref="Encoder"/> | Range encoder parameter receiving encoded symbols. |
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 38 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
+    /// | 41 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
+    /// | 44 | <see cref="kNumBitPriceShiftBits"/> | Specifies the constant k Num Bit Price Shift Bits. |
+    /// | 76 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
+    /// | 90 | <see cref="Encode"/> | Encodes a binary symbol and updates the probability model based on  the encoded value. |
+    /// | 114 | <see cref="GetPrice"/> | Returns the encoding price for a specified symbol. |
+    /// | 117 | <see cref="GetPrice0"/> | Returns the encoding price for symbol 0. |
+    /// | 120 | <see cref="GetPrice1"/> | Returns the encoding price for symbol 1. |
+    /// </remarks>
+    /// <seealso cref="Encoder">Encoder: manages the range-coded bitstream being written.</seealso>
+    /// <!-- <example> block is managed by check-stale -->
+    [DocState(Pass = 2, MTime = "2026-08-24T14:20:49Z", Digest = "f5ffaa18b597d65c4dc1ac09d0039eac0a83ddcf45b1ada907389129b48c4878", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
     internal struct BitEncoder
     {
 
@@ -26,6 +52,10 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         /// <summary>Gets the prob Prices.</summary>
         private static readonly UInt32[] ProbPrices = new UInt32[kBitModelTotal >> kNumMoveReducingBits];
 
+        /// <summary>
+        /// Holds the current probability estimate for symbol 0 in the range<br/>
+        /// coding model.
+        /// </summary>
         private uint Prob;
 
         /// <summary>Initializes a new instance of <see cref="BitEncoder"/>.</summary>
@@ -42,7 +72,7 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Initializes the probability estimate to a neutral state.</summary>
 		public void Init() => Prob = kBitModelTotal >> 1;
 
 		/*public void UpdateModel(uint symbol)
@@ -53,7 +83,10 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 				Prob -= (Prob) >> kNumMoveBits;
 		}*/
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Encodes a binary symbol and updates the probability model based on<br/>
+		/// the encoded value.
+		/// </summary>
 		public void Encode(Encoder encoder, uint symbol)
         {
             // encoder.EncodeBit(Prob, kNumBitModelTotalBits, symbol);
@@ -77,18 +110,39 @@ namespace SevenZip.Sdk.Compression.RangeCoder
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the encoding price for a specified symbol.</summary>
 		public uint GetPrice(uint symbol) => ProbPrices[(((Prob - symbol) ^ ((-(int) symbol))) & (kBitModelTotal - 1)) >> kNumMoveReducingBits];
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the encoding price for symbol 0.</summary>
 		public uint GetPrice0() => ProbPrices[Prob >> kNumMoveReducingBits];
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the encoding price for symbol 1.</summary>
 		public uint GetPrice1() => ProbPrices[(kBitModelTotal - Prob) >> kNumMoveReducingBits];
 	}
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "b155ca3ac3c69555b11d9028d7b107488b4368082ef2e66c54a63efe8a6fe129", Stale = true, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    /// <summary>
+    /// Decodes binary symbols from range-compressed data using adaptive<br/>
+    /// probability estimates.
+    /// </summary>
+    /// <remarks>
+    /// ## Collaborators
+    ///
+    /// | Type | Relationship |
+    /// |---|---|
+    /// | <see cref="Decoder"/> | Range decoder parameter providing coded bits to decode. |
+    ///
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 150 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
+    /// | 153 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
+    /// | 173 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
+    /// | 179 | <see cref="Decode"/> | Decodes and returns a binary symbol from the decoder, updating the  probability model. |
+    /// </remarks>
+    /// <seealso cref="Decoder">Decoder: manages the range-coded bitstream being read.</seealso>
+    /// <!-- <example> block is managed by check-stale -->
+    [DocState(Pass = 2, MTime = "2026-08-24T14:20:49Z", Digest = "d1dcb4c6e1f652d32fb314fc49a5f12cb15f536ac814155fda9cbee04575ceea", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
     internal struct BitDecoder
     {
 
@@ -101,6 +155,10 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         /// <summary>Specifies the constant k Num Move Bits.</summary>
         private const int kNumMoveBits = 5;
 
+        /// <summary>
+        /// Holds the current probability estimate for symbol 0 in the range<br/>
+        /// decoding model.
+        /// </summary>
         private uint Prob;
 
 		/*public void UpdateModel(int numMoveBits, uint symbol)
@@ -111,10 +169,13 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 				Prob -= (Prob) >> numMoveBits;
 		}*/
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Initializes the probability estimate to a neutral state.</summary>
 		public void Init() => Prob = kBitModelTotal >> 1;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>
+		/// Decodes and returns a binary symbol from the decoder, updating the<br/>
+		/// probability model.
+		/// </summary>
 		public uint Decode(Decoder rangeDecoder)
         {
             uint newBound = (rangeDecoder.Range >> kNumBitModelTotalBits)*Prob;

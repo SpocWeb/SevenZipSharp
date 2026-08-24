@@ -6,8 +6,28 @@ namespace SevenZip
     using System.IO;
     using System.Threading.Tasks;
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:35:17Z", Digest = "18c86e8dfe6787af1c88517afc8511e99655e40bf1b0eeaf51a7dcdbe248d6d3", Stale = true, Path = "SevenZipCompressorAsynchronous.cs", Since = "2026-08-23")]
+    /// <summary>
+    /// Provides asynchronous Task-based and callback-based methods for<br/>
+    /// packing files, directories, and streams into archives, and for<br/>
+    /// modifying existing archives.
+    /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 61 | <see cref="BeginCompressFiles"/> | Packs files into the archive asynchronously. |
+    /// | 118 | <see cref="BeginCompressFilesEncrypted"/> | Packs files into the archive asynchronously. |
+    /// | 181 | <see cref="CompressFilesAsync"/> | Packs files into the archive asynchronously. |
+    /// | 262 | <see cref="CompressFilesEncryptedAsync"/> | Packs files into the archive asynchronously. |
+    /// | 352 | <see cref="BeginCompressDirectory"/> | Packs all files in the specified directory asynchronously. |
+    /// | 389 | <see cref="CompressDirectoryAsync"/> | Packs all files in the specified directory asynchronously. |
+    /// | 437 | <see cref="BeginCompressStream"/> | Compresses the specified stream. |
+    /// | 456 | <see cref="CompressStreamAsync"/> | Compresses the specified stream. |
+    /// | 480 | <see cref="BeginModifyArchive"/> | Modifies the existing archive asynchronously (renames files or deletes them). |
+    /// | 498 | <see cref="ModifyArchiveAsync"/> | Modifies the existing archive asynchronously (renames files or deletes them). |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T14:21:55Z", Digest = "18c86e8dfe6787af1c88517afc8511e99655e40bf1b0eeaf51a7dcdbe248d6d3", Stale = false, Path = "SevenZipCompressorAsynchronous.cs", Since = "2026-08-23")]
     partial class SevenZipCompressor
     {
         #region Delegates

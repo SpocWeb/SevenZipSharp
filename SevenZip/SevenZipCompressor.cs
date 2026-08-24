@@ -18,11 +18,28 @@ namespace SevenZip
     /// <summary>
     /// Class to pack data into archives supported by 7-Zip.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1752 | <see cref="LzmaDictionarySize"/> | Gets or sets the dictionary size for the managed LZMA algorithm. |
+    /// | 1803 | <see cref="CompressStream"/> | Compresses the specified stream with LZMA algorithm (C# inside) |
+    /// | 1830 | <see cref="CompressBytes"/> | Compresses byte array with LZMA algorithm (C# inside) |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Encoder"/> | Passed as a parameter. |
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
     /// <example>
     /// var compr = new SevenZipCompressor();
     /// compr.CompressDirectory(@"C:\Dir", @"C:\Archive.7z");
     /// </example>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "de122e951a07cac5c9e2d45bd5e735eacb7c9394c20fbbb982007006ca989714", Stale = true, Path = "SevenZipCompressor.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-24T14:21:14Z", Digest = "4ec3bd49e351a24d2bb9d767fc4d315b1556d01569753b32d708862af5194e86", Stale = false, Path = "SevenZipCompressor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipCompressor
 #if UNMANAGED
         : SevenZipBase
@@ -1739,7 +1756,11 @@ namespace SevenZip
             set => _lzmaDictionarySize = value;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Configures the specified LZMA encoder with standard compression<br/>
+        /// properties including dictionary size, algorithm, and fast bytes.
+        /// </summary>
+        /// <param name="encoder">The LZMA encoder to configure.</param>
         internal static void WriteLzmaProperties(Encoder encoder)
         {
 #region LZMA properties definition
