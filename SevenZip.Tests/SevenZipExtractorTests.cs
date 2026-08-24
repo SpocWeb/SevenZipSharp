@@ -15,11 +15,39 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Extractor.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "dde28f0e288e410981650752ea40bd740da8ebcf478f6fd83adba1e228529739", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 51 | <see cref="TestFiles"/> | Gets a list of test archives from the TestData directory,  excluding multi-volume and long-path archives. |
+    /// | 72 | <see cref="ExtractFilesTest"/> | Extract Files Test. |
+    /// | 87 | <see cref="ExtractSpecificFilesTest"/> | Extract Specific Files Test. |
+    /// | 102 | <see cref="ExtractArchiveMultiVolumesTest"/> | Extract Archive Multi Volumes Test. |
+    /// | 115 | <see cref="ExtractionWithCancellationTest"/> | Extraction With Cancellation Test. |
+    /// | 135 | <see cref="ExtractionWithSkipTest"/> | Extraction With Skip Test. |
+    /// | 155 | <see cref="ExtractionFromStreamTest"/> | Extraction From Stream Test. |
+    /// | 168 | <see cref="ExtractionToStreamTest"/> | Extraction To Stream Test. |
+    /// | 187 | <see cref="DetectMultiVolumeIndexTest"/> | Detect Multi Volume Index Test. |
+    /// | 204 | <see cref="ThreadedExtractionTest"/> | Threaded Extraction Test. |
+    /// | 237 | <see cref="ExtractArchiveWithLongPath"/> | Extract Archive With Long Path. |
+    /// | 247 | <see cref="ReadArchivedFileNames"/> | Read Archived File Names. |
+    /// | 262 | <see cref="ReadArchivedFileData"/> | Read Archived File Data. |
+    /// | 277 | <see cref="ExtractDifferentFormatsTest"/> | Extract Different Formats Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="TestFile"/> | Used as a property. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:52:59Z", Digest = "6c115e43f34fe0d457b67f7d5618e301561beef2b3eca541a4a04a2267d619b8", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipExtractorTests : TestBase
     {
 
+        /// <summary>Gets a list of test archives from the TestData directory,<br/>
+        /// excluding multi-volume and long-path archives.</summary>
         public static List<TestFile> TestFiles
         {
             get
@@ -260,12 +288,22 @@ namespace SevenZip.Tests
     /// <summary>
     /// Simple wrapper to get better names for ExtractDifferentFormatsTest results.
     /// </summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 303 | <see cref="FilePath"/> | Gets the file Path. |
+    /// | 307 | <see cref="TestFile"/> | Initializes a new instance of TestFile with  the specified filePath. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:52:59Z", Digest = "a2c9a38d8f06f9053f688a04d1e59abc09f3077039dca507dc5e40e212b852ad", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     public class TestFile
     {
 
         public string FilePath { get; }
 
+        /// <summary>Initializes a new instance of <see cref="TestFile"/> with<br/>
+        /// the specified <paramref name="filePath"/>.</summary>
         public TestFile(string filePath)
         {
             FilePath = filePath;

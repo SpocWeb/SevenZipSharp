@@ -10,7 +10,27 @@ namespace SevenZip
     /// <summary>
     /// The stream which compresses data with LZMA on the fly.
     /// </summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "644b43dc464782171056f60190b1308d7ba5ca5debcee496cd30780052cf502e", Stale = true, Path = "LZMA/LzmaEncodeStream.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 49 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 61 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 78 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 94 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 225 | <see cref="ToDecodeStream"/> | Converts the LzmaEncodeStream to the LzmaDecodeStream to read data. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="MemoryStream"/> | Used as a field. |
+    /// | <see cref="Encoder"/> | Used as a field. |
+    /// | <see cref="LzmaDecodeStream"/> | Returned by a method. |
+    /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:54:54Z", Digest = "76a787998b6a4f50d5463275b6bc0639b791183c1d3c7432c3585f3f06c49ba4", Stale = false, Path = "LZMA/LzmaEncodeStream.cs", Since = "2026-08-23")]
     public class LzmaEncodeStream : Stream
     {
 
@@ -151,7 +171,10 @@ namespace SevenZip
             set => throw new NotSupportedException();
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Initializes the internal buffer capacity, LZMA encoder, and encoder <br/>
+        /// properties.
+        /// </summary>
         private void Init()
         {
             _buffer.Capacity = _bufferCapacity;
@@ -173,7 +196,9 @@ namespace SevenZip
             }
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Compresses and writes the buffered data to the output stream.
+        /// </summary>
         private void WriteChunk()
         {
             _lzmaEncoder.WriteCoderProperties(_output);
@@ -194,7 +219,9 @@ namespace SevenZip
         /// <summary>
         /// Converts the LzmaEncodeStream to the LzmaDecodeStream to read data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A <see cref="LzmaDecodeStream"/> wrapping the compressed output.
+        /// </returns>
         [System.ComponentModel.Description("Converts the LzmaEncodeStream to the LzmaDecodeStream to read data.")]
         public LzmaDecodeStream ToDecodeStream()
         {

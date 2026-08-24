@@ -14,6 +14,21 @@ namespace SevenZip.Tests
     /// <summary>
     /// Test data to use for CheckFileSignatureTest.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 37 | <see cref="FileCheckerTestData"/> | Initializes a new instance of FileCheckerTestData with the specified testDataFilePath and expectedFormat. |
+    /// | 46 | <see cref="ExpectedFormat"/> | Format this test expects to find. |
+    /// | 52 | <see cref="TestDataFilePath"/> | Path to archive file to test against. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="InArchiveFormat"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "fa7a89f3b2d9944b3333bb79cdad1f85e5348c2ae2a018b5c685126d679bc06d", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     public struct FileCheckerTestData
     {
@@ -44,7 +59,21 @@ namespace SevenZip.Tests
 	}
 
     /// <summary>Tests for file Checker.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "e6485fa88365900e876db4bdcf0071c3636e619745ee016da1e789a8e5f21ee9", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 122 | <see cref="SetUp"/> | Ensures the working directory is set to the test directory for accessing test data files. |
+    /// | 128 | <see cref="CheckFileSignatureTest"/> | Check File Signature Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="FileCheckerTestData"/> | Used as a field. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:52:27Z", Digest = "96a24fc88d6ee4960a6b32c2aa678c6c00cc0d7029a64f76b4b91198fbcac0d7", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class FileCheckerTests
     {
@@ -89,6 +118,7 @@ namespace SevenZip.Tests
             new FileCheckerTestData(@"TestData\zip.zip", InArchiveFormat.Zip)
         };
 
+		/// <summary>Ensures the working directory is set to the test directory for accessing test data files.</summary>
 		[SetUp]
 		public void SetUp() =>
 			// Ensures we're in the correct working directory (for test data files).

@@ -12,6 +12,32 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// <summary>
     /// The LZMA encoder class
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 124 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="UInt32"/> | Used as a field. |
+    /// | <see cref="Byte"/> | Used as a field. |
+    /// | <see cref="BitEncoder"/> | Used as a field. |
+    /// | <see cref="LenPriceTableEncoder"/> | Used as a field. |
+    /// | <see cref="LiteralEncoder"/> | Used as a field. |
+    /// | <see cref="Optimal"/> | Used as a field. |
+    /// | <see cref="BitTreeEncoder"/> | Used as a field. |
+    /// | <see cref="Encoder"/> | Used as a field. |
+    /// | <see cref="IMatchFinder"/> | Used as a field. |
+    /// | <see cref="EMatchFinderType"/> | Used as a field. |
+    /// | <see cref="State"/> | Used as a field. |
+    /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
+    /// | <see cref="CoderPropId"/> | Passed as a parameter. |
+    /// | <see cref="LenEncoder"/> | Nested type. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "589e2ad075cedfb079c421af681751c671bc083053ac6a70219923bbdad4c8d1", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
     public class Encoder : ICoder, ISetCoderProperties, IWriteCoderProperties
     {
@@ -1375,6 +1401,25 @@ namespace SevenZip.Sdk.Compression.Lzma
         #region Nested type: LenEncoder
 
         /// <summary>TODO: LLM</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1388 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
+        /// | 1398 | <see cref="Init"/> | TODO: LLM |
+        /// | 1411 | <see cref="Encode"/> | TODO: LLM |
+        /// | 1436 | <see cref="SetPrices"/> | TODO: LLM |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="BitTreeEncoder"/> | Used as a field. |
+        /// | <see cref="BitEncoder"/> | Used as a field. |
+        /// | <see cref="UInt32"/> | Passed as a parameter. |
+        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "1af4cc1bb123210430371b7d6b0633dc28e46d9e89bc842322b1f13c32ac676b", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class LenEncoder
         {
@@ -1464,6 +1509,23 @@ namespace SevenZip.Sdk.Compression.Lzma
         #region Nested type: LenPriceTableEncoder
 
         /// <summary>TODO: LLM</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1475 | <see cref="SetTableSize"/> | TODO: LLM |
+        /// | 1478 | <see cref="GetPrice"/> | TODO: LLM |
+        /// | 1488 | <see cref="UpdateTables"/> | TODO: LLM |
+        /// | 1495 | <see cref="Encode"/> | TODO: LLM |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="UInt32"/> | Used as a field. |
+        /// | <see cref="Encoder"/> | Passed as a parameter. |
+        /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class LenPriceTableEncoder : LenEncoder
         {
@@ -1543,6 +1605,24 @@ namespace SevenZip.Sdk.Compression.Lzma
 			#region Nested type: Encoder2
 
 			/// <summary>TODO: LLM</summary>
+			/// <remarks>
+			/// ## Public Methods
+			///
+			/// | Line | Method | Description |
+			/// |--:|---|---|
+			/// | 1552 | <see cref="Create"/> | TODO: LLM |
+			/// | 1555 | <see cref="Init"/> | TODO: LLM |
+			/// | 1561 | <see cref="Encode"/> | TODO: LLM |
+			/// | 1573 | <see cref="EncodeMatched"/> | TODO: LLM |
+			/// | 1593 | <see cref="GetPrice"/> | TODO: LLM |
+			///
+			/// ## Collaborators
+			///
+			/// | Type | Role |
+			/// |---|---|
+			/// | <see cref="BitEncoder"/> | Used as a field. |
+			/// | <see cref="Encoder"/> | Passed as a parameter. |
+			/// </remarks>
 			[DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
 			public struct Encoder2
             {
@@ -1628,6 +1708,22 @@ namespace SevenZip.Sdk.Compression.Lzma
         #region Nested type: Optimal
 
         /// <summary>TODO: LLM</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 1649 | <see cref="MakeAsChar"/> | TODO: LLM |
+        /// | 1656 | <see cref="MakeAsShortRep"/> | TODO: LLM |
+        /// | 1664 | <see cref="IsShortRep"/> | Determines whether short Rep. |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="UInt32"/> | Used as a field. |
+        /// | <see cref="State"/> | Used as a field. |
+        /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "28bbc03621af221e0c7db2ed3f0ea83c51b06763228c7943e6b92a1d07603e3c", Stale = true, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
         private class Optimal
         {

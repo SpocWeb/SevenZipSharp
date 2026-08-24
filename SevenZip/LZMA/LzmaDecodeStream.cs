@@ -10,7 +10,23 @@ namespace SevenZip
     /// <summary>
     /// The stream which decompresses data with LZMA on the fly.
     /// </summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:36Z", Digest = "484f43e46119c1254b87d39a49acdbc598da0e3aae1deb8743fe721351a59ab3", Stale = true, Path = "LZMA/LzmaDecodeStream.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 43 | <see cref="LzmaDecodeStream"/> | Initializes a new instance of the LzmaDecodeStream class. |
+    /// | 56 | <see cref="ChunkSize"/> | Gets the chunk size. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="MemoryStream"/> | Used as a field. |
+    /// | <see cref="Decoder"/> | Used as a field. |
+    /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:54:48Z", Digest = "d5fbf109c374f62ad56ae32d1dd3bcd983b50571975397ff1e92d6f0abbc41e7", Stale = false, Path = "LZMA/LzmaDecodeStream.cs", Since = "2026-08-23")]
     public class LzmaDecodeStream : Stream
     {
         private readonly MemoryStream _buffer = new MemoryStream();
@@ -92,7 +108,11 @@ namespace SevenZip
             set => throw new NotSupportedException();
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>
+        /// Reads and decodes the next chunk from the input stream, validating LZMA
+        /// <br/>
+        /// properties and updating the internal buffer.
+        /// </summary>
         private void ReadChunk()
         {
             long size;

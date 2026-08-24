@@ -9,6 +9,20 @@ namespace SevenZip
     /// <summary>
     /// Callback to implement the ICodeProgress interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 37 | <see cref="LzmaProgressCallback"/> | Initializes a new instance of the LzmaProgressCallback class |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="EventHandler"/> | Passed as a parameter. |
+    /// | <see cref="ProgressEventArgs"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-22T17:32:56Z", Digest = "d52e5afa51eaa5b99c848bfc9f78ba7985d6635d2aebd99ada8c7d42e65ae155", Stale = false, Path = "LZMA/LzmaProgressCallback.cs", Since = "2026-08-23")]
     internal sealed class LzmaProgressCallback : ICodeProgress
     {

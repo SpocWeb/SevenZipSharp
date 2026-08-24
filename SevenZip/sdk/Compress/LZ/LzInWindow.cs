@@ -6,9 +6,36 @@ namespace SevenZip.Sdk.Compression.LZ
     using System.IO;
 
     /// <summary>
-    /// Input window class
+    /// Manages a sliding input buffer for LZ compression, tracking stream position <br/>and available bytes for pattern matching operations.
     /// </summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "7cbaf6eeef7a4554e2d6fce5510458561c06e0d9c8c464c3ed50f20b828f0efe", Stale = true, Path = "sdk/Compress/LZ/LzInWindow.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 80 | <see cref="MoveBlock"/> | Compacts buffer data by discarding bytes before the keep-before boundary,  adjusting position tracking accordingly. |
+    /// | 97 | <see cref="ReadBlock"/> | Reads data from the stream into the buffer until the stream ends or  sufficient data is available after the current position. |
+    /// | 131 | <see cref="Create"/> | Allocates and initializes the buffer with the specified keep-before,  keep-after, and reserve sizes. |
+    /// | 146 | <see cref="SetStream"/> | Associates the stream to read data from. |
+    /// | 149 | <see cref="ReleaseStream"/> | Disassociates the stream. |
+    /// | 152 | <see cref="Init"/> | Initializes the window state and reads the first data block from the stream. |
+    /// | 162 | <see cref="MovePos"/> | Advances the current position by one byte, triggering buffer  compaction and stream read when necessary. |
+    /// | 176 | <see cref="GetIndexByte"/> | Returns the byte at the specified index offset from the current position. |
+    /// | 185 | <see cref="GetMatchLen"/> | index + limit have not to exceed _keepSizeAfter |
+    /// | 203 | <see cref="GetNumAvailableBytes"/> | Returns the count of unread bytes from the current position to the stream position. |
+    /// | 206 | <see cref="ReduceOffsets"/> | Subtracts a value from all position-tracking fields. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="Stream"/> | Source of input data read into the buffer. |
+    /// | <see cref="Byte"/> | Element type of the data buffer. |
+    /// | <see cref="UInt32"/> | Position and size tracking throughout the buffer and stream. |
+    /// </remarks>
+    /// <seealso cref="Stream">Stream: provides input data to the window.</seealso>
+    /// <seealso cref="Byte">Byte: element type of the managed buffer.</seealso>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:57:39Z", Digest = "e7fc3a08bc7803a01d3aa44f68ca209a25a8ba9e3eed59c05fa62f06e824f3fc", Stale = false, Path = "sdk/Compress/LZ/LzInWindow.cs", Since = "2026-08-23")]
     internal class InWindow
     {
         /// <summary>
@@ -52,7 +79,7 @@ namespace SevenZip.Sdk.Compression.LZ
         /// </summary>
         public UInt32 _streamPos;
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Compacts buffer data by discarding bytes before the keep-before boundary, <br/>adjusting position tracking accordingly.</summary>
         public void MoveBlock()
         {
             UInt32 offset = (_bufferOffset) + _pos - _keepSizeBefore;
@@ -69,7 +96,7 @@ namespace SevenZip.Sdk.Compression.LZ
             _bufferOffset -= offset;
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Reads data from the stream into the buffer until the stream ends or <br/>sufficient data is available after the current position.</summary>
         public virtual void ReadBlock()
         {
             if (_streamEndWasReached) {
@@ -100,10 +127,10 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Releases the allocated buffer.</summary>
 		private void Free() => _bufferBase = null;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Allocates and initializes the buffer with the specified keep-before, <br/>keep-after, and reserve sizes.</summary>
 		public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
         {
             _keepSizeBefore = keepSizeBefore;
@@ -118,13 +145,13 @@ namespace SevenZip.Sdk.Compression.LZ
             _pointerToLastSafePosition = _blockSize - keepSizeAfter;
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Associates the stream to read data from.</summary>
 		public void SetStream(Stream stream) => _stream = stream;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Disassociates the stream.</summary>
 		public void ReleaseStream() => _stream = null;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Initializes the window state and reads the first data block from the stream.</summary>
 		public void Init()
         {
             _bufferOffset = 0;
@@ -134,7 +161,7 @@ namespace SevenZip.Sdk.Compression.LZ
             ReadBlock();
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Advances the current position by one byte, triggering buffer <br/>compaction and stream read when necessary.</summary>
         public void MovePos()
         {
             _pos++;
@@ -148,7 +175,7 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the byte at the specified index offset from the current position.</summary>
 		public Byte GetIndexByte(Int32 index) => _bufferBase[_bufferOffset + _pos + index];
 
 		/// <summary>
@@ -175,10 +202,10 @@ namespace SevenZip.Sdk.Compression.LZ
             return i;
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the count of unread bytes from the current position to the stream position.</summary>
 		public UInt32 GetNumAvailableBytes() => _streamPos - _pos;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Subtracts a value from all position-tracking fields.</summary>
 		public void ReduceOffsets(Int32 subValue)
         {
             _bufferOffset += (UInt32) subValue;

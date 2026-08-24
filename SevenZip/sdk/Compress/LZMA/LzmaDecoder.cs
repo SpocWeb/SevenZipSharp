@@ -11,6 +11,25 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// <summary>
     /// The LZMA decoder class
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 46 | <see cref="Decoder"/> | Initializes the Lzma Decoder class. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="BitDecoder"/> | Used as a field. |
+    /// | <see cref="LenDecoder"/> | Used as a field. |
+    /// | <see cref="LiteralDecoder"/> | Used as a field. |
+    /// | <see cref="OutWindow"/> | Used as a field. |
+    /// | <see cref="BitTreeDecoder"/> | Used as a field. |
+    /// | <see cref="Decoder"/> | Used as a field. |
+    /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "29af3792e06e534f907e043c4024d836d77dda396ffb0f930905fb03232ac102", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
     public class Decoder : ICoder, ISetDecoderProperties // ,System.IO.Stream
     {
@@ -306,6 +325,21 @@ namespace SevenZip.Sdk.Compression.Lzma
         #region Nested type: LenDecoder
 
         /// <summary>TODO: LLM</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 349 | <see cref="Decode"/> | Decodes the stream |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="BitTreeDecoder"/> | Used as a field. |
+        /// | <see cref="BitDecoder"/> | Used as a field. |
+        /// | <see cref="Decoder"/> | Passed as a parameter. |
+        /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "7f220484d76e01e8988c3d049f63515b3d15bbff9a9c85ed7e2c7ac867e9c2e3", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
         private class LenDecoder
         {
@@ -371,6 +405,23 @@ namespace SevenZip.Sdk.Compression.Lzma
         #region Nested type: LiteralDecoder
 
         /// <summary>TODO: LLM</summary>
+        /// <remarks>
+        /// ## Public Methods
+        ///
+        /// | Line | Method | Description |
+        /// |--:|---|---|
+        /// | 383 | <see cref="Create"/> | TODO: LLM |
+        /// | 399 | <see cref="Init"/> | TODO: LLM |
+        /// | 410 | <see cref="DecodeNormal"/> | TODO: LLM |
+        /// | 413 | <see cref="DecodeWithMatchByte"/> | TODO: LLM |
+        ///
+        /// ## Collaborators
+        ///
+        /// | Type | Role |
+        /// |---|---|
+        /// | <see cref="Decoder2"/> | Used as a field. |
+        /// | <see cref="Decoder"/> | Passed as a parameter. |
+        /// </remarks>
         [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "55b3b5ca7bf4f3c5f934b96a336d042a942b4858bca7de808520073166f6a653", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
         private class LiteralDecoder
         {
@@ -415,6 +466,23 @@ namespace SevenZip.Sdk.Compression.Lzma
 			#region Nested type: Decoder2
 
 			/// <summary>TODO: LLM</summary>
+			/// <remarks>
+			/// ## Public Methods
+			///
+			/// | Line | Method | Description |
+			/// |--:|---|---|
+			/// | 424 | <see cref="Create"/> | TODO: LLM |
+			/// | 427 | <see cref="Init"/> | TODO: LLM |
+			/// | 433 | <see cref="DecodeNormal"/> | TODO: LLM |
+			/// | 442 | <see cref="DecodeWithMatchByte"/> | TODO: LLM |
+			///
+			/// ## Collaborators
+			///
+			/// | Type | Role |
+			/// |---|---|
+			/// | <see cref="BitDecoder"/> | Used as a field. |
+			/// | <see cref="Decoder"/> | Passed as a parameter. |
+			/// </remarks>
 			[DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "c614671c19c02e8cf5e46a266bf981def0dccbaf19bbb3e427fce14d73e24f64", Stale = true, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
 			private struct Decoder2
             {

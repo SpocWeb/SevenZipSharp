@@ -4,8 +4,29 @@ namespace SevenZip.Sdk.Compression.LZ
     using System;
     using System.IO;
 
-    /// <inheritdoc cref="IMatchFinder"/>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:46Z", Digest = "725be727d0f0b0cf9162885f380d0b4fd1255128e2cd432ce44eff5b85d0a774", Stale = true, Path = "sdk/Compress/LZ/LzBinTree.cs", Since = "2026-08-23")]
+    /// <summary>Binary tree-based match finder for LZ compression using hash tables and
+    /// <br/>a sliding window to locate repeating patterns efficiently.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 73 | <see cref="SetStream"/> | Sets the input stream from which match data is read. |
+    /// | 76 | <see cref="ReleaseStream"/> | Releases the current input stream. |
+    /// | 79 | <see cref="Init"/> | Initializes the hash tables and cyclic buffer for match finding. |
+    /// | 89 | <see cref="GetIndexByte"/> | Returns the byte at the specified offset in the current window. |
+    /// | 92 | <see cref="GetMatchLen"/> | Returns the length of the match at the specified distance, up to the given limit. |
+    /// | 95 | <see cref="GetNumAvailableBytes"/> | Returns the number of bytes available for matching in the current window. |
+    /// | 402 | <see cref="MovePos"/> | Advances to the next position in the buffer and normalizes position  references if the maximum value is reached. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="UInt32"/> | Used as a field. |
+    /// | <see cref="Byte"/> | Returned by a method. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:57:29Z", Digest = "8377379b3b0188221ab06ab72dc62da0325c79353ce77b4781f4b7f35493f406", Stale = false, Path = "sdk/Compress/LZ/LzBinTree.cs", Since = "2026-08-23")]
     internal class BinTree : InWindow, IMatchFinder
     {
 
@@ -48,13 +69,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
 		#region IMatchFinder Members
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Sets the input stream from which match data is read.</summary>
 		public new void SetStream(Stream stream) => base.SetStream(stream);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Releases the current input stream.</summary>
 		public new void ReleaseStream() => base.ReleaseStream();
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Initializes the hash tables and cyclic buffer for match finding.</summary>
 		public new void Init()
         {
             base.Init();
@@ -64,13 +85,13 @@ namespace SevenZip.Sdk.Compression.LZ
             ReduceOffsets(-1);
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the byte at the specified offset in the current window.</summary>
 		public new Byte GetIndexByte(Int32 index) => base.GetIndexByte(index);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the length of the match at the specified distance, up to the given limit.</summary>
 		public new UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit) => base.GetMatchLen(index, distance, limit);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the number of bytes available for matching in the current window.</summary>
 		public new UInt32 GetNumAvailableBytes() => base.GetNumAvailableBytes();
 
 		/// <inheritdoc />
@@ -376,7 +397,8 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Advances to the next position in the buffer and normalizes position
+        /// <br/>references if the maximum value is reached.</summary>
         public new void MovePos()
         {
             if (++_cyclicBufferPos >= _cyclicBufferSize) {
@@ -388,7 +410,8 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Subtracts a value from position references, replacing underflow values
+        /// <br/>with the empty sentinel.</summary>
         private static void NormalizeLinks(UInt32[] items, UInt32 numItems, UInt32 subValue)
         {
             for (UInt32 i = 0; i < numItems; i++)
@@ -403,7 +426,8 @@ namespace SevenZip.Sdk.Compression.LZ
             }
         }
 
-        /// <summary>TODO: LLM</summary>
+        /// <summary>Resets position values in the binary tree and hash arrays to prevent
+        /// <br/>overflow.</summary>
         private void Normalize()
         {
             UInt32 subValue = _pos - _cyclicBufferSize;

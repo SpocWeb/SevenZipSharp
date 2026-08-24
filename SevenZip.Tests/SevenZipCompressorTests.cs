@@ -15,7 +15,36 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Compressor.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "12b1e638a4508aa7b1174da7414e032968026416c595bc26d0be69a44dbe1d26", Stale = true, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 54 | <see cref="CompressionMethods"/> | TestCaseSource for CompressDifferentFormatsTest |
+    /// | 70 | <see cref="CompressDirectory_WithSfnPath"/> | Compress Directory — with Sfn Path. |
+    /// | 90 | <see cref="CompressDirectory_NonExistentDirectory"/> | Compress Directory — non Existent Directory. |
+    /// | 100 | <see cref="CompressFile_WithSfnPath"/> | Compress File — with Sfn Path. |
+    /// | 119 | <see cref="CompressFileTest"/> | Compress File Test. |
+    /// | 140 | <see cref="CompressDirectoryTest"/> | Compress Directory Test. |
+    /// | 163 | <see cref="CompressWithAppendModeTest"/> | Compress With Append Mode Test. |
+    /// | 191 | <see cref="ModifyProtectedArchiveTest"/> | Modify Protected Archive Test. |
+    /// | 220 | <see cref="ModifyNonArchiveTest"/> | Modify Non Archive Test. |
+    /// | 236 | <see cref="CompressWithModifyModeRenameTest"/> | Compress With Modify Mode Rename Test. |
+    /// | 261 | <see cref="CompressWithModifyModeDeleteTest"/> | Compress With Modify Mode Delete Test. |
+    /// | 285 | <see cref="MultiVolumeCompressionTest"/> | Multi Volume Compression Test. |
+    /// | 302 | <see cref="CompressToStreamTest"/> | Compress To Stream Test. |
+    /// | 322 | <see cref="CompressFromStreamTest"/> | Compress From Stream Test. |
+    /// | 349 | <see cref="CompressFileDictionaryTest"/> | Compress File Dictionary Test. |
+    /// | 371 | <see cref="ThreadedCompressionTest"/> | Threaded Compression Test. |
+    /// | 399 | <see cref="CompressDifferentFormatsTest"/> | Compress Different Formats Test. |
+    ///
+    /// ## Collaborators
+    ///
+    /// | Type | Role |
+    /// |---|---|
+    /// | <see cref="CompressionMethod"/> | Used as a property. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:51:44Z", Digest = "12b1e638a4508aa7b1174da7414e032968026416c595bc26d0be69a44dbe1d26", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorTests : TestBase
     {

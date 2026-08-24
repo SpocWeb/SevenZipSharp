@@ -10,6 +10,20 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Compressor Asynchronous.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 33 | <see cref="AsynchronousCompressDirectoryAndEventsTest"/> | Asynchronous Compress Directory And Events Test. |
+    /// | 76 | <see cref="AsynchronousCompressFilesTest"/> | Asynchronous Compress Files Test. |
+    /// | 109 | <see cref="AsynchronousCompressStreamTest"/> | Asynchronous Compress Stream Test. |
+    /// | 146 | <see cref="AsynchronousModifyArchiveTest"/> | Asynchronous Modify Archive Test. |
+    /// | 180 | <see cref="AsynchronousCompressFilesEncryptedTest"/> | Asynchronous Compress Files Encrypted Test. |
+    /// | 215 | <see cref="CompressFilesAsync"/> | Compress Files Async. |
+    /// | 232 | <see cref="CompressDirectoryAsync"/> | Compress Directory Async. |
+    /// | 249 | <see cref="CompressFilesEncryptedAsync"/> | Compress Files Encrypted Async. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "443dd3b5eaeb0c19dbda88700012ef2cbd96e07d18c2601caf18a74cc340046c", Stale = false, Path = "SevenZipCompressorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorAsynchronousTests : TestBase

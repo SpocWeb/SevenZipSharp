@@ -13,6 +13,14 @@ namespace SevenZip.Tests
     using SevenZip;
 
     /// <summary>Tests for miscellaneous.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 30 | <see cref="SerializationTest"/> | Serialization Test. |
+    /// | 81 | <see cref="LzmaEncodeDecodeTest"/> | Lzma Encode Decode Test. |
+    /// </remarks>
     [DocState(Pass = 2, MTime = "2026-08-23T10:39:12Z", Digest = "d12e9101e5c6b3f0265d86f0d2cca1579f51d51534342c47740f3c59cec2a915", Stale = false, Path = "MiscellaneousTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class MiscellaneousTests : TestBase

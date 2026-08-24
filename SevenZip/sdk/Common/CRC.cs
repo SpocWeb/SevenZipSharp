@@ -2,8 +2,20 @@ using org.SpocWeb.root.Attributes;
 namespace SevenZip.Sdk
 {
 
-    /// <summary>TODO: LLM</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:44Z", Digest = "350698694eafae3341871b61d923e3848a87699114a9e33e5dac9cbc7db3fb06", Stale = true, Path = "sdk/Common/CRC.cs", Since = "2026-08-23")]
+    /// <summary>Computes CRC32 checksums using polynomial division with precomputed <br/>
+    /// lookup table.</summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 23 | <see cref="Table"/> | Gets the table. |
+    /// | 54 | <see cref="Init"/> | Resets the CRC value to its initial state. |
+    /// | 57 | <see cref="UpdateByte"/> | Updates the CRC value with a single byte. |
+    /// | 60 | <see cref="Update"/> | Updates the CRC value with a range of bytes from the given array. |
+    /// | 67 | <see cref="GetDigest"/> | Returns the finalized CRC value. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:55:58Z", Digest = "a62c9e1f557b21fcddf7f2d6a49a8a73c1cf31c72ad87d114fe9b666003ddd0c", Stale = false, Path = "sdk/Common/CRC.cs", Since = "2026-08-23")]
     internal class CRC
     {
 
@@ -12,7 +24,7 @@ namespace SevenZip.Sdk
 
         private uint _value = 0xFFFFFFFF;
 
-        /// <summary>Initializes a new instance of <see cref="CRC"/>.</summary>
+        /// <summary>Populates the CRC polynomial lookup table.</summary>
         static CRC()
         {
             Table = new uint[256];
@@ -38,20 +50,20 @@ namespace SevenZip.Sdk
             }
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Resets the CRC value to its initial state.</summary>
 		public void Init() => _value = 0xFFFFFFFF;
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Updates the CRC value with a single byte.</summary>
 		public void UpdateByte(byte b) => _value = Table[(((byte) (_value)) ^ b)] ^ (_value >> 8);
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Updates the CRC value with a range of bytes from the given array.</summary>
 		public void Update(byte[] data, uint offset, uint size)
         {
             for (uint i = 0; i < size; i++)
                 _value = Table[(((byte) (_value)) ^ data[offset + i])] ^ (_value >> 8);
         }
 
-		/// <summary>TODO: LLM</summary>
+		/// <summary>Returns the finalized CRC value.</summary>
 		public uint GetDigest() => _value ^ 0xFFFFFFFF;
 	}
 }

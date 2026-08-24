@@ -9,7 +9,22 @@ namespace SevenZip.Tests
     using NUnit.Framework.Legacy;
 
     /// <summary>Tests for seven Zip Extractor Asynchronous.</summary>
-    [DocState(Pass = 2, MTime = "2026-08-23T11:34:25Z", Digest = "c2e116caa26548f79ad9b94ecf04d357b19cb00eb7fa6f9da30ebaac67f94be0", Stale = true, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 33 | <see cref="AsynchronousExtractArchiveEventsTest"/> | Asynchronous Extract Archive Events Test. |
+    /// | 92 | <see cref="AsynchronousExtractFileEventsTest"/> | Asynchronous Extract File Events Test. |
+    /// | 125 | <see cref="AsynchronousExtractFilesEventsTest"/> | Asynchronous Extract Files Events Test. |
+    /// | 156 | <see cref="ExtractArchiveAsync"/> | Extract Archive Async. |
+    /// | 168 | <see cref="ExtractFileAsync_ByIndex"/> | Extract File Async — by Index. |
+    /// | 184 | <see cref="ExtractFileAsync_ByFileName"/> | Extract File Async — by File Name. |
+    /// | 200 | <see cref="ExtractFilesAsync_ByCallback"/> | Extract Files Async — by Callback. |
+    /// | 212 | <see cref="ExtractFilesAsync_ByIndex"/> | Extract Files Async — by Index. |
+    /// | 224 | <see cref="ExtractFilesAsync_ByFileName"/> | Extract Files Async — by File Name. |
+    /// </remarks>
+    [DocState(Pass = 2, MTime = "2026-08-24T13:51:44Z", Digest = "c2e116caa26548f79ad9b94ecf04d357b19cb00eb7fa6f9da30ebaac67f94be0", Stale = false, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
     public class SevenZipExtractorAsynchronousTests : TestBase
     {
