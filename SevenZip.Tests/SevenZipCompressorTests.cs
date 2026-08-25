@@ -14,7 +14,7 @@ namespace SevenZip.Tests
 
     using NUnit.Framework.Legacy;
 
-    /// <summary>Tests for seven Zip Compressor.</summary>
+    /// <summary>Tests for the SevenZip Compressor.</summary>
     /// <remarks>
     /// ## Public Methods
     ///
@@ -42,9 +42,11 @@ namespace SevenZip.Tests
     ///
     /// | Type | Role |
     /// |---|---|
-    /// | <see cref="CompressionMethod"/> | Used as a property. |
+    /// | <see cref="SevenZipCompressor"/> | Main type under test; instantiated in every test method. |
+    /// | <see cref="SevenZipExtractor"/> | Used to verify compressed archive contents. |
+    /// | <see cref="CompressionMethod"/> | Enumeration providing compression method test variations. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:51:44Z", Digest = "12b1e638a4508aa7b1174da7414e032968026416c595bc26d0be69a44dbe1d26", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-08-25T02:10:50Z", Digest = "2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
     [TestFixture]
     public class SevenZipCompressorTests : TestBase
     {
