@@ -78,6 +78,10 @@
     <EmbeddedResource Include="arch\Test.zip" /> 
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\_std\SpocWeb.Proxies\Attributes\RmgAttributes.cs" Link="_Links\RmgAttributes.cs" />
+    <Compile Include="..\..\..\_std\SpocWeb.Proxies\Attributes\RmgAttributes.IsExternalInit.cs" Link="_Links\RmgAttributes.IsExternalInit.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
