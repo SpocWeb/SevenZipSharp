@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <DefaultItemExcludes>$(DefaultItemExcludes);**\*.vrn;**\*.vrn.zip</DefaultItemExcludes>
     <AssemblyName>SevenZipSharp</AssemblyName>
@@ -78,7 +78,6 @@
     <EmbeddedResource Include="arch\Test.zip" /> 
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\_std\SpocWeb.Proxies\Attributes\RmgAttributes.cs" Link="_Links\RmgAttributes.cs" />
     <Compile Include="..\..\..\_std\SpocWeb.Proxies\Attributes\RmgAttributes.IsExternalInit.cs" Link="_Links\RmgAttributes.IsExternalInit.cs" />
   </ItemGroup>
   <ItemGroup>
