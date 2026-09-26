@@ -28,19 +28,32 @@ namespace SevenZip
     /// | 95 | <see cref="Dispose"/> | Disposes the underlying source stream. |
     /// </remarks>
     /// <seealso cref="Stream">Stream — underlying operations are delegated with position adjustments.</seealso>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:17:09Z", Digest = "12066dd21476c4e3fc1ee07d1b0906de0a1dd6a10c5ffe4210abb9f9dbbad71f", Stale = false, Path = "ArchiveEmulationStreamProxy.cs", Since = "2026-08-23")]
+    [Facets(Layer = "interop", Status = "stable", Complexity = 2)]
+    [Tags("code/adapter_pattern", "code/delegation", "code/disposable_pattern")]
+    [System.ComponentModel.Description("A Stream proxy that presents a portion of an underlying stream starting from a specified offset, remapping position and seek operations accordingly.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "12066dd21476c4e3fc1ee07d1b0906de0a1dd6a10c5ffe4210abb9f9dbbad71f", Stale = false, Path = "ArchiveEmulationStreamProxy.cs", Since = "2026-08-23")]
+    [Concept("stream_position_remapping")]
+    [Concept("archive_emulation")]
     internal class ArchiveEmulationStreamProxy : Stream, IDisposable
     {
         /// <summary>
         /// Gets the file offset.
         /// </summary>
+        [Facets(Layer = "interop", Status = "stable", Complexity = 2)]
+        [Tags("code/adapter_pattern", "code/delegation", "code/disposable_pattern")]
         [System.ComponentModel.Description("Gets the file offset.")]
+        [Concept("stream_position_remapping")]
+        [Concept("archive_emulation")]
         public int Offset { get; }
 
         /// <summary>
         /// The source wrapped stream.
         /// </summary>
+        [Facets(Layer = "interop", Status = "stable", Complexity = 2)]
+        [Tags("code/adapter_pattern", "code/delegation", "code/disposable_pattern")]
         [System.ComponentModel.Description("The source wrapped stream.")]
+        [Concept("stream_position_remapping")]
+        [Concept("archive_emulation")]
         public Stream Source { get; }
 
         /// <summary>
@@ -48,7 +61,11 @@ namespace SevenZip
         /// </summary>
         /// <param name="stream">The stream to wrap.</param>
         /// <param name="offset">The stream offset.</param>
+        [Facets(Layer = "interop", Status = "stable", Complexity = 2)]
+        [Tags("code/adapter_pattern", "code/delegation", "code/disposable_pattern")]
         [System.ComponentModel.Description("Initializes a new instance of the ArchiveEmulationStream class.")]
+        [Concept("stream_position_remapping")]
+        [Concept("archive_emulation")]
         public ArchiveEmulationStreamProxy(Stream stream, int offset)
         {
             Source = stream;
@@ -92,6 +109,11 @@ namespace SevenZip
 		public override void Write(byte[] buffer, int offset, int count) => Source.Write(buffer, offset, count);
 
 		/// <summary>Disposes the underlying source stream.</summary>
+		[Facets(Layer = "interop", Status = "stable", Complexity = 2)]
+		[Tags("code/adapter_pattern", "code/delegation", "code/disposable_pattern")]
+		[System.ComponentModel.Description("Disposes the underlying source stream.")]
+		[Concept("stream_position_remapping")]
+		[Concept("archive_emulation")]
 		public new void Dispose() => Source.Dispose();
 
 		/// <inheritdoc />

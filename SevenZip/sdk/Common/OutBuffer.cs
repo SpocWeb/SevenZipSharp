@@ -20,7 +20,12 @@ namespace SevenZip.Sdk.Buffer
     /// | 72 | <see cref="FlushData"/> | Writes buffered data to the stream and resets the buffer position. |
     /// | 83 | <see cref="GetProcessedSize"/> | Returns the total number of bytes written to the stream. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:56:05Z", Digest = "dc587e4a8cb5c15ee0fdedbb93a554a85895a196b5872eabc963341ba99fb4a6", Stale = false, Path = "sdk/Common/OutBuffer.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/data_container", "code/buffer_snapshot")]
+    [System.ComponentModel.Description("Buffers bytes for efficient writing to an underlying output stream.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "dc587e4a8cb5c15ee0fdedbb93a554a85895a196b5872eabc963341ba99fb4a6", Stale = false, Path = "sdk/Common/OutBuffer.cs", Since = "2026-08-23")]
+    [Concept("code/batch_processing")]
+    [Concept("code/file_io")]
     internal class OutBuffer
     {
         private readonly byte[] m_Buffer;
@@ -33,7 +38,11 @@ namespace SevenZip.Sdk.Buffer
         /// Initializes a new instance of the OutBuffer class
         /// </summary>
         /// <param name="bufferSize"></param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/data_container", "code/buffer_snapshot")]
         [System.ComponentModel.Description("Initializes a new instance of the OutBuffer class")]
+        [Concept("code/batch_processing")]
+        [Concept("code/file_io")]
         public OutBuffer(uint bufferSize)
         {
             m_Buffer = new byte[bufferSize];
@@ -41,18 +50,43 @@ namespace SevenZip.Sdk.Buffer
         }
 
 		/// <summary>Designates the output stream for buffered writes.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Designates the output stream for buffered writes.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public void SetStream(Stream stream) => m_Stream = stream;
 
 		/// <summary>Flushes the underlying output stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Flushes the underlying output stream.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public void FlushStream() => m_Stream.Flush();
 
 		/// <summary>Closes the underlying output stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Closes the underlying output stream.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public void CloseStream() => m_Stream.Close();
 
 		/// <summary>Releases the reference to the output stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Releases the reference to the output stream.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public void ReleaseStream() => m_Stream = null;
 
 		/// <summary>Resets the buffer position and processed size counter.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Resets the buffer position and processed size counter.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public void Init()
         {
             m_ProcessedSize = 0;
@@ -60,6 +94,11 @@ namespace SevenZip.Sdk.Buffer
         }
 
         /// <summary>Writes a byte to the buffer, flushing if the buffer reaches capacity.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/data_container", "code/buffer_snapshot")]
+        [System.ComponentModel.Description("Writes a byte to the buffer, flushing if the buffer reaches capacity.")]
+        [Concept("code/batch_processing")]
+        [Concept("code/file_io")]
         public void WriteByte(byte b)
         {
             m_Buffer[m_Pos++] = b;
@@ -69,6 +108,11 @@ namespace SevenZip.Sdk.Buffer
         }
 
         /// <summary>Writes buffered data to the stream and resets the buffer position.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/data_container", "code/buffer_snapshot")]
+        [System.ComponentModel.Description("Writes buffered data to the stream and resets the buffer position.")]
+        [Concept("code/batch_processing")]
+        [Concept("code/file_io")]
         public void FlushData()
         {
             if (m_Pos == 0) {
@@ -80,6 +124,11 @@ namespace SevenZip.Sdk.Buffer
 
 		/// <summary>Returns the total number of bytes written to the stream.</summary>
 		/// <returns>Total bytes written (processed size plus current buffer position).</returns>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/data_container", "code/buffer_snapshot")]
+		[System.ComponentModel.Description("Returns the total number of bytes written to the stream.")]
+		[Concept("code/batch_processing")]
+		[Concept("code/file_io")]
 		public ulong GetProcessedSize() => m_ProcessedSize + m_Pos;
 	}
 }

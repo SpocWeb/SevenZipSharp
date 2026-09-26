@@ -30,7 +30,13 @@ namespace SevenZip
     /// | <see cref="LzmaDecodeStream"/> | Returned by a method. |
     /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:54:54Z", Digest = "76a787998b6a4f50d5463275b6bc0639b791183c1d3c7432c3585f3f06c49ba4", Stale = false, Path = "LZMA/LzmaEncodeStream.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+    [Tags("code/compression", "code/encoding", "code/adapter")]
+    [System.ComponentModel.Description("The stream which compresses data with LZMA on the fly.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "76a787998b6a4f50d5463275b6bc0639b791183c1d3c7432c3585f3f06c49ba4", Stale = false, Path = "LZMA/LzmaEncodeStream.cs", Since = "2026-08-23")]
+    [Concept("streaming")]
+    [Concept("buffered")]
+    [Concept("stateful")]
     public class LzmaEncodeStream : Stream
     {
 
@@ -46,7 +52,12 @@ namespace SevenZip
         /// <summary>
         /// Initializes a new instance of the LzmaEncodeStream class.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Initializes a new instance of the LzmaEncodeStream class.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public LzmaEncodeStream()
         {
             _output = new MemoryStream();
@@ -58,7 +69,12 @@ namespace SevenZip
         /// Initializes a new instance of the LzmaEncodeStream class.
         /// </summary>
         /// <param name="bufferCapacity">The buffer size. The bigger size, the better compression.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Initializes a new instance of the LzmaEncodeStream class.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public LzmaEncodeStream(int bufferCapacity)
         {
             _output = new MemoryStream();
@@ -75,7 +91,12 @@ namespace SevenZip
         /// Initializes a new instance of the LzmaEncodeStream class.
         /// </summary>
         /// <param name="outputStream">An output stream which supports writing.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Initializes a new instance of the LzmaEncodeStream class.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public LzmaEncodeStream(Stream outputStream)
         {
             if (!outputStream.CanWrite)
@@ -91,7 +112,12 @@ namespace SevenZip
         /// </summary>
         /// <param name="outputStream">An output stream which supports writing.</param>
         /// <param name="bufferCapacity">A buffer size. The bigger size, the better compression.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Initializes a new instance of the LzmaEncodeStream class.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public LzmaEncodeStream(Stream outputStream, int bufferCapacity)
         {
             if (!outputStream.CanWrite)
@@ -110,19 +136,34 @@ namespace SevenZip
         /// <summary>
         /// Gets a value indicating whether the current stream supports reading.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports reading.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override bool CanRead => false;
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports seeking.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports seeking.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override bool CanSeek => false;
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports writing.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports writing.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override bool CanWrite
         {
             get
@@ -135,7 +176,12 @@ namespace SevenZip
         /// <summary>
         /// Gets the length in bytes of the output stream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Gets the length in bytes of the output stream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override long Length
         {
             get
@@ -154,7 +200,12 @@ namespace SevenZip
         /// <summary>
         /// Gets or sets the position within the output stream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Gets or sets the position within the output stream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override long Position
         {
             get
@@ -175,6 +226,12 @@ namespace SevenZip
         /// Initializes the internal buffer capacity, LZMA encoder, and encoder <br/>
         /// properties.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
+        [System.ComponentModel.Description("Initializes the internal buffer capacity, LZMA encoder, and encoder properties.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         private void Init()
         {
             _buffer.Capacity = _bufferCapacity;
@@ -187,7 +244,12 @@ namespace SevenZip
         /// Checked whether the class was disposed.
         /// </summary>
         /// <exception cref="System.ObjectDisposedException" />
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Checked whether the class was disposed.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         private void DisposedCheck()
         {
             if (_disposed)
@@ -199,6 +261,12 @@ namespace SevenZip
         /// <summary>
         /// Compresses and writes the buffered data to the output stream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
+        [System.ComponentModel.Description("Compresses and writes the buffered data to the output stream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         private void WriteChunk()
         {
             _lzmaEncoder.WriteCoderProperties(_output);
@@ -222,7 +290,12 @@ namespace SevenZip
         /// <returns>
         /// A <see cref="LzmaDecodeStream"/> wrapping the compressed output.
         /// </returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Converts the LzmaEncodeStream to the LzmaDecodeStream to read data.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public LzmaDecodeStream ToDecodeStream()
         {
             DisposedCheck();
@@ -233,7 +306,12 @@ namespace SevenZip
         /// <summary>
         /// Clears all buffers for this stream and causes any buffered data to be compressed and written.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Clears all buffers for this stream and causes any buffered data to be compressed and written.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override void Flush()
         {
             DisposedCheck();
@@ -243,7 +321,12 @@ namespace SevenZip
         /// <summary>
         /// Releases all unmanaged resources used by LzmaEncodeStream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Releases all unmanaged resources used by LzmaEncodeStream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         protected override void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -269,7 +352,12 @@ namespace SevenZip
         /// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
         /// <param name="count">The maximum number of bytes to be read from the current stream.</param>
         /// <returns>The total number of bytes read into the buffer.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override int Read(byte[] buffer, int offset, int count)
         {
             DisposedCheck();
@@ -282,7 +370,12 @@ namespace SevenZip
         /// <param name="offset">A byte offset relative to the origin parameter.</param>
         /// <param name="origin">A value of type System.IO.SeekOrigin indicating the reference point used to obtain the new position.</param>
         /// <returns>The new position within the current stream.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Sets the position within the current stream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override long Seek(long offset, SeekOrigin origin)
         {
             DisposedCheck();
@@ -293,7 +386,12 @@ namespace SevenZip
         /// Sets the length of the current stream.
         /// </summary>
         /// <param name="value">The desired length of the current stream in bytes.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Sets the length of the current stream.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override void SetLength(long value)
         {
             DisposedCheck();
@@ -306,7 +404,12 @@ namespace SevenZip
         /// <param name="buffer">An array of bytes.</param>
         /// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
         /// <param name="count">The maximum number of bytes to be read from the current stream.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/compression", "code/encoding", "code/adapter")]
         [System.ComponentModel.Description("Writes a sequence of bytes to the current stream and compresses it if necessary.")]
+        [Concept("streaming")]
+        [Concept("buffered")]
+        [Concept("stateful")]
         public override void Write(byte[] buffer, int offset, int count)
         {
             DisposedCheck();

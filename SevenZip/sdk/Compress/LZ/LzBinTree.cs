@@ -26,7 +26,14 @@ namespace SevenZip.Sdk.Compression.LZ
     /// | <see cref="UInt32"/> | Used as a field. |
     /// | <see cref="Byte"/> | Returned by a method. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:57:29Z", Digest = "8377379b3b0188221ab06ab72dc62da0325c79353ce77b4781f4b7f35493f406", Stale = false, Path = "sdk/Compress/LZ/LzBinTree.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+    [Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+    [System.ComponentModel.Description("Binary tree-based match finder for LZ compression using hash tables and a sliding window to locate repeating patterns efficiently.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "8377379b3b0188221ab06ab72dc62da0325c79353ce77b4781f4b7f35493f406", Stale = false, Path = "sdk/Compress/LZ/LzBinTree.cs", Since = "2026-08-23")]
+    [Concept("stateful")]
+    [Concept("buffer_managed")]
+    [Concept("performance_critical")]
+    [Concept("incremental")]
     internal class BinTree : InWindow, IMatchFinder
     {
 
@@ -70,12 +77,33 @@ namespace SevenZip.Sdk.Compression.LZ
 		#region IMatchFinder Members
 
 		/// <summary>Sets the input stream from which match data is read.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Sets the input stream from which match data is read.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new void SetStream(Stream stream) => base.SetStream(stream);
 
 		/// <summary>Releases the current input stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Releases the current input stream.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new void ReleaseStream() => base.ReleaseStream();
 
 		/// <summary>Initializes the hash tables and cyclic buffer for match finding.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Initializes the hash tables and cyclic buffer for match finding.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new void Init()
         {
             base.Init();
@@ -86,12 +114,33 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
 		/// <summary>Returns the byte at the specified offset in the current window.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Returns the byte at the specified offset in the current window.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new Byte GetIndexByte(Int32 index) => base.GetIndexByte(index);
 
 		/// <summary>Returns the length of the match at the specified distance, up to the given limit.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Returns the length of the match at the specified distance, up to the given limit.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit) => base.GetMatchLen(index, distance, limit);
 
 		/// <summary>Returns the number of bytes available for matching in the current window.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+		[Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+		[System.ComponentModel.Description("Returns the number of bytes available for matching in the current window.")]
+		[Concept("stateful")]
+		[Concept("buffer_managed")]
+		[Concept("performance_critical")]
+		[Concept("incremental")]
 		public new UInt32 GetNumAvailableBytes() => base.GetNumAvailableBytes();
 
 		/// <inheritdoc />
@@ -399,6 +448,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
         /// <summary>Advances to the next position in the buffer and normalizes position
         /// <br/>references if the maximum value is reached.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+        [System.ComponentModel.Description("Advances to the next position in the buffer and normalizes position references if the maximum value is reached.")]
+        [Concept("stateful")]
+        [Concept("buffer_managed")]
+        [Concept("performance_critical")]
+        [Concept("incremental")]
         public new void MovePos()
         {
             if (++_cyclicBufferPos >= _cyclicBufferSize) {
@@ -412,6 +468,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
         /// <summary>Subtracts a value from position references, replacing underflow values
         /// <br/>with the empty sentinel.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+        [System.ComponentModel.Description("Subtracts a value from position references, replacing underflow values with the empty sentinel.")]
+        [Concept("stateful")]
+        [Concept("buffer_managed")]
+        [Concept("performance_critical")]
+        [Concept("incremental")]
         private static void NormalizeLinks(UInt32[] items, UInt32 numItems, UInt32 subValue)
         {
             for (UInt32 i = 0; i < numItems; i++)
@@ -428,6 +491,13 @@ namespace SevenZip.Sdk.Compression.LZ
 
         /// <summary>Resets position values in the binary tree and hash arrays to prevent
         /// <br/>overflow.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/compression", "code/pattern_matching", "code/binary_tree", "code/lz_codec", "code/search_structure")]
+        [System.ComponentModel.Description("Resets position values in the binary tree and hash arrays to prevent overflow.")]
+        [Concept("stateful")]
+        [Concept("buffer_managed")]
+        [Concept("performance_critical")]
+        [Concept("incremental")]
         private void Normalize()
         {
             UInt32 subValue = _pos - _cyclicBufferSize;

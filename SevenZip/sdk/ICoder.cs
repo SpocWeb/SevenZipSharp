@@ -15,12 +15,14 @@ namespace SevenZip.Sdk
     /// |--:|---|---|
     /// | 24 | <see cref="DataErrorException"/> | Initializes a new instance of DataErrorException. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "2a54acf601042205aacae5aee63187feb5a00b4bcfccaffaf6aec4c5679c39b4", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("The exception that is thrown when an error in input stream occurs during decoding.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "2a54acf601042205aacae5aee63187feb5a00b4bcfccaffaf6aec4c5679c39b4", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Serializable]
     internal class DataErrorException : ApplicationException
     {
 
         /// <summary>Initializes a new instance of <see cref="DataErrorException"/>.</summary>
+        [System.ComponentModel.Description("Initializes a new instance of DataErrorException.")]
         public DataErrorException() : base("Data Error") {}
     }
 
@@ -34,12 +36,14 @@ namespace SevenZip.Sdk
     /// |--:|---|---|
     /// | 43 | <see cref="InvalidParamException"/> | Initializes a new instance of InvalidParamException. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "f2d9b2b9b0610d7243ec731a37c174a011116806f0d45f9d64c783653c069468", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("The exception that is thrown when the value of an argument is outside the allowable range.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "f2d9b2b9b0610d7243ec731a37c174a011116806f0d45f9d64c783653c069468", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Serializable]
     internal class InvalidParamException : ApplicationException
     {
 
         /// <summary>Initializes a new instance of <see cref="InvalidParamException"/>.</summary>
+        [System.ComponentModel.Description("Initializes a new instance of InvalidParamException.")]
         public InvalidParamException() : base("Invalid Parameter") {}
     }
 
@@ -53,7 +57,8 @@ namespace SevenZip.Sdk
     /// |--:|---|---|
     /// | 68 | <see cref="SetProgress"/> | Callback progress. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "fbb6c8dad66643c6593060e6ff6413d90de67a7ed73d42d1bc7eb0389f24bfa1", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("Callback progress interface.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "fbb6c8dad66643c6593060e6ff6413d90de67a7ed73d42d1bc7eb0389f24bfa1", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public interface ICodeProgress
     {
         /// <summary>
@@ -85,7 +90,8 @@ namespace SevenZip.Sdk
     /// |---|---|
     /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "cb5cbf12d71d7b0f3bd00d2075455a9fa66fcd7a9cd3b8b7cfbb40a8f23e85a7", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("Stream coder interface")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "cb5cbf12d71d7b0f3bd00d2075455a9fa66fcd7a9cd3b8b7cfbb40a8f23e85a7", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public interface ICoder
     {
         /// <summary>
@@ -149,7 +155,8 @@ namespace SevenZip.Sdk
     /// | 210 | <see cref="NumThreads"/> | Specifies the number of threads. |
     /// | 214 | <see cref="EndMarker"/> | Specifies mode with end marker. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "b3bddf342dfda561777005f4c5504a23222268a333432d73e128252de6cc2eef", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("Provides the fields that represent properties idenitifiers for compressing.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "b3bddf342dfda561777005f4c5504a23222268a333432d73e128252de6cc2eef", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public enum CoderPropId
     {
         /// <summary>
@@ -231,7 +238,11 @@ namespace SevenZip.Sdk
     /// |---|---|
     /// | <see cref="CoderPropId"/> | Property identifier enum; paired with property values. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:21:06Z", Digest = "2ebf83591102c7fb8b181c205ab7ffba831a651fccf87824b34642ec8e22d9a8", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+    [Tags("code/configuration", "code/property_management")]
+    [System.ComponentModel.Description("Defines the interface for setting encoder/decoder properties by identifier and value.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "2ebf83591102c7fb8b181c205ab7ffba831a651fccf87824b34642ec8e22d9a8", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [Concept("compression_configuration")]
     internal interface ISetCoderProperties
     {
 
@@ -239,6 +250,10 @@ namespace SevenZip.Sdk
         /// Sets encoder/decoder properties specified by <paramref name='propIDs'/><br/>
         /// to the corresponding values in <paramref name='properties'/>.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+        [Tags("code/configuration", "code/property_management")]
+        [System.ComponentModel.Description("Sets encoder/decoder properties specified by to the corresponding values in.")]
+        [Concept("compression_configuration")]
         void SetCoderProperties(CoderPropId[] propIDs, object[] properties);
     } ;
 
@@ -253,11 +268,19 @@ namespace SevenZip.Sdk
     /// |--:|---|---|
     /// | 261 | <see cref="WriteCoderProperties"/> | Writes the encoder/decoder properties to  . |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:21:06Z", Digest = "37fe8658628aaac173fbac71a3a99b25be2805443e76bb13664bc44922a19b1e", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+    [Tags("code/serialization", "code/output_handling")]
+    [System.ComponentModel.Description("Defines the interface for writing encoder/decoder properties to a stream.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "37fe8658628aaac173fbac71a3a99b25be2805443e76bb13664bc44922a19b1e", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [Concept("compression_configuration")]
     internal interface IWriteCoderProperties
     {
 
         /// <summary>Writes the encoder/decoder properties to <paramref name='outStream'/>.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+        [Tags("code/serialization", "code/output_handling")]
+        [System.ComponentModel.Description("Writes the encoder/decoder properties to.")]
+        [Concept("compression_configuration")]
         void WriteCoderProperties(Stream outStream);
     }
 
@@ -271,7 +294,8 @@ namespace SevenZip.Sdk
     /// |--:|---|---|
     /// | 281 | <see cref="SetDecoderProperties"/> | Sets decoder properties |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:51:46Z", Digest = "4cf33d8bdde3edb8feb51cfba66727968c5cb3ff777473d5f744eaa0c0503999", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("The ISetDecoderPropertiesinterface")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "4cf33d8bdde3edb8feb51cfba66727968c5cb3ff777473d5f744eaa0c0503999", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     internal interface ISetDecoderProperties
     {
         /// <summary>

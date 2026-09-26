@@ -46,14 +46,21 @@ namespace SevenZip.Tests
     /// | <see cref="SevenZipExtractor"/> | Used to verify compressed archive contents. |
     /// | <see cref="CompressionMethod"/> | Enumeration providing compression method test variations. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-25T02:10:50Z", Digest = "2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
+    [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+    [Tags("code/compression_archive_manipulation")]
+    [System.ComponentModel.Description("Tests for the SevenZip Compressor.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "2881180b57f40b5e2ac27f69d9df434dc7669e7c6ac3be67ce9ad067775130c2", Stale = false, Path = "SevenZipCompressorTests.cs", Since = "2026-08-23")]
     [TestFixture]
+    [Concept("test_fixture_multi_format")]
     public class SevenZipCompressorTests : TestBase
     {
         /// <summary>
         /// TestCaseSource for CompressDifferentFormatsTest
         /// </summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
         [System.ComponentModel.Description("TestCaseSource for CompressDifferentFormatsTest")]
+        [Concept("test_fixture_multi_format")]
         public static List<CompressionMethod> CompressionMethods
         {
             get
@@ -69,7 +76,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress Directory — with Sfn Path.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress Directory — with Sfn Path.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressDirectory_WithSfnPath()
         {
             var compressor = new SevenZipCompressor
@@ -89,7 +100,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress Directory — non Existent Directory.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress Directory — non Existent Directory.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressDirectory_NonExistentDirectory()
         {
             var compressor = new SevenZipCompressor();
@@ -99,7 +114,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress File — with Sfn Path.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress File — with Sfn Path.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressFile_WithSfnPath()
         {
             var compressor = new SevenZipCompressor
@@ -118,7 +137,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress File Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress File Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressFileTest()
         {
             var compressor = new SevenZipCompressor
@@ -139,7 +162,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress Directory Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress Directory Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressDirectoryTest()
         {
             var compressor = new SevenZipCompressor
@@ -162,7 +189,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress With Append Mode Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress With Append Mode Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressWithAppendModeTest()
         {
             var compressor = new SevenZipCompressor
@@ -190,7 +221,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Modify Protected Archive Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Modify Protected Archive Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void ModifyProtectedArchiveTest()
         {
             var compressor = new SevenZipCompressor
@@ -219,7 +254,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Modify Non Archive Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Modify Non Archive Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void ModifyNonArchiveTest()
         {
             var compressor = new SevenZipCompressor
@@ -235,7 +274,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress With Modify Mode Rename Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress With Modify Mode Rename Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressWithModifyModeRenameTest()
         {
             var compressor = new SevenZipCompressor
@@ -260,7 +303,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress With Modify Mode Delete Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress With Modify Mode Delete Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressWithModifyModeDeleteTest()
         {
             var compressor = new SevenZipCompressor
@@ -284,7 +331,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Multi Volume Compression Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Multi Volume Compression Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void MultiVolumeCompressionTest()
         {
             var compressor = new SevenZipCompressor
@@ -301,7 +352,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress To Stream Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress To Stream Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressToStreamTest()
         {
             var compressor = new SevenZipCompressor {DirectoryStructure = false};
@@ -321,7 +376,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress From Stream Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress From Stream Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressFromStreamTest()
         {
             using (var input = File.OpenRead(@"TestData\zip.zip"))
@@ -348,7 +407,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Compress File Dictionary Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress File Dictionary Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void CompressFileDictionaryTest()
         {
             var compressor = new SevenZipCompressor { DirectoryStructure = false };
@@ -370,7 +433,11 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Threaded Compression Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Threaded Compression Test.")]
         [Test]
+        [Concept("test_fixture_multi_format")]
         public void ThreadedCompressionTest()
         {
 			var tempFile1 = Path.Combine(OutputDirectory, "t1.7z");
@@ -398,7 +465,11 @@ namespace SevenZip.Tests
 		}
 
         /// <summary>Compress Different Formats Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 4)]
+        [Tags("code/compression_archive_manipulation")]
+        [System.ComponentModel.Description("Compress Different Formats Test.")]
         [Test, TestCaseSource(nameof(CompressionMethods))]
+        [Concept("test_fixture_multi_format")]
         public void CompressDifferentFormatsTest(CompressionMethod method)
         {
             var compressor = new SevenZipCompressor

@@ -41,13 +41,27 @@ namespace SevenZip.Tests
     /// |---|---|
     /// | <see cref="TestFile"/> | Used as a property. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:52:59Z", Digest = "6c115e43f34fe0d457b67f7d5618e301561beef2b3eca541a4a04a2267d619b8", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    [Facets(Layer = "test", Status = "active", Complexity = 3)]
+    [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+    [System.ComponentModel.Description("Tests for seven Zip Extractor.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "6c115e43f34fe0d457b67f7d5618e301561beef2b3eca541a4a04a2267d619b8", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     [TestFixture]
+    [Concept("code/disposable_pattern")]
+    [Concept("code/event_subscription")]
+    [Concept("code/file_io")]
+    [Concept("code/thread_safe_collection")]
     public class SevenZipExtractorTests : TestBase
     {
 
         /// <summary>Gets a list of test archives from the TestData directory,<br/>
         /// excluding multi-volume and long-path archives.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Gets a list of test archives from the TestData directory, excluding multi-volume and long-path archives.")]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public static List<TestFile> TestFiles
         {
             get
@@ -69,7 +83,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extract Files Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extract Files Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractFilesTest()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -84,7 +105,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extract Specific Files Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extract Specific Files Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractSpecificFilesTest()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -99,7 +127,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extract Archive Multi Volumes Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extract Archive Multi Volumes Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractArchiveMultiVolumesTest()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\multivolume.part0001.rar"))
@@ -112,7 +147,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extraction With Cancellation Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extraction With Cancellation Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractionWithCancellationTest()
         {
             using (var tmp = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -132,7 +174,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extraction With Skip Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extraction With Skip Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractionWithSkipTest()
         {
             using (var tmp = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -152,7 +201,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extraction From Stream Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extraction From Stream Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractionFromStreamTest()
         {
             // TODO: Rewrite this to test against more/all TestData archives.
@@ -165,7 +221,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extraction To Stream Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extraction To Stream Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractionToStreamTest()
         {
             using (var tmp = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -184,7 +247,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Detect Multi Volume Index Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Detect Multi Volume Index Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void DetectMultiVolumeIndexTest()
         {
             using (var tmp = new SevenZipExtractor(@"TestData\multivolume.part0001.rar"))
@@ -201,7 +271,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Threaded Extraction Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Threaded Extraction Test.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ThreadedExtractionTest()
         {
 	        var destination1 = Path.Combine(OutputDirectory, "t1");
@@ -234,7 +311,14 @@ namespace SevenZip.Tests
 		}
 
         /// <summary>Extract Archive With Long Path.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extract Archive With Long Path.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractArchiveWithLongPath()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\long_path.7z"))
@@ -244,7 +328,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Read Archived File Names.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Read Archived File Names.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ReadArchivedFileNames()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -259,7 +350,14 @@ namespace SevenZip.Tests
         }
         
         /// <summary>Read Archived File Data.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Read Archived File Data.")]
         [Test]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ReadArchivedFileData()
         {
             using (var extractor = new SevenZipExtractor(@"TestData\multiple_files.7z"))
@@ -274,7 +372,14 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Extract Different Formats Test.</summary>
+        [Facets(Layer = "test", Status = "active", Complexity = 3)]
+        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [System.ComponentModel.Description("Extract Different Formats Test.")]
         [Test, TestCaseSource(nameof(TestFiles))]
+        [Concept("code/disposable_pattern")]
+        [Concept("code/event_subscription")]
+        [Concept("code/file_io")]
+        [Concept("code/thread_safe_collection")]
         public void ExtractDifferentFormatsTest(TestFile file)
         {
             using (var extractor = new SevenZipExtractor(file.FilePath))
@@ -296,15 +401,27 @@ namespace SevenZip.Tests
     /// | 304 | <see cref="FilePath"/> | Gets the file path. |
     /// | 308 | <see cref="TestFile"/> | Initializes a new instance of TestFile with  the specified filePath. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T15:42:44Z", Digest = "2f4b897ceab1031536ede96e7d07d89ef51437f57b3267bf10a7014218f1628e", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    [Facets(Layer = "test", Status = "stable", Complexity = 1)]
+    [Tags("code/test_fixture_data", "code/data_holder", "code/value_object")]
+    [System.ComponentModel.Description("Simple wrapper to get better names for ExtractDifferentFormatsTest results.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "2f4b897ceab1031536ede96e7d07d89ef51437f57b3267bf10a7014218f1628e", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
+    [Concept("code/test_double")]
     public class TestFile
     {
 
         /// <summary>Gets the file path.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 1)]
+        [Tags("code/test_fixture_data", "code/data_holder", "code/value_object")]
+        [System.ComponentModel.Description("Gets the file path.")]
+        [Concept("code/test_double")]
         public string FilePath { get; }
 
         /// <summary>Initializes a new instance of <see cref="TestFile"/> with<br/>
         /// the specified <paramref name="filePath"/>.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 1)]
+        [Tags("code/test_fixture_data", "code/data_holder", "code/value_object")]
+        [System.ComponentModel.Description("Initializes a new instance of TestFile with the specified filePath.")]
+        [Concept("code/test_double")]
         public TestFile(string filePath)
         {
             FilePath = filePath;

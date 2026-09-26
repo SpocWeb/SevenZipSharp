@@ -15,7 +15,11 @@ namespace SevenZip.Sdk
     /// | 60 | <see cref="Update"/> | Updates the CRC value with a range of bytes from the given array. |
     /// | 67 | <see cref="GetDigest"/> | Returns the finalized CRC value. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:55:58Z", Digest = "a62c9e1f557b21fcddf7f2d6a49a8a73c1cf31c72ad87d114fe9b666003ddd0c", Stale = false, Path = "sdk/Common/CRC.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/checksum")]
+    [System.ComponentModel.Description("Computes CRC32 checksums using polynomial division with precomputed lookup table.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "a62c9e1f557b21fcddf7f2d6a49a8a73c1cf31c72ad87d114fe9b666003ddd0c", Stale = false, Path = "sdk/Common/CRC.cs", Since = "2026-08-23")]
+    [Concept("stateful")]
     internal class CRC
     {
 
@@ -25,6 +29,10 @@ namespace SevenZip.Sdk
         private uint _value = 0xFFFFFFFF;
 
         /// <summary>Populates the CRC polynomial lookup table.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/checksum")]
+        [System.ComponentModel.Description("Populates the CRC polynomial lookup table.")]
+        [Concept("stateful")]
         static CRC()
         {
             Table = new uint[256];
@@ -51,12 +59,24 @@ namespace SevenZip.Sdk
         }
 
 		/// <summary>Resets the CRC value to its initial state.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/checksum")]
+		[System.ComponentModel.Description("Resets the CRC value to its initial state.")]
+		[Concept("stateful")]
 		public void Init() => _value = 0xFFFFFFFF;
 
 		/// <summary>Updates the CRC value with a single byte.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/checksum")]
+		[System.ComponentModel.Description("Updates the CRC value with a single byte.")]
+		[Concept("stateful")]
 		public void UpdateByte(byte b) => _value = Table[(((byte) (_value)) ^ b)] ^ (_value >> 8);
 
 		/// <summary>Updates the CRC value with a range of bytes from the given array.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/checksum")]
+		[System.ComponentModel.Description("Updates the CRC value with a range of bytes from the given array.")]
+		[Concept("stateful")]
 		public void Update(byte[] data, uint offset, uint size)
         {
             for (uint i = 0; i < size; i++)
@@ -64,6 +84,10 @@ namespace SevenZip.Sdk
         }
 
 		/// <summary>Returns the finalized CRC value.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/checksum")]
+		[System.ComponentModel.Description("Returns the finalized CRC value.")]
+		[Concept("stateful")]
 		public uint GetDigest() => _value ^ 0xFFFFFFFF;
 	}
 }

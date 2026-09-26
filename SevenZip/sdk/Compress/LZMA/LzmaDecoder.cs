@@ -30,7 +30,12 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// | <see cref="Decoder"/> | Used as a field. |
     /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:18:07Z", Digest = "5ee0c376cd6864e7ac51a06a62f92526bd811cf3face7e116b66ef8c588a63c3", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+    [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+    [System.ComponentModel.Description("The LZMA decoder class")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "5ee0c376cd6864e7ac51a06a62f92526bd811cf3face7e116b66ef8c588a63c3", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("lzma_codec")]
     public class Decoder : ICoder, ISetDecoderProperties // ,System.IO.Stream
     {
         private readonly BitDecoder[] m_IsMatchDecoders = new BitDecoder[Base.kNumStates << Base.kNumPosStatesBitsMax];
@@ -62,7 +67,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <summary>
         /// Initializes the Lzma Decoder class.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
         [System.ComponentModel.Description("Initializes the Lzma Decoder class.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         public Decoder()
         {
             m_DictionarySize = 0xFFFFFFFF;
@@ -80,7 +89,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <param name="outSize">The output size</param>
         /// <param name="outStream">The output stream</param>
         /// <param name="progress">Progress interface</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
         [System.ComponentModel.Description("Codes a stream with LZMA algorithm to an output stream")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         public void Code(Stream inStream, Stream outStream,
                          Int64 inSize, Int64 outSize, ICodeProgress progress)
         {
@@ -218,7 +231,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Sets decoder properties
         /// </summary>
         /// <param name="properties">Array of byte properties</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
         [System.ComponentModel.Description("Sets decoder properties")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         public void SetDecoderProperties(byte[] properties)
         {
             if (properties.Length < 5) {
@@ -245,6 +262,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Sets the dictionary size for the decoder, reallocating the output window<br/>
         /// if needed.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [System.ComponentModel.Description("Sets the dictionary size for the decoder, reallocating the output window if needed.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         private void SetDictionarySize(uint dictionarySize)
         {
             if (m_DictionarySize != dictionarySize)
@@ -259,6 +281,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <summary>
         /// Sets literal properties for literal symbol decoding after validation.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [System.ComponentModel.Description("Sets literal properties for literal symbol decoding after validation.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         private void SetLiteralProperties(int lp, int lc)
         {
             if (lp > 8) {
@@ -274,6 +301,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Sets position bit properties, initializing length decoders for the<br/>
         /// specified position states.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [System.ComponentModel.Description("Sets position bit properties, initializing length decoders for the specified position states.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         private void SetPosBitsProperties(int pb)
         {
             if (pb > Base.kNumPosStatesBitsMax) {
@@ -289,6 +321,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Initializes the decoder with input and output streams and resets all<br/>
         /// internal decoders to their initial state.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [System.ComponentModel.Description("Initializes the decoder with input and output streams and resets all internal decoders to their initial state.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         private void Init(Stream inStream, Stream outStream)
         {
             m_RangeDecoder.Init(inStream);
@@ -326,7 +363,11 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// </summary>
         /// <param name="stream">The stream to train.</param>
         /// <returns>true if Ok; otherwise, false.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
+        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
         [System.ComponentModel.Description("Trains a stream")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("lzma_codec")]
         public bool Train(Stream stream)
         {
             _solid = true;
@@ -354,7 +395,12 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// | <see cref="BitDecoder"/> | Used as a field. |
         /// | <see cref="Decoder"/> | Passed as a parameter. |
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-24T14:18:07Z", Digest = "f5929c9a3ccea2f31422980049487ef26affe7f2e533797a967d1804e7849c2d", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/length_decoding", "code/range_coding")]
+        [System.ComponentModel.Description("Decodes length values for literal and match sequences in LZMA decompression.")]
+        [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "f5929c9a3ccea2f31422980049487ef26affe7f2e533797a967d1804e7849c2d", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("length_symbols")]
         private class LenDecoder
         {
             private readonly BitTreeDecoder[] m_LowCoder = new BitTreeDecoder[Base.kNumPosStatesMax];
@@ -367,6 +413,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// <summary>
             /// Creates bit tree decoders for the specified number of position states.
             /// </summary>
+            [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+            [Tags("code/length_decoding", "code/range_coding")]
+            [System.ComponentModel.Description("Creates bit tree decoders for the specified number of position states.")]
+            [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+            [Concept("length_symbols")]
             internal void Create(uint numPosStates)
             {
                 for (uint posState = m_NumPosStates; posState < numPosStates; posState++)
@@ -380,6 +431,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// <summary>
             /// Initializes all bit tree and choice decoders for length decoding.
             /// </summary>
+            [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+            [Tags("code/length_decoding", "code/range_coding")]
+            [System.ComponentModel.Description("Initializes all bit tree and choice decoders for length decoding.")]
+            [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+            [Concept("length_symbols")]
             internal void Init()
             {
                 m_Choice.Init();
@@ -398,7 +454,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// <param name="rangeDecoder">The specified RangeCoder</param>
             /// <param name="posState">The position state</param>
             /// <returns></returns>
+            [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+            [Tags("code/length_decoding", "code/range_coding")]
             [System.ComponentModel.Description("Decodes the stream")]
+            [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+            [Concept("length_symbols")]
             public uint Decode(RangeCoder.Decoder rangeDecoder, uint posState)
             {
                 if (m_Choice.Decode(rangeDecoder) == 0) {
@@ -443,7 +503,12 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// | <see cref="Decoder2"/> | Used as a field. |
         /// | <see cref="Decoder"/> | Passed as a parameter. |
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-24T14:18:07Z", Digest = "385ae594f02437adc6faeaf9cc57b0098214c2e671609d91e10f94306ed56958", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/literal_decoding", "code/context_modeling")]
+        [System.ComponentModel.Description("Decodes literal bytes using context-dependent Huffman-like decoders based on match history and position.")]
+        [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "385ae594f02437adc6faeaf9cc57b0098214c2e671609d91e10f94306ed56958", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("literal_symbols")]
         private class LiteralDecoder
         {
             private Decoder2[] m_Coders;
@@ -455,6 +520,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// Creates Decoder2 instances for all context states based on position and<br/>
             /// previous-byte bit counts.
             /// </summary>
+            [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+            [Tags("code/literal_decoding", "code/context_modeling")]
+            [System.ComponentModel.Description("Creates Decoder2 instances for all context states based on position and previous-byte bit counts.")]
+            [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+            [Concept("literal_symbols")]
             public void Create(int numPosBits, int numPrevBits)
             {
                 if (m_Coders != null && m_NumPrevBits == numPrevBits &&
@@ -473,6 +543,11 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// <summary>
             /// Initializes all context-dependent literal decoders.
             /// </summary>
+            [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+            [Tags("code/literal_decoding", "code/context_modeling")]
+            [System.ComponentModel.Description("Initializes all context-dependent literal decoders.")]
+            [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+            [Concept("literal_symbols")]
             public void Init()
             {
                 uint numStates = (uint) 1 << (m_NumPrevBits + m_NumPosBits);
@@ -485,6 +560,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// byte context.
 			/// </summary>
 			/// <returns>The decoder state index.</returns>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+			[Tags("code/literal_decoding", "code/context_modeling")]
+			[System.ComponentModel.Description("Returns the decoder state index for the specified position and previous byte context.")]
+			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+			[Concept("literal_symbols")]
 			private uint GetState(uint pos, byte prevByte) => ((pos & m_PosMask) << m_NumPrevBits) + (uint) (prevByte >> (8 - m_NumPrevBits));
 
 			/// <summary>
@@ -492,6 +572,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// position and previous-byte context.
 			/// </summary>
 			/// <returns>The decoded literal byte.</returns>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+			[Tags("code/literal_decoding", "code/context_modeling")]
+			[System.ComponentModel.Description("Decodes a literal byte using the normal decoder for the specified position and previous-byte context.")]
+			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+			[Concept("literal_symbols")]
 			public byte DecodeNormal(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte) => m_Coders[GetState(pos, prevByte)].DecodeNormal(rangeDecoder);
 
 			/// <summary>
@@ -499,6 +584,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// in repetitive data.
 			/// </summary>
 			/// <returns>The decoded literal byte.</returns>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+			[Tags("code/literal_decoding", "code/context_modeling")]
+			[System.ComponentModel.Description("Decodes a literal byte using match-byte context for improved compression in repetitive data.")]
+			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+			[Concept("literal_symbols")]
 			public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, uint pos, byte prevByte, byte matchByte) => m_Coders[GetState(pos, prevByte)].DecodeWithMatchByte(rangeDecoder, matchByte);
 
 			#region Nested type: Decoder2
@@ -523,7 +613,12 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// | <see cref="BitDecoder"/> | Used as a field. |
 			/// | <see cref="Decoder"/> | Passed as a parameter. |
 			/// </remarks>
-			[DocState(Pass = 2, MTime = "2026-08-24T14:18:07Z", Digest = "8bce2f7c1986f69dda8433b87b954f3373bbe647f9abf87851cc7bdbcf43f5fe", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+			[Tags("code/binary_tree_decoding", "code/arithmetic_coding")]
+			[System.ComponentModel.Description("Decodes a single literal byte using binary tree arithmetic decoding.")]
+			[DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "8bce2f7c1986f69dda8433b87b954f3373bbe647f9abf87851cc7bdbcf43f5fe", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
+			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+			[Concept("byte_decoding")]
 			private struct Decoder2
             {
                 private BitDecoder[] m_Decoders;
@@ -531,11 +626,21 @@ namespace SevenZip.Sdk.Compression.Lzma
 				/// <summary>
 				/// Allocates the bit decoder array for this decoder instance.
 				/// </summary>
+				[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+				[Tags("code/binary_tree_decoding", "code/arithmetic_coding")]
+				[System.ComponentModel.Description("Allocates the bit decoder array for this decoder instance.")]
+				[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+				[Concept("byte_decoding")]
 				public void Create() => m_Decoders = new BitDecoder[0x300];
 
 				/// <summary>
 				/// Initializes all bit decoders in the decoder array.
 				/// </summary>
+				[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+				[Tags("code/binary_tree_decoding", "code/arithmetic_coding")]
+				[System.ComponentModel.Description("Initializes all bit decoders in the decoder array.")]
+				[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+				[Concept("byte_decoding")]
 				public void Init()
                 {
                     for (int i = 0; i < 0x300; i++) m_Decoders[i].Init();
@@ -545,6 +650,11 @@ namespace SevenZip.Sdk.Compression.Lzma
                 /// Decodes a byte from the range decoder using a binary tree algorithm.
                 /// </summary>
                 /// <returns>The decoded byte.</returns>
+                [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+                [Tags("code/binary_tree_decoding", "code/arithmetic_coding")]
+                [System.ComponentModel.Description("Decodes a byte from the range decoder using a binary tree algorithm.")]
+                [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+                [Concept("byte_decoding")]
                 public byte DecodeNormal(RangeCoder.Decoder rangeDecoder)
                 {
                     uint symbol = 1;
@@ -558,6 +668,11 @@ namespace SevenZip.Sdk.Compression.Lzma
                 /// convergence.
                 /// </summary>
                 /// <returns>The decoded byte.</returns>
+                [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+                [Tags("code/binary_tree_decoding", "code/arithmetic_coding")]
+                [System.ComponentModel.Description("Decodes a byte using match-byte-guided binary tree decoding for faster convergence.")]
+                [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+                [Concept("byte_decoding")]
                 public byte DecodeWithMatchByte(RangeCoder.Decoder rangeDecoder, byte matchByte)
                 {
                     uint symbol = 1;

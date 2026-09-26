@@ -35,7 +35,12 @@ namespace SevenZip.Sdk.Compression.LZ
     /// </remarks>
     /// <seealso cref="Stream">Stream: provides input data to the window.</seealso>
     /// <seealso cref="Byte">Byte: element type of the managed buffer.</seealso>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:57:39Z", Digest = "e7fc3a08bc7803a01d3aa44f68ca209a25a8ba9e3eed59c05fa62f06e824f3fc", Stale = false, Path = "sdk/Compress/LZ/LzInWindow.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+    [Tags("code/sliding_window", "code/buffer_shift")]
+    [System.ComponentModel.Description("Manages a sliding input buffer for LZ compression, tracking stream position and available bytes for pattern matching operations.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "e7fc3a08bc7803a01d3aa44f68ca209a25a8ba9e3eed59c05fa62f06e824f3fc", Stale = false, Path = "sdk/Compress/LZ/LzInWindow.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("pattern_matching")]
     internal class InWindow
     {
         /// <summary>
@@ -80,6 +85,11 @@ namespace SevenZip.Sdk.Compression.LZ
         public UInt32 _streamPos;
 
         /// <summary>Compacts buffer data by discarding bytes before the keep-before boundary, <br/>adjusting position tracking accordingly.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/sliding_window", "code/buffer_shift")]
+        [System.ComponentModel.Description("Compacts buffer data by discarding bytes before the keep-before boundary, adjusting position tracking accordingly.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("pattern_matching")]
         public void MoveBlock()
         {
             UInt32 offset = (_bufferOffset) + _pos - _keepSizeBefore;
@@ -97,6 +107,11 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
         /// <summary>Reads data from the stream into the buffer until the stream ends or <br/>sufficient data is available after the current position.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/sliding_window", "code/buffer_shift")]
+        [System.ComponentModel.Description("Reads data from the stream into the buffer until the stream ends or sufficient data is available after the current position.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("pattern_matching")]
         public virtual void ReadBlock()
         {
             if (_streamEndWasReached) {
@@ -128,9 +143,19 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
 		/// <summary>Releases the allocated buffer.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Releases the allocated buffer.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		private void Free() => _bufferBase = null;
 
 		/// <summary>Allocates and initializes the buffer with the specified keep-before, <br/>keep-after, and reserve sizes.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Allocates and initializes the buffer with the specified keep-before, keep-after, and reserve sizes.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public void Create(UInt32 keepSizeBefore, UInt32 keepSizeAfter, UInt32 keepSizeReserv)
         {
             _keepSizeBefore = keepSizeBefore;
@@ -146,12 +171,27 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
 		/// <summary>Associates the stream to read data from.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Associates the stream to read data from.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public void SetStream(Stream stream) => _stream = stream;
 
 		/// <summary>Disassociates the stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Disassociates the stream.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public void ReleaseStream() => _stream = null;
 
 		/// <summary>Initializes the window state and reads the first data block from the stream.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Initializes the window state and reads the first data block from the stream.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public void Init()
         {
             _bufferOffset = 0;
@@ -162,6 +202,11 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
         /// <summary>Advances the current position by one byte, triggering buffer <br/>compaction and stream read when necessary.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/sliding_window", "code/buffer_shift")]
+        [System.ComponentModel.Description("Advances the current position by one byte, triggering buffer compaction and stream read when necessary.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("pattern_matching")]
         public void MovePos()
         {
             _pos++;
@@ -176,6 +221,11 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
 		/// <summary>Returns the byte at the specified index offset from the current position.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Returns the byte at the specified index offset from the current position.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public Byte GetIndexByte(Int32 index) => _bufferBase[_bufferOffset + _pos + index];
 
 		/// <summary>
@@ -185,7 +235,11 @@ namespace SevenZip.Sdk.Compression.LZ
 		/// <param name="distance"></param>
 		/// <param name="limit"></param>
 		/// <returns></returns>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
 		[System.ComponentModel.Description("index + limit have not to exceed _keepSizeAfter")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public UInt32 GetMatchLen(Int32 index, UInt32 distance, UInt32 limit)
         {
             if (_streamEndWasReached) {
@@ -203,9 +257,19 @@ namespace SevenZip.Sdk.Compression.LZ
         }
 
 		/// <summary>Returns the count of unread bytes from the current position to the stream position.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Returns the count of unread bytes from the current position to the stream position.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public UInt32 GetNumAvailableBytes() => _streamPos - _pos;
 
 		/// <summary>Subtracts a value from all position-tracking fields.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/sliding_window", "code/buffer_shift")]
+		[System.ComponentModel.Description("Subtracts a value from all position-tracking fields.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("pattern_matching")]
 		public void ReduceOffsets(Int32 subValue)
         {
             _bufferOffset += (UInt32) subValue;

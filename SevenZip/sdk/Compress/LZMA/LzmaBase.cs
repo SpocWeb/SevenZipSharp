@@ -44,7 +44,11 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// |---|---|
     /// | <see cref="State"/> | Nested type. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:58:58Z", Digest = "6c890c503f6c0ceda0888617f2317cf0a075bdb020e505a03898c812769c46bb", Stale = false, Path = "sdk/Compress/LZMA/LzmaBase.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/abstract_base")]
+    [System.ComponentModel.Description("Provides LZMA compression algorithm constants and state management for encoder/decoder implementations.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "6c890c503f6c0ceda0888617f2317cf0a075bdb020e505a03898c812769c46bb", Stale = false, Path = "sdk/Compress/LZMA/LzmaBase.cs", Since = "2026-08-23")]
+    [Concept("code/state_holder")]
     internal abstract class Base
     {
 
@@ -135,6 +139,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <summary>Computes the position state for the given match length, clamped to <br/>
         /// the maximum valid state.</summary>
         /// <returns>The computed position state value.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/abstract_base")]
+        [System.ComponentModel.Description("Computes the position state for the given match length, clamped to the maximum valid state.")]
+        [Concept("code/state_holder")]
         public static uint GetLenToPosState(uint len)
         {
             len -= kMatchMinLen;
@@ -160,15 +168,27 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// | 190 | <see cref="UpdateShortRep"/> | Transitions the state after a short repeat match. |
         /// | 193 | <see cref="IsCharState"/> | Determines whether char State. |
         /// </remarks>
-        [DocState(Pass = 2, MTime = "2026-08-24T13:58:58Z", Digest = "59737f0501ed960b4514767c70dcc0e5871dd31ae9141ea42d67237cf1cfcb88", Stale = false, Path = "sdk/Compress/LZMA/LzmaBase.cs", Since = "2026-08-23")]
+        [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+        [Tags("code/state_holder")]
+        [System.ComponentModel.Description("Encapsulates the current LZMA decoder state and provides transitions for character matches, string matches, and repeats.")]
+        [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "59737f0501ed960b4514767c70dcc0e5871dd31ae9141ea42d67237cf1cfcb88", Stale = false, Path = "sdk/Compress/LZMA/LzmaBase.cs", Since = "2026-08-23")]
+        [Concept("code/state_recorder")]
         public struct State
         {
             public uint Index;
 
 			/// <summary>Initializes the state index to zero.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Initializes the state index to zero.")]
+			[Concept("code/state_recorder")]
 			public void Init() => Index = 0;
 
 			/// <summary>Transitions the state after matching a literal character.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Transitions the state after matching a literal character.")]
+			[Concept("code/state_recorder")]
 			public void UpdateChar()
             {
                 if (Index < 4) {
@@ -181,15 +201,31 @@ namespace SevenZip.Sdk.Compression.Lzma
             }
 
 			/// <summary>Transitions the state after matching a string sequence.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Transitions the state after matching a string sequence.")]
+			[Concept("code/state_recorder")]
 			public void UpdateMatch() => Index = (uint) (Index < 7 ? 7 : 10);
 
 			/// <summary>Transitions the state after repeating a previously matched sequence.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Transitions the state after repeating a previously matched sequence.")]
+			[Concept("code/state_recorder")]
 			public void UpdateRep() => Index = (uint) (Index < 7 ? 8 : 11);
 
 			/// <summary>Transitions the state after a short repeat match.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Transitions the state after a short repeat match.")]
+			[Concept("code/state_recorder")]
 			public void UpdateShortRep() => Index = (uint) (Index < 7 ? 9 : 11);
 
 			/// <summary>Determines whether char State.</summary>
+			[Facets(Layer = "transform", Status = "stable", Complexity = 1)]
+			[Tags("code/state_holder")]
+			[System.ComponentModel.Description("Determines whether char State.")]
+			[Concept("code/state_recorder")]
 			public bool IsCharState() => Index < 7;
 		}
 

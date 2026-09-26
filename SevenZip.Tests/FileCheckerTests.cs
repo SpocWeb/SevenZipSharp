@@ -29,11 +29,13 @@ namespace SevenZip.Tests
     /// |---|---|
     /// | <see cref="InArchiveFormat"/> | Passed as a parameter. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-23T10:53:00Z", Digest = "fa7a89f3b2d9944b3333bb79cdad1f85e5348c2ae2a018b5c685126d679bc06d", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
+    [System.ComponentModel.Description("Test data to use for CheckFileSignatureTest.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "fa7a89f3b2d9944b3333bb79cdad1f85e5348c2ae2a018b5c685126d679bc06d", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     public struct FileCheckerTestData
     {
 
         /// <summary>Initializes a new instance of <see cref="FileCheckerTestData"/> with the specified <paramref name="testDataFilePath"/> and <paramref name="expectedFormat"/>.</summary>
+        [System.ComponentModel.Description("Initializes a new instance of FileCheckerTestData with the specified testDataFilePath and expectedFormat.")]
         public FileCheckerTestData(string testDataFilePath, InArchiveFormat expectedFormat)
         {
             TestDataFilePath = testDataFilePath;
@@ -73,8 +75,12 @@ namespace SevenZip.Tests
     /// |---|---|
     /// | <see cref="FileCheckerTestData"/> | Used as a field. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:52:27Z", Digest = "96a24fc88d6ee4960a6b32c2aa678c6c00cc0d7029a64f76b4b91198fbcac0d7", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
+    [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+    [Tags("code/test_fixture")]
+    [System.ComponentModel.Description("Tests for file Checker.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "96a24fc88d6ee4960a6b32c2aa678c6c00cc0d7029a64f76b4b91198fbcac0d7", Stale = false, Path = "FileCheckerTests.cs", Since = "2026-08-23")]
     [TestFixture]
+    [Concept("code/file_io")]
     public class FileCheckerTests
     {
         /// <summary>
@@ -119,13 +125,21 @@ namespace SevenZip.Tests
         };
 
 		/// <summary>Ensures the working directory is set to the test directory for accessing test data files.</summary>
+		[Facets(Layer = "test", Status = "stable", Complexity = 2)]
+		[Tags("code/test_fixture")]
+		[System.ComponentModel.Description("Ensures the working directory is set to the test directory for accessing test data files.")]
 		[SetUp]
+		[Concept("code/file_io")]
 		public void SetUp() =>
 			// Ensures we're in the correct working directory (for test data files).
 			Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
 
 		/// <summary>Check File Signature Test.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/test_fixture")]
+        [System.ComponentModel.Description("Check File Signature Test.")]
 		[TestCaseSource(nameof(TestData))]
+        [Concept("code/file_io")]
         public void CheckFileSignatureTest(FileCheckerTestData data)
         {
             if (!File.Exists(data.TestDataFilePath))

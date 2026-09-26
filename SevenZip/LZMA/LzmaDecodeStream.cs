@@ -26,7 +26,11 @@ namespace SevenZip
     /// | <see cref="Decoder"/> | Used as a field. |
     /// | <see cref="SeekOrigin"/> | Passed as a parameter. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T13:54:48Z", Digest = "d5fbf109c374f62ad56ae32d1dd3bcd983b50571975397ff1e92d6f0abbc41e7", Stale = false, Path = "LZMA/LzmaDecodeStream.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+    [Tags("code/decompressionlzmastream_reading")]
+    [System.ComponentModel.Description("The stream which decompresses data with LZMA on the fly.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "d5fbf109c374f62ad56ae32d1dd3bcd983b50571975397ff1e92d6f0abbc41e7", Stale = false, Path = "LZMA/LzmaDecodeStream.cs", Since = "2026-08-23")]
+    [Concept("stream_adapterwrapper_pattern")]
     public class LzmaDecodeStream : Stream
     {
         private readonly MemoryStream _buffer = new MemoryStream();
@@ -40,7 +44,10 @@ namespace SevenZip
         /// Initializes a new instance of the LzmaDecodeStream class.
         /// </summary>
         /// <param name="encodedStream">A compressed stream.</param>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Initializes a new instance of the LzmaDecodeStream class.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public LzmaDecodeStream(Stream encodedStream)
         {
             if (!encodedStream.CanRead)
@@ -53,31 +60,46 @@ namespace SevenZip
         /// <summary>
         /// Gets the chunk size.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets the chunk size.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public int ChunkSize => (int) _buffer.Length;
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports reading.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports reading.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override bool CanRead => true;
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports seeking.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports seeking.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override bool CanSeek => false;
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports writing.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets a value indicating whether the current stream supports writing.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override bool CanWrite => false;
 
         /// <summary>
         /// Gets the length in bytes of the output stream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets the length in bytes of the output stream.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override long Length
         {
             get
@@ -94,7 +116,10 @@ namespace SevenZip
         /// <summary>
         /// Gets or sets the position within the output stream.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Gets or sets the position within the output stream.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override long Position
         {
             get
@@ -113,6 +138,10 @@ namespace SevenZip
         /// <br/>
         /// properties and updating the internal buffer.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
+        [System.ComponentModel.Description("Reads and decodes the next chunk from the input stream, validating LZMA properties and updating the internal buffer.")]
+        [Concept("stream_adapterwrapper_pattern")]
         private void ReadChunk()
         {
             long size;
@@ -154,7 +183,10 @@ namespace SevenZip
         /// <summary>
         /// Does nothing.
         /// </summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Does nothing.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override void Flush() {}
 
         /// <summary>
@@ -164,7 +196,10 @@ namespace SevenZip
         /// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
         /// <param name="count">The maximum number of bytes to be read from the current stream.</param>
         /// <returns>The total number of bytes read into the buffer.</returns>        
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/decompressionlzmastream_reading")]
         [System.ComponentModel.Description("Reads a sequence of bytes from the current stream and decompresses data if necessary.")]
+        [Concept("stream_adapterwrapper_pattern")]
         public override int Read(byte[] buffer, int offset, int count)
         {
             if (_error)
@@ -202,14 +237,20 @@ namespace SevenZip
 		/// <param name="offset">A byte offset relative to the origin parameter.</param>
 		/// <param name="origin">A value of type System.IO.SeekOrigin indicating the reference point used to obtain the new position.</param>
 		/// <returns>The new position within the current stream.</returns>       
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/decompressionlzmastream_reading")]
 		[System.ComponentModel.Description("Sets the position within the current stream.")]
+		[Concept("stream_adapterwrapper_pattern")]
 		public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
 
 		/// <summary>
 		/// Sets the length of the current stream.
 		/// </summary>
 		/// <param name="value">The desired length of the current stream in bytes.</param>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/decompressionlzmastream_reading")]
 		[System.ComponentModel.Description("Sets the length of the current stream.")]
+		[Concept("stream_adapterwrapper_pattern")]
 		public override void SetLength(long value) => throw new NotSupportedException();
 
 		/// <summary>
@@ -218,7 +259,10 @@ namespace SevenZip
 		/// <param name="buffer">An array of bytes.</param>
 		/// <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
 		/// <param name="count">The maximum number of bytes to be read from the current stream.</param>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+		[Tags("code/decompressionlzmastream_reading")]
 		[System.ComponentModel.Description("Writes a sequence of bytes to the current stream.")]
+		[Concept("stream_adapterwrapper_pattern")]
 		public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException();
 	}
 }

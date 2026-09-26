@@ -30,7 +30,12 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// </remarks>
     /// <seealso cref="Encoder">Encoder: manages the range-coded bitstream being written.</seealso>
     /// <!-- <example> block is managed by check-stale -->
-    [DocState(Pass = 2, MTime = "2026-08-24T14:20:49Z", Digest = "f5ffaa18b597d65c4dc1ac09d0039eac0a83ddcf45b1ada907389129b48c4878", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/arithmetic_coding", "code/compression")]
+    [System.ComponentModel.Description("Encodes binary symbols for range compression using adaptive probability estimates.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "f5ffaa18b597d65c4dc1ac09d0039eac0a83ddcf45b1ada907389129b48c4878", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("range_coding")]
     internal struct BitEncoder
     {
 
@@ -59,6 +64,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         private uint Prob;
 
         /// <summary>Initializes a new instance of <see cref="BitEncoder"/>.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/arithmetic_coding", "code/compression")]
+        [System.ComponentModel.Description("Initializes a new instance of BitEncoder.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         static BitEncoder()
         {
             const int kNumBits = (kNumBitModelTotalBits - kNumMoveReducingBits);
@@ -73,6 +83,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
 		/// <summary>Initializes the probability estimate to a neutral state.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Initializes the probability estimate to a neutral state.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public void Init() => Prob = kBitModelTotal >> 1;
 
 		/*public void UpdateModel(uint symbol)
@@ -87,6 +102,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 		/// Encodes a binary symbol and updates the probability model based on<br/>
 		/// the encoded value.
 		/// </summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Encodes a binary symbol and updates the probability model based on the encoded value.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public void Encode(Encoder encoder, uint symbol)
         {
             // encoder.EncodeBit(Prob, kNumBitModelTotalBits, symbol);
@@ -111,12 +131,27 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
 		/// <summary>Returns the encoding price for a specified symbol.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Returns the encoding price for a specified symbol.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public uint GetPrice(uint symbol) => ProbPrices[(((Prob - symbol) ^ ((-(int) symbol))) & (kBitModelTotal - 1)) >> kNumMoveReducingBits];
 
 		/// <summary>Returns the encoding price for symbol 0.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Returns the encoding price for symbol 0.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public uint GetPrice0() => ProbPrices[Prob >> kNumMoveReducingBits];
 
 		/// <summary>Returns the encoding price for symbol 1.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Returns the encoding price for symbol 1.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public uint GetPrice1() => ProbPrices[(kBitModelTotal - Prob) >> kNumMoveReducingBits];
 	}
 
@@ -142,7 +177,12 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// </remarks>
     /// <seealso cref="Decoder">Decoder: manages the range-coded bitstream being read.</seealso>
     /// <!-- <example> block is managed by check-stale -->
-    [DocState(Pass = 2, MTime = "2026-08-24T14:20:49Z", Digest = "d1dcb4c6e1f652d32fb314fc49a5f12cb15f536ac814155fda9cbee04575ceea", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/arithmetic_coding", "code/compression")]
+    [System.ComponentModel.Description("Decodes binary symbols from range-compressed data using adaptive probability estimates.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "d1dcb4c6e1f652d32fb314fc49a5f12cb15f536ac814155fda9cbee04575ceea", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBit.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("range_coding")]
     internal struct BitDecoder
     {
 
@@ -170,12 +210,22 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 		}*/
 
 		/// <summary>Initializes the probability estimate to a neutral state.</summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Initializes the probability estimate to a neutral state.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public void Init() => Prob = kBitModelTotal >> 1;
 
 		/// <summary>
 		/// Decodes and returns a binary symbol from the decoder, updating the<br/>
 		/// probability model.
 		/// </summary>
+		[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+		[Tags("code/arithmetic_coding", "code/compression")]
+		[System.ComponentModel.Description("Decodes and returns a binary symbol from the decoder, updating the probability model.")]
+		[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+		[Concept("range_coding")]
 		public uint Decode(Decoder rangeDecoder)
         {
             uint newBound = (rangeDecoder.Range >> kNumBitModelTotalBits)*Prob;

@@ -25,13 +25,23 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// | <see cref="BitEncoder"/> | Underlying model for each bit level in the tree. |
     /// | <see cref="Encoder"/> | Provided by the caller to encode individual bits. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:19:18Z", Digest = "3e6665e51e681e932d8f782eb90806585bd13db45b8f4b1c802a0992d66e6287", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBitTree.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+    [Tags("code/range_encoding")]
+    [System.ComponentModel.Description("Encodes symbols using a hierarchical bit-tree model with range encoding.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "3e6665e51e681e932d8f782eb90806585bd13db45b8f4b1c802a0992d66e6287", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBitTree.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("range_coding")]
     internal struct BitTreeEncoder
     {
         private readonly BitEncoder[] Models;
         private readonly int NumBitLevels;
 
         /// <summary>Initializes a new instance of <see cref="BitTreeEncoder"/> with the specified <paramref name="numBitLevels"/>.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Initializes a new instance of BitTreeEncoder with the specified numBitLevels.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public BitTreeEncoder(int numBitLevels)
         {
             NumBitLevels = numBitLevels;
@@ -39,6 +49,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
         /// <summary>Initializes all encoder models in the bit tree.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Initializes all encoder models in the bit tree.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public void Init()
         {
             for (uint i = 1; i < (1 << NumBitLevels); i++)
@@ -46,6 +61,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
         /// <summary>Encodes a symbol using the bit tree hierarchy through range encoding.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Encodes a symbol using the bit tree hierarchy through range encoding.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public void Encode(Encoder rangeEncoder, UInt32 symbol)
         {
             UInt32 m = 1;
@@ -59,6 +79,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
         /// <summary>Encodes a symbol in reverse bit order through range encoding.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Encodes a symbol in reverse bit order through range encoding.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public void ReverseEncode(Encoder rangeEncoder, UInt32 symbol)
         {
             UInt32 m = 1;
@@ -73,6 +98,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 
         /// <summary>Calculates the bit-tree encoding price for a symbol.</summary>
         /// <returns>The cumulative price of encoding the symbol through all bit levels.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Calculates the bit-tree encoding price for a symbol.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public UInt32 GetPrice(UInt32 symbol)
         {
             UInt32 price = 0;
@@ -89,6 +119,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 
         /// <summary>Calculates the bit-tree encoding price for a symbol in reverse bit order.</summary>
         /// <returns>The cumulative price of encoding the symbol bits in reverse through all levels.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 3)]
+        [Tags("code/range_encoding")]
+        [System.ComponentModel.Description("Calculates the bit-tree encoding price for a symbol in reverse bit order.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public UInt32 ReverseGetPrice(UInt32 symbol)
         {
             UInt32 price = 0;
@@ -154,13 +189,23 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// | <see cref="BitDecoder"/> | Underlying model for each bit level in the tree. |
     /// | <see cref="Decoder"/> | Provided by the caller to decode individual bits. |
     /// </remarks>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:19:18Z", Digest = "24d8748304d1fc3c16868bce8b838883cfc9078913dcc7136e4d3b8dce160069", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBitTree.cs", Since = "2026-08-23")]
+    [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+    [Tags("code/range_decoding")]
+    [System.ComponentModel.Description("Decodes symbols using a hierarchical bit-tree model with range decoding.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "24d8748304d1fc3c16868bce8b838883cfc9078913dcc7136e4d3b8dce160069", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoderBitTree.cs", Since = "2026-08-23")]
+    [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+    [Concept("range_coding")]
     internal struct BitTreeDecoder
     {
         private readonly BitDecoder[] Models;
         private readonly int NumBitLevels;
 
         /// <summary>Initializes a new instance of <see cref="BitTreeDecoder"/> with the specified <paramref name="numBitLevels"/>.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/range_decoding")]
+        [System.ComponentModel.Description("Initializes a new instance of BitTreeDecoder with the specified numBitLevels.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public BitTreeDecoder(int numBitLevels)
         {
             NumBitLevels = numBitLevels;
@@ -168,6 +213,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
         }
 
         /// <summary>Initializes all decoder models in the bit tree.</summary>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/range_decoding")]
+        [System.ComponentModel.Description("Initializes all decoder models in the bit tree.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public void Init()
         {
             for (uint i = 1; i < (1 << NumBitLevels); i++)
@@ -176,6 +226,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 
         /// <summary>Decodes a symbol from the range decoder using the bit tree hierarchy.</summary>
         /// <returns>The decoded symbol.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/range_decoding")]
+        [System.ComponentModel.Description("Decodes a symbol from the range decoder using the bit tree hierarchy.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public uint Decode(Decoder rangeDecoder)
         {
             uint m = 1;
@@ -186,6 +241,11 @@ namespace SevenZip.Sdk.Compression.RangeCoder
 
         /// <summary>Decodes a symbol from the range decoder in reverse bit order.</summary>
         /// <returns>The decoded symbol with bits assembled in reverse order.</returns>
+        [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
+        [Tags("code/range_decoding")]
+        [System.ComponentModel.Description("Decodes a symbol from the range decoder in reverse bit order.")]
+        [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
+        [Concept("range_coding")]
         public uint ReverseDecode(Decoder rangeDecoder)
         {
             uint m = 1;

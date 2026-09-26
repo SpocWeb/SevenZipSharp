@@ -38,13 +38,23 @@ namespace SevenZip.Tests
     /// See https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm for parameter details.
     /// </remarks>
     /// <seealso cref="SevenZipCompressor">SevenZipCompressor: provides compression functionality with custom parameter support.</seealso>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:17:17Z", Digest = "c01abb6091bf59ec49d3b4eb9ca8d438d4f6730537ebb83cb12d6ef5b5540f5b", Stale = false, Path = "SevenZipCompressorCustomParameterTests.cs", Since = "2026-08-23")]
+    [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+    [Tags("code/testing", "code/compression")]
+    [System.ComponentModel.Description("Tests that custom compression parameters are correctly applied across different archive formats and compression methods.")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "c01abb6091bf59ec49d3b4eb9ca8d438d4f6730537ebb83cb12d6ef5b5540f5b", Stale = false, Path = "SevenZipCompressorCustomParameterTests.cs", Since = "2026-08-23")]
     [TestFixture]
+    [Concept("sevenzip")]
+    [Concept("custom_parameters")]
     public class SevenZipCompressorCustomParameterTests : TestBase
     {
 
         /// <summary>Compress With Custom Parameters — only Works With Correct Method.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Compress With Custom Parameters — only Works With Correct Method.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void CompressWithCustomParameters_OnlyWorksWithCorrectMethod()
         {
             var compressor = new SevenZipCompressor
@@ -63,7 +73,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Invalid Custom Parameters — throws.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Invalid Custom Parameters — throws.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void InvalidCustomParameters_Throws()
         {
             var compressor = new SevenZipCompressor
@@ -80,7 +95,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Zip — deflate — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Zip — deflate — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void Zip_Deflate_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -101,7 +121,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Zip — deflate64 — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Zip — deflate64 — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void Zip_Deflate64_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -122,7 +147,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Zip — pp Md — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Zip — pp Md — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void Zip_PPMd_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -138,7 +168,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Zip — b Zip2 — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Zip — b Zip2 — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void Zip_BZip2_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -156,7 +191,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Seven Zip — default — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Seven Zip — default — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void SevenZip_Default_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -182,7 +222,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Seven Zip — lzma — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Seven Zip — lzma — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void SevenZip_Lzma_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
@@ -204,7 +249,12 @@ namespace SevenZip.Tests
         }
 
         /// <summary>Seven Zip — lzma2 — with Custom Parameters.</summary>
+        [Facets(Layer = "test", Status = "stable", Complexity = 2)]
+        [Tags("code/testing", "code/compression")]
+        [System.ComponentModel.Description("Seven Zip — lzma2 — with Custom Parameters.")]
         [Test]
+        [Concept("sevenzip")]
+        [Concept("custom_parameters")]
         public void SevenZip_Lzma2_WithCustomParameters()
         {
             var compressor = new SevenZipCompressor
