@@ -25,7 +25,7 @@ namespace SevenZip.Tests
     /// | 224 | <see cref="ExtractFilesAsync_ByFileName"/> | Extract Files Async — by File Name. |
     /// </remarks>
     [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-    [Tags("code/extraction", "code/asynchronous", "code/testing")]
+    [Tags("code/asynchronous", "code/extraction", "code/test")]
     [System.ComponentModel.Description("Tests for seven Zip Extractor Asynchronous.")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "fff1830b02b33e3b563ad797e03ec0353d38ee52623aaf8392011933bc9024ff", Stale = false, Path = "SevenZipExtractorAsynchronousTests.cs", Since = "2026-08-23")]
     [TestFixture, Ignore("Flaky tests, need to be re-written to run consistently in AppVeyor.")]
@@ -37,7 +37,7 @@ namespace SevenZip.Tests
 
         /// <summary>Asynchronous Extract Archive Events Test.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Asynchronous Extract Archive Events Test.")]
         [Test]
         [Concept("testfixture")]
@@ -102,7 +102,7 @@ namespace SevenZip.Tests
 
         /// <summary>Asynchronous Extract File Events Test.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Asynchronous Extract File Events Test.")]
         [Test]
         [Concept("testfixture")]
@@ -141,7 +141,7 @@ namespace SevenZip.Tests
 
         /// <summary>Asynchronous Extract Files Events Test.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Asynchronous Extract Files Events Test.")]
         [Test]
         [Concept("testfixture")]
@@ -178,7 +178,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Archive Async.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract Archive Async.")]
         [Test]
         [Concept("testfixture")]
@@ -196,7 +196,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract File Async — by Index.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract File Async — by Index.")]
         [Test]
         [Concept("testfixture")]
@@ -218,7 +218,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract File Async — by File Name.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract File Async — by File Name.")]
         [Test]
         [Concept("testfixture")]
@@ -240,7 +240,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Files Async — by Callback.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract Files Async — by Callback.")]
         [Test]
         [Concept("testfixture")]
@@ -258,7 +258,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Files Async — by Index.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract Files Async — by Index.")]
         [Test]
         [Concept("testfixture")]
@@ -276,7 +276,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Files Async — by File Name.</summary>
         [Facets(Layer = "test", Status = "stable", Complexity = 3)]
-        [Tags("code/extraction", "code/asynchronous", "code/testing")]
+        [Tags("code/asynchronous", "code/extraction", "code/test")]
         [System.ComponentModel.Description("Extract Files Async — by File Name.")]
         [Test]
         [Concept("testfixture")]

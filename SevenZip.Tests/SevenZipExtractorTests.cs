@@ -42,7 +42,7 @@ namespace SevenZip.Tests
     /// | <see cref="TestFile"/> | Used as a property. |
     /// </remarks>
     [Facets(Layer = "test", Status = "active", Complexity = 3)]
-    [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+    [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
     [System.ComponentModel.Description("Tests for seven Zip Extractor.")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:52Z", Digest = "6c115e43f34fe0d457b67f7d5618e301561beef2b3eca541a4a04a2267d619b8", Stale = false, Path = "SevenZipExtractorTests.cs", Since = "2026-08-23")]
     [TestFixture]
@@ -56,7 +56,7 @@ namespace SevenZip.Tests
         /// <summary>Gets a list of test archives from the TestData directory,<br/>
         /// excluding multi-volume and long-path archives.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Gets a list of test archives from the TestData directory, excluding multi-volume and long-path archives.")]
         [Concept("code/disposable_pattern")]
         [Concept("code/event_subscription")]
@@ -84,7 +84,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Files Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extract Files Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -106,7 +106,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Specific Files Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extract Specific Files Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -128,7 +128,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Archive Multi Volumes Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extract Archive Multi Volumes Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -148,7 +148,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extraction With Cancellation Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extraction With Cancellation Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -175,7 +175,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extraction With Skip Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extraction With Skip Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -202,7 +202,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extraction From Stream Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extraction From Stream Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -222,7 +222,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extraction To Stream Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extraction To Stream Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -248,7 +248,7 @@ namespace SevenZip.Tests
 
         /// <summary>Detect Multi Volume Index Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Detect Multi Volume Index Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -272,7 +272,7 @@ namespace SevenZip.Tests
 
         /// <summary>Threaded Extraction Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Threaded Extraction Test.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -312,7 +312,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Archive With Long Path.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extract Archive With Long Path.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -329,7 +329,7 @@ namespace SevenZip.Tests
 
         /// <summary>Read Archived File Names.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Read Archived File Names.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -351,7 +351,7 @@ namespace SevenZip.Tests
         
         /// <summary>Read Archived File Data.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Read Archived File Data.")]
         [Test]
         [Concept("code/disposable_pattern")]
@@ -373,7 +373,7 @@ namespace SevenZip.Tests
 
         /// <summary>Extract Different Formats Test.</summary>
         [Facets(Layer = "test", Status = "active", Complexity = 3)]
-        [Tags("code/integration_tests", "code/test_fixture", "code/nunit_test")]
+        [Tags("code/integration_test", "code/nunit_test", "code/test_fixture")]
         [System.ComponentModel.Description("Extract Different Formats Test.")]
         [Test, TestCaseSource(nameof(TestFiles))]
         [Concept("code/disposable_pattern")]

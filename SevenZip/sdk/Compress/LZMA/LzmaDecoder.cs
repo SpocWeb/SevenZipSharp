@@ -504,7 +504,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// | <see cref="Decoder"/> | Passed as a parameter. |
         /// </remarks>
         [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-        [Tags("code/literal_decoding", "code/context_modeling")]
+        [Tags("code/context_model", "code/literal_decoding")]
         [System.ComponentModel.Description("Decodes literal bytes using context-dependent Huffman-like decoders based on match history and position.")]
         [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "385ae594f02437adc6faeaf9cc57b0098214c2e671609d91e10f94306ed56958", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
@@ -521,7 +521,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// previous-byte bit counts.
             /// </summary>
             [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-            [Tags("code/literal_decoding", "code/context_modeling")]
+            [Tags("code/context_model", "code/literal_decoding")]
             [System.ComponentModel.Description("Creates Decoder2 instances for all context states based on position and previous-byte bit counts.")]
             [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
             [Concept("literal_symbols")]
@@ -544,7 +544,7 @@ namespace SevenZip.Sdk.Compression.Lzma
             /// Initializes all context-dependent literal decoders.
             /// </summary>
             [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-            [Tags("code/literal_decoding", "code/context_modeling")]
+            [Tags("code/context_model", "code/literal_decoding")]
             [System.ComponentModel.Description("Initializes all context-dependent literal decoders.")]
             [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
             [Concept("literal_symbols")]
@@ -561,7 +561,7 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// </summary>
 			/// <returns>The decoder state index.</returns>
 			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-			[Tags("code/literal_decoding", "code/context_modeling")]
+			[Tags("code/context_model", "code/literal_decoding")]
 			[System.ComponentModel.Description("Returns the decoder state index for the specified position and previous byte context.")]
 			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
 			[Concept("literal_symbols")]
@@ -573,7 +573,7 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// </summary>
 			/// <returns>The decoded literal byte.</returns>
 			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-			[Tags("code/literal_decoding", "code/context_modeling")]
+			[Tags("code/context_model", "code/literal_decoding")]
 			[System.ComponentModel.Description("Decodes a literal byte using the normal decoder for the specified position and previous-byte context.")]
 			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
 			[Concept("literal_symbols")]
@@ -585,7 +585,7 @@ namespace SevenZip.Sdk.Compression.Lzma
 			/// </summary>
 			/// <returns>The decoded literal byte.</returns>
 			[Facets(Layer = "transform", Status = "stable", Complexity = 2)]
-			[Tags("code/literal_decoding", "code/context_modeling")]
+			[Tags("code/context_model", "code/literal_decoding")]
 			[System.ComponentModel.Description("Decodes a literal byte using match-byte context for improved compression in repetitive data.")]
 			[Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
 			[Concept("literal_symbols")]
