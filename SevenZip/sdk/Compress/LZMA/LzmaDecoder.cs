@@ -31,7 +31,7 @@ namespace SevenZip.Sdk.Compression.Lzma
     /// | <see cref="ICodeProgress"/> | Passed as a parameter. |
     /// </remarks>
     [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-    [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+    [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
     [System.ComponentModel.Description("The LZMA decoder class")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "5ee0c376cd6864e7ac51a06a62f92526bd811cf3face7e116b66ef8c588a63c3", Stale = false, Path = "sdk/Compress/LZMA/LzmaDecoder.cs", Since = "2026-08-23")]
     [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
@@ -68,7 +68,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Initializes the Lzma Decoder class.
         /// </summary>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Initializes the Lzma Decoder class.")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -90,7 +90,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <param name="outStream">The output stream</param>
         /// <param name="progress">Progress interface</param>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Codes a stream with LZMA algorithm to an output stream")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -232,7 +232,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// </summary>
         /// <param name="properties">Array of byte properties</param>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Sets decoder properties")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -263,7 +263,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// if needed.
         /// </summary>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Sets the dictionary size for the decoder, reallocating the output window if needed.")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -282,7 +282,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// Sets literal properties for literal symbol decoding after validation.
         /// </summary>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Sets literal properties for literal symbol decoding after validation.")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -302,7 +302,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// specified position states.
         /// </summary>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Sets position bit properties, initializing length decoders for the specified position states.")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -322,7 +322,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// internal decoders to their initial state.
         /// </summary>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Initializes the decoder with input and output streams and resets all internal decoders to their initial state.")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
@@ -364,7 +364,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// <param name="stream">The stream to train.</param>
         /// <returns>true if Ok; otherwise, false.</returns>
         [Facets(Layer = "transform", Status = "stable", Complexity = 4)]
-        [Tags("code/lzma_algorithm", "code/decompression", "code/stream_processing")]
+        [Tags("code/decompression", "code/lzma_compression", "code/stream_processing")]
         [System.ComponentModel.Description("Trains a stream")]
         [Concept("Technology\\IT\\IT-Algorithm\\Data_Compression.md")]
         [Concept("lzma_codec")]
