@@ -8,6 +8,23 @@ namespace SevenZip
     /// <summary>
     /// Exception class for 7-zip archive open or read operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 42 | <see cref="SevenZipArchiveException"/> | Initializes a new instance of the SevenZipArchiveException class |
+    /// | 48 | <see cref="SevenZipArchiveException"/> | Initializes a new instance of the SevenZipArchiveException class |
+    /// | 55 | <see cref="SevenZipArchiveException"/> | Initializes a new instance of the SevenZipArchiveException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 31214acfc614c42177d6b59b59b9f208c56fc074e18dd7377e10f2abeac801bf
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipArchiveException : SevenZipException
     {

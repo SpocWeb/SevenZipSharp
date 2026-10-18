@@ -9,6 +9,24 @@ namespace SevenZip
     /// <summary>
     /// Archive extraction callback to handle the process of unpacking files
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 69 | <see cref="ArchiveExtractCallback"/> | Initializes a new instance of the ArchiveExtractCallback class |
+    /// | 85 | <see cref="ArchiveExtractCallback"/> | Initializes a new instance of the ArchiveExtractCallback class |
+    /// | 100 | <see cref="ArchiveExtractCallback"/> | Initializes a new instance of the ArchiveExtractCallback class |
+    /// | 114 | <see cref="ArchiveExtractCallback"/> | Initializes a new instance of the ArchiveExtractCallback class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 9044b292c68e8e02bc3efb7e61dbe95887bd9cfbd4209785c87f3f604aec3adf
+    /// </code>
+    /// </example>
     internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCallback, ICryptoGetTextPassword, IDisposable
     {
         private List<uint> _actualIndexes;

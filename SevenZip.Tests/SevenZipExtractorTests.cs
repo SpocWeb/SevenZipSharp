@@ -20,20 +20,20 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 51 | <see cref="TestFiles"/> | Gets a list of test archives from the TestData directory,  excluding multi-volume and long-path archives. |
-    /// | 72 | <see cref="ExtractFilesTest"/> | Extract Files Test. |
-    /// | 87 | <see cref="ExtractSpecificFilesTest"/> | Extract Specific Files Test. |
-    /// | 102 | <see cref="ExtractArchiveMultiVolumesTest"/> | Extract Archive Multi Volumes Test. |
-    /// | 115 | <see cref="ExtractionWithCancellationTest"/> | Extraction With Cancellation Test. |
-    /// | 135 | <see cref="ExtractionWithSkipTest"/> | Extraction With Skip Test. |
-    /// | 155 | <see cref="ExtractionFromStreamTest"/> | Extraction From Stream Test. |
-    /// | 168 | <see cref="ExtractionToStreamTest"/> | Extraction To Stream Test. |
-    /// | 187 | <see cref="DetectMultiVolumeIndexTest"/> | Detect Multi Volume Index Test. |
-    /// | 204 | <see cref="ThreadedExtractionTest"/> | Threaded Extraction Test. |
-    /// | 237 | <see cref="ExtractArchiveWithLongPath"/> | Extract Archive With Long Path. |
-    /// | 247 | <see cref="ReadArchivedFileNames"/> | Read Archived File Names. |
-    /// | 262 | <see cref="ReadArchivedFileData"/> | Read Archived File Data. |
-    /// | 277 | <see cref="ExtractDifferentFormatsTest"/> | Extract Different Formats Test. |
+    /// | 58 | <see cref="TestFiles"/> | Gets a list of test archives from the TestData directory, excluding multi-volume and long-path archives. |
+    /// | 86 | <see cref="ExtractFilesTest"/> | Extract Files Test. |
+    /// | 108 | <see cref="ExtractSpecificFilesTest"/> | Extract Specific Files Test. |
+    /// | 130 | <see cref="ExtractArchiveMultiVolumesTest"/> | Extract Archive Multi Volumes Test. |
+    /// | 150 | <see cref="ExtractionWithCancellationTest"/> | Extraction With Cancellation Test. |
+    /// | 177 | <see cref="ExtractionWithSkipTest"/> | Extraction With Skip Test. |
+    /// | 204 | <see cref="ExtractionFromStreamTest"/> | Extraction From Stream Test. |
+    /// | 224 | <see cref="ExtractionToStreamTest"/> | Extraction To Stream Test. |
+    /// | 250 | <see cref="DetectMultiVolumeIndexTest"/> | Detect Multi Volume Index Test. |
+    /// | 274 | <see cref="ThreadedExtractionTest"/> | Threaded Extraction Test. |
+    /// | 314 | <see cref="ExtractArchiveWithLongPath"/> | Extract Archive With Long Path. |
+    /// | 331 | <see cref="ReadArchivedFileNames"/> | Read Archived File Names. |
+    /// | 353 | <see cref="ReadArchivedFileData"/> | Read Archived File Data. |
+    /// | 375 | <see cref="ExtractDifferentFormatsTest"/> | Extract Different Formats Test. |
     ///
     /// ## Collaborators
     ///
@@ -398,8 +398,8 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 304 | <see cref="FilePath"/> | Gets the file path. |
-    /// | 308 | <see cref="TestFile"/> | Initializes a new instance of TestFile with  the specified filePath. |
+    /// | 413 | <see cref="FilePath"/> | Gets the file path. |
+    /// | 421 | <see cref="TestFile"/> | Initializes a new instance of TestFile with the specified filePath. |
     /// </remarks>
     [Facets(Layer = "test", Status = "stable", Complexity = 1)]
     [Tags("code/test_fixture_data", "code/data_holder", "code/value_object")]

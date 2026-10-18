@@ -15,11 +15,11 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 49 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
-    /// | 61 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
-    /// | 78 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 55 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 72 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
     /// | 94 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
-    /// | 225 | <see cref="ToDecodeStream"/> | Converts the LzmaEncodeStream to the LzmaDecodeStream to read data. |
+    /// | 115 | <see cref="LzmaEncodeStream"/> | Initializes a new instance of the LzmaEncodeStream class. |
+    /// | 293 | <see cref="ToDecodeStream"/> | Converts the LzmaEncodeStream to the LzmaDecodeStream to read data. |
     ///
     /// ## Collaborators
     ///

@@ -10,14 +10,14 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 33 | <see cref="Create"/> | Creates or resizes the output window buffer to the specified size. |
-    /// | 49 | <see cref="Init"/> | Initializes the output window with the target stream. |
-    /// | 65 | <see cref="Train"/> | Loads data from the stream into the window for initial training. |
-    /// | 93 | <see cref="ReleaseStream"/> | Flushes any pending data and releases the output stream. |
-    /// | 100 | <see cref="Flush"/> | Writes buffered data to the output stream and updates the window position. |
-    /// | 119 | <see cref="CopyBlock"/> | Copies data from the specified distance-back within the window, repeating for  the given length. |
-    /// | 139 | <see cref="PutByte"/> | Writes a byte to the output window, flushing automatically if the window is full. |
-    /// | 150 | <see cref="GetByte"/> | Retrieves the byte at the specified distance-back from the current position. |
+    /// | 39 | <see cref="Create"/> | Creates or resizes the output window buffer to the specified size. |
+    /// | 61 | <see cref="Init"/> | Initializes the output window with the target stream. |
+    /// | 83 | <see cref="Train"/> | Loads data from the stream into the window for initial training. |
+    /// | 117 | <see cref="ReleaseStream"/> | Flushes any pending data and releases the output stream. |
+    /// | 130 | <see cref="Flush"/> | Writes buffered data to the output stream and updates the window position. |
+    /// | 155 | <see cref="CopyBlock"/> | Copies data from the specified distance-back within the window, repeating for the given length. |
+    /// | 181 | <see cref="PutByte"/> | Writes a byte to the output window, flushing automatically if the window is full. |
+    /// | 198 | <see cref="GetByte"/> | Retrieves the byte at the specified distance-back from the current position. |
     /// </remarks>
     [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
     [Tags("code/buffer_management", "code/buffering", "code/circular_buffer")]

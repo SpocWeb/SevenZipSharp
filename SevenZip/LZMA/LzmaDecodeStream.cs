@@ -15,8 +15,8 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 43 | <see cref="LzmaDecodeStream"/> | Initializes a new instance of the LzmaDecodeStream class. |
-    /// | 56 | <see cref="ChunkSize"/> | Gets the chunk size. |
+    /// | 47 | <see cref="LzmaDecodeStream"/> | Initializes a new instance of the LzmaDecodeStream class. |
+    /// | 63 | <see cref="ChunkSize"/> | Gets the chunk size. |
     ///
     /// ## Collaborators
     ///

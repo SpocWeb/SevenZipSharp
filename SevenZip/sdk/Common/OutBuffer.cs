@@ -10,15 +10,15 @@ namespace SevenZip.Sdk.Buffer
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 36 | <see cref="OutBuffer"/> | Initializes a new instance of the OutBuffer class |
-    /// | 44 | <see cref="SetStream"/> | Designates the output stream for buffered writes. |
-    /// | 47 | <see cref="FlushStream"/> | Flushes the underlying output stream. |
-    /// | 50 | <see cref="CloseStream"/> | Closes the underlying output stream. |
-    /// | 53 | <see cref="ReleaseStream"/> | Releases the reference to the output stream. |
-    /// | 56 | <see cref="Init"/> | Resets the buffer position and processed size counter. |
-    /// | 63 | <see cref="WriteByte"/> | Writes a byte to the buffer, flushing if the buffer reaches capacity. |
-    /// | 72 | <see cref="FlushData"/> | Writes buffered data to the stream and resets the buffer position. |
-    /// | 83 | <see cref="GetProcessedSize"/> | Returns the total number of bytes written to the stream. |
+    /// | 41 | <see cref="OutBuffer"/> | Initializes a new instance of the OutBuffer class |
+    /// | 53 | <see cref="SetStream"/> | Designates the output stream for buffered writes. |
+    /// | 61 | <see cref="FlushStream"/> | Flushes the underlying output stream. |
+    /// | 69 | <see cref="CloseStream"/> | Closes the underlying output stream. |
+    /// | 77 | <see cref="ReleaseStream"/> | Releases the reference to the output stream. |
+    /// | 85 | <see cref="Init"/> | Resets the buffer position and processed size counter. |
+    /// | 97 | <see cref="WriteByte"/> | Writes a byte to the buffer, flushing if the buffer reaches capacity. |
+    /// | 111 | <see cref="FlushData"/> | Writes buffered data to the stream and resets the buffer position. |
+    /// | 127 | <see cref="GetProcessedSize"/> | Returns the total number of bytes written to the stream. |
     /// </remarks>
     [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
     [Tags("code/data_container", "code/buffer_snapshot")]

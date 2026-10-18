@@ -20,23 +20,23 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 54 | <see cref="CompressionMethods"/> | TestCaseSource for CompressDifferentFormatsTest |
-    /// | 70 | <see cref="CompressDirectory_WithSfnPath"/> | Compress Directory — with Sfn Path. |
-    /// | 90 | <see cref="CompressDirectory_NonExistentDirectory"/> | Compress Directory — non Existent Directory. |
-    /// | 100 | <see cref="CompressFile_WithSfnPath"/> | Compress File — with Sfn Path. |
-    /// | 119 | <see cref="CompressFileTest"/> | Compress File Test. |
-    /// | 140 | <see cref="CompressDirectoryTest"/> | Compress Directory Test. |
-    /// | 163 | <see cref="CompressWithAppendModeTest"/> | Compress With Append Mode Test. |
-    /// | 191 | <see cref="ModifyProtectedArchiveTest"/> | Modify Protected Archive Test. |
-    /// | 220 | <see cref="ModifyNonArchiveTest"/> | Modify Non Archive Test. |
-    /// | 236 | <see cref="CompressWithModifyModeRenameTest"/> | Compress With Modify Mode Rename Test. |
-    /// | 261 | <see cref="CompressWithModifyModeDeleteTest"/> | Compress With Modify Mode Delete Test. |
-    /// | 285 | <see cref="MultiVolumeCompressionTest"/> | Multi Volume Compression Test. |
-    /// | 302 | <see cref="CompressToStreamTest"/> | Compress To Stream Test. |
-    /// | 322 | <see cref="CompressFromStreamTest"/> | Compress From Stream Test. |
-    /// | 349 | <see cref="CompressFileDictionaryTest"/> | Compress File Dictionary Test. |
-    /// | 371 | <see cref="ThreadedCompressionTest"/> | Threaded Compression Test. |
-    /// | 399 | <see cref="CompressDifferentFormatsTest"/> | Compress Different Formats Test. |
+    /// | 60 | <see cref="CompressionMethods"/> | TestCaseSource for CompressDifferentFormatsTest |
+    /// | 79 | <see cref="CompressDirectory_WithSfnPath"/> | Compress Directory — with Sfn Path. |
+    /// | 103 | <see cref="CompressDirectory_NonExistentDirectory"/> | Compress Directory — non Existent Directory. |
+    /// | 117 | <see cref="CompressFile_WithSfnPath"/> | Compress File — with Sfn Path. |
+    /// | 140 | <see cref="CompressFileTest"/> | Compress File Test. |
+    /// | 165 | <see cref="CompressDirectoryTest"/> | Compress Directory Test. |
+    /// | 192 | <see cref="CompressWithAppendModeTest"/> | Compress With Append Mode Test. |
+    /// | 224 | <see cref="ModifyProtectedArchiveTest"/> | Modify Protected Archive Test. |
+    /// | 257 | <see cref="ModifyNonArchiveTest"/> | Modify Non Archive Test. |
+    /// | 277 | <see cref="CompressWithModifyModeRenameTest"/> | Compress With Modify Mode Rename Test. |
+    /// | 306 | <see cref="CompressWithModifyModeDeleteTest"/> | Compress With Modify Mode Delete Test. |
+    /// | 334 | <see cref="MultiVolumeCompressionTest"/> | Multi Volume Compression Test. |
+    /// | 355 | <see cref="CompressToStreamTest"/> | Compress To Stream Test. |
+    /// | 379 | <see cref="CompressFromStreamTest"/> | Compress From Stream Test. |
+    /// | 410 | <see cref="CompressFileDictionaryTest"/> | Compress File Dictionary Test. |
+    /// | 436 | <see cref="ThreadedCompressionTest"/> | Threaded Compression Test. |
+    /// | 468 | <see cref="CompressDifferentFormatsTest"/> | Compress Different Formats Test. |
     ///
     /// ## Collaborators
     ///

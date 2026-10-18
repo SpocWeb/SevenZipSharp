@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Exception class for empty common root if file name array in SevenZipCompressor.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="SevenZipInvalidFileNamesException"/> | Initializes a new instance of the SevenZipInvalidFileNamesException class |
+    /// | 46 | <see cref="SevenZipInvalidFileNamesException"/> | Initializes a new instance of the SevenZipInvalidFileNamesException class |
+    /// | 53 | <see cref="SevenZipInvalidFileNamesException"/> | Initializes a new instance of the SevenZipInvalidFileNamesException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: a744ee3c411d0a9afd9ee960584d1c7b29c48dc42c9e3b4122dd2277144f1336
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipInvalidFileNamesException : SevenZipException
     {

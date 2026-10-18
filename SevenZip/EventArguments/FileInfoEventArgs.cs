@@ -10,10 +10,8 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 34 | <see cref="FileInfoEventArgs"/> | Initializes a new instance of the FileInfoEventArgs class. |
-    /// | 44 | <see cref="Cancel"/> | Gets or sets whether to stop the current archive operation. |
-    /// | 50 | <see cref="Skip"/> | Gets or sets whether to skip the current file. |
-    /// | 56 | <see cref="FileInfo"/> | Gets the corresponding FileInfo to the event. |
+    /// | 32 | <see cref="FileInfoEventArgs"/> | Initializes a new instance of the FileInfoEventArgs class. |
+    /// | 54 | <see cref="FileInfo"/> | Gets the corresponding FileInfo to the event. |
     ///
     /// ## Collaborators
     ///

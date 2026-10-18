@@ -11,13 +11,8 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 73 | <see cref="SetStream"/> | Sets the input stream from which match data is read. |
-    /// | 76 | <see cref="ReleaseStream"/> | Releases the current input stream. |
-    /// | 79 | <see cref="Init"/> | Initializes the hash tables and cyclic buffer for match finding. |
-    /// | 89 | <see cref="GetIndexByte"/> | Returns the byte at the specified offset in the current window. |
-    /// | 92 | <see cref="GetMatchLen"/> | Returns the length of the match at the specified distance, up to the given limit. |
-    /// | 95 | <see cref="GetNumAvailableBytes"/> | Returns the number of bytes available for matching in the current window. |
-    /// | 402 | <see cref="MovePos"/> | Advances to the next position in the buffer and normalizes position  references if the maximum value is reached. |
+    /// | 427 | <see cref="SetType"/> |  |
+    /// | 446 | <see cref="MovePos"/> | Advances to the next position in the buffer and normalizes position references if the maximum value is reached. |
     ///
     /// ## Collaborators
     ///

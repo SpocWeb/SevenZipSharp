@@ -21,12 +21,12 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// | 37 | <see cref="kTopValue"/> | Specifies the constant k Top Value. |
     /// | 48 | <see cref="SetStream"/> | Sets the underlying stream for encoded output. |
     /// | 51 | <see cref="ReleaseStream"/> | Clears the stream reference by releasing the stream. |
-    /// | 55 | <see cref="Init"/> | Initializes encoder state from the current stream position,  resetting all range-coding state and output cache. |
-    /// | 67 | <see cref="FlushData"/> | Flushes all remaining encoded data to the stream by  calling ShiftLow five times. |
+    /// | 55 | <see cref="Init"/> | Initializes encoder state from the current stream position, resetting all range-coding state and output cache. |
+    /// | 67 | <see cref="FlushData"/> | Flushes all remaining encoded data to the stream by calling ShiftLow five times. |
     /// | 74 | <see cref="FlushStream"/> | Flushes the underlying stream. |
-    /// | 94 | <see cref="ShiftLow"/> | Shifts the low-order 8 bits to the stream and advances the  low value, managing cached byte output across range-code boundaries. |
-    /// | 112 | <see cref="EncodeDirectBits"/> | Encodes numTotalBits consecutive bits of  v by narrowing the range according to each bit value. |
-    /// | 148 | <see cref="GetProcessedSizeAdd"/> | Returns the number of bytes written to the stream since  the last Init call. |
+    /// | 94 | <see cref="ShiftLow"/> | Shifts the low-order 8 bits to the stream and advances the low value, managing cached byte output across range-code boundaries. |
+    /// | 112 | <see cref="EncodeDirectBits"/> | Encodes numTotalBits consecutive bits of v by narrowing the range according to each bit value. |
+    /// | 148 | <see cref="GetProcessedSizeAdd"/> | Returns the number of bytes written to the stream since the last Init call. |
     /// </remarks>
     /// <seealso cref="Stream">Stream: output stream for encoded bytes.</seealso>
     [DocState(Pass = 2, MTime = "2026-08-24T14:19:13Z", Digest = "11d2d3ae5e45757bb98c8d0887b0ace587744bd6542e1de00f2f48c066c8f507", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]
@@ -163,9 +163,9 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     /// | Line | Method | Description |
     /// |--:|---|---|
     /// | 176 | <see cref="kTopValue"/> | Specifies the constant k Top Value. |
-    /// | 184 | <see cref="Init"/> | Initializes decoder state from the given stream by reading 5  seed bytes and resetting range-code state. |
+    /// | 184 | <see cref="Init"/> | Initializes decoder state from the given stream by reading 5 seed bytes and resetting range-code state. |
     /// | 196 | <see cref="ReleaseStream"/> | Clears the stream reference by releasing the stream. |
-    /// | 238 | <see cref="DecodeDirectBits"/> | Decodes and returns numTotalBits consecutive  bits from the stream by narrowing the range for each bit. |
+    /// | 238 | <see cref="DecodeDirectBits"/> | Decodes and returns numTotalBits consecutive bits from the stream by narrowing the range for each bit. |
     /// </remarks>
     /// <seealso cref="Stream">Stream: input stream for encoded bytes.</seealso>
     [DocState(Pass = 2, MTime = "2026-08-24T14:19:13Z", Digest = "1aa247d30f8d0a7c095c1d022b86f7f49f76003c73cc14278b47f765f8763f2e", Stale = false, Path = "sdk/Compress/RangeCoder/RangeCoder.cs", Since = "2026-08-23")]

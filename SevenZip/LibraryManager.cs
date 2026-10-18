@@ -16,6 +16,27 @@ namespace SevenZip
     /// <summary>
     /// 7-zip library low-level wrapper.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 128 | <see cref="LoadLibrary"/> | Loads the 7-zip library if necessary and adds user to the reference list |
+    /// | 180 | <see cref="ModifyCapable"/> | Gets the value indicating whether the library supports modifying archives. |
+    /// | 239 | <see cref="CurrentLibraryFeatures"/> |  |
+    /// | 361 | <see cref="FreeLibrary"/> | Removes user from reference list and frees the 7-zip library if it becomes empty |
+    /// | 435 | <see cref="InArchive"/> | Gets IInArchive interface to extract 7-zip archives. |
+    /// | 492 | <see cref="OutArchive"/> | Gets IOutArchive interface to pack 7-zip archives. |
+    /// | 532 | <see cref="SetLibraryPath"/> |  |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 8d4f3129b15d06662474c00542be1c3645b45df994967873f4c0d4356f0cb252
+    /// </code>
+    /// </example>
     internal static class SevenZipLibraryManager
     {
         /// <summary>

@@ -19,9 +19,9 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 37 | <see cref="FileCheckerTestData"/> | Initializes a new instance of FileCheckerTestData with the specified testDataFilePath and expectedFormat. |
-    /// | 46 | <see cref="ExpectedFormat"/> | Format this test expects to find. |
-    /// | 52 | <see cref="TestDataFilePath"/> | Path to archive file to test against. |
+    /// | 38 | <see cref="FileCheckerTestData"/> | Initializes a new instance of FileCheckerTestData with the specified testDataFilePath and expectedFormat. |
+    /// | 48 | <see cref="ExpectedFormat"/> | Format this test expects to find. |
+    /// | 54 | <see cref="TestDataFilePath"/> | Path to archive file to test against. |
     ///
     /// ## Collaborators
     ///
@@ -66,8 +66,8 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 122 | <see cref="SetUp"/> | Ensures the working directory is set to the test directory for accessing test data files. |
-    /// | 128 | <see cref="CheckFileSignatureTest"/> | Check File Signature Test. |
+    /// | 128 | <see cref="SetUp"/> | Ensures the working directory is set to the test directory for accessing test data files. |
+    /// | 138 | <see cref="CheckFileSignatureTest"/> | Check File Signature Test. |
     ///
     /// ## Collaborators
     ///

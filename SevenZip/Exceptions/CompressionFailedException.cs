@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Exception class for ArchiveUpdateCallback.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="CompressionFailedException"/> | Initializes a new instance of the CompressionFailedException class |
+    /// | 46 | <see cref="CompressionFailedException"/> | Initializes a new instance of the CompressionFailedException class |
+    /// | 53 | <see cref="CompressionFailedException"/> | Initializes a new instance of the CompressionFailedException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: e50c215a0f05d7134caff960051f2151863bae854c972d7cf89f20b6be1e9377
+    /// </code>
+    /// </example>
     [Serializable]
     public class CompressionFailedException : SevenZipException
     {

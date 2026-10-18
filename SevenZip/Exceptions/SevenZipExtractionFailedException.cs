@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Exception class for fail to extract an archive in SevenZipExtractor.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception default message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="SevenZipExtractionFailedException"/> | Initializes a new instance of the SevenZipExtractionFailedException class |
+    /// | 46 | <see cref="SevenZipExtractionFailedException"/> | Initializes a new instance of the SevenZipExtractionFailedException class |
+    /// | 53 | <see cref="SevenZipExtractionFailedException"/> | Initializes a new instance of the SevenZipExtractionFailedException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 06f3599df5be18c7b24a358aa7f88225fc004441464b7a0207dc78d649d36c8a
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipExtractionFailedException : SevenZipException
     {

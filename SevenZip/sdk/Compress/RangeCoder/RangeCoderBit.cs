@@ -19,14 +19,14 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 38 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
-    /// | 41 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
-    /// | 44 | <see cref="kNumBitPriceShiftBits"/> | Specifies the constant k Num Bit Price Shift Bits. |
-    /// | 76 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
-    /// | 90 | <see cref="Encode"/> | Encodes a binary symbol and updates the probability model based on  the encoded value. |
-    /// | 114 | <see cref="GetPrice"/> | Returns the encoding price for a specified symbol. |
-    /// | 117 | <see cref="GetPrice0"/> | Returns the encoding price for symbol 0. |
-    /// | 120 | <see cref="GetPrice1"/> | Returns the encoding price for symbol 1. |
+    /// | 43 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
+    /// | 46 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
+    /// | 49 | <see cref="kNumBitPriceShiftBits"/> | Specifies the constant k Num Bit Price Shift Bits. |
+    /// | 86 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
+    /// | 105 | <see cref="Encode"/> | Encodes a binary symbol and updates the probability model based on the encoded value. |
+    /// | 134 | <see cref="GetPrice"/> | Returns the encoding price for a specified symbol. |
+    /// | 142 | <see cref="GetPrice0"/> | Returns the encoding price for symbol 0. |
+    /// | 150 | <see cref="GetPrice1"/> | Returns the encoding price for symbol 1. |
     /// </remarks>
     /// <seealso cref="Encoder">Encoder: manages the range-coded bitstream being written.</seealso>
     /// <!-- <example> block is managed by check-stale -->
@@ -170,10 +170,10 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 150 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
-    /// | 153 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
-    /// | 173 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
-    /// | 179 | <see cref="Decode"/> | Decodes and returns a binary symbol from the decoder, updating the  probability model. |
+    /// | 190 | <see cref="kBitModelTotal"/> | Specifies the constant k Bit Model Total. |
+    /// | 193 | <see cref="kNumBitModelTotalBits"/> | Specifies the constant k Num Bit Model Total Bits. |
+    /// | 213 | <see cref="Init"/> | Initializes the probability estimate to a neutral state. |
+    /// | 224 | <see cref="Decode"/> | Decodes and returns a binary symbol from the decoder, updating the probability model. |
     /// </remarks>
     /// <seealso cref="Decoder">Decoder: manages the range-coded bitstream being read.</seealso>
     /// <!-- <example> block is managed by check-stale -->

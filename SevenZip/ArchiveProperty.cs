@@ -5,6 +5,24 @@ namespace SevenZip
     /// <summary>
     /// Archive property struct.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 31 | <see cref="Name"/> | Gets the name of the archive property. |
+    /// | 36 | <see cref="Value"/> | Gets the value of the archive property. |
+    /// | 70 | <see cref="operator =="/> | Determines whether the specified ArchiveProperty instances are considered equal. |
+    /// | 81 | <see cref="operator !="/> | Determines whether the specified ArchiveProperty instances are not considered equal. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 7736db164d25747731568052f969520a8654a0b94c1cba61d17c6e7053e01aa2
+    /// </code>
+    /// </example>
     public struct ArchiveProperty
     {
         /// <summary>

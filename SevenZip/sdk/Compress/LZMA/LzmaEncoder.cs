@@ -17,7 +17,7 @@ namespace SevenZip.Sdk.Compression.Lzma
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 150 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
+    /// | 158 | <see cref="Encoder"/> | Initializes a new instance of the Encoder class |
     ///
     /// ## Collaborators
     ///
@@ -1591,8 +1591,8 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1481 | <see cref="BT2"/> | Binary tree match finder with 2-byte hash. |
-        /// | 1483 | <see cref="BT4"/> | Binary tree match finder with 4-byte hash. |
+        /// | 1602 | <see cref="BT2"/> | Binary tree match finder with 2-byte hash. |
+        /// | 1604 | <see cref="BT4"/> | Binary tree match finder with 4-byte hash. |
         /// </remarks>
         [System.ComponentModel.Description("Specifies the binary tree match finder algorithm variant used for string matching during compression.")]
         [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "17f8d9d24ad32b9db1a51e9c5b292b182208d0e98026c4cd3637dac495aef2f9", Stale = false, Path = "sdk/Compress/LZMA/LzmaEncoder.cs", Since = "2026-08-23")]
@@ -1617,10 +1617,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1521 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
-        /// | 1534 | <see cref="Init"/> | Initializes all length encoders for the  specified number of position states. |
-        /// | 1550 | <see cref="Encode"/> | Encodes a match length symbol using low,  mid, or high encoder based on the value. |
-        /// | 1578 | <see cref="SetPrices"/> | Computes and caches encoder prices for all  length symbols up to the specified limit. |
+        /// | 1646 | <see cref="LenEncoder"/> | Initializes a new instance of LenEncoder. |
+        /// | 1663 | <see cref="Init"/> | Initializes all length encoders for the specified number of position states. |
+        /// | 1683 | <see cref="Encode"/> | Encodes a match length symbol using low, mid, or high encoder based on the value. |
+        /// | 1715 | <see cref="SetPrices"/> | Computes and caches encoder prices for all length symbols up to the specified limit. |
         ///
         /// ## Collaborators
         ///
@@ -1755,10 +1755,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1636 | <see cref="SetTableSize"/> | Sets the maximum length symbol size for price computation. |
-        /// | 1643 | <see cref="GetPrice"/> | Retrieves the cached encoder price for  a length symbol at the specified position state. |
-        /// | 1659 | <see cref="UpdateTables"/> | Recomputes the cached price tables for  all specified position states. |
-        /// | 1669 | <see cref="Encode"/> | Encodes a length symbol and updates the  cached prices when the counter expires. |
+        /// | 1781 | <see cref="SetTableSize"/> | Sets the maximum length symbol size for price computation. |
+        /// | 1792 | <see cref="GetPrice"/> | Retrieves the cached encoder price for a length symbol at the specified position state. |
+        /// | 1816 | <see cref="UpdateTables"/> | Recomputes the cached price tables for all specified position states. |
+        /// | 1830 | <see cref="Encode"/> | Encodes a length symbol and updates the cached prices when the counter expires. |
         ///
         /// ## Collaborators
         ///
@@ -1849,14 +1849,6 @@ namespace SevenZip.Sdk.Compression.Lzma
         /// bit tree encoders based on position and previous byte.
         /// </summary>
         /// <remarks>
-        /// ## Public Methods
-        ///
-        /// | Line | Method | Description |
-        /// |--:|---|---|
-        /// | 1683 | <see cref="Create"/> | Initializes the literal encoder with the specified position and previous byte context bits. |
-        /// | 1701 | <see cref="Init"/> | Initializes all literal encoder contexts for a new encoding sequence. |
-        /// | 1710 | <see cref="GetSubCoder"/> | Retrieves the context-specific literal encoder for the given position and previous byte. |
-        ///
         /// ## Collaborators
         ///
         /// | Type | Role |
@@ -1934,11 +1926,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 			///
 			/// | Line | Method | Description |
 			/// |--:|---|---|
-			/// | 1774 | <see cref="Create"/> | Allocates the bit encoder array for literal encoding. |
-			/// | 1780 | <see cref="Init"/> | Initializes all bit encoders for  a new literal encoding sequence. |
-			/// | 1789 | <see cref="Encode"/> | Encodes a literal byte using bit-by-bit  range encoding through a binary tree. |
-			/// | 1804 | <see cref="EncodeMatched"/> | Encodes a literal byte relative to a match  byte from a repeated distance using adaptive contexts. |
-			/// | 1828 | <see cref="GetPrice"/> | Computes the encoder price for encoding a literal  byte optionally relative to a match byte. |
+			/// | 1959 | <see cref="Create"/> | Allocates the bit encoder array for literal encoding. |
+			/// | 1969 | <see cref="Init"/> | Initializes all bit encoders for a new literal encoding sequence. |
+			/// | 1982 | <see cref="Encode"/> | Encodes a literal byte using bit-by-bit range encoding through a binary tree. |
+			/// | 2001 | <see cref="EncodeMatched"/> | Encodes a literal byte relative to a match byte from a repeated distance using adaptive contexts. |
+			/// | 2029 | <see cref="GetPrice"/> | Computes the encoder price for encoding a literal byte optionally relative to a match byte. |
 			///
 			/// ## Collaborators
 			///
@@ -2076,9 +2068,9 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 1905 | <see cref="MakeAsChar"/> | Marks this optimal step as a literal  (non-match) encoding. |
-        /// | 1915 | <see cref="MakeAsShortRep"/> | Marks this optimal step as a single-byte  repetition match. |
-        /// | 1923 | <see cref="IsShortRep"/> | Determines whether short Rep. |
+        /// | 2114 | <see cref="MakeAsChar"/> | Marks this optimal step as a literal (non-match) encoding. |
+        /// | 2128 | <see cref="MakeAsShortRep"/> | Marks this optimal step as a single-byte repetition match. |
+        /// | 2140 | <see cref="IsShortRep"/> | Determines whether short Rep. |
         ///
         /// ## Invariants
         ///

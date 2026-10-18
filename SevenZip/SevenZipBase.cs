@@ -11,6 +11,25 @@ namespace SevenZip
     /// <summary>
     /// SevenZip Extractor/Compressor base class. Implements Password string, ReportErrors flag.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 111 | <see cref="EventSynchronization"/> | Gets or sets the event synchronization strategy. |
+    /// | 116 | <see cref="UniqueID"/> | Gets the unique identifier of this SevenZipBase instance. |
+    /// | 169 | <see cref="Password"/> | Gets or sets the archive password |
+    /// | 276 | <see cref="SetLibraryPath"/> | Changes the path to the 7-zip native library. |
+    /// | 281 | <see cref="CurrentLibraryFeatures"/> | Gets the current library features. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 3c8982825357be80a127afcf29dfd442e03d4007dccfd15a3614ff31ad885a33
+    /// </code>
+    /// </example>
     public abstract class SevenZipBase : MarshalByRefObject
     {
         private readonly bool _reportErrors;

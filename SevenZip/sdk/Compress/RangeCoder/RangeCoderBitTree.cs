@@ -11,12 +11,12 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 35 | <see cref="BitTreeEncoder"/> | Initializes a new instance of BitTreeEncoder with the specified numBitLevels. |
-    /// | 42 | <see cref="Init"/> | Initializes all encoder models in the bit tree. |
-    /// | 49 | <see cref="Encode"/> | Encodes a symbol using the bit tree hierarchy through range encoding. |
-    /// | 62 | <see cref="ReverseEncode"/> | Encodes a symbol in reverse bit order through range encoding. |
-    /// | 76 | <see cref="GetPrice"/> | Calculates the bit-tree encoding price for a symbol. |
-    /// | 92 | <see cref="ReverseGetPrice"/> | Calculates the bit-tree encoding price for a symbol in reverse bit order. |
+    /// | 40 | <see cref="BitTreeEncoder"/> | Initializes a new instance of BitTreeEncoder with the specified numBitLevels. |
+    /// | 52 | <see cref="Init"/> | Initializes all encoder models in the bit tree. |
+    /// | 64 | <see cref="Encode"/> | Encodes a symbol using the bit tree hierarchy through range encoding. |
+    /// | 82 | <see cref="ReverseEncode"/> | Encodes a symbol in reverse bit order through range encoding. |
+    /// | 101 | <see cref="GetPrice"/> | Calculates the bit-tree encoding price for a symbol. |
+    /// | 122 | <see cref="ReverseGetPrice"/> | Calculates the bit-tree encoding price for a symbol in reverse bit order. |
     ///
     /// ## Collaborators
     ///
@@ -177,10 +177,10 @@ namespace SevenZip.Sdk.Compression.RangeCoder
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 164 | <see cref="BitTreeDecoder"/> | Initializes a new instance of BitTreeDecoder with the specified numBitLevels. |
-    /// | 171 | <see cref="Init"/> | Initializes all decoder models in the bit tree. |
-    /// | 179 | <see cref="Decode"/> | Decodes a symbol from the range decoder using the bit tree hierarchy. |
-    /// | 189 | <see cref="ReverseDecode"/> | Decodes a symbol from the range decoder in reverse bit order. |
+    /// | 204 | <see cref="BitTreeDecoder"/> | Initializes a new instance of BitTreeDecoder with the specified numBitLevels. |
+    /// | 216 | <see cref="Init"/> | Initializes all decoder models in the bit tree. |
+    /// | 229 | <see cref="Decode"/> | Decodes a symbol from the range decoder using the bit tree hierarchy. |
+    /// | 244 | <see cref="ReverseDecode"/> | Decodes a symbol from the range decoder in reverse bit order. |
     ///
     /// ## Collaborators
     ///

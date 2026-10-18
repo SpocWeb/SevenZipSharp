@@ -22,10 +22,9 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 37 | <see cref="Offset"/> | Gets the file offset. |
-    /// | 43 | <see cref="Source"/> | The source wrapped stream. |
-    /// | 51 | <see cref="ArchiveEmulationStreamProxy"/> | Initializes a new instance of the ArchiveEmulationStream class. |
-    /// | 95 | <see cref="Dispose"/> | Disposes the underlying source stream. |
+    /// | 42 | <see cref="Offset"/> | Gets the file offset. |
+    /// | 52 | <see cref="Source"/> | The source wrapped stream. |
+    /// | 64 | <see cref="ArchiveEmulationStreamProxy"/> | Initializes a new instance of the ArchiveEmulationStream class. |
     /// </remarks>
     /// <seealso cref="Stream">Stream — underlying operations are delegated with position adjustments.</seealso>
     [Facets(Layer = "interop", Status = "stable", Complexity = 2)]

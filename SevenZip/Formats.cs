@@ -8,6 +8,67 @@
     /// <summary>
     /// Readable archive format enumeration.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 78 | <see cref="SevenZip"/> | Open 7-zip archive format. |
+    /// | 83 | <see cref="Arj"/> | Proprietary Arj archive format. |
+    /// | 88 | <see cref="BZip2"/> | Open Bzip2 archive format. |
+    /// | 93 | <see cref="Cab"/> | Microsoft cabinet archive format. |
+    /// | 98 | <see cref="Chm"/> | Microsoft Compiled HTML Help file format. |
+    /// | 103 | <see cref="Compound"/> | Microsoft Compound file format. |
+    /// | 108 | <see cref="Cpio"/> | Open Cpio archive format. |
+    /// | 113 | <see cref="Deb"/> | Open Debian software package format. |
+    /// | 118 | <see cref="GZip"/> | Open Gzip archive format. |
+    /// | 123 | <see cref="Iso"/> | Open ISO disk image format. |
+    /// | 128 | <see cref="Lzh"/> | Open Lzh archive format. |
+    /// | 133 | <see cref="Lzma"/> | Open core 7-zip Lzma raw archive format. |
+    /// | 138 | <see cref="Nsis"/> | Nullsoft installation package format. |
+    /// | 143 | <see cref="Rar"/> | RarLab Rar archive format, version 5. |
+    /// | 148 | <see cref="Rar4"/> | RarLab Rar archive format, version 4 or older. |
+    /// | 153 | <see cref="Rpm"/> | Open Rpm software package format. |
+    /// | 158 | <see cref="Split"/> | Open split file format. |
+    /// | 163 | <see cref="Tar"/> | Open Tar archive format. |
+    /// | 168 | <see cref="Wim"/> | Microsoft Windows Imaging disk image format. |
+    /// | 173 | <see cref="Lzw"/> | Open LZW archive format; implemented in "compress" program; also known as "Z" archive format. |
+    /// | 178 | <see cref="Zip"/> | Open Zip archive format. |
+    /// | 182 | <see cref="Udf"/> | Open Udf disk image format. |
+    /// | 187 | <see cref="Xar"/> | Xar open source archive format. |
+    /// | 191 | <see cref="Mub"/> | Mub |
+    /// | 196 | <see cref="Hfs"/> | Macintosh Disk Image on CD. |
+    /// | 200 | <see cref="Dmg"/> | Apple Mac OS X Disk Copy Disk Image format. |
+    /// | 205 | <see cref="XZ"/> | Open Xz archive format. |
+    /// | 209 | <see cref="Mslz"/> | MSLZ archive format. |
+    /// | 214 | <see cref="Flv"/> | Flash video format. |
+    /// | 219 | <see cref="Swf"/> | Shockwave Flash format. |
+    /// | 224 | <see cref="PE"/> | Windows PE executable format. |
+    /// | 229 | <see cref="Elf"/> | Linux executable Elf format. |
+    /// | 234 | <see cref="Msi"/> | Windows Installer Database. |
+    /// | 239 | <see cref="Vhd"/> | Microsoft virtual hard disk file format. |
+    /// | 244 | <see cref="SquashFS"/> | SquashFS file system format. |
+    /// | 248 | <see cref="Lzma86"/> | Lzma86 file format. |
+    /// | 253 | <see cref="Ppmd"/> | Prediction by Partial Matching by Dmitry algorithm. |
+    /// | 257 | <see cref="TE"/> | TE format. |
+    /// | 262 | <see cref="UEFIc"/> | UEFIc format. |
+    /// | 267 | <see cref="UEFIs"/> | UEFIs format. |
+    /// | 272 | <see cref="CramFS"/> | Compressed ROM file system format. |
+    /// | 276 | <see cref="APM"/> | APM format. |
+    /// | 280 | <see cref="Swfc"/> | Swfc format. |
+    /// | 285 | <see cref="Ntfs"/> | NTFS file system format. |
+    /// | 290 | <see cref="Fat"/> | FAT file system format. |
+    /// | 295 | <see cref="Mbr"/> | MBR format. |
+    /// | 300 | <see cref="MachO"/> | Mach-O file format. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 2645c0f6ae4ad5c1b5e283c315e85f880b587c457d6f0dd3dc9190e20cb61807
+    /// </code>
+    /// </example>
     public enum InArchiveFormat
     {
         /// <summary>
@@ -242,6 +303,26 @@
     /// <summary>
     /// Writable archive format enumeration.
     /// </summary>    
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 332 | <see cref="SevenZip"/> | Open 7-zip archive format. |
+    /// | 337 | <see cref="Zip"/> | Open Zip archive format. |
+    /// | 342 | <see cref="GZip"/> | Open Gzip archive format. |
+    /// | 347 | <see cref="BZip2"/> | Open Bzip2 archive format. |
+    /// | 352 | <see cref="Tar"/> | Open Tar archive format. |
+    /// | 357 | <see cref="XZ"/> | Open Xz archive format. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: b41d7cbeda5d5cf860e6037c7171775279b746585a28d4e9c8c70e84411735b6
+    /// </code>
+    /// </example>
     public enum OutArchiveFormat
     {
         /// <summary>
@@ -279,6 +360,26 @@
     /// <summary>
     /// Compression level enumeration
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 388 | <see cref="None"/> | No compression |
+    /// | 392 | <see cref="Fast"/> | Very low compression level |
+    /// | 396 | <see cref="Low"/> | Low compression level |
+    /// | 400 | <see cref="Normal"/> | Normal compression level (default) |
+    /// | 404 | <see cref="High"/> | High compression level |
+    /// | 408 | <see cref="Ultra"/> | The best compression level (slow) |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 004ee0b6a39a6bb4be979b50763a6967c0dce8ace439b6d0f74303c9eec584a7
+    /// </code>
+    /// </example>
     public enum CompressionLevel
     {
         /// <summary>
@@ -311,6 +412,13 @@
     /// Compression method enumeration.
     /// </summary>
     /// <remarks>Some methods are applicable only to Zip format, some - only to 7-zip.</remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 74715cab9a0eb6a806b15bfe128be7d0f0152931c4a3bbfa3a8705ac1969f2be
+    /// </code>
+    /// </example>
     public enum CompressionMethod
     {
         /// <summary>
@@ -352,6 +460,21 @@
     /// <summary>
     /// Archive format routines
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 698 | <see cref="FormatByFileName"/> | Gets InArchiveFormat for specified archive file name |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: ef399915f1f7cdc31030f2b80e9f93a7d0234ef46cf389b4ecd1a3f41c3e7a31
+    /// </code>
+    /// </example>
     public static class Formats
     {
         /*/// <summary>

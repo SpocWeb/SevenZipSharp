@@ -9,6 +9,23 @@ namespace SevenZip
     /// <summary>
     /// Callback to handle the archive opening
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 40 | <see cref="VolumeFileNames"/> | Gets the list of volume file names. |
+    /// | 73 | <see cref="ArchiveOpenCallback"/> | Initializes a new instance of the ArchiveOpenCallback class. |
+    /// | 83 | <see cref="ArchiveOpenCallback"/> | Initializes a new instance of the ArchiveOpenCallback class. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: caa155788a6cfebdffc209421dd50d78c31459249fce74d0ae4e93952d6286af
+    /// </code>
+    /// </example>
     internal sealed class ArchiveOpenCallback : CallbackBase, IArchiveOpenCallback, IArchiveOpenVolumeCallback,
                                                 ICryptoGetTextPassword, IDisposable
     {

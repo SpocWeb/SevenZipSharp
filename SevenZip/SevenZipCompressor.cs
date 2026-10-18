@@ -23,8 +23,32 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
+    /// | 57 | <see cref="CompressionLevel"/> | Gets or sets the archiving compression level. |
+    /// | 65 | <see cref="CustomParameters"/> | Gets the custom compression parameters - for advanced users only. |
+    /// | 73 | <see cref="IncludeEmptyDirectories"/> | Gets or sets the value indicating whether to include empty directories to archives. Default is true. |
+    /// | 78 | <see cref="PreserveDirectoryRoot"/> | Gets or sets the value indicating whether to preserve the directory root for CompressDirectory. |
+    /// | 83 | <see cref="DirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure. |
+    /// | 90 | <see cref="CompressionMode"/> | Gets or sets the compression mode. |
+    /// | 98 | <see cref="EncryptHeaders"/> | Gets or sets the value indicating whether to encrypt 7-Zip archive headers. |
+    /// | 103 | <see cref="ScanOnlyWritable"/> | Gets or sets the value indicating whether to compress files only open for writing. |
+    /// | 108 | <see cref="ZipEncryptionMethod"/> | Gets or sets the encryption method for zip archives. |
+    /// | 113 | <see cref="TempFolderPath"/> | Gets or sets the temporary folder path. |
+    /// | 119 | <see cref="DefaultItemName"/> | Gets or sets the default archive item name used when an item to be compressed has no name, for example, when you compress a MemoryStream instance. |
+    /// | 124 | <see cref="FastCompression"/> | Gets or sets the value indicating whether to compress as fast as possible, without calling events. |
+    /// | 148 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
+    /// | 166 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
+    /// | 887 | <see cref="GetArchiveFileStream"/> |  |
+    /// | 1039 | <see cref="ArchiveFormat"/> | Gets or sets the archive format |
+    /// | 1057 | <see cref="CompressionMethod"/> | Gets or sets the compression method |
+    /// | 1067 | <see cref="VolumeSize"/> | Gets or sets the size in bytes of an archive volume (0 for no volumes). |
+    /// | 1083 | <see cref="CompressFiles"/> | Packs files into the archive. |
+    /// | 1124 | <see cref="CompressFilesEncrypted"/> | Packs files into the archive. |
+    /// | 1295 | <see cref="CompressDirectory"/> | Packs all files in the specified directory. |
+    /// | 1380 | <see cref="CompressFileDictionary"/> | Packs the specified file dictionary. |
+    /// | 1446 | <see cref="CompressStreamDictionary"/> | Packs the specified stream dictionary. |
+    /// | 1576 | <see cref="CompressStream"/> | Compresses the specified stream. |
+    /// | 1630 | <see cref="ModifyArchive"/> | Modifies the existing archive (renames files or deletes them). |
     /// | 1752 | <see cref="LzmaDictionarySize"/> | Gets or sets the dictionary size for the managed LZMA algorithm. |
-    /// | 1803 | <see cref="CompressStream"/> | Compresses the specified stream with LZMA algorithm (C# inside) |
     /// | 1830 | <see cref="CompressBytes"/> | Compresses byte array with LZMA algorithm (C# inside) |
     ///
     /// ## Collaborators
@@ -39,7 +63,7 @@ namespace SevenZip
     /// var compr = new SevenZipCompressor();
     /// compr.CompressDirectory(@"C:\Dir", @"C:\Archive.7z");
     /// </example>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:21:14Z", Digest = "4ec3bd49e351a24d2bb9d767fc4d315b1556d01569753b32d708862af5194e86", Stale = false, Path = "SevenZipCompressor.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-09-25T20:10:48Z", Digest = "fb9343a669d7e4fcc2753b264354ad39cc8eb0def3d49a627d00f7854173dba5", Stale = false, Path = "SevenZipCompressor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipCompressor
 #if UNMANAGED
         : SevenZipBase

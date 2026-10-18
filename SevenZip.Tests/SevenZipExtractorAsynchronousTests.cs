@@ -14,15 +14,15 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 33 | <see cref="AsynchronousExtractArchiveEventsTest"/> | Asynchronous Extract Archive Events Test. |
-    /// | 92 | <see cref="AsynchronousExtractFileEventsTest"/> | Asynchronous Extract File Events Test. |
-    /// | 125 | <see cref="AsynchronousExtractFilesEventsTest"/> | Asynchronous Extract Files Events Test. |
-    /// | 156 | <see cref="ExtractArchiveAsync"/> | Extract Archive Async. |
-    /// | 168 | <see cref="ExtractFileAsync_ByIndex"/> | Extract File Async — by Index. |
-    /// | 184 | <see cref="ExtractFileAsync_ByFileName"/> | Extract File Async — by File Name. |
-    /// | 200 | <see cref="ExtractFilesAsync_ByCallback"/> | Extract Files Async — by Callback. |
-    /// | 212 | <see cref="ExtractFilesAsync_ByIndex"/> | Extract Files Async — by Index. |
-    /// | 224 | <see cref="ExtractFilesAsync_ByFileName"/> | Extract Files Async — by File Name. |
+    /// | 39 | <see cref="AsynchronousExtractArchiveEventsTest"/> | Asynchronous Extract Archive Events Test. |
+    /// | 104 | <see cref="AsynchronousExtractFileEventsTest"/> | Asynchronous Extract File Events Test. |
+    /// | 143 | <see cref="AsynchronousExtractFilesEventsTest"/> | Asynchronous Extract Files Events Test. |
+    /// | 180 | <see cref="ExtractArchiveAsync"/> | Extract Archive Async. |
+    /// | 198 | <see cref="ExtractFileAsync_ByIndex"/> | Extract File Async — by Index. |
+    /// | 220 | <see cref="ExtractFileAsync_ByFileName"/> | Extract File Async — by File Name. |
+    /// | 242 | <see cref="ExtractFilesAsync_ByCallback"/> | Extract Files Async — by Callback. |
+    /// | 260 | <see cref="ExtractFilesAsync_ByIndex"/> | Extract Files Async — by Index. |
+    /// | 278 | <see cref="ExtractFilesAsync_ByFileName"/> | Extract Files Async — by File Name. |
     /// </remarks>
     [Facets(Layer = "test", Status = "stable", Complexity = 3)]
     [Tags("code/asynchronous", "code/test")]

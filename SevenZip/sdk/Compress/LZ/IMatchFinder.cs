@@ -18,12 +18,12 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 34 | <see cref="SetStream"/> | Sets the input stream to read from for pattern matching. |
-    /// | 37 | <see cref="Init"/> | Initializes the stream reader. |
-    /// | 40 | <see cref="ReleaseStream"/> | Releases the input stream. |
-    /// | 44 | <see cref="GetIndexByte"/> | Gets the byte at the specified position in the input stream. |
-    /// | 48 | <see cref="GetMatchLen"/> | Gets the length of the match starting at the specified position with the given distance constraint. |
-    /// | 52 | <see cref="GetNumAvailableBytes"/> | Gets the number of bytes available to read from the current position. |
+    /// | 40 | <see cref="SetStream"/> | Sets the input stream to read from for pattern matching. |
+    /// | 49 | <see cref="Init"/> | Initializes the stream reader. |
+    /// | 58 | <see cref="ReleaseStream"/> | Releases the input stream. |
+    /// | 68 | <see cref="GetIndexByte"/> | Gets the byte at the specified position in the input stream. |
+    /// | 78 | <see cref="GetMatchLen"/> | Gets the length of the match starting at the specified position with the given distance constraint. |
+    /// | 88 | <see cref="GetNumAvailableBytes"/> | Gets the number of bytes available to read from the current position. |
     /// </remarks>
     /// <seealso cref="Stream">Stream: the underlying input stream being buffered and examined.</seealso>
     [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
@@ -107,9 +107,9 @@ namespace SevenZip.Sdk.Compression.LZ
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 78 | <see cref="Create"/> | Creates a match finder with the specified history size and buffer constraints. |
-    /// | 83 | <see cref="GetMatches"/> | Finds and returns all matching positions, storing distances in the provided array. |
-    /// | 86 | <see cref="Skip"/> | Advances the current position by the specified number of bytes. |
+    /// | 126 | <see cref="Create"/> | Creates a match finder with the specified history size and buffer constraints. |
+    /// | 137 | <see cref="GetMatches"/> | Finds and returns all matching positions, storing distances in the provided array. |
+    /// | 146 | <see cref="Skip"/> | Advances the current position by the specified number of bytes. |
     /// </remarks>
     /// <seealso cref="IInWindowStream">IInWindowStream: base interface providing stream positioning and byte access.</seealso>
     [Facets(Layer = "transform", Status = "stable", Complexity = 1)]

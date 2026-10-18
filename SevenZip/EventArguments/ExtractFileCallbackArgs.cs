@@ -16,6 +16,13 @@ namespace SevenZip
     /// <see cref="ExtractFileCallbackReason.Done"/> or <see cref="ExtractFileCallbackReason.Failure"/>
     /// to allow for any cleanup task like closing the stream.
     /// </remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 63bdd2fd420d0f6c22b6285d5c73177dad595ff8ef3f824fab6f840d2c415a80
+    /// </code>
+    /// </example>
     public class ExtractFileCallbackArgs : EventArgs
     {
         private readonly ArchiveFileInfo _archiveFileInfo;

@@ -8,6 +8,13 @@
     /// The signature checker class. Original code by Siddharth Uppal, adapted by Markhor.
     /// </summary>
     /// <remarks>Based on the code at http://blog.somecreativity.com/2008/04/08/how-to-check-if-a-file-is-compressed-in-c/#</remarks>
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: b6b27888cb9515e7f5368a4bfdce8c31caf182728e454b3c439376a4f8bfa7fb
+    /// </code>
+    /// </example>
     internal static class FileChecker
     {
         private const int SIGNATURE_SIZE = 21;

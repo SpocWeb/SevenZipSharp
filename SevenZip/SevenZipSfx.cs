@@ -15,6 +15,25 @@
     /// <summary>
     /// Sfx module choice enumeration
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 42 | <see cref="Default"/> | Default module (leave this if unsure) |
+    /// | 46 | <see cref="Simple"/> | The simple sfx module by Igor Pavlov with no adjustable parameters |
+    /// | 50 | <see cref="Installer"/> | The installer sfx module by Igor Pavlov |
+    /// | 54 | <see cref="Extended"/> | The extended installer sfx module by Oleg Scherbakov |
+    /// | 58 | <see cref="Custom"/> | The custom sfx module. First you must specify the module file name. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 3b99d4135062a5b09fe1c65e3a4606c161383cd5bfd422d548f6071ff173f3d6
+    /// </code>
+    /// </example>
     public enum SfxModule
     {
         /// <summary>
@@ -42,6 +61,26 @@
     /// <summary>
     /// The class for making 7-zip based self-extracting archives.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 117 | <see cref="SevenZipSfx"/> | Initializes a new instance of the SevenZipSfx class. |
+    /// | 127 | <see cref="SevenZipSfx"/> | Initializes a new instance of the SevenZipSfx class. |
+    /// | 142 | <see cref="SevenZipSfx"/> | Initializes a new instance of the SevenZipSfx class. |
+    /// | 152 | <see cref="SfxModule"/> | Gets the sfx module type. |
+    /// | 157 | <see cref="ModuleFileName"/> | Gets or sets the custom sfx module file name |
+    /// | 401 | <see cref="MakeSfx"/> | Makes the self-extracting archive. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 483202d43cd77f8d9609908e3d30424ca9280d7ef3efd50c4fe0c6d56620c00b
+    /// </code>
+    /// </example>
     public class SevenZipSfx
     {
         private static Dictionary<SfxModule, List<string>> SfxSupportedModuleNames

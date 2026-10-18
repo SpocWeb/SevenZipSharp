@@ -20,6 +20,29 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
+    /// | 176 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 189 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 199 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 211 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 222 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 236 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 249 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 263 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 277 | <see cref="FileName"/> | Gets or sets archive full file name |
+    /// | 290 | <see cref="PackedSize"/> | Gets the size of the archive file |
+    /// | 305 | <see cref="UnpackedSize"/> | Gets the size of unpacked archive data |
+    /// | 323 | <see cref="IsSolid"/> | Gets a value indicating whether the archive is solid |
+    /// | 342 | <see cref="FilesCount"/> | Gets the number of files in the archive |
+    /// | 362 | <see cref="Format"/> | Gets archive format |
+    /// | 375 | <see cref="PreserveDirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure of extracted files. |
+    /// | 910 | <see cref="ArchiveFileData"/> | Gets the collection of ArchiveFileInfo with all information about files in the archive |
+    /// | 924 | <see cref="ArchiveProperties"/> | Gets the properties for the current archive |
+    /// | 941 | <see cref="ArchiveFileNames"/> | Gets the collection of all file names contained in the archive. |
+    /// | 958 | <see cref="VolumeFileNames"/> | Gets the list of archive volume file names. |
+    /// | 974 | <see cref="Check"/> | Performs the archive integrity test. |
+    /// | 1025 | <see cref="ExtractFile"/> | Unpacks the file by its name to the specified stream. |
+    /// | 1281 | <see cref="ExtractFiles"/> | Extracts files from the archive, giving a callback the choice what to do with each file. The order of the files is given by the archive. 7-Zip (and any other solid) archives are NOT supported. |
+    /// | 1345 | <see cref="ExtractArchive"/> | Unpacks the whole archive to the specified directory. |
     /// | 1442 | <see cref="DecompressStream"/> | Decompress the specified stream (C# inside) |
     /// | 1461 | <see cref="ExtractBytes"/> | Decompress byte array compressed with LZMA algorithm (C# inside) |
     ///
@@ -36,7 +59,7 @@ namespace SevenZip
     ///     extr.ExtractArchive(@"C:\TestDirectory");
     /// }
     /// </example>
-    [DocState(Pass = 2, MTime = "2026-08-24T14:22:40Z", Digest = "746f7db90e0c5893b78cfdbf6d7844a3f4836a47fbd1c8fec6c45794f9463ff6", Stale = false, Path = "SevenZipExtractor.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-09-25T20:10:48Z", Digest = "39ad308acefff5cc8c57eaea5202f80605ce40b3696cbe5ee95179e7361ad912", Stale = false, Path = "SevenZipExtractor.cs", Since = "2026-08-23")]
     public sealed partial class SevenZipExtractor
 #if UNMANAGED
         : SevenZipBase, IDisposable

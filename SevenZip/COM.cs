@@ -17,6 +17,14 @@
     /// <summary>
     /// The structure to fix x64 and x32 variant size mismatch.
     /// </summary>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    /// </code>
+    /// </example>
     [StructLayout(LayoutKind.Sequential)]
     internal struct PropArray
     {
@@ -27,6 +35,29 @@
     /// <summary>
     /// COM VARIANT structure with special interface routines.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 86 | <see cref="VarType"/> | Gets or sets variant type. |
+    /// | 102 | <see cref="Value"/> | Gets or sets the pointer value of the COM variant |
+    /// | 112 | <see cref="UInt32Value"/> | Gets or sets the UInt32 value of the COM variant. |
+    /// | 122 | <see cref="Int32Value"/> | Gets or sets the UInt32 value of the COM variant. |
+    /// | 132 | <see cref="Int64Value"/> | Gets or sets the Int64 value of the COM variant |
+    /// | 142 | <see cref="UInt64Value"/> | Gets or sets the UInt64 value of the COM variant |
+    /// | 152 | <see cref="Object"/> | Gets the object for this PropVariant. |
+    /// | 251 | <see cref="operator =="/> | Determines whether the specified PropVariant instances are considered equal. |
+    /// | 262 | <see cref="operator !="/> | Determines whether the specified PropVariant instances are not considered equal. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: fde425c42970eabda46c7979d1e6b662c4f9f6b9a64414a7edab0cb38651de36
+    /// </code>
+    /// </example>
     [StructLayout(LayoutKind.Explicit)]
     internal struct PropVariant
     {
@@ -237,6 +268,23 @@
     /// <summary>
     /// Stores file extraction modes.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 293 | <see cref="Extract"/> | Extraction mode |
+    /// | 297 | <see cref="Test"/> | Test mode |
+    /// | 301 | <see cref="Skip"/> | Skip mode |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 9b1982c79908f12b8678fa2d99ee53caa4f5173c87ed1d959f776c7b4ef5dbb3
+    /// </code>
+    /// </example>
     internal enum AskMode
     {
         /// <summary>
@@ -256,6 +304,30 @@
     /// <summary>
     /// Stores operation result values
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 336 | <see cref="Ok"/> | Success |
+    /// | 340 | <see cref="UnsupportedMethod"/> | Method is unsupported |
+    /// | 344 | <see cref="DataError"/> | Data error has occurred |
+    /// | 348 | <see cref="CrcError"/> | CrcError has occurred |
+    /// | 352 | <see cref="Unavailable"/> | File is unavailable |
+    /// | 356 | <see cref="UnexpectedEnd"/> | Unexpected end of file |
+    /// | 360 | <see cref="DataAfterEnd"/> | Data after end of archive |
+    /// | 364 | <see cref="IsNotArc"/> | File is not archive |
+    /// | 368 | <see cref="HeadersError"/> | Archive headers error |
+    /// | 372 | <see cref="WrongPassword"/> | Wrong password |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 681b210f56b815391c780a3d7b7ab2ddb4e32c3e23abd9b3925746d8d56e8aca
+    /// </code>
+    /// </example>
     public enum OperationResult
     {
         /// <summary>
@@ -303,6 +375,118 @@
     /// <summary>
     /// Codes of item properties
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 495 | <see cref="NoProperty"/> | No property |
+    /// | 496 | <see cref="MainSubfile"/> | Represents main Subfile. |
+    /// | 500 | <see cref="HandlerItemIndex"/> | Handler item index |
+    /// | 504 | <see cref="Path"/> | Item path |
+    /// | 508 | <see cref="Name"/> | Item name |
+    /// | 512 | <see cref="Extension"/> | Item extension |
+    /// | 516 | <see cref="IsDirectory"/> | true if the item is a folder; otherwise, false |
+    /// | 520 | <see cref="Size"/> | Item size |
+    /// | 524 | <see cref="PackedSize"/> | Item packed sise; usually absent |
+    /// | 528 | <see cref="Attributes"/> | Item attributes; usually absent |
+    /// | 532 | <see cref="CreationTime"/> | Item creation time; usually absent |
+    /// | 536 | <see cref="LastAccessTime"/> | Item last access time; usually absent |
+    /// | 540 | <see cref="LastWriteTime"/> | Item last write time |
+    /// | 544 | <see cref="Solid"/> | true if the item is solid; otherwise, false |
+    /// | 548 | <see cref="Commented"/> | true if the item is commented; otherwise, false |
+    /// | 552 | <see cref="Encrypted"/> | true if the item is encrypted; otherwise, false |
+    /// | 556 | <see cref="SplitBefore"/> | (?) |
+    /// | 560 | <see cref="SplitAfter"/> | (?) |
+    /// | 564 | <see cref="DictionarySize"/> | Dictionary size(?) |
+    /// | 568 | <see cref="Crc"/> | Item CRC checksum |
+    /// | 572 | <see cref="Type"/> | Item type(?) |
+    /// | 576 | <see cref="IsAnti"/> | (?) |
+    /// | 580 | <see cref="Method"/> | Compression method |
+    /// | 584 | <see cref="HostOS"/> | (?); usually absent |
+    /// | 588 | <see cref="FileSystem"/> | Item file system; usually absent |
+    /// | 592 | <see cref="User"/> | Item user(?); usually absent |
+    /// | 596 | <see cref="Group"/> | Item group(?); usually absent |
+    /// | 600 | <see cref="Block"/> | Bloack size(?) |
+    /// | 604 | <see cref="Comment"/> | Item comment; usually absent |
+    /// | 608 | <see cref="Position"/> | Item position |
+    /// | 612 | <see cref="Prefix"/> | Item prefix(?) |
+    /// | 616 | <see cref="NumSubDirs"/> | Number of subdirectories |
+    /// | 620 | <see cref="NumSubFiles"/> | Numbers of subfiles |
+    /// | 624 | <see cref="UnpackVersion"/> | The archive legacy unpacker version |
+    /// | 628 | <see cref="Volume"/> | Volume(?) |
+    /// | 632 | <see cref="IsVolume"/> | Is a volume |
+    /// | 636 | <see cref="Offset"/> | Offset value(?) |
+    /// | 640 | <see cref="Links"/> | Links(?) |
+    /// | 644 | <see cref="NumBlocks"/> | Number of blocks |
+    /// | 648 | <see cref="NumVolumes"/> | Number of volumes(?) |
+    /// | 652 | <see cref="TimeType"/> | Time type(?) |
+    /// | 656 | <see cref="Bit64"/> | 64-bit(?) |
+    /// | 660 | <see cref="BigEndian"/> | BigEndian |
+    /// | 664 | <see cref="Cpu"/> | Cpu(?) |
+    /// | 668 | <see cref="PhysicalSize"/> | Physical archive size |
+    /// | 672 | <see cref="HeadersSize"/> | Headers size |
+    /// | 676 | <see cref="Checksum"/> | Archive checksum |
+    /// | 677 | <see cref="Characts"/> | Represents characts. |
+    /// | 678 | <see cref="Va"/> | Represents va. |
+    /// | 679 | <see cref="Id"/> | Represents id. |
+    /// | 680 | <see cref="ShortName"/> | Represents short Name. |
+    /// | 681 | <see cref="CreatorApp"/> | Represents creator App. |
+    /// | 682 | <see cref="SectorSize"/> | Represents sector Size. |
+    /// | 683 | <see cref="PosixAttrib"/> | Represents posix Attrib. |
+    /// | 684 | <see cref="SymLink"/> | Represents sym Link. |
+    /// | 685 | <see cref="Error"/> | Represents error. |
+    /// | 689 | <see cref="TotalSize"/> | (?) |
+    /// | 693 | <see cref="FreeSpace"/> | (?) |
+    /// | 697 | <see cref="ClusterSize"/> | Cluster size(?) |
+    /// | 701 | <see cref="VolumeName"/> | Volume name(?) |
+    /// | 705 | <see cref="LocalName"/> | Local item name(?); usually absent |
+    /// | 709 | <see cref="Provider"/> | (?) |
+    /// | 710 | <see cref="NtSecure"/> | Represents nt Secure. |
+    /// | 711 | <see cref="IsAltStream"/> | Represents is Alt Stream. |
+    /// | 712 | <see cref="IsAux"/> | Represents is Aux. |
+    /// | 713 | <see cref="IsDeleted"/> | Represents is Deleted. |
+    /// | 714 | <see cref="IsTree"/> | Represents is Tree. |
+    /// | 715 | <see cref="Sha1"/> | Represents sha1. |
+    /// | 716 | <see cref="Sha256"/> | Represents sha256. |
+    /// | 717 | <see cref="ErrorType"/> | Represents error Type. |
+    /// | 718 | <see cref="NumErrors"/> | Represents num Errors. |
+    /// | 719 | <see cref="ErrorFlags"/> | Represents error Flags. |
+    /// | 720 | <see cref="WarningFlags"/> | Represents warning Flags. |
+    /// | 721 | <see cref="Warning"/> | Represents warning. |
+    /// | 722 | <see cref="NumStreams"/> | Represents num Streams. |
+    /// | 723 | <see cref="NumAltStreams"/> | Represents num Alt Streams. |
+    /// | 724 | <see cref="AltStreamsSize"/> | Represents alt Streams Size. |
+    /// | 725 | <see cref="VirtualSize"/> | Represents virtual Size. |
+    /// | 726 | <see cref="UnpackSize"/> | Represents unpack Size. |
+    /// | 727 | <see cref="TotalPhySize"/> | Represents total Phy Size. |
+    /// | 731 | <see cref="VolumeIndex"/> | Index of the Volume |
+    /// | 732 | <see cref="SubType"/> | Represents sub Type. |
+    /// | 733 | <see cref="ShortComment"/> | Represents short Comment. |
+    /// | 734 | <see cref="CodePage"/> | Represents code Page. |
+    /// | 735 | <see cref="IsNotArcType"/> | Represents is Not Arc Type. |
+    /// | 736 | <see cref="PhySizeCantBeDetected"/> | Represents phy Size Cant Be Detected. |
+    /// | 737 | <see cref="ZerosTailIsAllowed"/> | Represents zeros Tail Is Allowed. |
+    /// | 738 | <see cref="TailSize"/> | Represents tail Size. |
+    /// | 739 | <see cref="EmbeddedStubSize"/> | Represents embedded Stub Size. |
+    /// | 740 | <see cref="NtReparse"/> | Represents nt Reparse. |
+    /// | 741 | <see cref="HardLink"/> | Represents hard Link. |
+    /// | 742 | <see cref="INode"/> | Represents i Node. |
+    /// | 743 | <see cref="StreamId"/> | Represents stream Id. |
+    /// | 744 | <see cref="ReadOnly"/> | Represents read Only. |
+    /// | 745 | <see cref="OutName"/> | Represents out Name. |
+    /// | 746 | <see cref="CopyLink"/> | Represents copy Link. |
+    /// | 747 | <see cref="NumDefined"/> | Represents num Defined. |
+    /// | 751 | <see cref="UserDefined"/> | User defined property; usually absent |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 998d5092dbe6ae71bc83963cf257b26bec06309be76ede1b54f4899b180c6309
+    /// </code>
+    /// </example>
     internal enum ItemPropId : uint
     {
         /// <summary>
@@ -570,6 +754,21 @@
     /// <summary>
     /// PropId string names dictionary wrapper.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 777 | <see cref="PropIdNames"/> | PropId string names |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 2363c12b359c941263c2c50cb81027417b524f67199981af60ec6cee6f771f11
+    /// </code>
+    /// </example>
     internal static class PropIdToName
     {
         /// <summary>
@@ -653,6 +852,22 @@
     /// <summary>
     /// 7-zip IArchiveOpenCallback imported interface to handle the opening of an archive.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 883 | <see cref="SetTotal"/> | Sets total data size |
+    /// | 892 | <see cref="SetCompleted"/> | Sets completed size |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 09663152b003e75821ec72330ce192025c8f023284b44cf53c960b9717dd045e
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600100000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -682,6 +897,21 @@
     /// <summary>
     /// 7-zip ICryptoGetTextPassword imported interface to get the archive password.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 925 | <see cref="CryptoGetTextPassword"/> | Gets password for the archive |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: c692a223a2afca33c0cd882c03f0fd060fed05c5eb870807c44dcc2da8576032
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000500100000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -700,6 +930,21 @@
     /// <summary>
     /// 7-zip ICryptoGetTextPassword2 imported interface for setting the archive password.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 959 | <see cref="CryptoGetTextPassword2"/> | Sets password for the archive |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 2d7dfabdbd1c470dbb6d4e7f57202555b49d67424d4fbd5fc7f3491fe727e0a0
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000500110000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -720,6 +965,25 @@
     /// <summary>
     /// 7-zip IArchiveExtractCallback imported interface.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 996 | <see cref="SetTotal"/> | Gives the size of the unpacked archive files |
+    /// | 1002 | <see cref="SetCompleted"/> | SetCompleted 7-zip function |
+    /// | 1011 | <see cref="GetStream"/> | Gets the stream for file extraction |
+    /// | 1021 | <see cref="PrepareOperation"/> | PrepareOperation 7-zip function |
+    /// | 1027 | <see cref="SetOperationResult"/> | Sets the operation result |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 6af4f12e843fb6c26a14d3903976208bad540e81e5383f2c2666ce243cf51456
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600200000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -766,6 +1030,27 @@
     /// <summary>
     /// 7-zip IArchiveUpdateCallback imported interface.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1063 | <see cref="SetTotal"/> | Gives the size of the unpacked archive files. |
+    /// | 1069 | <see cref="SetCompleted"/> | SetCompleted 7-zip internal function. |
+    /// | 1079 | <see cref="GetUpdateItemInfo"/> | Gets archive update mode. |
+    /// | 1091 | <see cref="GetProperty"/> | Gets the archive item property data. |
+    /// | 1100 | <see cref="GetStream"/> | Gets the stream for reading. |
+    /// | 1109 | <see cref="SetOperationResult"/> | Sets the result for currently performed operation. |
+    /// | 1116 | <see cref="EnumProperties"/> | EnumProperties 7-zip internal function. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: d4a2ed897bbe0c304a8ebc7428e8a87f221fe219b8d29964b975a3f75e24a9e8
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600800000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -834,6 +1119,22 @@
     /// <summary>
     /// 7-zip IArchiveOpenVolumeCallback imported interface to handle archive volumes.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1148 | <see cref="GetProperty"/> | Gets the archive property data. |
+    /// | 1158 | <see cref="GetStream"/> | Gets the stream for reading the volume. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 21b77267fb0ebbd473d6a8adb91d29912eac58adc99c8622a13f6660146cbb17
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600300000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -863,6 +1164,21 @@
     /// <summary>
     /// 7-zip ISequentialInStream imported interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1198 | <see cref="Read"/> | Writes data to 7-zip packer |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: b7acdb467fb838301eb51e6aea406a5d84fc10c4646081f4332450ce81afb4f0
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000300010000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -887,6 +1203,21 @@
     /// <summary>
     /// 7-zip ISequentialOutStream imported interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1240 | <see cref="Write"/> | Writes data to unpacked file stream |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 37e050224eeb88b6191fa17dc17bde22625040f74fd54aecdad22fc0b051acc2
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000300020000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -915,6 +1246,22 @@
     /// <summary>
     /// 7-zip IInStream imported interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1276 | <see cref="Read"/> | Read routine |
+    /// | 1286 | <see cref="Seek"/> | Seek routine |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 9fb750f3ef704d1b3a43d36baa7eb9909a3a76311a1d08cae2a6f599d6059292
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000300030000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -943,6 +1290,23 @@
     /// <summary>
     /// 7-zip IOutStream imported interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1322 | <see cref="Write"/> | Write routine |
+    /// | 1334 | <see cref="Seek"/> | Seek routine |
+    /// | 1342 | <see cref="SetSize"/> | Set size routine |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 6f1af2255006e983f3e24977f24d0cc1e4f98512e33f6f1ecbdaf4fd378e876a
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000300040000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -982,6 +1346,30 @@
     /// <summary>
     /// 7-zip essential in archive interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1385 | <see cref="Open"/> | Opens archive for reading. |
+    /// | 1394 | <see cref="Close"/> | Closes the archive. |
+    /// | 1400 | <see cref="GetNumberOfItems"/> | Gets the number of files in the archive file table. |
+    /// | 1408 | <see cref="GetProperty"/> | Retrieves specific property data. |
+    /// | 1421 | <see cref="Extract"/> | Extracts files from the opened archive. |
+    /// | 1433 | <see cref="GetArchiveProperty"/> | Gets archive property data |
+    /// | 1441 | <see cref="GetNumberOfProperties"/> | Gets the number of properties |
+    /// | 1450 | <see cref="GetPropertyInfo"/> | Gets property information |
+    /// | 1460 | <see cref="GetNumberOfArchiveProperties"/> | Gets the number of archive properties |
+    /// | 1469 | <see cref="GetArchivePropertyInfo"/> | Gets the archive property information |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: dca52381e5fde3ab3b6f0cb5494f6541a0843c701f30c6c2819ec21075027af0
+    /// </code>
+    /// </example>
     [ComImport]  
 	[Guid("23170F69-40C1-278A-0000-000600600000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]	
@@ -1088,6 +1476,22 @@
     /// <summary>
     /// 7-zip essential out archive interface
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1507 | <see cref="UpdateItems"/> | Updates archive items |
+    /// | 1517 | <see cref="GetFileTimeType"/> | Gets file time type(?) |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 2d0cdbb99d4bd221e821f1f3116e6609d0929736220cc5f21ed51abfa89a7c2e
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600A00000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1116,6 +1520,21 @@
     /// <summary>
     /// 7-zip ISetProperties interface for setting various archive properties
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 1550 | <see cref="SetProperties"/> | Sets the archive properties |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: ff1086471da9051d23656fe3757e65ec8aa2a21b988a865642a7c6834bdf23e1
+    /// </code>
+    /// </example>
     [ComImport]
     [Guid("23170F69-40C1-278A-0000-000600030000")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

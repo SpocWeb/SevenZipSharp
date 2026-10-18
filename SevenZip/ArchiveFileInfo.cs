@@ -8,6 +8,34 @@ namespace SevenZip
     /// <summary>
     /// Struct for storing information about files in the 7-zip archive.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 44 | <see cref="Index"/> | Gets or sets index of the file in the archive file table. |
+    /// | 50 | <see cref="FileName"/> | Gets or sets file name |
+    /// | 55 | <see cref="LastWriteTime"/> | Gets or sets the file last write time. |
+    /// | 60 | <see cref="CreationTime"/> | Gets or sets the file creation time. |
+    /// | 65 | <see cref="LastAccessTime"/> | Gets or sets the file creation time. |
+    /// | 70 | <see cref="Size"/> | Gets or sets size of the file (unpacked). |
+    /// | 76 | <see cref="Crc"/> | Gets or sets CRC checksum of the file. |
+    /// | 82 | <see cref="Attributes"/> | Gets or sets file attributes. |
+    /// | 88 | <see cref="IsDirectory"/> | Gets or sets being a directory. |
+    /// | 93 | <see cref="Encrypted"/> | Gets or sets being encrypted. |
+    /// | 98 | <see cref="Comment"/> | Gets or sets comment for the file. |
+    /// | 103 | <see cref="Method"/> | Compression method for the file. |
+    /// | 137 | <see cref="operator =="/> | Determines whether the specified ArchiveFileInfo instances are considered equal. |
+    /// | 148 | <see cref="operator !="/> | Determines whether the specified ArchiveFileInfo instances are not considered equal. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 9ea457bde8995bf03a49cf37ba2780820338ea3886871e7cd3c24e8ddebfc249
+    /// </code>
+    /// </example>
     public struct ArchiveFileInfo
     {
         /// <summary>

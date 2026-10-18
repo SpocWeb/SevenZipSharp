@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Exception class for 7-zip library operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="SevenZipLibraryException"/> | Initializes a new instance of the SevenZipLibraryException class |
+    /// | 46 | <see cref="SevenZipLibraryException"/> | Initializes a new instance of the SevenZipLibraryException class |
+    /// | 53 | <see cref="SevenZipLibraryException"/> | Initializes a new instance of the SevenZipLibraryException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 1c375fc1ba824bec3f9824718cc016bcca1c798f7276ed2f1e2c534e4ef00981
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipLibraryException : SevenZipException
     {

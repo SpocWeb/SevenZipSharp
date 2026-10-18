@@ -11,6 +11,13 @@ namespace SevenZip
     /// <summary>
     /// A class that has DisposeStream property.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 23 | <see cref="DisposeStream"/> | Gets or sets the dispose Stream. |
+    /// </remarks>
     internal class DisposeVariableWrapper
     {
         public bool DisposeStream { protected get; set; }
@@ -21,6 +28,21 @@ namespace SevenZip
     /// <summary>
     /// Stream wrapper used in InStreamWrapper
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 124 | <see cref="Seek"/> |  |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 383c141f9100a46cc7fb90b1bfe93708f7ae76622a35ca6ff7ac47d45880fac5
+    /// </code>
+    /// </example>
     internal class StreamWrapper : DisposeVariableWrapper, IDisposable
     {
         /// <summary>
@@ -115,6 +137,21 @@ namespace SevenZip
     /// <summary>
     /// IInStream wrapper used in stream read operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 162 | <see cref="InStreamWrapper"/> | Initializes a new instance of the InStreamWrapper class. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 4346104ad31fe318f4a72a3a17c7e34dcf862a483682da6816033cded9d2e93b
+    /// </code>
+    /// </example>
     internal sealed class InStreamWrapper : StreamWrapper, ISequentialInStream, IInStream
     {
         /// <summary>
@@ -159,6 +196,22 @@ namespace SevenZip
     /// <summary>
     /// IOutStream wrapper used in stream write operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 224 | <see cref="OutStreamWrapper"/> | Initializes a new instance of the OutStreamWrapper class |
+    /// | 232 | <see cref="OutStreamWrapper"/> | Initializes a new instance of the OutStreamWrapper class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: c7237816b29e21c4bc2c18ef4739b433d6be53f599004d56115450c2808a65b1
+    /// </code>
+    /// </example>
     internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IOutStream
     {
         /// <summary>
@@ -222,6 +275,22 @@ namespace SevenZip
     /// <summary>
     /// Base multi volume stream wrapper class.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 312 | <see cref="Length"/> | Gets the total length of input data. |
+    /// | 368 | <see cref="Seek"/> |  |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 046a2daf9b24b7d23a9f3caaff8e9cfaaaedd2b1a11fb20f698c468eb004cc0d
+    /// </code>
+    /// </example>
     internal class MultiStreamWrapper : DisposeVariableWrapper, IDisposable
     {
         protected readonly Dictionary<int, KeyValuePair<long, long>> StreamOffsets = new Dictionary<int, KeyValuePair<long, long>>();
@@ -326,6 +395,21 @@ namespace SevenZip
     /// <summary>
     /// IInStream wrapper used in stream multi volume read operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 420 | <see cref="InMultiStreamWrapper"/> | Initializes a new instance of the InMultiStreamWrapper class. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 1f798219f16139c3ac4499db2973162a12ec8b213e9e64480a8c717d4977bc87
+    /// </code>
+    /// </example>
     internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInStream, IInStream
     {
         /// <summary>
@@ -384,6 +468,21 @@ namespace SevenZip
     /// <summary>
     /// IOutStream wrapper used in multi volume stream write operations.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 497 | <see cref="OutMultiStreamWrapper"/> | Initializes a new instance of the OutMultiStreamWrapper class. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 3ef8677ea8a3960039602aeae6923a47e5dea221cb55a096ddc57e31ecf40dd1
+    /// </code>
+    /// </example>
     internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOutStream, IOutStream
     {
         private readonly string _archiveName;

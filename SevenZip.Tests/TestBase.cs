@@ -12,8 +12,8 @@ namespace SevenZip.Tests
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 26 | <see cref="SetUp"/> | Sets the current working directory to the test directory and creates the output directory. |
-    /// | 35 | <see cref="TearDown"/> | Deletes the output directory with retry logic to handle transient file locks. |
+    /// | 30 | <see cref="SetUp"/> | Sets the current working directory to the test directory and creates the output directory. |
+    /// | 43 | <see cref="TearDown"/> | Deletes the output directory with retry logic to handle transient file locks. |
     /// </remarks>
     [Facets(Layer = "test", Status = "stable", Complexity = 2)]
     [Tags("code/test_infrastructure")]

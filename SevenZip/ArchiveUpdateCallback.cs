@@ -9,6 +9,29 @@ namespace SevenZip
     /// <summary>
     /// Archive update callback to handle the process of packing files
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 94 | <see cref="DefaultItemName"/> | Gets or sets the default item name used in MemoryStream compression. |
+    /// | 99 | <see cref="FastCompression"/> | Gets or sets the value indicating whether to compress as fast as possible, without calling events. |
+    /// | 115 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 131 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 146 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 160 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 175 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 190 | <see cref="ArchiveUpdateCallback"/> | Initializes a new instance of the ArchiveUpdateCallback class |
+    /// | 285 | <see cref="DictionarySize"/> | Gets or sets the dictionary size. |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 84b04beb00434c673dc12e4a6273fdd68412b459bb635b27425800fd26938f9f
+    /// </code>
+    /// </example>
     internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallback, ICryptoGetTextPassword2,
                                                   IDisposable
     {

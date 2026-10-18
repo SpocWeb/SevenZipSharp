@@ -13,7 +13,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 24 | <see cref="DataErrorException"/> | Initializes a new instance of DataErrorException. |
+    /// | 25 | <see cref="DataErrorException"/> | Initializes a new instance of DataErrorException. |
     /// </remarks>
     [System.ComponentModel.Description("The exception that is thrown when an error in input stream occurs during decoding.")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "2a54acf601042205aacae5aee63187feb5a00b4bcfccaffaf6aec4c5679c39b4", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
@@ -34,7 +34,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 43 | <see cref="InvalidParamException"/> | Initializes a new instance of InvalidParamException. |
+    /// | 46 | <see cref="InvalidParamException"/> | Initializes a new instance of InvalidParamException. |
     /// </remarks>
     [System.ComponentModel.Description("The exception that is thrown when the value of an argument is outside the allowable range.")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "f2d9b2b9b0610d7243ec731a37c174a011116806f0d45f9d64c783653c069468", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
@@ -55,7 +55,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 68 | <see cref="SetProgress"/> | Callback progress. |
+    /// | 73 | <see cref="SetProgress"/> | Callback progress. |
     /// </remarks>
     [System.ComponentModel.Description("Callback progress interface.")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "fbb6c8dad66643c6593060e6ff6413d90de67a7ed73d42d1bc7eb0389f24bfa1", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
@@ -82,7 +82,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 112 | <see cref="Code"/> | Codes streams. |
+    /// | 118 | <see cref="Code"/> | Codes streams. |
     ///
     /// ## Collaborators
     ///
@@ -139,24 +139,24 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 158 | <see cref="DefaultProp"/> | Specifies default property. |
-    /// | 162 | <see cref="DictionarySize"/> | Specifies size of dictionary. |
-    /// | 166 | <see cref="UsedMemorySize"/> | Specifies size of memory for PPM*. |
-    /// | 170 | <see cref="Order"/> | Specifies order for PPM methods. |
-    /// | 174 | <see cref="BlockSize"/> | Specifies Block Size. |
-    /// | 178 | <see cref="PosStateBits"/> | Specifies number of postion state bits for LZMA (0 &lt;= x &lt;= 4). |
-    /// | 182 | <see cref="LitContextBits"/> | Specifies number of literal context bits for LZMA (0 &lt;= x &lt;= 8). |
-    /// | 186 | <see cref="LitPosBits"/> | Specifies number of literal position bits for LZMA (0 &lt;= x &lt;= 4). |
-    /// | 190 | <see cref="NumFastBytes"/> | Specifies number of fast bytes for LZ*. |
-    /// | 194 | <see cref="MatchFinder"/> | Specifies match finder. |
-    /// | 198 | <see cref="MatchFinderCycles"/> | Specifies the number of match finder cyckes. |
-    /// | 202 | <see cref="NumPasses"/> | Specifies number of passes. |
-    /// | 206 | <see cref="Algorithm"/> | Specifies number of algorithm. |
-    /// | 210 | <see cref="NumThreads"/> | Specifies the number of threads. |
-    /// | 214 | <see cref="EndMarker"/> | Specifies mode with end marker. |
+    /// | 165 | <see cref="DefaultProp"/> | Specifies default property. |
+    /// | 169 | <see cref="DictionarySize"/> | Specifies size of dictionary. |
+    /// | 173 | <see cref="UsedMemorySize"/> | Specifies size of memory for PPM*. |
+    /// | 177 | <see cref="Order"/> | Specifies order for PPM methods. |
+    /// | 181 | <see cref="BlockSize"/> | Specifies Block Size. |
+    /// | 185 | <see cref="PosStateBits"/> | Specifies number of postion state bits for LZMA (0 &lt;= x &lt;= 4). |
+    /// | 189 | <see cref="LitContextBits"/> | Specifies number of literal context bits for LZMA (0 &lt;= x &lt;= 8). |
+    /// | 193 | <see cref="LitPosBits"/> | Specifies number of literal position bits for LZMA (0 &lt;= x &lt;= 4). |
+    /// | 197 | <see cref="NumFastBytes"/> | Specifies number of fast bytes for LZ*. |
+    /// | 201 | <see cref="MatchFinder"/> | Specifies match finder. LZMA: "BT2", "BT4" or "BT4B". |
+    /// | 205 | <see cref="MatchFinderCycles"/> | Specifies the number of match finder cyckes. |
+    /// | 209 | <see cref="NumPasses"/> | Specifies number of passes. |
+    /// | 213 | <see cref="Algorithm"/> | Specifies number of algorithm. |
+    /// | 217 | <see cref="NumThreads"/> | Specifies the number of threads. |
+    /// | 221 | <see cref="EndMarker"/> | Specifies mode with end marker. |
     /// </remarks>
     [System.ComponentModel.Description("Provides the fields that represent properties idenitifiers for compressing.")]
-    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "b3bddf342dfda561777005f4c5504a23222268a333432d73e128252de6cc2eef", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "f2870bb7734f2489c4458fb0cb673cec3d901b59007e945d2ca837ec8181eade", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     public enum CoderPropId
     {
         /// <summary>
@@ -230,7 +230,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 242 | <see cref="SetCoderProperties"/> | Sets encoder/decoder properties specified by    to the corresponding values in  . |
+    /// | 253 | <see cref="SetCoderProperties"/> | Sets encoder/decoder properties specified by to the corresponding values in. |
     ///
     /// ## Collaborators
     ///
@@ -241,7 +241,7 @@ namespace SevenZip.Sdk
     [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
     [Tags("code/configuration", "code/property_management")]
     [System.ComponentModel.Description("Defines the interface for setting encoder/decoder properties by identifier and value.")]
-    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "2ebf83591102c7fb8b181c205ab7ffba831a651fccf87824b34642ec8e22d9a8", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "755162766db78b413267b067382883e26d39fde5bd0a37d166983b40309e88c7", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Concept("compression_configuration")]
     internal interface ISetCoderProperties
     {
@@ -266,12 +266,12 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 261 | <see cref="WriteCoderProperties"/> | Writes the encoder/decoder properties to  . |
+    /// | 280 | <see cref="WriteCoderProperties"/> | Writes the encoder/decoder properties to. |
     /// </remarks>
     [Facets(Layer = "transform", Status = "stable", Complexity = 1)]
     [Tags("code/serialization", "code/output_handling")]
     [System.ComponentModel.Description("Defines the interface for writing encoder/decoder properties to a stream.")]
-    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "37fe8658628aaac173fbac71a3a99b25be2805443e76bb13664bc44922a19b1e", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
+    [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "0f1d34c56f42af96f516c12b7d17068a0f96f8fc3391b8a94ddde9747929fb5a", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]
     [Concept("compression_configuration")]
     internal interface IWriteCoderProperties
     {
@@ -292,7 +292,7 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 281 | <see cref="SetDecoderProperties"/> | Sets decoder properties |
+    /// | 305 | <see cref="SetDecoderProperties"/> | Sets decoder properties |
     /// </remarks>
     [System.ComponentModel.Description("The ISetDecoderPropertiesinterface")]
     [DocState(Pass = 2, MTime = "2026-09-26T18:28:51Z", Digest = "4cf33d8bdde3edb8feb51cfba66727968c5cb3ff777473d5f744eaa0c0503999", Stale = false, Path = "sdk/ICoder.cs", Since = "2026-08-23")]

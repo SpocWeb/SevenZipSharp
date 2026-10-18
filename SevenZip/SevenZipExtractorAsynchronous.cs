@@ -25,8 +25,8 @@ namespace SevenZip
     /// | 145 | <see cref="ExtractArchiveAsync"/> | Unpacks the whole archive asynchronously to the specified directory name at the specified priority. |
     /// | 164 | <see cref="BeginExtractFile"/> | Unpacks the file asynchronously by its name to the specified stream. |
     /// | 177 | <see cref="ExtractFileAsync"/> | Unpacks the file asynchronously by its name to the specified stream. |
-    /// | 293 | <see cref="BeginExtractFiles"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
-    /// | 307 | <see cref="ExtractFilesAsync"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. |
+    /// | 293 | <see cref="BeginExtractFiles"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. The order of the files is given by the archive. 7-Zip (and any other solid) archives are NOT supported. |
+    /// | 307 | <see cref="ExtractFilesAsync"/> | Extracts files from the archive asynchronously, giving a callback the choice what to do with each file. The order of the files is given by the archive. 7-Zip (and any other solid) archives are NOT supported. |
     /// </remarks>
     /// <seealso cref="ExtractFileCallback">ExtractFileCallback: Callback invoked for each archive member during callback-driven extraction.</seealso>
     [DocState(Pass = 2, MTime = "2026-08-24T14:23:33Z", Digest = "7d2cdcccb7dadd2da9a8055bba8d94331a13ba54d26c520a70ae7f1cb6468524", Stale = false, Path = "SevenZipExtractorAsynchronous.cs", Since = "2026-08-23")]

@@ -8,6 +8,24 @@ namespace SevenZip
     /// <summary>
     /// Exception class for fail to create an archive in SevenZipCompressor.
     /// </summary>
+    /// <remarks>
+    /// ## Public Methods
+    ///
+    /// | Line | Method | Description |
+    /// |--:|---|---|
+    /// | 35 | <see cref="DEFAULT_MESSAGE"/> | Exception dafault message which is displayed if no extra information is specified |
+    /// | 40 | <see cref="SevenZipCompressionFailedException"/> | Initializes a new instance of the SevenZipCompressionFailedException class |
+    /// | 46 | <see cref="SevenZipCompressionFailedException"/> | Initializes a new instance of the SevenZipCompressionFailedException class |
+    /// | 53 | <see cref="SevenZipCompressionFailedException"/> | Initializes a new instance of the SevenZipCompressionFailedException class |
+    /// </remarks>
+    ///
+    /// <example>
+    /// <code language="yaml">
+    /// pass: 2
+    /// mtime: 2026-08-21T19:22:58Z
+    /// digest: 3cb5be017223e55d07dbdf815ff66aa8587c8bb6fb58bda8d954a576982d3ef7
+    /// </code>
+    /// </example>
     [Serializable]
     public class SevenZipCompressionFailedException : SevenZipException
     {

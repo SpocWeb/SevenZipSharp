@@ -9,11 +9,11 @@ namespace SevenZip.Sdk
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 23 | <see cref="Table"/> | Gets the table. |
-    /// | 54 | <see cref="Init"/> | Resets the CRC value to its initial state. |
-    /// | 57 | <see cref="UpdateByte"/> | Updates the CRC value with a single byte. |
-    /// | 60 | <see cref="Update"/> | Updates the CRC value with a range of bytes from the given array. |
-    /// | 67 | <see cref="GetDigest"/> | Returns the finalized CRC value. |
+    /// | 27 | <see cref="Table"/> | Gets the table. |
+    /// | 62 | <see cref="Init"/> | Resets the CRC value to its initial state. |
+    /// | 69 | <see cref="UpdateByte"/> | Updates the CRC value with a single byte. |
+    /// | 76 | <see cref="Update"/> | Updates the CRC value with a range of bytes from the given array. |
+    /// | 87 | <see cref="GetDigest"/> | Returns the finalized CRC value. |
     /// </remarks>
     [Facets(Layer = "transform", Status = "stable", Complexity = 2)]
     [Tags("code/checksum")]
