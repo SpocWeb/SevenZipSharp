@@ -20,31 +20,31 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 176 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 189 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
     /// | 199 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 211 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 212 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
     /// | 222 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 236 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 249 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 263 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
-    /// | 277 | <see cref="FileName"/> | Gets or sets archive full file name |
-    /// | 290 | <see cref="PackedSize"/> | Gets the size of the archive file |
-    /// | 305 | <see cref="UnpackedSize"/> | Gets the size of unpacked archive data |
-    /// | 323 | <see cref="IsSolid"/> | Gets a value indicating whether the archive is solid |
-    /// | 342 | <see cref="FilesCount"/> | Gets the number of files in the archive |
-    /// | 362 | <see cref="Format"/> | Gets archive format |
-    /// | 375 | <see cref="PreserveDirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure of extracted files. |
-    /// | 910 | <see cref="ArchiveFileData"/> | Gets the collection of ArchiveFileInfo with all information about files in the archive |
-    /// | 924 | <see cref="ArchiveProperties"/> | Gets the properties for the current archive |
-    /// | 941 | <see cref="ArchiveFileNames"/> | Gets the collection of all file names contained in the archive. |
-    /// | 958 | <see cref="VolumeFileNames"/> | Gets the list of archive volume file names. |
-    /// | 974 | <see cref="Check"/> | Performs the archive integrity test. |
-    /// | 1025 | <see cref="ExtractFile"/> | Unpacks the file by its name to the specified stream. |
-    /// | 1281 | <see cref="ExtractFiles"/> | Extracts files from the archive, giving a callback the choice what to do with each file. The order of the files is given by the archive. 7-Zip (and any other solid) archives are NOT supported. |
-    /// | 1345 | <see cref="ExtractArchive"/> | Unpacks the whole archive to the specified directory. |
-    /// | 1442 | <see cref="DecompressStream"/> | Decompress the specified stream (C# inside) |
-    /// | 1461 | <see cref="ExtractBytes"/> | Decompress byte array compressed with LZMA algorithm (C# inside) |
+    /// | 234 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 245 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 259 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 272 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 286 | <see cref="SevenZipExtractor"/> | Initializes a new instance of SevenZipExtractor class. |
+    /// | 300 | <see cref="FileName"/> | Gets or sets archive full file name |
+    /// | 313 | <see cref="PackedSize"/> | Gets the size of the archive file |
+    /// | 328 | <see cref="UnpackedSize"/> | Gets the size of unpacked archive data |
+    /// | 346 | <see cref="IsSolid"/> | Gets a value indicating whether the archive is solid |
+    /// | 365 | <see cref="FilesCount"/> | Gets the number of files in the archive |
+    /// | 385 | <see cref="Format"/> | Gets archive format |
+    /// | 398 | <see cref="PreserveDirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure of extracted files. |
+    /// | 933 | <see cref="ArchiveFileData"/> | Gets the collection of ArchiveFileInfo with all information about files in the archive |
+    /// | 947 | <see cref="ArchiveProperties"/> | Gets the properties for the current archive |
+    /// | 964 | <see cref="ArchiveFileNames"/> | Gets the collection of all file names contained in the archive. |
+    /// | 981 | <see cref="VolumeFileNames"/> | Gets the list of archive volume file names. |
+    /// | 997 | <see cref="Check"/> | Performs the archive integrity test. |
+    /// | 1048 | <see cref="ExtractFile"/> | Unpacks the file by its name to the specified stream. |
+    /// | 1304 | <see cref="ExtractFiles"/> | Extracts files from the archive, giving a callback the choice what to do with each file. The order of the files is given by the archive. 7-Zip (and any other solid) archives are NOT supported. |
+    /// | 1368 | <see cref="ExtractArchive"/> | Unpacks the whole archive to the specified directory. |
+    /// | 1465 | <see cref="DecompressStream"/> | Decompress the specified stream (C# inside) |
+    /// | 1484 | <see cref="ExtractBytes"/> | Decompress byte array compressed with LZMA algorithm (C# inside) |
     ///
     /// ## Collaborators
     ///

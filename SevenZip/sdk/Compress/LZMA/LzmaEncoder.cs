@@ -1926,11 +1926,11 @@ namespace SevenZip.Sdk.Compression.Lzma
 			///
 			/// | Line | Method | Description |
 			/// |--:|---|---|
-			/// | 1959 | <see cref="Create"/> | Allocates the bit encoder array for literal encoding. |
-			/// | 1969 | <see cref="Init"/> | Initializes all bit encoders for a new literal encoding sequence. |
-			/// | 1982 | <see cref="Encode"/> | Encodes a literal byte using bit-by-bit range encoding through a binary tree. |
-			/// | 2001 | <see cref="EncodeMatched"/> | Encodes a literal byte relative to a match byte from a repeated distance using adaptive contexts. |
-			/// | 2029 | <see cref="GetPrice"/> | Computes the encoder price for encoding a literal byte optionally relative to a match byte. |
+			/// | 1951 | <see cref="Create"/> | Allocates the bit encoder array for literal encoding. |
+			/// | 1961 | <see cref="Init"/> | Initializes all bit encoders for a new literal encoding sequence. |
+			/// | 1974 | <see cref="Encode"/> | Encodes a literal byte using bit-by-bit range encoding through a binary tree. |
+			/// | 1993 | <see cref="EncodeMatched"/> | Encodes a literal byte relative to a match byte from a repeated distance using adaptive contexts. |
+			/// | 2021 | <see cref="GetPrice"/> | Computes the encoder price for encoding a literal byte optionally relative to a match byte. |
 			///
 			/// ## Collaborators
 			///
@@ -2068,9 +2068,9 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 2114 | <see cref="MakeAsChar"/> | Marks this optimal step as a literal (non-match) encoding. |
-        /// | 2128 | <see cref="MakeAsShortRep"/> | Marks this optimal step as a single-byte repetition match. |
-        /// | 2140 | <see cref="IsShortRep"/> | Determines whether short Rep. |
+        /// | 2106 | <see cref="MakeAsChar"/> | Marks this optimal step as a literal (non-match) encoding. |
+        /// | 2120 | <see cref="MakeAsShortRep"/> | Marks this optimal step as a single-byte repetition match. |
+        /// | 2132 | <see cref="IsShortRep"/> | Determines whether short Rep. |
         ///
         /// ## Invariants
         ///

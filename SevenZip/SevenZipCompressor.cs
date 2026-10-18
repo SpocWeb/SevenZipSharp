@@ -23,33 +23,33 @@ namespace SevenZip
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 57 | <see cref="CompressionLevel"/> | Gets or sets the archiving compression level. |
-    /// | 65 | <see cref="CustomParameters"/> | Gets the custom compression parameters - for advanced users only. |
-    /// | 73 | <see cref="IncludeEmptyDirectories"/> | Gets or sets the value indicating whether to include empty directories to archives. Default is true. |
-    /// | 78 | <see cref="PreserveDirectoryRoot"/> | Gets or sets the value indicating whether to preserve the directory root for CompressDirectory. |
-    /// | 83 | <see cref="DirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure. |
-    /// | 90 | <see cref="CompressionMode"/> | Gets or sets the compression mode. |
-    /// | 98 | <see cref="EncryptHeaders"/> | Gets or sets the value indicating whether to encrypt 7-Zip archive headers. |
-    /// | 103 | <see cref="ScanOnlyWritable"/> | Gets or sets the value indicating whether to compress files only open for writing. |
-    /// | 108 | <see cref="ZipEncryptionMethod"/> | Gets or sets the encryption method for zip archives. |
-    /// | 113 | <see cref="TempFolderPath"/> | Gets or sets the temporary folder path. |
-    /// | 119 | <see cref="DefaultItemName"/> | Gets or sets the default archive item name used when an item to be compressed has no name, for example, when you compress a MemoryStream instance. |
-    /// | 124 | <see cref="FastCompression"/> | Gets or sets the value indicating whether to compress as fast as possible, without calling events. |
-    /// | 148 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
-    /// | 166 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
-    /// | 887 | <see cref="GetArchiveFileStream"/> |  |
-    /// | 1039 | <see cref="ArchiveFormat"/> | Gets or sets the archive format |
-    /// | 1057 | <see cref="CompressionMethod"/> | Gets or sets the compression method |
-    /// | 1067 | <see cref="VolumeSize"/> | Gets or sets the size in bytes of an archive volume (0 for no volumes). |
-    /// | 1083 | <see cref="CompressFiles"/> | Packs files into the archive. |
-    /// | 1124 | <see cref="CompressFilesEncrypted"/> | Packs files into the archive. |
-    /// | 1295 | <see cref="CompressDirectory"/> | Packs all files in the specified directory. |
-    /// | 1380 | <see cref="CompressFileDictionary"/> | Packs the specified file dictionary. |
-    /// | 1446 | <see cref="CompressStreamDictionary"/> | Packs the specified stream dictionary. |
-    /// | 1576 | <see cref="CompressStream"/> | Compresses the specified stream. |
-    /// | 1630 | <see cref="ModifyArchive"/> | Modifies the existing archive (renames files or deletes them). |
-    /// | 1752 | <see cref="LzmaDictionarySize"/> | Gets or sets the dictionary size for the managed LZMA algorithm. |
-    /// | 1830 | <see cref="CompressBytes"/> | Compresses byte array with LZMA algorithm (C# inside) |
+    /// | 81 | <see cref="CompressionLevel"/> | Gets or sets the archiving compression level. |
+    /// | 89 | <see cref="CustomParameters"/> | Gets the custom compression parameters - for advanced users only. |
+    /// | 97 | <see cref="IncludeEmptyDirectories"/> | Gets or sets the value indicating whether to include empty directories to archives. Default is true. |
+    /// | 102 | <see cref="PreserveDirectoryRoot"/> | Gets or sets the value indicating whether to preserve the directory root for CompressDirectory. |
+    /// | 107 | <see cref="DirectoryStructure"/> | Gets or sets the value indicating whether to preserve the directory structure. |
+    /// | 114 | <see cref="CompressionMode"/> | Gets or sets the compression mode. |
+    /// | 122 | <see cref="EncryptHeaders"/> | Gets or sets the value indicating whether to encrypt 7-Zip archive headers. |
+    /// | 127 | <see cref="ScanOnlyWritable"/> | Gets or sets the value indicating whether to compress files only open for writing. |
+    /// | 132 | <see cref="ZipEncryptionMethod"/> | Gets or sets the encryption method for zip archives. |
+    /// | 137 | <see cref="TempFolderPath"/> | Gets or sets the temporary folder path. |
+    /// | 143 | <see cref="DefaultItemName"/> | Gets or sets the default archive item name used when an item to be compressed has no name, for example, when you compress a MemoryStream instance. |
+    /// | 148 | <see cref="FastCompression"/> | Gets or sets the value indicating whether to compress as fast as possible, without calling events. |
+    /// | 172 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
+    /// | 190 | <see cref="SevenZipCompressor"/> | Initializes a new instance of the SevenZipCompressor class. |
+    /// | 911 | <see cref="GetArchiveFileStream"/> |  |
+    /// | 1063 | <see cref="ArchiveFormat"/> | Gets or sets the archive format |
+    /// | 1081 | <see cref="CompressionMethod"/> | Gets or sets the compression method |
+    /// | 1091 | <see cref="VolumeSize"/> | Gets or sets the size in bytes of an archive volume (0 for no volumes). |
+    /// | 1107 | <see cref="CompressFiles"/> | Packs files into the archive. |
+    /// | 1148 | <see cref="CompressFilesEncrypted"/> | Packs files into the archive. |
+    /// | 1319 | <see cref="CompressDirectory"/> | Packs all files in the specified directory. |
+    /// | 1404 | <see cref="CompressFileDictionary"/> | Packs the specified file dictionary. |
+    /// | 1470 | <see cref="CompressStreamDictionary"/> | Packs the specified stream dictionary. |
+    /// | 1600 | <see cref="CompressStream"/> | Compresses the specified stream. |
+    /// | 1654 | <see cref="ModifyArchive"/> | Modifies the existing archive (renames files or deletes them). |
+    /// | 1776 | <see cref="LzmaDictionarySize"/> | Gets or sets the dictionary size for the managed LZMA algorithm. |
+    /// | 1854 | <see cref="CompressBytes"/> | Compresses byte array with LZMA algorithm (C# inside) |
     ///
     /// ## Collaborators
     ///

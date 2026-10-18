@@ -16,8 +16,8 @@ namespace SevenZip.Sdk.Compression.Lzma
     ///
     /// | Line | Method | Description |
     /// |--:|---|---|
-    /// | 70 | <see cref="Decoder"/> | Initializes the Lzma Decoder class. |
-    /// | 366 | <see cref="Train"/> | Trains a stream |
+    /// | 71 | <see cref="Decoder"/> | Initializes the Lzma Decoder class. |
+    /// | 367 | <see cref="Train"/> | Trains a stream |
     ///
     /// ## Collaborators
     ///
@@ -386,7 +386,7 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 457 | <see cref="Decode"/> | Decodes the stream |
+        /// | 458 | <see cref="Decode"/> | Decodes the stream |
         ///
         /// ## Collaborators
         ///
@@ -492,10 +492,10 @@ namespace SevenZip.Sdk.Compression.Lzma
         ///
         /// | Line | Method | Description |
         /// |--:|---|---|
-        /// | 523 | <see cref="Create"/> | Creates Decoder2 instances for all context states based on position and previous-byte bit counts. |
-        /// | 546 | <see cref="Init"/> | Initializes all context-dependent literal decoders. |
-        /// | 575 | <see cref="DecodeNormal"/> | Decodes a literal byte using the normal decoder for the specified position and previous-byte context. |
-        /// | 587 | <see cref="DecodeWithMatchByte"/> | Decodes a literal byte using match-byte context for improved compression in repetitive data. |
+        /// | 524 | <see cref="Create"/> | Creates Decoder2 instances for all context states based on position and previous-byte bit counts. |
+        /// | 547 | <see cref="Init"/> | Initializes all context-dependent literal decoders. |
+        /// | 576 | <see cref="DecodeNormal"/> | Decodes a literal byte using the normal decoder for the specified position and previous-byte context. |
+        /// | 588 | <see cref="DecodeWithMatchByte"/> | Decodes a literal byte using match-byte context for improved compression in repetitive data. |
         ///
         /// ## Collaborators
         ///
@@ -602,10 +602,10 @@ namespace SevenZip.Sdk.Compression.Lzma
 			///
 			/// | Line | Method | Description |
 			/// |--:|---|---|
-			/// | 629 | <see cref="Create"/> | Allocates the bit decoder array for this decoder instance. |
-			/// | 639 | <see cref="Init"/> | Initializes all bit decoders in the decoder array. |
-			/// | 653 | <see cref="DecodeNormal"/> | Decodes a byte from the range decoder using a binary tree algorithm. |
-			/// | 671 | <see cref="DecodeWithMatchByte"/> | Decodes a byte using match-byte-guided binary tree decoding for faster convergence. |
+			/// | 630 | <see cref="Create"/> | Allocates the bit decoder array for this decoder instance. |
+			/// | 640 | <see cref="Init"/> | Initializes all bit decoders in the decoder array. |
+			/// | 654 | <see cref="DecodeNormal"/> | Decodes a byte from the range decoder using a binary tree algorithm. |
+			/// | 672 | <see cref="DecodeWithMatchByte"/> | Decodes a byte using match-byte-guided binary tree decoding for faster convergence. |
 			///
 			/// ## Collaborators
 			///
